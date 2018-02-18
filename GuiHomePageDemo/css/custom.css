@@ -1,0 +1,46 @@
+.carousel-item {
+    height: 65vh;
+    min-height: 300px;
+    background: no-repeat center center scroll;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.bg-img-custom {
+    /* The image used */
+    background-image: url("http://via.placeholder.com/1900x1080/DAEBEB?text=Background%20Image");
+
+    /* Full height */
+    /*height: 100%;*/
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: repeat;
+    background-size: cover;
+}
+body {
+    /* The image used */
+    background-image: url("http://via.placeholder.com/1900x1080/DAEBEB?text=Background%20Image");
+
+    /* Full height */
+    /*height: 100%;*/
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: repeat;
+    background-size: cover;
+
+    width: 75%;
+    margin: auto;
+}
+
+.potato-color{
+     background-color: #ffc284;
+ }
+
+.max-width-none{
+    max-width:none;
+}
+
