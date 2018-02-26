@@ -8947,6 +8947,10 @@ label {
   .card.card-rotate.bg-rose .front,
   .card.card-rotate.bg-rose .back {
     background: linear-gradient(60deg, #ec407a, #c2185b); }
+  .card .card-header-grey, .card.bg-grey,
+    .card.card-rotate.bg-grey .front,
+    .card.card-rotate.bg-grey .back {
+      background: #222222 }
   .card .card-header-primary {
     -webkit-box-shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.2), 0 13px 24px -11px rgba(156, 39, 176, 0.6);
             box-shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.2), 0 13px 24px -11px rgba(156, 39, 176, 0.6); }
@@ -8965,6 +8969,9 @@ label {
   .card .card-header-success {
     -webkit-box-shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.2), 0 13px 24px -11px rgba(76, 175, 80, 0.6);
             box-shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.2), 0 13px 24px -11px rgba(76, 175, 80, 0.6); }
+    .card .card-header-grey {
+      -webkit-box-shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.2), 0 13px 24px -11px rgba(0, 0, 0, 0.6);
+              box-shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.2), 0 13px 24px -11px rgba(0, 0, 0, 0.6); }
   .card [class*="header-"], .card[class*="bg-"] {
     color: #fff; }
     .card [class*="header-"] .card-title a,
