@@ -16,10 +16,7 @@
           href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css"/>
     <link rel="stylesheet" href="./assets/css/material-kit.css?v=2.0.2">
-    <!-- Documentation extras -->
-    <!-- CSS Just for demo purpose, don't include it in your project -->
-    <link href="./assets/assets-for-demo/demo.css" rel="stylesheet"/>
-    <!-- iframe removal -->
+    <link rel="stylesheet" href="./assets/css/custom.css">
 </head>
 
 <body class="index-page ">
@@ -36,25 +33,7 @@
         </div>
         <div class="collapse navbar-collapse">
 
-
-            <form class="form-inline ml-auto mr-5">
-                <div class="form-group has-white">
-                    <input type="text" class="form-control" style="width:300px" placeholder="Search">
-                </div>
-                <div class="col-auto my-0">
-                    <select class="custom-select custom-select-sm" id="searchSelect" style="height: 30px;">
-                        <option value="1">Movies</option>
-                        <option value="2">Actors</option>
-                        <option value="3">Director</option>
-                        <option value="4">Writer</option>
-                    </select>
-                </div>
-                <button type="submit" class="btn btn-white btn-raised btn-fab btn-sm">
-                    <i class="material-icons">search</i>
-                </button>
-            </form>
-
-            <ul class="navbar-nav">
+            <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
                     <a href="#pablo" class="nav-link">SignUp</a>
                 </li>
@@ -66,8 +45,6 @@
         </div>
     </div>
 </nav>
-    
-    
 
 <div class="page-header" data-parallax="false"
      style="height: 18vh !important;">
@@ -78,71 +55,82 @@
     <div class="section section-basic mx-2">
         <div class="container">
             <div class="row">
-                <div class="col-sm-5">
-                    <div class="title">
-                        <h3>Rating</h3>
-                    </div>
+                <div class="col-md-10 ml-auto mr-auto">
+                    <div>
+                        <h2 class="card-title text-center">Account Setting</h2>
 
-                    <img src="assets/img/result.jpg" alt="Smiley face" height="480" width="420" class="rounded float-left">
+                        <div class="card-body">
+
+
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Basic Information</h5>
+                                    <p>
+                                        Name
+                                    </p>
+                                    <p>
+                                        Gender:
+                                    </p>
+                                    <p>
+                                        Country
+                                    </p>
+                                    <p>
+                                        Birthday
+                                    </p>
+                                </div>
+                            </div>
+
+
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Account Information</h5>
+
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div>
+                                                Account ID:
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-4">
+                                            <button type="button" class="btn btn-light btn-sm">Change Password</button>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div>
+                                                Email:
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-4">
+                                            <button type="button" class="btn btn-light btn-sm">Change Email</button>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Privacy Setting</h5>
+
+                                    <select class="form-control">
+                                        <option>Hide</option>
+                                        <option>Restrict</option>
+                                        <option>Show to All</option>
+                                    </select>
+
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
                 </div>
-
-                <div class="col-sm-5 offset-sm-1">
-                    <div class="title">
-                        <h3>Movie Search List</h3>
-                    </div>
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Special title treatment</h5>
-                            <p class="card-text">With supporting text below as a natural lead-in to additional
-                                content.</p>
-                            <p class="card-text">With supporting text below as a natural lead-in to additional
-                                content.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="title">
-                        <h3>TV Episodes Search List</h3>
-                    </div>
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Special title treatment</h5>
-                            <p class="card-text">With supporting text below as a natural lead-in to additional
-                                content.</p>
-                            <p class="card-text">With supporting text below as a natural lead-in to additional
-                                content.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="title">
-                        <h3>Actor Search List</h3>
-                    </div>
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Special title treatment</h5>
-                            <p class="card-text">With supporting text below as a natural lead-in to additional
-                                content.</p>
-                            <p class="card-text">With supporting text below as a natural lead-in to additional
-                                content.</p>
-                        </div>
-                    </div>
-            </div>
-
-            <div class="row">
-                <div class="title">
-                        <h3>Critics Search List</h3>
-                    </div>
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Special title treatment</h5>
-                            <p class="card-text">With supporting text below as a natural lead-in to additional
-                                content.</p>
-                            <p class="card-text">With supporting text below as a natural lead-in to additional
-                                content.</p>
-                        </div>
-                    </div>
             </div>
         </div>
     </div>
