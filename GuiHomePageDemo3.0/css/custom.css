@@ -131,6 +131,7 @@
     height: 20px;
     margin-left: -30px;
 }
+
 .header {
     line-height: 1;
 }
@@ -144,15 +145,139 @@
     text-decoration: none;
 }
 
-.noshadow{
-    -webkit-box-shadow: 0px 0px 0px 0px rgba(0,0,0,0);
-    -moz-box-shadow: 0px 0px 0px 0px rgba(0,0,0,0);
-    box-shadow: 0px 0px 0px 0px rgba(0,0,0,0);
+.noshadow {
+    -webkit-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0);
+    -moz-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0);
+    box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0);
 }
 
-.bg-theme{
+.bg-theme {
     background-color: #ffe8a7;
 }
-.bg-white{
+
+.bg-white {
     background-color: #ffffff;
+}
+
+* {
+    box-sizing: border-box
+}
+
+body {
+    font-family: "Lato", sans-serif;
+}
+
+/* Style the tab */
+.tab {
+    float: left;
+    /*border: 1px solid #ccc;*/
+    background-color: #f1f1f1;
+    width: 25%;
+    height: auto;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+    display: block;
+    background-color: inherit;
+    color: black;
+    padding: 4px 16px;
+    width: 100%;
+    border: none;
+    outline: none;
+    text-align: left;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+    background-color: #ddd;
+}
+
+/* Create an active/current "tab button" class */
+.tab button.active {
+    background-color: #e2ce7f;
+}
+
+/* Style the tab content */
+.tabcontent {
+    float: left;
+    padding: 0px 12px;
+    width: 75%;
+    border-left: none;
+    height: auto;
+}
+
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1400px;
+    }
+}
+
+
+div[id^="slider3v"] .slider-track-high {
+    background: #ffb21d;
+}
+
+div[id^="slider3v"] .slider-track-low {
+    background: green;
+}
+
+div[id^="slider3v"] .slider-selection {
+    background: #f7efff;
+}
+
+div[id^="slider3v"] {
+    margin-right: 20px;
+}
+
+.ico-size {
+    width: 20px;
+    height: 20px;
+}
+
+.nav-tabs--vertical {
+    border-bottom: none;
+    border-right: 1px solid #ddd;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-flow: column nowrap;
+    flex-flow: column nowrap;
+}
+.nav-tabs--left {
+    margin: 0 15px;
+}
+.nav-tabs--left .nav-item + .nav-item {
+    margin-top: .25rem;
+}
+.nav-tabs--left .nav-link {
+    -webkit-transition: border-color .125s ease-in;
+    transition: border-color .125s ease-in;
+    white-space: nowrap;
+}
+.nav-tabs--left .nav-link:hover {
+    background-color: #f7f7f7;
+    border-color: transparent;
+}
+.nav-tabs--left .nav-link.active {
+    border-bottom-color: #ddd;
+    border-right-color: #fff;
+    border-bottom-left-radius: 0.25rem;
+    border-top-right-radius: 0;
+    margin-right: -1px;
+}
+.nav-tabs--left .nav-link.active:hover {
+    background-color: #fff;
+    border-color: #0275d8 #fff #0275d8 #0275d8;
+}
+
+.img-center{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }

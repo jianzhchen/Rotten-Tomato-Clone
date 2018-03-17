@@ -9,15 +9,17 @@
     <title>Rotten Potato</title>
 
     <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="css/bootstrap-material-design.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
     <!-- Custom styles for this template -->
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
+    <link href="css/bootstrap-slider.css" rel="stylesheet">
+    <link href="css/bootstrap-multiselect.css" rel="stylesheet">
     <link href="css/custom.css" rel="stylesheet">
 </head>
 
 <body class="bg-black">
 
-<div class="container bg-light mt-5">
+<div class="container bg-light">
     <!--header and navbar-->
     <div class="row header bg-theme py-2 my-0 pt-3">
         <div class="col-12">
@@ -29,24 +31,30 @@
                     <a class="header-logo text-dark" href="index.html">Rotten Potato</a>
                 </div>
                 <div class="col-4 d-flex justify-content-end align-items-center">
-                    <a class="btn btn-sm btn-outline-dark mx-1" data-toggle="modal" data-target="#loginModal">Login</a>
-                    <a class="btn btn-sm btn-outline-dark mx-1" data-toggle="modal" data-target="#signupModal">Sign
-                        up</a>
+                    <button class="btn btn-sm btn-primary mx-1" data-toggle="modal" data-target="#loginModal">Login
+                    </button>
+                    <button class="btn btn-sm btn-primary mx-1" data-toggle="modal" data-target="#signupModal">Sign
+                        up
+                    </button>
                 </div>
             </div>
         </div>
     </div>
-    <nav class="row navbar navbar-expand-lg noshadow bg-theme py-0">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
-                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <nav class="row navbar navbar-expand-lg navbar-light noshadow bg-theme">
+        <a class="navbar-brand" href="#"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
+                <li class="nav-item active">
                     <div class="btn-group">
-                        <a class="btn btn-dark btn-lg py-0" href="movies.html">Movies</a>
-                        <button type="button" class="btn btn-dark btn-lg py-0 dropdown-toggle dropdown-toggle-split"
+                        <button type="button" class="btn bg-theme btn-lg" onclick="location.href = 'movies.html'">
+                            Movies
+                        </button>
+                        <button type="button" class="btn bg-theme btn-lg dropdown-toggle dropdown-toggle-split"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <span class="sr-only">Toggle Dropdown</span>
                         </button>
@@ -61,8 +69,8 @@
                 </li>
                 <li class="nav-item">
                     <div class="btn-group">
-                        <a class="btn btn-dark btn-lg py-0 ">TV</a>
-                        <button type="button" class="btn btn-dark btn-lg py-0 dropdown-toggle dropdown-toggle-split"
+                        <button type="button" class="btn bg-theme btn-lg">TV</button>
+                        <button type="button" class="btn bg-theme btn-lg dropdown-toggle dropdown-toggle-split"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <span class="sr-only">Toggle Dropdown</span>
                         </button>
@@ -75,10 +83,10 @@
                         </div>
                     </div>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item dropdown">
                     <div class="btn-group">
-                        <a class="btn btn-dark btn-lg py-0 ">News</a>
-                        <button type="button" class="btn btn-dark btn-lg py-0 dropdown-toggle dropdown-toggle-split"
+                        <button type="button" class="btn bg-theme btn-lg">News</button>
+                        <button type="button" class="btn bg-theme btn-lg dropdown-toggle dropdown-toggle-split"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <span class="sr-only">Toggle Dropdown</span>
                         </button>
@@ -92,7 +100,6 @@
                     </div>
                 </li>
             </ul>
-
             <form>
                 <div class="form-row align-items-center">
                     <div class="col-auto">
@@ -107,612 +114,662 @@
                         </select>
                     </div>
                     <div class="col-auto">
-                        <button class="btn btn-outline-success bg-white my-2 my-sm-0" type="submit">Search</button>
+                        <button class="btn btn-danger my-2 my-sm-0" type="submit">Search</button>
                     </div>
                 </div>
             </form>
-
         </div>
     </nav>
 
+    <!--body-->
     <div class="row">
-        <div class="col-md-4">
-            <nav class="nav flex-column">
-                <a class="nav-link active" href="#">Active</a>
-                <a class="nav-link" href="#">Link</a>
-                <a class="nav-link" href="#">Link</a>
-                <a class="nav-link disabled" href="#">Disabled</a>
-            </nav>
-        </div>
-        <div class="col-md-8">
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-4" style="margin:10px">
-            <nav>
-                <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                    <a class="nav-item nav-link active;" id="nav-in-theater-tab" data-toggle="tab"
-                       href="#nav-in-theater" role="tab" aria-controls="nav-in-theater" aria-selected="true"
-                       style="text-align: center">
-                        <p>IN</p>
-                        <p>ThEATER</p>
-                    </a>
-                    <a class="nav-item nav-link" id="nav-dvd-streaming-tab" data-toggle="tab" href="#nav-dvd-streaming"
-                       role="tab" aria-controls="nav-dvd-streaming" aria-selected="false" style="text-align: center">
-                        <p>DVD&</p>
-                        <p>STREAMING</p>
-                    </a>
-                    <a class="nav-item nav-link" id="nav-tv-show-tab" data-toggle="tab" href="#nav-tv-show" role="tab"
-                       aria-controls="nav-tv-show" aria-selected="false" style="text-align: center">
-                        <p>TV</p>
-                        <p>SHOWS</p>
-                    </a>
-                </div>
-            </nav>
-            <div class="tab-content" id="nav-tabContent">
-                <div class="tab-pane fade show active" id="nav-in-theater" role="tabpanel"
-                     aria-labelledby="nav-in-theater-tab">
-                    <div>
-                        <div>Opening</div>
-
-                        <div class="row" style="margin:5px">
-                            <div class="'col-sm-2">
-                                <div>N/A</div>
-                            </div>
-                            <div class='col-sm-8'>
-                                <div>Death Wish</div>
-                            </div>
-                            <div class="'col-sm-1">
-                                <div>MAR 2</div>
-                            </div>
-                        </div>
-
-                        <div class="row" style="margin:5px">
-                            <div class="'col-sm-2">
-                                <div>N/A</div>
-                            </div>
-                            <div class='col-sm-8'>
-                                <div>Death Wish</div>
-                            </div>
-                            <div class="'col-sm-1">
-                                <div>MAR 2</div>
-                            </div>
-                        </div>
-
-                        <div class="row" style="margin:5px">
-                            <div class="'col-sm-2">
-                                <div>N/A</div>
-                            </div>
-                            <div class='col-sm-8'>
-                                <div>Death Wish</div>
-                            </div>
-                            <div class="'col-sm-1">
-                                <div>MAR 2</div>
-                            </div>
-                        </div>
-
-                        <div class="row" style="margin:5px">
-                            <div class="'col-sm-2">
-                                <div>N/A</div>
-                            </div>
-                            <div class='col-sm-8'>
-                                <div>Death Wish</div>
-                            </div>
-                            <div class="'col-sm-1">
-                                <div>MAR 2</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div>
-                        <div>TOP BOX OFFICE</div>
-
-                        <div class="row" style="margin:5px">
-                            <div class="'col-sm-2">
-                                <div>N/A</div>
-                            </div>
-                            <div class='col-sm-8'>
-                                <div>Death Wish</div>
-                            </div>
-                            <div class="'col-sm-1">
-                                <div>MAR 2</div>
-                            </div>
-                        </div>
-
-                        <div class="row" style="margin:5px">
-                            <div class="'col-sm-2">
-                                <div>N/A</div>
-                            </div>
-                            <div class='col-sm-8'>
-                                <div>Death Wish</div>
-                            </div>
-                            <div class="'col-sm-1">
-                                <div>MAR 2</div>
-                            </div>
-                        </div>
-
-                        <div class="row" style="margin:5px">
-                            <div class="'col-sm-2">
-                                <div>N/A</div>
-                            </div>
-                            <div class='col-sm-8'>
-                                <div>Death Wish</div>
-                            </div>
-                            <div class="'col-sm-1">
-                                <div>MAR 2</div>
-                            </div>
-                        </div>
-
-                        <div class="row" style="margin:5px">
-                            <div class="'col-sm-2">
-                                <div>N/A</div>
-                            </div>
-                            <div class='col-sm-8'>
-                                <div>Death Wish</div>
-                            </div>
-                            <div class="'col-sm-1">
-                                <div>MAR 2</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div>
-                        <div>OPENING SOON</div>
-
-                        <div class="row" style="margin:5px">
-                            <div class="'col-sm-2">
-                                <div>N/A</div>
-                            </div>
-                            <div class='col-sm-8'>
-                                <div>Death Wish</div>
-                            </div>
-                            <div class="'col-sm-1">
-                                <div>MAR 2</div>
-                            </div>
-                        </div>
-
-                        <div class="row" style="margin:5px">
-                            <div class="'col-sm-2">
-                                <div>N/A</div>
-                            </div>
-                            <div class='col-sm-8'>
-                                <div>Death Wish</div>
-                            </div>
-                            <div class="'col-sm-1">
-                                <div>MAR 2</div>
-                            </div>
-                        </div>
-
-                        <div class="row" style="margin:5px">
-                            <div class="'col-sm-2">
-                                <div>N/A</div>
-                            </div>
-                            <div class='col-sm-8'>
-                                <div>Death Wish</div>
-                            </div>
-                            <div class="'col-sm-1">
-                                <div>MAR 2</div>
-                            </div>
-                        </div>
-
-                        <div class="row" style="margin:5px">
-                            <div class="'col-sm-2">
-                                <div>N/A</div>
-                            </div>
-                            <div class='col-sm-8'>
-                                <div>Death Wish</div>
-                            </div>
-                            <div class="'col-sm-1">
-                                <div>MAR 2</div>
-                            </div>
-                        </div>
-                    </div>
-
-
-                </div>
-                <div class="tab-pane fade" id="nav-dvd-streaming" role="tabpanel"
-                     aria-labelledby="nav-dvd-streaming-tab">
-                    <div>
-                        <div>TOP DVD & STREAMING</div>
-
-                        <div class="row" style="margin:5px">
-                            <div class="'col-sm-2">
-                                <div>N/A</div>
-                            </div>
-                            <div class='col-sm-8'>
-                                <div>Death Wish</div>
-                            </div>
-                            <div class="'col-sm-1">
-                                <div>MAR 2</div>
-                            </div>
-                        </div>
-
-                        <div class="row" style="margin:5px">
-                            <div class="'col-sm-2">
-                                <div>N/A</div>
-                            </div>
-                            <div class='col-sm-8'>
-                                <div>Death Wish</div>
-                            </div>
-                            <div class="'col-sm-1">
-                                <div>MAR 2</div>
-                            </div>
-                        </div>
-
-                        <div class="row" style="margin:5px">
-                            <div class="'col-sm-2">
-                                <div>N/A</div>
-                            </div>
-                            <div class='col-sm-8'>
-                                <div>Death Wish</div>
-                            </div>
-                            <div class="'col-sm-1">
-                                <div>MAR 2</div>
-                            </div>
-                        </div>
-
-                        <div class="row" style="margin:5px">
-                            <div class="'col-sm-2">
-                                <div>N/A</div>
-                            </div>
-                            <div class='col-sm-8'>
-                                <div>Death Wish</div>
-                            </div>
-                            <div class="'col-sm-1">
-                                <div>MAR 2</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div>
-                        <div>NEW ON DVD/STREAMING THIS WEEK</div>
-
-                        <div class="row" style="margin:5px">
-                            <div class="'col-sm-2">
-                                <div>N/A</div>
-                            </div>
-                            <div class='col-sm-8'>
-                                <div>Death Wish</div>
-                            </div>
-                            <div class="'col-sm-1">
-                                <div>MAR 2</div>
-                            </div>
-                        </div>
-
-                        <div class="row" style="margin:5px">
-                            <div class="'col-sm-2">
-                                <div>N/A</div>
-                            </div>
-                            <div class='col-sm-8'>
-                                <div>Death Wish</div>
-                            </div>
-                            <div class="'col-sm-1">
-                                <div>MAR 2</div>
-                            </div>
-                        </div>
-
-                        <div class="row" style="margin:5px">
-                            <div class="'col-sm-2">
-                                <div>N/A</div>
-                            </div>
-                            <div class='col-sm-8'>
-                                <div>Death Wish</div>
-                            </div>
-                            <div class="'col-sm-1">
-                                <div>MAR 2</div>
-                            </div>
-                        </div>
-
-                        <div class="row" style="margin:5px">
-                            <div class="'col-sm-2">
-                                <div>N/A</div>
-                            </div>
-                            <div class='col-sm-8'>
-                                <div>Death Wish</div>
-                            </div>
-                            <div class="'col-sm-1">
-                                <div>MAR 2</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="tab-pane fade" id="nav-tv-show" role="tabpanel" aria-labelledby="nav-tv-show-tab">
-                    <div>
-                        <div>NEW TV TONIGHT</div>
-
-                        <div class="row" style="margin:5px">
-                            <div class="'col-sm-2">
-                                <div>N/A</div>
-                            </div>
-                            <div class='col-sm-8'>
-                                <div>Death Wish</div>
-                            </div>
-                            <div class="'col-sm-1">
-                                <div>MAR 2</div>
-                            </div>
-                        </div>
-
-                        <div class="row" style="margin:5px">
-                            <div class="'col-sm-2">
-                                <div>N/A</div>
-                            </div>
-                            <div class='col-sm-8'>
-                                <div>Death Wish</div>
-                            </div>
-                            <div class="'col-sm-1">
-                                <div>MAR 2</div>
-                            </div>
-                        </div>
-
-                        <div class="row" style="margin:5px">
-                            <div class="'col-sm-2">
-                                <div>N/A</div>
-                            </div>
-                            <div class='col-sm-8'>
-                                <div>Death Wish</div>
-                            </div>
-                            <div class="'col-sm-1">
-                                <div>MAR 2</div>
-                            </div>
-                        </div>
-
-                        <div class="row" style="margin:5px">
-                            <div class="'col-sm-2">
-                                <div>N/A</div>
-                            </div>
-                            <div class='col-sm-8'>
-                                <div>Death Wish</div>
-                            </div>
-                            <div class="'col-sm-1">
-                                <div>MAR 2</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div>
-                        <div>MOST POPULAR TV ON RT</div>
-
-                        <div class="row" style="margin:5px">
-                            <div class="'col-sm-2">
-                                <div>N/A</div>
-                            </div>
-                            <div class='col-sm-8'>
-                                <div>Death Wish</div>
-                            </div>
-                            <div class="'col-sm-1">
-                                <div>MAR 2</div>
-                            </div>
-                        </div>
-
-                        <div class="row" style="margin:5px">
-                            <div class="'col-sm-2">
-                                <div>N/A</div>
-                            </div>
-                            <div class='col-sm-8'>
-                                <div>Death Wish</div>
-                            </div>
-                            <div class="'col-sm-1">
-                                <div>MAR 2</div>
-                            </div>
-                        </div>
-
-                        <div class="row" style="margin:5px">
-                            <div class="'col-sm-2">
-                                <div>N/A</div>
-                            </div>
-                            <div class='col-sm-8'>
-                                <div>Death Wish</div>
-                            </div>
-                            <div class="'col-sm-1">
-                                <div>MAR 2</div>
-                            </div>
-                        </div>
-
-                        <div class="row" style="margin:5px">
-                            <div class="'col-sm-2">
-                                <div>N/A</div>
-                            </div>
-                            <div class='col-sm-8'>
-                                <div>Death Wish</div>
-                            </div>
-                            <div class="'col-sm-1">
-                                <div>MAR 2</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div>
-                        <div>CERTIFIED FRESH TV</div>
-
-                        <div class="row" style="margin:5px">
-                            <div class="'col-sm-2">
-                                <div>N/A</div>
-                            </div>
-                            <div class='col-sm-8'>
-                                <div>Death Wish</div>
-                            </div>
-                            <div class="'col-sm-1">
-                                <div>MAR 2</div>
-                            </div>
-                        </div>
-
-                        <div class="row" style="margin:5px">
-                            <div class="'col-sm-2">
-                                <div>N/A</div>
-                            </div>
-                            <div class='col-sm-8'>
-                                <div>Death Wish</div>
-                            </div>
-                            <div class="'col-sm-1">
-                                <div>MAR 2</div>
-                            </div>
-                        </div>
-
-                        <div class="row" style="margin:5px">
-                            <div class="'col-sm-2">
-                                <div>N/A</div>
-                            </div>
-                            <div class='col-sm-8'>
-                                <div>Death Wish</div>
-                            </div>
-                            <div class="'col-sm-1">
-                                <div>MAR 2</div>
-                            </div>
-                        </div>
-
-                        <div class="row" style="margin:5px">
-                            <div class="'col-sm-2">
-                                <div>N/A</div>
-                            </div>
-                            <div class='col-sm-8'>
-                                <div>Death Wish</div>
-                            </div>
-                            <div class="'col-sm-1">
-                                <div>MAR 2</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-7" style="margin: 10px">
-            <div class="card" style="margin:5px; width:700px;">
-                <div class="card-body">
-                    <h5 class="card-title" style="text-align: center; height: 160px">Trailer</h5>
-
-                </div>
+        <div class="col-md-12 px-0">
+            <div class="tab pt-4 pl-4">
+                <h6 class="pl-2 font-weight-bold">IN THEATERS</h6>
+                <button class="tablinks pl-4" onclick="changeTab(event, 'Opening-This-Week')" id="defaultOpen">Opening
+                    This Week
+                </button>
+                <button class="tablinks pl-4" onclick="changeTab(event, 'Top-Box-Office')">Top Box Office</button>
+                <button class="tablinks pl-4" onclick="changeTab(event, 'Coming-Soon')">Coming Soon</button>
+                <button class="tablinks pl-4" onclick="changeTab(event, 'Certified-Fresh-Movies')">Certified Fresh
+                    Movies
+                </button>
             </div>
 
-            <div class="card" style="margin:5px; width:700px;">
-                <div class="row">
-                    <div class="col-sm-3">
-                        <img src="img/black4.jpg" style="margin:5px;">
-                    </div>
-                    <div class="col-sm-8">
-                        <div class="card" style="background-color:powderblue; text-align:center;">
-                            <p>Ratings</p>
-                        </div>
-
-                        <div style="margin:5px;">
-                            <b>ADD YOUR RATING</b>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <img src="img/user3.gif" style="margin:5px;">
-                            </div>
-
-
-                            <div class="col-sm-8">
+            <div id="Opening-This-Week" class="tabcontent pt-4">
+                <h4 class="text-uppercase font-weight-bold">Opening This Week</h4>
+                <nav class="navbar navbar-expand-lg navbar-light bg-light noshadow border">
+                    <a class="navbar-brand" href="#"></a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse"
+                            data-target="#navbarNavAltMarkup-1" aria-controls="navbarNavAltMarkup-1"
+                            aria-expanded="false"
+                            aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse container px-0" id="navbarNavAltMarkup-1">
+                        <div class="navbar-nav container">
+                            <div class="container">
                                 <div class="row">
-                                    <div class="col-sm-3">
-                                        <button type="button" class="btn btn-primary btn-sm">Want to see</button>
+                                    <div class="col-4 px-0">
+                                        <div class="row">
+                                            <div class="col-1 px-0 mr-2">
+                                                <img class="ico-size" src="img/rank3.png">
+                                                <span id="meter-range-start-1">0%</span>
+                                            </div>
+                                            <div class="col-auto px-0">
+                                                <input id="meter-slider-1" data-slider-handle="square" type="text"
+                                                       name="meterrange">
+                                            </div>
+                                            <div class="col-1 px-0">
+                                                <img class="ico-size" src="img/rank2.png">
+                                                <span id="meter-range-end-1">100%</span>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="col-sm-3">
-                                        <button type="button" class="btn btn-secondary btn-sm">NOT INTERESTED</button>
+                                    <div class="col-1 px-0">
+                                        <select id="genre-multiple-selected-1" multiple="multiple">
+                                            <option value="1" selected="selected">Option 1</option>
+                                            <option value="2" selected="selected">Option 2</option>
+                                            <option value="3" selected="selected">Option 3</option>
+                                            <option value="4" selected="selected">Option 4</option>
+                                            <option value="5" selected="selected">Option 5</option>
+                                            <option value="6" selected="selected">Option 6</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-2 offset-5">
+                                        <div class="dropdown">
+                                            <button class="btn btn-light dropdown-toggle" type="button"
+                                                    id="dropdownMenuButton-1" data-toggle="dropdown"
+                                                    aria-haspopup="true"
+                                                    aria-expanded="false">
+                                                Sort By
+                                            </button>
+                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton-1">
+                                                <a class="dropdown-item" href="#">Action</a>
+                                                <a class="dropdown-item" href="#">Another action</a>
+                                                <a class="dropdown-item" href="#">Something else here</a>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-
-
-                                <input type="text" name="firstname" style="width: 380px; height:130px;"><br>
-
-                                <button type="button" class="btn btn-secondary btn-sm" style="margin: 10px;">post
-                                </button>
-
-
                             </div>
                         </div>
                     </div>
-
-
-                </div>
-
-
-            </div>
-
-            <div class="row" style="margin: 10px;">
-                <div class="col-12">
-                    <h5 class="font-weight-bold mb-4">Black PantherTrailers & Videos</h5>
-                    <button type="button" class="btn btn-primary float-right mr-5">View All Videos</button>
-                </div>
-            </div>
-
-            <div class="row" style="margin: 10px;">
-                <div class="col-12">
-                    <h5 class="font-weight-bold mb-4">Black Panther Photos</h5>
-                    <button type="button" class="btn btn-primary float-right mr-5">View All Photos</button>
-                </div>
-            </div>
-
-            <div class="card" style="margin: 5px; width: 700px;">
-                <h5 style="margin: 15px 15px 10px 5px; background-color:yellow; width:10rem; text-align: center;">
-                    MOVIE INFO
-                </h5>
-
-                <div style="margin:20px"> "Black Panther" follows T'Challa who, after the events of "Captain America:
-                    Civil War," returns home to the isolated, technologically advanced African nation of Wakanda to take
-                    his place as King. However, when an old enemy reappears on the radar, T'Challa's mettle as King and
-                    Black Panther is tested when he is drawn into a conflict that puts the entire fate of Wakanda and
-                    the world at risk.
-
-                    <div style="margin:30px">
-                        Rating: PG-13 (for prolonged sequences of action violence, and a brief rude gesture)<br>
-                        Genre: Action & Adventure, Drama, Science Fiction & Fantasy<br>
-                        Directed By: Ryan Coogler<br>
-                        Written By: Joe Robert Cole, Ryan Coogler<br>
-                        In Theaters: Feb 16, 2018 Wide<br>
-                        Runtime: 135 minutes<br>
-                        Studio: Marvel Studios<br>
+                </nav>
+                <div class="container">
+                    <div class="row m-5">
+                        <div class="col-md-3 ">
+                            <a href="https://placeholder.com"><img class="img-center" src="img/moviedemo.jpg"></a>
+                            <p class="font-weight-bold text-md-center my-0">Tomb Raider</p>
+                            <i class="ico-rank3 mx-auto">50%</i>
+                            <p class="text-md-center">In Theater Mar 16</p>
+                        </div>
+                        <div class="col-md-3 ">
+                            <a href="https://placeholder.com"><img class="img-center"
+                                                                   src="http://via.placeholder.com/130x193"></a>
+                            <p class="font-weight-bold text-md-center my-0">NAME</p>
+                            <i class="ico-rank3 mx-auto">50%</i>
+                            <p class="text-md-center">In Theater Mar 16</p>
+                        </div>
+                        <div class="col-md-3 ">
+                            <a href="https://placeholder.com"><img class="img-center"
+                                                                   src="http://via.placeholder.com/130x193"></a>
+                            <p class="font-weight-bold text-md-center my-0">NAME</p>
+                            <i class="ico-rank3 mx-auto">50%</i>
+                            <p class="text-md-center">In Theater Mar 16</p>
+                        </div>
+                        <div class="col-md-3 ">
+                            <a href="https://placeholder.com"><img class="img-center"
+                                                                   src="http://via.placeholder.com/130x193"></a>
+                            <p class="font-weight-bold text-md-center my-0">NAME</p>
+                            <i class="ico-rank3 mx-auto">50%</i>
+                            <p class="text-md-center">In Theater Mar 16</p>
+                        </div>
+                    </div>
+                    <div class="row m-5">
+                        <div class="col-md-3 ">
+                            <a href="https://placeholder.com"><img class="img-center"
+                                                                   src="http://via.placeholder.com/130x193"></a>
+                            <p class="font-weight-bold text-md-center my-0">NAME</p>
+                            <i class="ico-rank3 mx-auto">50%</i>
+                            <p class="text-md-center">In Theater Mar 16</p>
+                        </div>
+                        <div class="col-md-3 ">
+                            <a href="https://placeholder.com"><img class="img-center"
+                                                                   src="http://via.placeholder.com/130x193"></a>
+                            <p class="font-weight-bold text-md-center my-0">NAME</p>
+                            <i class="ico-rank3 mx-auto">50%</i>
+                            <p class="text-md-center">In Theater Mar 16</p>
+                        </div>
+                        <div class="col-md-3 ">
+                            <a href="https://placeholder.com"><img class="img-center"
+                                                                   src="http://via.placeholder.com/130x193"></a>
+                            <p class="font-weight-bold text-md-center my-0">NAME</p>
+                            <i class="ico-rank3 mx-auto">50%</i>
+                            <p class="text-md-center">In Theater Mar 16</p>
+                        </div>
+                        <div class="col-md-3 ">
+                            <a href="https://placeholder.com"><img class="img-center"
+                                                                   src="http://via.placeholder.com/130x193"></a>
+                            <p class="font-weight-bold text-md-center my-0">NAME</p>
+                            <i class="ico-rank3 mx-auto">50%</i>
+                            <p class="text-md-center">In Theater Mar 16</p>
+                        </div>
+                    </div>
+                    <div class="row m-5">
+                        <div class="col-md-3 ">
+                            <a href="https://placeholder.com"><img class="img-center"
+                                                                   src="http://via.placeholder.com/130x193"></a>
+                            <p class="font-weight-bold text-md-center my-0">NAME</p>
+                            <i class="ico-rank3 mx-auto">50%</i>
+                            <p class="text-md-center">In Theater Mar 16</p>
+                        </div>
+                        <div class="col-md-3 ">
+                            <a href="https://placeholder.com"><img class="img-center"
+                                                                   src="http://via.placeholder.com/130x193"></a>
+                            <p class="font-weight-bold text-md-center my-0">NAME</p>
+                            <i class="ico-rank3 mx-auto">50%</i>
+                            <p class="text-md-center">In Theater Mar 16</p>
+                        </div>
+                        <div class="col-md-3 ">
+                            <a href="https://placeholder.com"><img class="img-center"
+                                                                   src="http://via.placeholder.com/130x193"></a>
+                            <p class="font-weight-bold text-md-center my-0">NAME</p>
+                            <i class="ico-rank3 mx-auto">50%</i>
+                            <p class="text-md-center">In Theater Mar 16</p>
+                        </div>
+                        <div class="col-md-3 ">
+                            <a href="https://placeholder.com"><img class="img-center"
+                                                                   src="http://via.placeholder.com/130x193"></a>
+                            <p class="font-weight-bold text-md-center my-0">NAME</p>
+                            <i class="ico-rank3 mx-auto">50%</i>
+                            <p class="text-md-center">In Theater Mar 16</p>
+                        </div>
                     </div>
                 </div>
-
             </div>
 
-            <div class="card" style="margin: 5px; width: 700px;">
-                <h5 style="margin: 15px 15px 10px 5px; background-color:yellow; width:10rem; text-align: center;">
-                    CAST
-                </h5>
-                <div style="margin:30px">
-                    <p class="card-text">With supporting text below as a natural lead-in to additional
-                        content.</p>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional
-                        content.</p>
+            <div id="Top-Box-Office" class="tabcontent pt-4">
+                <h4 class="text-uppercase font-weight-bold">Top Box Office</h4>
+                <nav class="navbar navbar-expand-lg navbar-light bg-light noshadow border">
+                    <a class="navbar-brand" href="#"></a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse"
+                            data-target="#navbarNavAltMarkup-2" aria-controls="navbarNavAltMarkup-2"
+                            aria-expanded="false"
+                            aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse container px-0" id="navbarNavAltMarkup-2">
+                        <div class="navbar-nav container">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-4 px-0">
+                                        <div class="row">
+                                            <div class="col-1 px-0 mr-2">
+                                                <img class="ico-size" src="img/rank3.png">
+                                                <span id="meter-range-start-2">0%</span>
+                                            </div>
+                                            <div class="col-auto px-0">
+                                                <input id="meter-slider-2" data-slider-handle="square" type="text"
+                                                       name="meterrange">
+                                            </div>
+                                            <div class="col-1 px-0">
+                                                <img class="ico-size" src="img/rank2.png">
+                                                <span id="meter-range-end-2">100%</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-1 px-0">
+                                        <select id="genre-multiple-selected-2" multiple="multiple">
+                                            <option value="1" selected="selected">Option 1</option>
+                                            <option value="2" selected="selected">Option 2</option>
+                                            <option value="3" selected="selected">Option 3</option>
+                                            <option value="4" selected="selected">Option 4</option>
+                                            <option value="5" selected="selected">Option 5</option>
+                                            <option value="6" selected="selected">Option 6</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-2 offset-5">
+                                        <div class="dropdown">
+                                            <button class="btn btn-light dropdown-toggle" type="button"
+                                                    id="dropdownMenuButton-2" data-toggle="dropdown"
+                                                    aria-haspopup="true"
+                                                    aria-expanded="false">
+                                                Sort By
+                                            </button>
+                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton-2">
+                                                <a class="dropdown-item" href="#">Action</a>
+                                                <a class="dropdown-item" href="#">Another action</a>
+                                                <a class="dropdown-item" href="#">Something else here</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+                <div class="container">
+                    <div class="row m-5">
+                        <div class="col-md-3 ">
+                            <a href="https://placeholder.com"><img class="img-center" src="img/moviedemo.jpg"></a>
+                            <p class="font-weight-bold text-md-center my-0">Tomb Raider</p>
+                            <i class="ico-rank3 mx-auto">50%</i>
+                            <p class="text-md-center">In Theater Mar 16</p>
+                        </div>
+                        <div class="col-md-3 ">
+                            <a href="https://placeholder.com"><img class="img-center"
+                                                                   src="http://via.placeholder.com/130x193"></a>
+                            <p class="font-weight-bold text-md-center my-0">NAME</p>
+                            <i class="ico-rank3 mx-auto">50%</i>
+                            <p class="text-md-center">In Theater Mar 16</p>
+                        </div>
+                        <div class="col-md-3 ">
+                            <a href="https://placeholder.com"><img class="img-center"
+                                                                   src="http://via.placeholder.com/130x193"></a>
+                            <p class="font-weight-bold text-md-center my-0">NAME</p>
+                            <i class="ico-rank3 mx-auto">50%</i>
+                            <p class="text-md-center">In Theater Mar 16</p>
+                        </div>
+                        <div class="col-md-3 ">
+                            <a href="https://placeholder.com"><img class="img-center"
+                                                                   src="http://via.placeholder.com/130x193"></a>
+                            <p class="font-weight-bold text-md-center my-0">NAME</p>
+                            <i class="ico-rank3 mx-auto">50%</i>
+                            <p class="text-md-center">In Theater Mar 16</p>
+                        </div>
+                    </div>
+                    <div class="row m-5">
+                        <div class="col-md-3 ">
+                            <a href="https://placeholder.com"><img class="img-center"
+                                                                   src="http://via.placeholder.com/130x193"></a>
+                            <p class="font-weight-bold text-md-center my-0">NAME</p>
+                            <i class="ico-rank3 mx-auto">50%</i>
+                            <p class="text-md-center">In Theater Mar 16</p>
+                        </div>
+                        <div class="col-md-3 ">
+                            <a href="https://placeholder.com"><img class="img-center"
+                                                                   src="http://via.placeholder.com/130x193"></a>
+                            <p class="font-weight-bold text-md-center my-0">NAME</p>
+                            <i class="ico-rank3 mx-auto">50%</i>
+                            <p class="text-md-center">In Theater Mar 16</p>
+                        </div>
+                        <div class="col-md-3 ">
+                            <a href="https://placeholder.com"><img class="img-center"
+                                                                   src="http://via.placeholder.com/130x193"></a>
+                            <p class="font-weight-bold text-md-center my-0">NAME</p>
+                            <i class="ico-rank3 mx-auto">50%</i>
+                            <p class="text-md-center">In Theater Mar 16</p>
+                        </div>
+                        <div class="col-md-3 ">
+                            <a href="https://placeholder.com"><img class="img-center"
+                                                                   src="http://via.placeholder.com/130x193"></a>
+                            <p class="font-weight-bold text-md-center my-0">NAME</p>
+                            <i class="ico-rank3 mx-auto">50%</i>
+                            <p class="text-md-center">In Theater Mar 16</p>
+                        </div>
+                    </div>
+                    <div class="row m-5">
+                        <div class="col-md-3 ">
+                            <a href="https://placeholder.com"><img class="img-center"
+                                                                   src="http://via.placeholder.com/130x193"></a>
+                            <p class="font-weight-bold text-md-center my-0">NAME</p>
+                            <i class="ico-rank3 mx-auto">50%</i>
+                            <p class="text-md-center">In Theater Mar 16</p>
+                        </div>
+                        <div class="col-md-3 ">
+                            <a href="https://placeholder.com"><img class="img-center"
+                                                                   src="http://via.placeholder.com/130x193"></a>
+                            <p class="font-weight-bold text-md-center my-0">NAME</p>
+                            <i class="ico-rank3 mx-auto">50%</i>
+                            <p class="text-md-center">In Theater Mar 16</p>
+                        </div>
+                        <div class="col-md-3 ">
+                            <a href="https://placeholder.com"><img class="img-center"
+                                                                   src="http://via.placeholder.com/130x193"></a>
+                            <p class="font-weight-bold text-md-center my-0">NAME</p>
+                            <i class="ico-rank3 mx-auto">50%</i>
+                            <p class="text-md-center">In Theater Mar 16</p>
+                        </div>
+                        <div class="col-md-3 ">
+                            <a href="https://placeholder.com"><img class="img-center"
+                                                                   src="http://via.placeholder.com/130x193"></a>
+                            <p class="font-weight-bold text-md-center my-0">NAME</p>
+                            <i class="ico-rank3 mx-auto">50%</i>
+                            <p class="text-md-center">In Theater Mar 16</p>
+                        </div>
+                    </div>
                 </div>
-
-
             </div>
 
-
-            <div class="card" style="margin: 5px; width: 700px;">
-                <h5 style="margin: 15px 15px 10px 5px; background-color:yellow; width:30rem; text-align: center;">
-                    NEWS & INTERVIEWS FOR BLACK PANTHER
-                </h5>
-                <div style="margin:30px">
-                    <p class="card-text">With supporting text below as a natural lead-in to additional
-                        content.</p>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional
-                        content.</p>
+            <div id="Coming-Soon" class="tabcontent pt-4">
+                <h4 class="text-uppercase font-weight-bold">Coming Soon</h4>
+                <nav class="navbar navbar-expand-lg navbar-light bg-light noshadow border">
+                    <a class="navbar-brand" href="#"></a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse"
+                            data-target="#navbarNavAltMarkup-3" aria-controls="navbarNavAltMarkup-3"
+                            aria-expanded="false"
+                            aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse container px-0" id="navbarNavAltMarkup-3">
+                        <div class="navbar-nav container">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-4 px-0">
+                                        <div class="row">
+                                            <div class="col-1 px-0 mr-2">
+                                                <img class="ico-size" src="img/rank3.png">
+                                                <span id="meter-range-start-3">0%</span>
+                                            </div>
+                                            <div class="col-auto px-0">
+                                                <input id="meter-slider-3" data-slider-handle="square" type="text"
+                                                       name="meterrange">
+                                            </div>
+                                            <div class="col-1 px-0">
+                                                <img class="ico-size" src="img/rank2.png">
+                                                <span id="meter-range-end-3">100%</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-1 px-0">
+                                        <select id="genre-multiple-selected-3" multiple="multiple">
+                                            <option value="1" selected="selected">Option 1</option>
+                                            <option value="2" selected="selected">Option 2</option>
+                                            <option value="3" selected="selected">Option 3</option>
+                                            <option value="4" selected="selected">Option 4</option>
+                                            <option value="5" selected="selected">Option 5</option>
+                                            <option value="6" selected="selected">Option 6</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-2 offset-5">
+                                        <div class="dropdown">
+                                            <button class="btn btn-light dropdown-toggle" type="button"
+                                                    id="dropdownMenuButton-3" data-toggle="dropdown"
+                                                    aria-haspopup="true"
+                                                    aria-expanded="false">
+                                                Sort By
+                                            </button>
+                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton-3">
+                                                <a class="dropdown-item" href="#">Action</a>
+                                                <a class="dropdown-item" href="#">Another action</a>
+                                                <a class="dropdown-item" href="#">Something else here</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+                <div class="container">
+                    <div class="row m-5">
+                        <div class="col-md-3 ">
+                            <a href="https://placeholder.com"><img class="img-center" src="img/moviedemo.jpg"></a>
+                            <p class="font-weight-bold text-md-center my-0">Tomb Raider</p>
+                            <i class="ico-rank3 mx-auto">50%</i>
+                            <p class="text-md-center">In Theater Mar 16</p>
+                        </div>
+                        <div class="col-md-3 ">
+                            <a href="https://placeholder.com"><img class="img-center"
+                                                                   src="http://via.placeholder.com/130x193"></a>
+                            <p class="font-weight-bold text-md-center my-0">NAME</p>
+                            <i class="ico-rank3 mx-auto">50%</i>
+                            <p class="text-md-center">In Theater Mar 16</p>
+                        </div>
+                        <div class="col-md-3 ">
+                            <a href="https://placeholder.com"><img class="img-center"
+                                                                   src="http://via.placeholder.com/130x193"></a>
+                            <p class="font-weight-bold text-md-center my-0">NAME</p>
+                            <i class="ico-rank3 mx-auto">50%</i>
+                            <p class="text-md-center">In Theater Mar 16</p>
+                        </div>
+                        <div class="col-md-3 ">
+                            <a href="https://placeholder.com"><img class="img-center"
+                                                                   src="http://via.placeholder.com/130x193"></a>
+                            <p class="font-weight-bold text-md-center my-0">NAME</p>
+                            <i class="ico-rank3 mx-auto">50%</i>
+                            <p class="text-md-center">In Theater Mar 16</p>
+                        </div>
+                    </div>
+                    <div class="row m-5">
+                        <div class="col-md-3 ">
+                            <a href="https://placeholder.com"><img class="img-center"
+                                                                   src="http://via.placeholder.com/130x193"></a>
+                            <p class="font-weight-bold text-md-center my-0">NAME</p>
+                            <i class="ico-rank3 mx-auto">50%</i>
+                            <p class="text-md-center">In Theater Mar 16</p>
+                        </div>
+                        <div class="col-md-3 ">
+                            <a href="https://placeholder.com"><img class="img-center"
+                                                                   src="http://via.placeholder.com/130x193"></a>
+                            <p class="font-weight-bold text-md-center my-0">NAME</p>
+                            <i class="ico-rank3 mx-auto">50%</i>
+                            <p class="text-md-center">In Theater Mar 16</p>
+                        </div>
+                        <div class="col-md-3 ">
+                            <a href="https://placeholder.com"><img class="img-center"
+                                                                   src="http://via.placeholder.com/130x193"></a>
+                            <p class="font-weight-bold text-md-center my-0">NAME</p>
+                            <i class="ico-rank3 mx-auto">50%</i>
+                            <p class="text-md-center">In Theater Mar 16</p>
+                        </div>
+                        <div class="col-md-3 ">
+                            <a href="https://placeholder.com"><img class="img-center"
+                                                                   src="http://via.placeholder.com/130x193"></a>
+                            <p class="font-weight-bold text-md-center my-0">NAME</p>
+                            <i class="ico-rank3 mx-auto">50%</i>
+                            <p class="text-md-center">In Theater Mar 16</p>
+                        </div>
+                    </div>
+                    <div class="row m-5">
+                        <div class="col-md-3 ">
+                            <a href="https://placeholder.com"><img class="img-center"
+                                                                   src="http://via.placeholder.com/130x193"></a>
+                            <p class="font-weight-bold text-md-center my-0">NAME</p>
+                            <i class="ico-rank3 mx-auto">50%</i>
+                            <p class="text-md-center">In Theater Mar 16</p>
+                        </div>
+                        <div class="col-md-3 ">
+                            <a href="https://placeholder.com"><img class="img-center"
+                                                                   src="http://via.placeholder.com/130x193"></a>
+                            <p class="font-weight-bold text-md-center my-0">NAME</p>
+                            <i class="ico-rank3 mx-auto">50%</i>
+                            <p class="text-md-center">In Theater Mar 16</p>
+                        </div>
+                        <div class="col-md-3 ">
+                            <a href="https://placeholder.com"><img class="img-center"
+                                                                   src="http://via.placeholder.com/130x193"></a>
+                            <p class="font-weight-bold text-md-center my-0">NAME</p>
+                            <i class="ico-rank3 mx-auto">50%</i>
+                            <p class="text-md-center">In Theater Mar 16</p>
+                        </div>
+                        <div class="col-md-3 ">
+                            <a href="https://placeholder.com"><img class="img-center"
+                                                                   src="http://via.placeholder.com/130x193"></a>
+                            <p class="font-weight-bold text-md-center my-0">NAME</p>
+                            <i class="ico-rank3 mx-auto">50%</i>
+                            <p class="text-md-center">In Theater Mar 16</p>
+                        </div>
+                    </div>
                 </div>
-
-
             </div>
 
-            <div class="card" style="margin: 5px; width: 700px;">
-                <h5 style="margin: 15px 15px 10px 5px; background-color:yellow; width:30rem; text-align: center;">
-                    CRITIC REVIEWS FOR BLACK PANTHER
-                </h5>
-                <div style="margin:30px">
-                    <p class="card-text">With supporting text below as a natural lead-in to additional
-                        content.</p>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional
-                        content.</p>
+            <div id="Certified-Fresh-Movies" class="tabcontent pt-4">
+                <h4 class="text-uppercase font-weight-bold">Certified Fresh Movies</h4>
+                <nav class="navbar navbar-expand-lg navbar-light bg-light noshadow border">
+                    <a class="navbar-brand" href="#"></a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse"
+                            data-target="#navbarNavAltMarkup-4" aria-controls="navbarNavAltMarkup-4"
+                            aria-expanded="false"
+                            aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse container px-0" id="navbarNavAltMarkup-4">
+                        <div class="navbar-nav container">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-4 px-0">
+                                        <div class="row">
+                                            <div class="col-1 px-0 mr-2">
+                                                <img class="ico-size" src="img/rank3.png">
+                                                <span id="meter-range-start-4">0%</span>
+                                            </div>
+                                            <div class="col-auto px-0">
+                                                <input id="meter-slider-4" data-slider-handle="square" type="text"
+                                                       name="meterrange">
+                                            </div>
+                                            <div class="col-1 px-0">
+                                                <img class="ico-size" src="img/rank2.png">
+                                                <span id="meter-range-end-4">100%</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-1 px-0">
+                                        <select id="genre-multiple-selected-4" multiple="multiple">
+                                            <option value="1" selected="selected">Option 1</option>
+                                            <option value="2" selected="selected">Option 2</option>
+                                            <option value="3" selected="selected">Option 3</option>
+                                            <option value="4" selected="selected">Option 4</option>
+                                            <option value="5" selected="selected">Option 5</option>
+                                            <option value="6" selected="selected">Option 6</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-2 offset-5">
+                                        <div class="dropdown">
+                                            <button class="btn btn-light dropdown-toggle" type="button"
+                                                    id="dropdownMenuButton-4" data-toggle="dropdown"
+                                                    aria-haspopup="true"
+                                                    aria-expanded="false">
+                                                Sort By
+                                            </button>
+                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton-4">
+                                                <a class="dropdown-item" href="#">Action</a>
+                                                <a class="dropdown-item" href="#">Another action</a>
+                                                <a class="dropdown-item" href="#">Something else here</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+                <div class="container">
+                    <div class="row m-5">
+                        <div class="col-md-3 ">
+                            <a href="https://placeholder.com"><img class="img-center" src="img/moviedemo.jpg"></a>
+                            <p class="font-weight-bold text-md-center my-0">Tomb Raider</p>
+                            <i class="ico-rank3 mx-auto">50%</i>
+                            <p class="text-md-center">In Theater Mar 16</p>
+                        </div>
+                        <div class="col-md-3 ">
+                            <a href="https://placeholder.com"><img class="img-center"
+                                                                   src="http://via.placeholder.com/130x193"></a>
+                            <p class="font-weight-bold text-md-center my-0">NAME</p>
+                            <i class="ico-rank3 mx-auto">50%</i>
+                            <p class="text-md-center">In Theater Mar 16</p>
+                        </div>
+                        <div class="col-md-3 ">
+                            <a href="https://placeholder.com"><img class="img-center"
+                                                                   src="http://via.placeholder.com/130x193"></a>
+                            <p class="font-weight-bold text-md-center my-0">NAME</p>
+                            <i class="ico-rank3 mx-auto">50%</i>
+                            <p class="text-md-center">In Theater Mar 16</p>
+                        </div>
+                        <div class="col-md-3 ">
+                            <a href="https://placeholder.com"><img class="img-center"
+                                                                   src="http://via.placeholder.com/130x193"></a>
+                            <p class="font-weight-bold text-md-center my-0">NAME</p>
+                            <i class="ico-rank3 mx-auto">50%</i>
+                            <p class="text-md-center">In Theater Mar 16</p>
+                        </div>
+                    </div>
+                    <div class="row m-5">
+                        <div class="col-md-3 ">
+                            <a href="https://placeholder.com"><img class="img-center"
+                                                                   src="http://via.placeholder.com/130x193"></a>
+                            <p class="font-weight-bold text-md-center my-0">NAME</p>
+                            <i class="ico-rank3 mx-auto">50%</i>
+                            <p class="text-md-center">In Theater Mar 16</p>
+                        </div>
+                        <div class="col-md-3 ">
+                            <a href="https://placeholder.com"><img class="img-center"
+                                                                   src="http://via.placeholder.com/130x193"></a>
+                            <p class="font-weight-bold text-md-center my-0">NAME</p>
+                            <i class="ico-rank3 mx-auto">50%</i>
+                            <p class="text-md-center">In Theater Mar 16</p>
+                        </div>
+                        <div class="col-md-3 ">
+                            <a href="https://placeholder.com"><img class="img-center"
+                                                                   src="http://via.placeholder.com/130x193"></a>
+                            <p class="font-weight-bold text-md-center my-0">NAME</p>
+                            <i class="ico-rank3 mx-auto">50%</i>
+                            <p class="text-md-center">In Theater Mar 16</p>
+                        </div>
+                        <div class="col-md-3 ">
+                            <a href="https://placeholder.com"><img class="img-center"
+                                                                   src="http://via.placeholder.com/130x193"></a>
+                            <p class="font-weight-bold text-md-center my-0">NAME</p>
+                            <i class="ico-rank3 mx-auto">50%</i>
+                            <p class="text-md-center">In Theater Mar 16</p>
+                        </div>
+                    </div>
+                    <div class="row m-5">
+                        <div class="col-md-3 ">
+                            <a href="https://placeholder.com"><img class="img-center"
+                                                                   src="http://via.placeholder.com/130x193"></a>
+                            <p class="font-weight-bold text-md-center my-0">NAME</p>
+                            <i class="ico-rank3 mx-auto">50%</i>
+                            <p class="text-md-center">In Theater Mar 16</p>
+                        </div>
+                        <div class="col-md-3 ">
+                            <a href="https://placeholder.com"><img class="img-center"
+                                                                   src="http://via.placeholder.com/130x193"></a>
+                            <p class="font-weight-bold text-md-center my-0">NAME</p>
+                            <i class="ico-rank3 mx-auto">50%</i>
+                            <p class="text-md-center">In Theater Mar 16</p>
+                        </div>
+                        <div class="col-md-3 ">
+                            <a href="https://placeholder.com"><img class="img-center"
+                                                                   src="http://via.placeholder.com/130x193"></a>
+                            <p class="font-weight-bold text-md-center my-0">NAME</p>
+                            <i class="ico-rank3 mx-auto">50%</i>
+                            <p class="text-md-center">In Theater Mar 16</p>
+                        </div>
+                        <div class="col-md-3 ">
+                            <a href="https://placeholder.com"><img class="img-center"
+                                                                   src="http://via.placeholder.com/130x193"></a>
+                            <p class="font-weight-bold text-md-center my-0">NAME</p>
+                            <i class="ico-rank3 mx-auto">50%</i>
+                            <p class="text-md-center">In Theater Mar 16</p>
+                        </div>
+                    </div>
                 </div>
-
-
             </div>
+
+            <script>
+                function changeTab(evt, tabname) {
+                    var i, tabcontent, tablinks;
+                    tabcontent = document.getElementsByClassName("tabcontent");
+                    for (i = 0; i < tabcontent.length; i++) {
+                        tabcontent[i].style.display = "none";
+                    }
+                    tablinks = document.getElementsByClassName("tablinks");
+                    for (i = 0; i < tablinks.length; i++) {
+                        tablinks[i].className = tablinks[i].className.replace(" active", "");
+                    }
+                    document.getElementById(tabname).style.display = "inline-block";
+                    evt.currentTarget.className += " active";
+                }
+
+                // Get the element with id="defaultOpen" and click on it
+                document.getElementById("defaultOpen").click();
+            </script>
         </div>
     </div>
 
-</div>
+
 </div>
 
 <footer class="footer">
@@ -808,12 +865,14 @@
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>
-<script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js"
-        integrity="sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U"
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
         crossorigin="anonymous"></script>
-<script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js"
-        integrity="sha384-CauSuKpEqAFajSpkdjv3z9t8E7RlpJ1UP0lKM/+NdtSarroVKu069AlsRPKkFBz9"
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.0/bootstrap-slider.min.js"></script>
+<script type="text/javascript" src="js/bootstrap-multiselect.js"></script>
 <script src="js/holder.min.js"></script>
 <script>
     Holder.addTheme('thumb', {
@@ -822,6 +881,66 @@
         text: 'Thumbnail'
     });
 </script>
+<!--slider-->
+<script>
 
+    $('#meter-slider-1').slider({
+        id: "slider3v1",
+        min: 0,
+        max: 100,
+        range: true,
+        value: [0, 100]
+    }).on("slide", function (slideEvt) {
+        var res = String(slideEvt.value).split(',');
+        $("#meter-range-start-1").text(res[0] + '%');
+        $("#meter-range-end-1").text(res[1] + '%');
+    });
+    $('#meter-slider-2').slider({
+        id: "slider3v1",
+        min: 0,
+        max: 100,
+        range: true,
+        value: [0, 100]
+    }).on("slide", function (slideEvt) {
+        var res = String(slideEvt.value).split(',');
+        $("#meter-range-start-2").text(res[0] + '%');
+        $("#meter-range-end-2").text(res[1] + '%');
+    });
+    $('#meter-slider-3').slider({
+        id: "slider3v1",
+        min: 0,
+        max: 100,
+        range: true,
+        value: [0, 100]
+    }).on("slide", function (slideEvt) {
+        var res = String(slideEvt.value).split(',');
+        $("#meter-range-start-3").text(res[0] + '%');
+        $("#meter-range-end-3").text(res[1] + '%');
+    });
+    $('#meter-slider-4').slider({
+        id: "slider3v1",
+        min: 0,
+        max: 100,
+        range: true,
+        value: [0, 100]
+    }).on("slide", function (slideEvt) {
+        var res = String(slideEvt.value).split(',');
+        $("#meter-range-start-4").text(res[0] + '%');
+        $("#meter-range-end-4").text(res[1] + '%');
+    });
+
+</script>
+<!--multiselect-->
+<script type="text/javascript">
+    $(document).ready(function () {
+        for (var i = 1; i < 5; i++) {
+            $('#genre-multiple-selected-' + i).multiselect({
+                allSelectedText: 'Genre',
+                numberDisplayed: 1,
+                buttonClass: 'btn btn-light'
+            });
+        }
+    });
+</script>
 </body>
 </html>

@@ -9,15 +9,17 @@
     <title>Rotten Potato</title>
 
     <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="css/bootstrap-material-design.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
     <!-- Custom styles for this template -->
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
+    <link href="css/bootstrap-slider.css" rel="stylesheet">
+    <link href="css/bootstrap-multiselect.css" rel="stylesheet">
     <link href="css/custom.css" rel="stylesheet">
 </head>
 
 <body class="bg-black">
 
-<div class="container bg-light mt-5">
+<div class="container bg-light">
     <!--header and navbar-->
     <div class="row header bg-theme py-2 my-0 pt-3">
         <div class="col-12">
@@ -29,24 +31,30 @@
                     <a class="header-logo text-dark" href="index.html">Rotten Potato</a>
                 </div>
                 <div class="col-4 d-flex justify-content-end align-items-center">
-                    <a class="btn btn-sm btn-outline-dark mx-1" data-toggle="modal" data-target="#loginModal">Login</a>
-                    <a class="btn btn-sm btn-outline-dark mx-1" data-toggle="modal" data-target="#signupModal">Sign
-                        up</a>
+                    <button class="btn btn-sm btn-primary mx-1" data-toggle="modal" data-target="#loginModal">Login
+                    </button>
+                    <button class="btn btn-sm btn-primary mx-1" data-toggle="modal" data-target="#signupModal">Sign
+                        up
+                    </button>
                 </div>
             </div>
         </div>
     </div>
-    <nav class="row navbar navbar-expand-lg noshadow bg-theme py-0">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
-                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <nav class="row navbar navbar-expand-lg navbar-light noshadow bg-theme">
+        <a class="navbar-brand" href="#"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
+                <li class="nav-item active">
                     <div class="btn-group">
-                        <a class="btn btn-dark btn-lg py-0" href="movies.html">Movies</a>
-                        <button type="button" class="btn btn-dark btn-lg py-0 dropdown-toggle dropdown-toggle-split"
+                        <button type="button" class="btn bg-theme btn-lg" onclick="location.href = 'movies.html'">
+                            Movies
+                        </button>
+                        <button type="button" class="btn bg-theme btn-lg dropdown-toggle dropdown-toggle-split"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <span class="sr-only">Toggle Dropdown</span>
                         </button>
@@ -61,8 +69,8 @@
                 </li>
                 <li class="nav-item">
                     <div class="btn-group">
-                        <a class="btn btn-dark btn-lg py-0 ">TV</a>
-                        <button type="button" class="btn btn-dark btn-lg py-0 dropdown-toggle dropdown-toggle-split"
+                        <button type="button" class="btn bg-theme btn-lg">TV</button>
+                        <button type="button" class="btn bg-theme btn-lg dropdown-toggle dropdown-toggle-split"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <span class="sr-only">Toggle Dropdown</span>
                         </button>
@@ -75,10 +83,10 @@
                         </div>
                     </div>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item dropdown">
                     <div class="btn-group">
-                        <a class="btn btn-dark btn-lg py-0 ">News</a>
-                        <button type="button" class="btn btn-dark btn-lg py-0 dropdown-toggle dropdown-toggle-split"
+                        <button type="button" class="btn bg-theme btn-lg">News</button>
+                        <button type="button" class="btn bg-theme btn-lg dropdown-toggle dropdown-toggle-split"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <span class="sr-only">Toggle Dropdown</span>
                         </button>
@@ -92,7 +100,6 @@
                     </div>
                 </li>
             </ul>
-
             <form>
                 <div class="form-row align-items-center">
                     <div class="col-auto">
@@ -107,14 +114,14 @@
                         </select>
                     </div>
                     <div class="col-auto">
-                        <button class="btn btn-outline-success bg-white my-2 my-sm-0" type="submit">Search</button>
+                        <button class="btn btn-danger my-2 my-sm-0" type="submit">Search</button>
                     </div>
                 </div>
             </form>
-
         </div>
     </nav>
 
+    <!--first row-->
     <div class="row">
         <div class="col-md-6 p-0">
             <div class="card height-400px">
@@ -190,640 +197,621 @@
         </div>
     </div>
 
-    <div class="row bg-dark">
-        <div class="col-12">
-            <div class="row border-top">
-                <div class="card col-md-12 m-0 p-0">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-6 px-0">
-                                <div class="m-4">
-                                    <div class="">
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <h5 class="font-weight-bold mb-4">Movies Opening This Week</h5>
-                                                <ul class="list-group py-0">
-                                                    <a class="list-group-item py-0 pt-1">
-                                                        <div class="container row px-0 mx-0">
-                                                            <div class="'col-1 mx-0">
-                                                                <i class="ico-rank0">N/A</i>
-                                                            </div>
-                                                            <div class='col-md-7 mx-0'>
-                                                                <p>Death Wish</p>
-                                                            </div>
-                                                            <div class="'col-md-1 mx-0">
-                                                                <p>MAR 2</p>
-                                                            </div>
-                                                        </div>
-                                                    </a>
-                                                    <a class="list-group-item py-0 pt-1">
-                                                        <div class="container row px-0 mx-0">
-                                                            <div class="'col-1 mx-0">
-                                                                <i class="ico-rank2">64%</i>
-                                                            </div>
-                                                            <div class='col-7 mx-0'>
-                                                                <p>Red Sparrow</p>
-                                                            </div>
-                                                            <div class="'col-1 mx-0">
-                                                                <p>MAR 2</p>
-                                                            </div>
-                                                        </div>
-
-                                                    </a>
-                                                    <a class="list-group-item py-0 pt-1">
-                                                        <div class="container row px-0 mx-0">
-                                                            <div class="'col-1 mx-0">
-                                                                <i class="ico-rank2">64%</i>
-                                                            </div>
-                                                            <div class='col-7 mx-0'>
-                                                                <p>Dance Academy: The Movie</p>
-                                                            </div>
-                                                            <div class="'col-1 mx-0">
-                                                                <p>MAR 2</p>
-                                                            </div>
-                                                        </div>
-                                                    </a>
-
-                                                    <a class="list-group-item py-0 pt-1">
-                                                        <div class="container row px-0 mx-0">
-                                                            <div class="'col-1 mx-0">
-                                                                <i class="ico-rank2">64%</i>
-                                                            </div>
-                                                            <div class='col-7 mx-0'>
-                                                                <p>Foxtrot</p>
-                                                            </div>
-                                                            <div class="'col-1 mx-0">
-                                                                <p>MAR 2</p>
-                                                            </div>
-                                                        </div>
-
-                                                    </a>
-                                                    <a class="list-group-item py-0 pt-1">
-                                                        <div class="container row px-0 mx-0">
-                                                            <div class="'col-1 mx-0">
-                                                                <i class="ico-rank2">64%</i>
-                                                            </div>
-                                                            <div class='col-7 mx-0'>
-                                                                <p>Goldstone</p>
-                                                            </div>
-                                                            <div class="'col-1 mx-0 ">
-                                                                <p>MAR 2</p>
-                                                            </div>
-                                                        </div>
-                                                    </a>
-                                                </ul>
-                                                <button type="button" class="btn btn-primary float-right mr-5">View All
-                                                </button>
+    <!--content-->
+    <div class="row ">
+        <div class="col-12 px-0">
+            <div class="card-body bg-white">
+                <!--first row, all the list-->
+                <div class="row px-2">
+                    <div class="col-md-6 px-0">
+                        <div class="m-4">
+                            <div class="row">
+                                <div class="col-12">
+                                    <h5 class="font-weight-bold mb-4">Movies Opening This Week</h5>
+                                    <ul class="list-group py-0 borderless">
+                                        <a class="list-group-item py-0 pt-1 border-0">
+                                            <div class="container row px-0 mx-0">
+                                                <div class="'col-1 mx-0">
+                                                    <i class="ico-rank0">N/A</i>
+                                                </div>
+                                                <div class='col-md-7 mx-0'>
+                                                    <p>Death Wish</p>
+                                                </div>
+                                                <div class="'col-md-1 mx-0">
+                                                    <p>MAR 2</p>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <h5 class="font-weight-bold mb-4">Top Box Office</h5>
-                                                <ul class="list-group py-0">
-                                                    <a class="list-group-item py-0 pt-1">
-                                                        <div class="container row px-0 mx-0">
-                                                            <div class="'col-1 mx-0">
-                                                                <i class="ico-rank1">97%</i>
-                                                            </div>
-                                                            <div class='col-md-7 mx-0'>
-                                                                <p>Black Panther</p>
-                                                            </div>
-                                                            <div class="'col-md-1 mx-0">
-                                                                <p>$111.8M</p>
-                                                            </div>
-                                                        </div>
-                                                    </a>
-                                                    <a class="list-group-item py-0 pt-1">
-                                                        <div class="container row px-0 mx-0">
-                                                            <div class="'col-1 mx-0">
-                                                                <i class="ico-rank1">80%</i>
-                                                            </div>
-                                                            <div class='col-7 mx-0'>
-                                                                <p>Game Night</p>
-                                                            </div>
-                                                            <div class="'col-1 mx-0">
-                                                                <p>$17.1M</p>
-                                                            </div>
-                                                        </div>
-
-                                                    </a>
-                                                    <a class="list-group-item py-0 pt-1">
-                                                        <div class="container row px-0 mx-0">
-                                                            <div class="'col-1 mx-0">
-                                                                <i class="ico-rank3">58%</i>
-                                                            </div>
-                                                            <div class='col-7 mx-0'>
-                                                                <p>Peter Rabbit</p>
-                                                            </div>
-                                                            <div class="'col-1 mx-0">
-                                                                <p>$11.2M</p>
-                                                            </div>
-                                                        </div>
-                                                    </a>
-
-                                                    <a class="list-group-item py-0 pt-1">
-                                                        <div class="container row px-0 mx-0">
-                                                            <div class="'col-1 mx-0">
-                                                                <i class="ico-rank1">86%</i>
-                                                            </div>
-                                                            <div class='col-7 mx-0'>
-                                                                <p>Annihilation</p>
-                                                            </div>
-                                                            <div class="'col-1 mx-0">
-                                                                <p>$11.2M</p>
-                                                            </div>
-                                                        </div>
-
-                                                    </a>
-                                                    <a class="list-group-item py-0 pt-1">
-                                                        <div class="container row px-0 mx-0">
-                                                            <div class="'col-1 mx-0">
-                                                                <i class="ico-rank3">12%</i>
-                                                            </div>
-                                                            <div class='col-7 mx-0'>
-                                                                <p>Fifty Shades Freed</p>
-                                                            </div>
-                                                            <div class="'col-1 mx-0 ">
-                                                                <p>$7.2M</p>
-                                                            </div>
-                                                        </div>
-                                                    </a>
-                                                    <a class="list-group-item py-0 pt-1">
-                                                        <div class="container row px-0 mx-0">
-                                                            <div class="'col-1 mx-0">
-                                                                <i class="ico-rank1">76%</i>
-                                                            </div>
-                                                            <div class='col-7 mx-0'>
-                                                                <p>Jumanji: Welcome to the Jungle</p>
-                                                            </div>
-                                                            <div class="'col-1 mx-0 ">
-                                                                <p>$5.8M</p>
-                                                            </div>
-                                                        </div>
-                                                    </a>
-                                                    <a class="list-group-item py-0 pt-1">
-                                                        <div class="container row px-0 mx-0">
-                                                            <div class="'col-1 mx-0">
-                                                                <i class="ico-rank3">26%</i>
-                                                            </div>
-                                                            <div class='col-7 mx-0'>
-                                                                <p>The 15:17 to Paris</p>
-                                                            </div>
-                                                            <div class="'col-1 mx-0 ">
-                                                                <p>$3.6M</p>
-                                                            </div>
-                                                        </div>
-                                                    </a>
-                                                    <a class="list-group-item py-0 pt-1">
-                                                        <div class="container row px-0 mx-0">
-                                                            <div class="'col-1 mx-0">
-                                                                <i class="ico-rank3">55%</i>
-                                                            </div>
-                                                            <div class='col-7 mx-0'>
-                                                                <p>The Greatest Showman</p>
-                                                            </div>
-                                                            <div class="'col-1 mx-0 ">
-                                                                <p>$3.5M</p>
-                                                            </div>
-                                                        </div>
-                                                    </a>
-                                                    <a class="list-group-item py-0 pt-1">
-                                                        <div class="container row px-0 mx-0">
-                                                            <div class="'col-1 mx-0">
-                                                                <i class="ico-rank3">55%</i>
-                                                            </div>
-                                                            <div class='col-7 mx-0'>
-                                                                <p>Every Day</p>
-                                                            </div>
-                                                            <div class="'col-1 mx-0 ">
-                                                                <p>$3.1M</p>
-                                                            </div>
-                                                        </div>
-                                                    </a>
-                                                    <a class="list-group-item py-0 pt-1">
-                                                        <div class="container row px-0 mx-0">
-                                                            <div class="'col-1 mx-0">
-                                                                <i class="ico-rank1">81%</i>
-                                                            </div>
-                                                            <div class='col-7 mx-0'>
-                                                                <p>Early Man</p>
-                                                            </div>
-                                                            <div class="'col-1 mx-0 ">
-                                                                <p>$1.9M</p>
-                                                            </div>
-                                                        </div>
-                                                    </a>
-                                                </ul>
-                                                <button type="button" class="btn btn-primary float-right mr-5">View All
-                                                </button>
+                                        </a>
+                                        <a class="list-group-item py-0 pt-1 border-0">
+                                            <div class="container row px-0 mx-0">
+                                                <div class="'col-1 mx-0">
+                                                    <i class="ico-rank2">64%</i>
+                                                </div>
+                                                <div class='col-7 mx-0'>
+                                                    <p>Red Sparrow</p>
+                                                </div>
+                                                <div class="'col-1 mx-0">
+                                                    <p>MAR 2</p>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <h5 class="font-weight-bold mb-4">Coming Soon To Theaters</h5>
-                                                <ul class="list-group py-0">
-                                                    <a class="list-group-item py-0 pt-1">
-                                                        <div class="container row px-0 mx-0">
-                                                            <div class="'col-1 mx-0">
-                                                                <i class="ico-rank0">N/A</i>
-                                                            </div>
-                                                            <div class='col-md-7 mx-0'>
-                                                                <p>A Wrinkle in Time</p>
-                                                            </div>
-                                                            <div class="'col-md-1 mx-0">
-                                                                <p>MAR 9</p>
-                                                            </div>
-                                                        </div>
-                                                    </a>
-                                                    <a class="list-group-item py-0 pt-1">
-                                                        <div class="container row px-0 mx-0">
-                                                            <div class="'col-1 mx-0">
-                                                                <i class="ico-rank0">N/A</i>
-                                                            </div>
-                                                            <div class='col-7 mx-0'>
-                                                                <p>The Strangers: Pret At Night</p>
-                                                            </div>
-                                                            <div class="'col-1 mx-0">
-                                                                <p>MAR 9</p>
-                                                            </div>
-                                                        </div>
 
-                                                    </a>
-                                                    <a class="list-group-item py-0 pt-1">
-                                                        <div class="container row px-0 mx-0">
-                                                            <div class="'col-1 mx-0">
-                                                                <i class="ico-rank0">N/A</i>
-                                                            </div>
-                                                            <div class='col-7 mx-0'>
-                                                                <p>Gringo</p>
-                                                            </div>
-                                                            <div class="'col-1 mx-0">
-                                                                <p>MAR 9</p>
-                                                            </div>
-                                                        </div>
-                                                    </a>
-
-                                                    <a class="list-group-item py-0 pt-1">
-                                                        <div class="container row px-0 mx-0">
-                                                            <div class="'col-1 mx-0">
-                                                                <i class="ico-rank3">55%</i>
-                                                            </div>
-                                                            <div class='col-7 mx-0'>
-                                                                <p>The Upside</p>
-                                                            </div>
-                                                            <div class="'col-1 mx-0">
-                                                                <p>MAR 9</p>
-                                                            </div>
-                                                        </div>
-
-                                                    </a>
-                                                    <a class="list-group-item py-0 pt-1">
-                                                        <div class="container row px-0 mx-0">
-                                                            <div class="'col-1 mx-0">
-                                                                <i class="ico-rank0">N/A</i>
-                                                            </div>
-                                                            <div class='col-7 mx-0'>
-                                                                <p>The Hurricane Heist</p>
-                                                            </div>
-                                                            <div class="'col-1 mx-0 ">
-                                                                <p>MAR 9</p>
-                                                            </div>
-                                                        </div>
-                                                    </a>
-                                                </ul>
-                                                <button type="button" class="btn btn-primary float-right mr-5">View All
-                                                </button>
+                                        </a>
+                                        <a class="list-group-item py-0 pt-1 border-0">
+                                            <div class="container row px-0 mx-0">
+                                                <div class="'col-1 mx-0">
+                                                    <i class="ico-rank2">64%</i>
+                                                </div>
+                                                <div class='col-7 mx-0'>
+                                                    <p>Dance Academy: The Movie</p>
+                                                </div>
+                                                <div class="'col-1 mx-0">
+                                                    <p>MAR 2</p>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </div>
+                                        </a>
+                                        <a class="list-group-item py-0 pt-1 border-0">
+                                            <div class="container row px-0 mx-0">
+                                                <div class="'col-1 mx-0">
+                                                    <i class="ico-rank2">64%</i>
+                                                </div>
+                                                <div class='col-7 mx-0'>
+                                                    <p>Foxtrot</p>
+                                                </div>
+                                                <div class="'col-1 mx-0">
+                                                    <p>MAR 2</p>
+                                                </div>
+                                            </div>
+
+                                        </a>
+                                        <a class="list-group-item py-0 pt-1 border-0">
+                                            <div class="container row px-0 mx-0">
+                                                <div class="'col-1 mx-0">
+                                                    <i class="ico-rank2">64%</i>
+                                                </div>
+                                                <div class='col-7 mx-0'>
+                                                    <p>Goldstone</p>
+                                                </div>
+                                                <div class="'col-1 mx-0 ">
+                                                    <p>MAR 2</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </ul>
+                                    <a class="float-right mr-5">View All</a>
                                 </div>
                             </div>
-                            <div class="col-md-6 px-0">
-                                <div class="m-4">
-                                    <div class="">
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <h5 class="font-weight-bold mb-4">New TV Tonight</h5>
-                                                <ul class="list-group py-0">
-                                                    <a class="list-group-item py-0 pt-1">
-                                                        <div class="container row px-0 mx-0">
-                                                            <div class="'col-1 mx-0">
-                                                                <i class="ico-rank1">100%</i>
-                                                            </div>
-                                                            <div class='col-md-7 mx-0'>
-                                                                <p>Black Lightning</p>
-                                                            </div>
-                                                            <div class="'col-md-1 mx-0">
-                                                                <p></p>
-                                                            </div>
-                                                        </div>
-                                                    </a>
-                                                    <a class="list-group-item py-0 pt-1">
-                                                        <div class="container row px-0 mx-0">
-                                                            <div class="'col-1 mx-0">
-                                                                <i class="ico-rank1">91%</i>
-                                                            </div>
-                                                            <div class='col-md-7 mx-0'>
-                                                                <p>This is Us</p>
-                                                            </div>
-                                                            <div class="'col-md-1 mx-0">
-                                                                <p></p>
-                                                            </div>
-                                                        </div>
-                                                    </a>
-                                                    <a class="list-group-item py-0 pt-1">
-                                                        <div class="container row px-0 mx-0">
-                                                            <div class="'col-1 mx-0">
-                                                                <i class="ico-rank2">100%</i>
-                                                            </div>
-                                                            <div class='col-md-7 mx-0'>
-                                                                <p>The Flash</p>
-                                                            </div>
-                                                            <div class="'col-md-1 mx-0">
-                                                                <p></p>
-                                                            </div>
-                                                        </div>
-                                                    </a>
-                                                    <a class="list-group-item py-0 pt-1">
-                                                        <div class="container row px-0 mx-0">
-                                                            <div class="'col-1 mx-0">
-                                                                <i class="ico-rank2">100%</i>
-                                                            </div>
-                                                            <div class='col-md-7 mx-0'>
-                                                                <p>The Foster</p>
-                                                            </div>
-                                                            <div class="'col-md-1 mx-0">
-                                                                <p></p>
-                                                            </div>
-                                                        </div>
-                                                    </a>
-                                                    <a class="list-group-item py-0 pt-1">
-                                                        <div class="container row px-0 mx-0">
-                                                            <div class="'col-1 mx-0">
-                                                                <i class="ico-rank2">80%</i>
-                                                            </div>
-                                                            <div class='col-md-7 mx-0'>
-                                                                <p>Unsolved</p>
-                                                            </div>
-                                                            <div class="'col-md-1 mx-0">
-                                                                <p></p>
-                                                            </div>
-                                                        </div>
-                                                    </a>
-                                                    <a class="list-group-item py-0 pt-1">
-                                                        <div class="container row px-0 mx-0">
-                                                            <div class="'col-1 mx-0">
-                                                                <i class="ico-rank2">63%</i>
-                                                            </div>
-                                                            <div class='col-md-7 mx-0'>
-                                                                <p>Kevin (Probably) Saves the World</p>
-                                                            </div>
-                                                            <div class="'col-md-1 mx-0">
-                                                                <p></p>
-                                                            </div>
-                                                        </div>
-                                                    </a>
-                                                    <a class="list-group-item py-0 pt-1">
-                                                        <div class="container row px-0 mx-0">
-                                                            <div class="'col-1 mx-0">
-                                                                <i class="ico-rank3">56%</i>
-                                                            </div>
-                                                            <div class='col-md-7 mx-0'>
-                                                                <p>LA to Vegas</p>
-                                                            </div>
-                                                            <div class="'col-md-1 mx-0">
-                                                                <p></p>
-                                                            </div>
-                                                        </div>
-                                                    </a>
-                                                    <a class="list-group-item py-0 pt-1">
-                                                        <div class="container row px-0 mx-0">
-                                                            <div class="'col-1 mx-0">
-                                                                <i class="ico-rank0">N/A</i>
-                                                            </div>
-                                                            <div class='col-md-7 mx-0'>
-                                                                <p>Baskets</p>
-                                                            </div>
-                                                            <div class="'col-md-1 mx-0">
-                                                                <p></p>
-                                                            </div>
-                                                        </div>
-                                                    </a>
-                                                    <a class="list-group-item py-0 pt-1">
-                                                        <div class="container row px-0 mx-0">
-                                                            <div class="'col-1 mx-0">
-                                                                <i class="ico-rank0">N/A</i>
-                                                            </div>
-                                                            <div class='col-md-7 mx-0'>
-                                                                <p>Another Period</p>
-                                                            </div>
-                                                            <div class="'col-md-1 mx-0">
-                                                                <p></p>
-                                                            </div>
-                                                        </div>
-                                                    </a>
-                                                    <a class="list-group-item py-0 pt-1">
-                                                        <div class="container row px-0 mx-0">
-                                                            <div class="'col-1 mx-0">
-                                                                <i class="ico-rank0">N/A</i>
-                                                            </div>
-                                                            <div class='col-md-7 mx-0'>
-                                                                <p>Bull</p>
-                                                            </div>
-                                                            <div class="'col-md-1 mx-0">
-                                                                <p></p>
-                                                            </div>
-                                                        </div>
-                                                    </a>
-                                                    <a class="list-group-item py-0 pt-1">
-                                                        <div class="container row px-0 mx-0">
-                                                            <div class="'col-1 mx-0">
-                                                                <i class="ico-rank0">N/A</i>
-                                                            </div>
-                                                            <div class='col-md-7 mx-0'>
-                                                                <p>Chicage Med</p>
-                                                            </div>
-                                                            <div class="'col-md-1 mx-0">
-                                                                <p></p>
-                                                            </div>
-                                                        </div>
-                                                    </a>
-                                                </ul>
-                                                <button type="button" class="btn btn-primary float-right mr-5">View All
-                                                </button>
+                            <div class="row">
+                                <div class="col-12">
+                                    <h5 class="font-weight-bold mb-4">Top Box Office</h5>
+                                    <ul class="list-group py-0">
+                                        <a class="list-group-item py-0 pt-1 border-0">
+                                            <div class="container row px-0 mx-0">
+                                                <div class="'col-1 mx-0">
+                                                    <i class="ico-rank1">97%</i>
+                                                </div>
+                                                <div class='col-md-7 mx-0'>
+                                                    <p>Black Panther</p>
+                                                </div>
+                                                <div class="'col-md-1 mx-0">
+                                                    <p>$111.8M</p>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <h5 class="font-weight-bold mb-4">Most Popular TV on RP</h5>
-                                                <ul class="list-group py-0">
-                                                    <a class="list-group-item py-0 pt-1">
-                                                        <div class="container row px-0 mx-0">
-                                                            <div class="'col-1 mx-0">
-                                                                <i class="ico-rank1">100%</i>
-                                                            </div>
-                                                            <div class='col-md-7 mx-0'>
-                                                                <p>Counterpart</p>
-                                                            </div>
-                                                            <div class="'col-md-1 mx-0">
-                                                                <p></p>
-                                                            </div>
-                                                        </div>
-                                                    </a>
-                                                    <a class="list-group-item py-0 pt-1">
-                                                        <div class="container row px-0 mx-0">
-                                                            <div class="'col-1 mx-0">
-                                                                <i class="ico-rank2">64%</i>
-                                                            </div>
-                                                            <div class='col-md-7 mx-0'>
-                                                                <p>Altered Carbon</p>
-                                                            </div>
-                                                            <div class="'col-md-1 mx-0">
-                                                                <p></p>
-                                                            </div>
-                                                        </div>
-                                                    </a>
-                                                    <a class="list-group-item py-0 pt-1">
-                                                        <div class="container row px-0 mx-0">
-                                                            <div class="'col-1 mx-0">
-                                                                <i class="ico-rank1">100%</i>
-                                                            </div>
-                                                            <div class='col-md-7 mx-0'>
-                                                                <p>Black Lightning</p>
-                                                            </div>
-                                                            <div class="'col-md-1 mx-0">
-                                                                <p></p>
-                                                            </div>
-                                                        </div>
-                                                    </a>
-                                                    <a class="list-group-item py-0 pt-1">
-                                                        <div class="container row px-0 mx-0">
-                                                            <div class="'col-1 mx-0">
-                                                                <i class="ico-rank2">73%</i>
-                                                            </div>
-                                                            <div class='col-md-7 mx-0'>
-                                                                <p>The Walking Dead</p>
-                                                            </div>
-                                                            <div class="'col-md-1 mx-0">
-                                                                <p></p>
-                                                            </div>
-                                                        </div>
-                                                    </a>
-                                                    <a class="list-group-item py-0 pt-1">
-                                                        <div class="container row px-0 mx-0">
-                                                            <div class="'col-1 mx-0">
-                                                                <i class="ico-rank1">97%</i>
-                                                            </div>
-                                                            <div class='col-md-7 mx-0'>
-                                                                <p>The End of the F**ing World</p>
-                                                            </div>
-                                                            <div class="'col-md-1 mx-0">
-                                                                <p></p>
-                                                            </div>
-                                                        </div>
-                                                    </a>
-                                                    <a class="list-group-item py-0 pt-1">
-                                                        <div class="container row px-0 mx-0">
-                                                            <div class="'col-1 mx-0">
-                                                                <i class="ico-rank2">73%</i>
-                                                            </div>
-                                                            <div class='col-md-7 mx-0'>
-                                                                <p>Seven Seconds</p>
-                                                            </div>
-                                                            <div class="'col-md-1 mx-0">
-                                                                <p></p>
-                                                            </div>
-                                                        </div>
-                                                    </a>
-                                                </ul>
-                                                <button type="button" class="btn btn-primary float-right mr-5">View All
-                                                </button>
+                                        </a>
+                                        <a class="list-group-item py-0 pt-1 border-0">
+                                            <div class="container row px-0 mx-0">
+                                                <div class="'col-1 mx-0">
+                                                    <i class="ico-rank1">80%</i>
+                                                </div>
+                                                <div class='col-7 mx-0'>
+                                                    <p>Game Night</p>
+                                                </div>
+                                                <div class="'col-1 mx-0">
+                                                    <p>$17.1M</p>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </div>
+
+                                        </a>
+                                        <a class="list-group-item py-0 pt-1 border-0">
+                                            <div class="container row px-0 mx-0">
+                                                <div class="'col-1 mx-0">
+                                                    <i class="ico-rank3">58%</i>
+                                                </div>
+                                                <div class='col-7 mx-0'>
+                                                    <p>Peter Rabbit</p>
+                                                </div>
+                                                <div class="'col-1 mx-0">
+                                                    <p>$11.2M</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <a class="list-group-item py-0 pt-1 border-0">
+                                            <div class="container row px-0 mx-0">
+                                                <div class="'col-1 mx-0">
+                                                    <i class="ico-rank1">86%</i>
+                                                </div>
+                                                <div class='col-7 mx-0'>
+                                                    <p>Annihilation</p>
+                                                </div>
+                                                <div class="'col-1 mx-0">
+                                                    <p>$11.2M</p>
+                                                </div>
+                                            </div>
+
+                                        </a>
+                                        <a class="list-group-item py-0 pt-1 border-0">
+                                            <div class="container row px-0 mx-0">
+                                                <div class="'col-1 mx-0">
+                                                    <i class="ico-rank3">12%</i>
+                                                </div>
+                                                <div class='col-7 mx-0'>
+                                                    <p>Fifty Shades Freed</p>
+                                                </div>
+                                                <div class="'col-1 mx-0 ">
+                                                    <p>$7.2M</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <a class="list-group-item py-0 pt-1 border-0">
+                                            <div class="container row px-0 mx-0">
+                                                <div class="'col-1 mx-0">
+                                                    <i class="ico-rank1">76%</i>
+                                                </div>
+                                                <div class='col-7 mx-0'>
+                                                    <p>Jumanji: Welcome to the Jungle</p>
+                                                </div>
+                                                <div class="'col-1 mx-0 ">
+                                                    <p>$5.8M</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <a class="list-group-item py-0 pt-1 border-0">
+                                            <div class="container row px-0 mx-0">
+                                                <div class="'col-1 mx-0">
+                                                    <i class="ico-rank3">26%</i>
+                                                </div>
+                                                <div class='col-7 mx-0'>
+                                                    <p>The 15:17 to Paris</p>
+                                                </div>
+                                                <div class="'col-1 mx-0 ">
+                                                    <p>$3.6M</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <a class="list-group-item py-0 pt-1 border-0">
+                                            <div class="container row px-0 mx-0">
+                                                <div class="'col-1 mx-0">
+                                                    <i class="ico-rank3">55%</i>
+                                                </div>
+                                                <div class='col-7 mx-0'>
+                                                    <p>The Greatest Showman</p>
+                                                </div>
+                                                <div class="'col-1 mx-0 ">
+                                                    <p>$3.5M</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <a class="list-group-item py-0 pt-1 border-0">
+                                            <div class="container row px-0 mx-0">
+                                                <div class="'col-1 mx-0">
+                                                    <i class="ico-rank3">55%</i>
+                                                </div>
+                                                <div class='col-7 mx-0'>
+                                                    <p>Every Day</p>
+                                                </div>
+                                                <div class="'col-1 mx-0 ">
+                                                    <p>$3.1M</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <a class="list-group-item py-0 pt-1 border-0">
+                                            <div class="container row px-0 mx-0">
+                                                <div class="'col-1 mx-0">
+                                                    <i class="ico-rank1">81%</i>
+                                                </div>
+                                                <div class='col-7 mx-0'>
+                                                    <p>Early Man</p>
+                                                </div>
+                                                <div class="'col-1 mx-0 ">
+                                                    <p>$1.9M</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </ul>
+                                    <a class="float-right mr-5">View All</a>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <h5 class="font-weight-bold mb-4">Coming Soon To Theaters</h5>
+                                    <ul class="list-group py-0">
+                                        <a class="list-group-item py-0 pt-1 border-0">
+                                            <div class="container row px-0 mx-0">
+                                                <div class="'col-1 mx-0">
+                                                    <i class="ico-rank0">N/A</i>
+                                                </div>
+                                                <div class='col-md-7 mx-0'>
+                                                    <p>A Wrinkle in Time</p>
+                                                </div>
+                                                <div class="'col-md-1 mx-0">
+                                                    <p>MAR 9</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <a class="list-group-item py-0 pt-1 border-0">
+                                            <div class="container row px-0 mx-0">
+                                                <div class="'col-1 mx-0">
+                                                    <i class="ico-rank0">N/A</i>
+                                                </div>
+                                                <div class='col-7 mx-0'>
+                                                    <p>The Strangers: Pret At Night</p>
+                                                </div>
+                                                <div class="'col-1 mx-0">
+                                                    <p>MAR 9</p>
+                                                </div>
+                                            </div>
+
+                                        </a>
+                                        <a class="list-group-item py-0 pt-1 border-0">
+                                            <div class="container row px-0 mx-0">
+                                                <div class="'col-1 mx-0">
+                                                    <i class="ico-rank0">N/A</i>
+                                                </div>
+                                                <div class='col-7 mx-0'>
+                                                    <p>Gringo</p>
+                                                </div>
+                                                <div class="'col-1 mx-0">
+                                                    <p>MAR 9</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <a class="list-group-item py-0 pt-1 border-0">
+                                            <div class="container row px-0 mx-0">
+                                                <div class="'col-1 mx-0">
+                                                    <i class="ico-rank3">55%</i>
+                                                </div>
+                                                <div class='col-7 mx-0'>
+                                                    <p>The Upside</p>
+                                                </div>
+                                                <div class="'col-1 mx-0">
+                                                    <p>MAR 9</p>
+                                                </div>
+                                            </div>
+
+                                        </a>
+                                        <a class="list-group-item py-0 pt-1 border-0">
+                                            <div class="container row px-0 mx-0">
+                                                <div class="'col-1 mx-0">
+                                                    <i class="ico-rank0">N/A</i>
+                                                </div>
+                                                <div class='col-7 mx-0'>
+                                                    <p>The Hurricane Heist</p>
+                                                </div>
+                                                <div class="'col-1 mx-0 ">
+                                                    <p>MAR 9</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </ul>
+                                    <a class="float-right mr-5">View All</a>
                                 </div>
                             </div>
                         </div>
-
-                        <div class="row m-2">
-                            <div class="col-md-12 px-0">
-                                <h5 class="font-weight-bold mb-4">Trailers & Videos</h5>
+                    </div>
+                    <div class="col-md-6 px-0">
+                        <div class="m-4">
+                            <div class="">
                                 <div class="row">
-                                    <div class="col-md-6">
-                                        <a href="https://placeholder.com"><img
-                                                src="http://via.placeholder.com/480x270"></a>
-                                        <h6 class="mt-2">some text</h6>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <a href="https://placeholder.com"><img
-                                                src="http://via.placeholder.com/240x135"></a>
-                                        <h6 class="mt-2">some text</h6>
-                                        <a href="https://placeholder.com"><img
-                                                src="http://via.placeholder.com/240x135"></a>
-                                        <h6 class="mt-2">some text</h6>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <a href="https://placeholder.com"><img
-                                                src="http://via.placeholder.com/240x135"></a>
-                                        <h6 class="mt-2">some text</h6>
-                                        <a href="https://placeholder.com"><img
-                                                src="http://via.placeholder.com/240x135"></a>
-                                        <h6 class="mt-2">some text</h6>
+                                    <div class="col-12">
+                                        <h5 class="font-weight-bold mb-4">New TV Tonight</h5>
+                                        <ul class="list-group py-0">
+                                            <a class="list-group-item py-0 pt-1 border-0">
+                                                <div class="container row px-0 mx-0">
+                                                    <div class="'col-1 mx-0">
+                                                        <i class="ico-rank1">100%</i>
+                                                    </div>
+                                                    <div class='col-md-7 mx-0'>
+                                                        <p>Black Lightning</p>
+                                                    </div>
+                                                    <div class="'col-md-1 mx-0">
+                                                        <p></p>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                            <a class="list-group-item py-0 pt-1 border-0">
+                                                <div class="container row px-0 mx-0">
+                                                    <div class="'col-1 mx-0">
+                                                        <i class="ico-rank1">91%</i>
+                                                    </div>
+                                                    <div class='col-md-7 mx-0'>
+                                                        <p>This is Us</p>
+                                                    </div>
+                                                    <div class="'col-md-1 mx-0">
+                                                        <p></p>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                            <a class="list-group-item py-0 pt-1 border-0">
+                                                <div class="container row px-0 mx-0">
+                                                    <div class="'col-1 mx-0">
+                                                        <i class="ico-rank2">100%</i>
+                                                    </div>
+                                                    <div class='col-md-7 mx-0'>
+                                                        <p>The Flash</p>
+                                                    </div>
+                                                    <div class="'col-md-1 mx-0">
+                                                        <p></p>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                            <a class="list-group-item py-0 pt-1 border-0">
+                                                <div class="container row px-0 mx-0">
+                                                    <div class="'col-1 mx-0">
+                                                        <i class="ico-rank2">100%</i>
+                                                    </div>
+                                                    <div class='col-md-7 mx-0'>
+                                                        <p>The Foster</p>
+                                                    </div>
+                                                    <div class="'col-md-1 mx-0">
+                                                        <p></p>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                            <a class="list-group-item py-0 pt-1 border-0">
+                                                <div class="container row px-0 mx-0">
+                                                    <div class="'col-1 mx-0">
+                                                        <i class="ico-rank2">80%</i>
+                                                    </div>
+                                                    <div class='col-md-7 mx-0'>
+                                                        <p>Unsolved</p>
+                                                    </div>
+                                                    <div class="'col-md-1 mx-0">
+                                                        <p></p>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                            <a class="list-group-item py-0 pt-1 border-0">
+                                                <div class="container row px-0 mx-0">
+                                                    <div class="'col-1 mx-0">
+                                                        <i class="ico-rank2">63%</i>
+                                                    </div>
+                                                    <div class='col-md-7 mx-0'>
+                                                        <p>Kevin (Probably) Saves the World</p>
+                                                    </div>
+                                                    <div class="'col-md-1 mx-0">
+                                                        <p></p>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                            <a class="list-group-item py-0 pt-1 border-0">
+                                                <div class="container row px-0 mx-0">
+                                                    <div class="'col-1 mx-0">
+                                                        <i class="ico-rank3">56%</i>
+                                                    </div>
+                                                    <div class='col-md-7 mx-0'>
+                                                        <p>LA to Vegas</p>
+                                                    </div>
+                                                    <div class="'col-md-1 mx-0">
+                                                        <p></p>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                            <a class="list-group-item py-0 pt-1 border-0">
+                                                <div class="container row px-0 mx-0">
+                                                    <div class="'col-1 mx-0">
+                                                        <i class="ico-rank0">N/A</i>
+                                                    </div>
+                                                    <div class='col-md-7 mx-0'>
+                                                        <p>Baskets</p>
+                                                    </div>
+                                                    <div class="'col-md-1 mx-0">
+                                                        <p></p>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                            <a class="list-group-item py-0 pt-1 border-0">
+                                                <div class="container row px-0 mx-0">
+                                                    <div class="'col-1 mx-0">
+                                                        <i class="ico-rank0">N/A</i>
+                                                    </div>
+                                                    <div class='col-md-7 mx-0'>
+                                                        <p>Another Period</p>
+                                                    </div>
+                                                    <div class="'col-md-1 mx-0">
+                                                        <p></p>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                            <a class="list-group-item py-0 pt-1 border-0">
+                                                <div class="container row px-0 mx-0">
+                                                    <div class="'col-1 mx-0">
+                                                        <i class="ico-rank0">N/A</i>
+                                                    </div>
+                                                    <div class='col-md-7 mx-0'>
+                                                        <p>Bull</p>
+                                                    </div>
+                                                    <div class="'col-md-1 mx-0">
+                                                        <p></p>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                            <a class="list-group-item py-0 pt-1 border-0">
+                                                <div class="container row px-0 mx-0">
+                                                    <div class="'col-1 mx-0">
+                                                        <i class="ico-rank0">N/A</i>
+                                                    </div>
+                                                    <div class='col-md-7 mx-0'>
+                                                        <p>Chicage Med</p>
+                                                    </div>
+                                                    <div class="'col-md-1 mx-0">
+                                                        <p></p>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </ul>
+                                        <a class="float-right mr-5">View All</a>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-12">
-                                        <button type="button" class="btn btn-primary float-right mt-3">View All
-                                            Videos
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row m-2">
-                            <div class="col-md-12 px-0">
-                                <h5 class="font-weight-bold mb-4">News & features</h5>
-                                <div class="row">
-                                    <div class="col-md-3">
-                                        <a href="https://placeholder.com"><img
-                                                src="http://via.placeholder.com/240x135"></a>
-                                        <h6 class="mt-2">some text</h6>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <a href="https://placeholder.com"><img
-                                                src="http://via.placeholder.com/240x135"></a>
-                                        <h6 class="mt-2">some text</h6>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <a href="https://placeholder.com"><img
-                                                src="http://via.placeholder.com/240x135"></a>
-                                        <h6 class="mt-2">some text</h6>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <a href="https://placeholder.com"><img
-                                                src="http://via.placeholder.com/240x135"></a>
-                                        <h6 class="mt-2">some text</h6>
-
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <button type="button" class="btn btn-primary float-right mt-3">More News &
-                                            features
-                                        </button>
+                                    <div class="col-12">
+                                        <h5 class="font-weight-bold mb-4">Most Popular TV on RP</h5>
+                                        <ul class="list-group py-0">
+                                            <a class="list-group-item py-0 pt-1 border-0">
+                                                <div class="container row px-0 mx-0">
+                                                    <div class="'col-1 mx-0">
+                                                        <i class="ico-rank1">100%</i>
+                                                    </div>
+                                                    <div class='col-md-7 mx-0'>
+                                                        <p>Counterpart</p>
+                                                    </div>
+                                                    <div class="'col-md-1 mx-0">
+                                                        <p></p>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                            <a class="list-group-item py-0 pt-1 border-0">
+                                                <div class="container row px-0 mx-0">
+                                                    <div class="'col-1 mx-0">
+                                                        <i class="ico-rank2">64%</i>
+                                                    </div>
+                                                    <div class='col-md-7 mx-0'>
+                                                        <p>Altered Carbon</p>
+                                                    </div>
+                                                    <div class="'col-md-1 mx-0">
+                                                        <p></p>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                            <a class="list-group-item py-0 pt-1 border-0">
+                                                <div class="container row px-0 mx-0">
+                                                    <div class="'col-1 mx-0">
+                                                        <i class="ico-rank1">100%</i>
+                                                    </div>
+                                                    <div class='col-md-7 mx-0'>
+                                                        <p>Black Lightning</p>
+                                                    </div>
+                                                    <div class="'col-md-1 mx-0">
+                                                        <p></p>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                            <a class="list-group-item py-0 pt-1 border-0">
+                                                <div class="container row px-0 mx-0">
+                                                    <div class="'col-1 mx-0">
+                                                        <i class="ico-rank2">73%</i>
+                                                    </div>
+                                                    <div class='col-md-7 mx-0'>
+                                                        <p>The Walking Dead</p>
+                                                    </div>
+                                                    <div class="'col-md-1 mx-0">
+                                                        <p></p>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                            <a class="list-group-item py-0 pt-1 border-0">
+                                                <div class="container row px-0 mx-0">
+                                                    <div class="'col-1 mx-0">
+                                                        <i class="ico-rank1">97%</i>
+                                                    </div>
+                                                    <div class='col-md-7 mx-0'>
+                                                        <p>The End of the F**ing World</p>
+                                                    </div>
+                                                    <div class="'col-md-1 mx-0">
+                                                        <p></p>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                            <a class="list-group-item py-0 pt-1 border-0">
+                                                <div class="container row px-0 mx-0">
+                                                    <div class="'col-1 mx-0">
+                                                        <i class="ico-rank2">73%</i>
+                                                    </div>
+                                                    <div class='col-md-7 mx-0'>
+                                                        <p>Seven Seconds</p>
+                                                    </div>
+                                                    <div class="'col-md-1 mx-0">
+                                                        <p></p>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </ul>
+                                        <a class="float-right mr-5">View All</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
+                <div class="row m-2 px-2">
+                    <div class="col-md-12 px-0">
+                        <h5 class="font-weight-bold mb-4">Trailers & Videos</h5>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <a href="https://placeholder.com"><img
+                                        src="http://via.placeholder.com/480x270"></a>
+                                <h6 class="mt-2">some text</h6>
+                            </div>
+                            <div class="col-md-3">
+                                <a href="https://placeholder.com"><img
+                                        src="http://via.placeholder.com/240x135"></a>
+                                <h6 class="mt-2">some text</h6>
+                                <a href="https://placeholder.com"><img
+                                        src="http://via.placeholder.com/240x135"></a>
+                                <h6 class="mt-2">some text</h6>
+                            </div>
+                            <div class="col-md-3">
+                                <a href="https://placeholder.com"><img
+                                        src="http://via.placeholder.com/240x135"></a>
+                                <h6 class="mt-2">some text</h6>
+                                <a href="https://placeholder.com"><img
+                                        src="http://via.placeholder.com/240x135"></a>
+                                <h6 class="mt-2">some text</h6>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <a class="float-right mr-5">View All Videos</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row m-2 px-2">
+                    <div class="col-md-12 px-0">
+                        <h5 class="font-weight-bold mb-4">News & features</h5>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <a href="https://placeholder.com"><img
+                                        src="http://via.placeholder.com/240x135"></a>
+                                <h6 class="mt-2">some text</h6>
+                            </div>
+                            <div class="col-md-3">
+                                <a href="https://placeholder.com"><img
+                                        src="http://via.placeholder.com/240x135"></a>
+                                <h6 class="mt-2">some text</h6>
+                            </div>
+                            <div class="col-md-3">
+                                <a href="https://placeholder.com"><img
+                                        src="http://via.placeholder.com/240x135"></a>
+                                <h6 class="mt-2">some text</h6>
+                            </div>
+                            <div class="col-md-3">
+                                <a href="https://placeholder.com"><img
+                                        src="http://via.placeholder.com/240x135"></a>
+                                <h6 class="mt-2">some text</h6>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <a class="float-right mr-5">More News & features</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-
-</div>
 </div>
 
 <footer class="footer">
@@ -919,12 +907,14 @@
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>
-<script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js"
-        integrity="sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U"
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
         crossorigin="anonymous"></script>
-<script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js"
-        integrity="sha384-CauSuKpEqAFajSpkdjv3z9t8E7RlpJ1UP0lKM/+NdtSarroVKu069AlsRPKkFBz9"
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.0/bootstrap-slider.min.js"></script>
+<script type="text/javascript" src="js/bootstrap-multiselect.js"></script>
 <script src="js/holder.min.js"></script>
 <script>
     Holder.addTheme('thumb', {
