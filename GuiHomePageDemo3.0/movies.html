@@ -17,7 +17,7 @@
     <link href="css/custom.css" rel="stylesheet">
 </head>
 
-<body class="bg-black">
+<body class="bg-light-dark">
 
 <div class="container bg-light">
     <!--header and navbar-->
@@ -59,11 +59,10 @@
                             <span class="sr-only">Toggle Dropdown</span>
                         </button>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Separated link</a>
+                            <a class="dropdown-item" href="#">Opening This Week</a>
+                            <a class="dropdown-item" href="#">Top Box Office</a>
+                            <a class="dropdown-item" href="#">Coming Soon</a>
+                            <a class="dropdown-item" href="#">Certified Fresh Movies</a>
                         </div>
                     </div>
                 </li>
@@ -124,7 +123,7 @@
     <!--body-->
     <div class="row">
         <div class="col-md-12 px-0">
-            <div class="tab pt-4 pl-4">
+            <div class="tab pt-4 pl-4 bg-light">
                 <h6 class="pl-2 font-weight-bold">IN THEATERS</h6>
                 <button class="tablinks pl-4" onclick="changeTab(event, 'Opening-This-Week')" id="defaultOpen">Opening
                     This Week
@@ -138,7 +137,7 @@
 
             <div id="Opening-This-Week" class="tabcontent pt-4">
                 <h4 class="text-uppercase font-weight-bold">Opening This Week</h4>
-                <nav class="navbar navbar-expand-lg navbar-light bg-light noshadow border">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light noshadow border py-0">
                     <a class="navbar-brand" href="#"></a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse"
                             data-target="#navbarNavAltMarkup-1" aria-controls="navbarNavAltMarkup-1"
@@ -150,7 +149,7 @@
                         <div class="navbar-nav container">
                             <div class="container">
                                 <div class="row">
-                                    <div class="col-4 px-0">
+                                    <div class="col-5 px-0">
                                         <div class="row">
                                             <div class="col-1 px-0 mr-2">
                                                 <img class="ico-size" src="img/rank3.png">
@@ -176,18 +175,16 @@
                                             <option value="6" selected="selected">Option 6</option>
                                         </select>
                                     </div>
-                                    <div class="col-2 offset-5">
-                                        <div class="dropdown">
-                                            <button class="btn btn-light dropdown-toggle" type="button"
-                                                    id="dropdownMenuButton-1" data-toggle="dropdown"
-                                                    aria-haspopup="true"
-                                                    aria-expanded="false">
+                                    <div class="col-1 offset-4 pl-5">
+                                        <div class="btn-group ">
+                                            <button type="button" class="btn btn-light dropdown-toggle"
+                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                 Sort By
                                             </button>
-                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton-1">
-                                                <a class="dropdown-item" href="#">Action</a>
-                                                <a class="dropdown-item" href="#">Another action</a>
-                                                <a class="dropdown-item" href="#">Something else here</a>
+                                            <div class="dropdown-menu dropdown-menu-right">
+                                                <button class="dropdown-item" type="button">Action</button>
+                                                <button class="dropdown-item" type="button">Another action</button>
+                                                <button class="dropdown-item" type="button">Something else here</button>
                                             </div>
                                         </div>
                                     </div>
@@ -291,10 +288,10 @@
 
             <div id="Top-Box-Office" class="tabcontent pt-4">
                 <h4 class="text-uppercase font-weight-bold">Top Box Office</h4>
-                <nav class="navbar navbar-expand-lg navbar-light bg-light noshadow border">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light noshadow border py-0">
                     <a class="navbar-brand" href="#"></a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse"
-                            data-target="#navbarNavAltMarkup-2" aria-controls="navbarNavAltMarkup-2"
+                            data-target="#navbarNavAltMarkup-1" aria-controls="navbarNavAltMarkup-1"
                             aria-expanded="false"
                             aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -303,7 +300,7 @@
                         <div class="navbar-nav container">
                             <div class="container">
                                 <div class="row">
-                                    <div class="col-4 px-0">
+                                    <div class="col-5 px-0">
                                         <div class="row">
                                             <div class="col-1 px-0 mr-2">
                                                 <img class="ico-size" src="img/rank3.png">
@@ -329,18 +326,16 @@
                                             <option value="6" selected="selected">Option 6</option>
                                         </select>
                                     </div>
-                                    <div class="col-2 offset-5">
-                                        <div class="dropdown">
-                                            <button class="btn btn-light dropdown-toggle" type="button"
-                                                    id="dropdownMenuButton-2" data-toggle="dropdown"
-                                                    aria-haspopup="true"
-                                                    aria-expanded="false">
+                                    <div class="col-1 offset-4 pl-5">
+                                        <div class="btn-group ">
+                                            <button type="button" class="btn btn-light dropdown-toggle"
+                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                 Sort By
                                             </button>
-                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton-2">
-                                                <a class="dropdown-item" href="#">Action</a>
-                                                <a class="dropdown-item" href="#">Another action</a>
-                                                <a class="dropdown-item" href="#">Something else here</a>
+                                            <div class="dropdown-menu dropdown-menu-right">
+                                                <button class="dropdown-item" type="button">Action</button>
+                                                <button class="dropdown-item" type="button">Another action</button>
+                                                <button class="dropdown-item" type="button">Something else here</button>
                                             </div>
                                         </div>
                                     </div>
@@ -444,10 +439,10 @@
 
             <div id="Coming-Soon" class="tabcontent pt-4">
                 <h4 class="text-uppercase font-weight-bold">Coming Soon</h4>
-                <nav class="navbar navbar-expand-lg navbar-light bg-light noshadow border">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light noshadow border py-0">
                     <a class="navbar-brand" href="#"></a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse"
-                            data-target="#navbarNavAltMarkup-3" aria-controls="navbarNavAltMarkup-3"
+                            data-target="#navbarNavAltMarkup-1" aria-controls="navbarNavAltMarkup-1"
                             aria-expanded="false"
                             aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -456,7 +451,7 @@
                         <div class="navbar-nav container">
                             <div class="container">
                                 <div class="row">
-                                    <div class="col-4 px-0">
+                                    <div class="col-5 px-0">
                                         <div class="row">
                                             <div class="col-1 px-0 mr-2">
                                                 <img class="ico-size" src="img/rank3.png">
@@ -482,18 +477,16 @@
                                             <option value="6" selected="selected">Option 6</option>
                                         </select>
                                     </div>
-                                    <div class="col-2 offset-5">
-                                        <div class="dropdown">
-                                            <button class="btn btn-light dropdown-toggle" type="button"
-                                                    id="dropdownMenuButton-3" data-toggle="dropdown"
-                                                    aria-haspopup="true"
-                                                    aria-expanded="false">
+                                    <div class="col-1 offset-4 pl-5">
+                                        <div class="btn-group ">
+                                            <button type="button" class="btn btn-light dropdown-toggle"
+                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                 Sort By
                                             </button>
-                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton-3">
-                                                <a class="dropdown-item" href="#">Action</a>
-                                                <a class="dropdown-item" href="#">Another action</a>
-                                                <a class="dropdown-item" href="#">Something else here</a>
+                                            <div class="dropdown-menu dropdown-menu-right">
+                                                <button class="dropdown-item" type="button">Action</button>
+                                                <button class="dropdown-item" type="button">Another action</button>
+                                                <button class="dropdown-item" type="button">Something else here</button>
                                             </div>
                                         </div>
                                     </div>
@@ -597,10 +590,10 @@
 
             <div id="Certified-Fresh-Movies" class="tabcontent pt-4">
                 <h4 class="text-uppercase font-weight-bold">Certified Fresh Movies</h4>
-                <nav class="navbar navbar-expand-lg navbar-light bg-light noshadow border">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light noshadow border py-0">
                     <a class="navbar-brand" href="#"></a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse"
-                            data-target="#navbarNavAltMarkup-4" aria-controls="navbarNavAltMarkup-4"
+                            data-target="#navbarNavAltMarkup-1" aria-controls="navbarNavAltMarkup-1"
                             aria-expanded="false"
                             aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -609,7 +602,7 @@
                         <div class="navbar-nav container">
                             <div class="container">
                                 <div class="row">
-                                    <div class="col-4 px-0">
+                                    <div class="col-5 px-0">
                                         <div class="row">
                                             <div class="col-1 px-0 mr-2">
                                                 <img class="ico-size" src="img/rank3.png">
@@ -635,18 +628,16 @@
                                             <option value="6" selected="selected">Option 6</option>
                                         </select>
                                     </div>
-                                    <div class="col-2 offset-5">
-                                        <div class="dropdown">
-                                            <button class="btn btn-light dropdown-toggle" type="button"
-                                                    id="dropdownMenuButton-4" data-toggle="dropdown"
-                                                    aria-haspopup="true"
-                                                    aria-expanded="false">
+                                    <div class="col-1 offset-4 pl-5">
+                                        <div class="btn-group ">
+                                            <button type="button" class="btn btn-light dropdown-toggle"
+                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                 Sort By
                                             </button>
-                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton-4">
-                                                <a class="dropdown-item" href="#">Action</a>
-                                                <a class="dropdown-item" href="#">Another action</a>
-                                                <a class="dropdown-item" href="#">Something else here</a>
+                                            <div class="dropdown-menu dropdown-menu-right">
+                                                <button class="dropdown-item" type="button">Action</button>
+                                                <button class="dropdown-item" type="button">Another action</button>
+                                                <button class="dropdown-item" type="button">Something else here</button>
                                             </div>
                                         </div>
                                     </div>
@@ -769,20 +760,19 @@
         </div>
     </div>
 
-
+    <footer class="footer row bg-dark">
+        <div class="container">
+            <div class="copyright text-right">
+                &copy;
+                <script>
+                    document.write(new Date().getFullYear())
+                </script>
+                , The Redwood Team
+            </div>
+        </div>
+    </footer>
 </div>
 
-<footer class="footer">
-    <div class="container">
-        <div class="copyright text-right">
-            &copy;
-            <script>
-                document.write(new Date().getFullYear())
-            </script>
-            , The Redwood Team
-        </div>
-    </div>
-</footer>
 
 <!-- Modal -->
 <div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="signupModalLabel"
@@ -883,52 +873,34 @@
 </script>
 <!--slider-->
 <script>
+    $(document).ready(function () {
 
-    $('#meter-slider-1').slider({
-        id: "slider3v1",
-        min: 0,
-        max: 100,
-        range: true,
-        value: [0, 100]
-    }).on("slide", function (slideEvt) {
-        var res = String(slideEvt.value).split(',');
-        $("#meter-range-start-1").text(res[0] + '%');
-        $("#meter-range-end-1").text(res[1] + '%');
-    });
-    $('#meter-slider-2').slider({
-        id: "slider3v1",
-        min: 0,
-        max: 100,
-        range: true,
-        value: [0, 100]
-    }).on("slide", function (slideEvt) {
-        var res = String(slideEvt.value).split(',');
-        $("#meter-range-start-2").text(res[0] + '%');
-        $("#meter-range-end-2").text(res[1] + '%');
-    });
-    $('#meter-slider-3').slider({
-        id: "slider3v1",
-        min: 0,
-        max: 100,
-        range: true,
-        value: [0, 100]
-    }).on("slide", function (slideEvt) {
-        var res = String(slideEvt.value).split(',');
-        $("#meter-range-start-3").text(res[0] + '%');
-        $("#meter-range-end-3").text(res[1] + '%');
-    });
-    $('#meter-slider-4').slider({
-        id: "slider3v1",
-        min: 0,
-        max: 100,
-        range: true,
-        value: [0, 100]
-    }).on("slide", function (slideEvt) {
-        var res = String(slideEvt.value).split(',');
-        $("#meter-range-start-4").text(res[0] + '%');
-        $("#meter-range-end-4").text(res[1] + '%');
-    });
+        for (var i = 1; i < 5; i++) {
+            $('#meter-slider-' + i).slider({
+                id: "slider3v" + i,
+                min: 0,
+                max: 100,
+                range: true,
+                value: [0, 100]
+            }).on("slide", function (slideEvt) {
+                var res = String(slideEvt.value).split(',');
+                var jsonObj = slideEvt.target;
+                for (var key in jsonObj) {
+                    if (jsonObj.hasOwnProperty(key)) {
+                        var prop = jsonObj[key];
+                        if (prop.hasOwnProperty('slider')) {
+                            var id = prop.slider.options.id;
+                            var lastChar = id.substr(id.length - 1);
+                            $("#meter-range-start-" + lastChar).text(res[0] + '%');
+                            $("#meter-range-end-" + lastChar).text(res[1] + '%');
+                        }
+                    }
+                }
 
+            });
+        }
+
+    });
 </script>
 <!--multiselect-->
 <script type="text/javascript">

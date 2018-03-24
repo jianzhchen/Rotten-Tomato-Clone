@@ -2,6 +2,10 @@
     background-color: #0b0b0b;
 }
 
+.bg-light-dark {
+    background-color: #e3e3e3;
+}
+
 .footer {
     padding: 2.5rem 0;
     color: #FFFFFF;
@@ -152,7 +156,7 @@
 }
 
 .bg-theme {
-    background-color: #ffe8a7;
+    background-color: #eeb884;
 }
 
 .bg-white {
@@ -212,7 +216,7 @@ body {
 
 @media (min-width: 1200px) {
     .container {
-        max-width: 1400px;
+        max-width: 1200px;
     }
 }
 
