@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="RottenPotato_main" target="1.8" />
+      <module name="RottenPotato_test" target="1.8" />
+      <module name="spring-boot-sample-simple" target="1.5" />
+      <module name="Spring_main" target="1.8" />
+      <module name="Spring_test" target="1.8" />
+      <module name="test_main" target="1.8" />
+      <module name="test_test" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
