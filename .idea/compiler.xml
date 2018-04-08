@@ -9,8 +9,10 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="rottenpotato_main" target="1.8" />
       <module name="RottenPotato_main" target="1.8" />
       <module name="RottenPotato_test" target="1.8" />
+      <module name="rottenpotato_test" target="1.8" />
       <module name="spring-boot-sample-simple" target="1.5" />
       <module name="Spring_main" target="1.8" />
       <module name="Spring_test" target="1.8" />
