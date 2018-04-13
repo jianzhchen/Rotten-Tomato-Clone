@@ -1,0 +1,918 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="img/favicon.ico">
+    <title>Rotten Potato</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- Custom styles for this template -->
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
+    <link href="css/bootstrap-slider.css" rel="stylesheet">
+    <link href="css/bootstrap-multiselect.css" rel="stylesheet">
+    <link href="css/custom.css" rel="stylesheet">
+</head>
+
+<body class="bg-dark">
+
+<div class="container bg-light">
+    <!--header and navbar-->
+    <div class="row header bg-theme py-2 my-0 pt-3">
+        <div class="col-12">
+            <div class="row flex-nowrap justify-content-between align-items-center">
+                <div class="col-1 offset-3">
+                    <img class="d-none d-lg-block" src="img/favicon.ico" style="max-height: 50px;">
+                </div>
+                <div class="col-4 text-center">
+                    <a class="header-logo text-dark" href="index.html">Rotten Potato</a>
+                </div>
+                <div class="col-4 d-flex justify-content-end align-items-center">
+                    <button class="btn btn-sm btn-primary mx-1" data-toggle="modal" data-target="#loginModal">Login
+                    </button>
+                    <button class="btn btn-sm btn-primary mx-1" data-toggle="modal" data-target="#signupModal">Sign
+                        up
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <nav class="row navbar navbar-expand-lg navbar-light noshadow bg-theme">
+        <a class="navbar-brand" href="#"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <div class="btn-group">
+                        <button type="button" class="btn bg-theme btn-lg" onclick="location.href = 'movies.html'">
+                            Movies
+                        </button>
+                        <button type="button" class="btn bg-theme btn-lg dropdown-toggle dropdown-toggle-split"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="sr-only">Toggle Dropdown</span>
+                        </button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#">Opening This Week</a>
+                            <a class="dropdown-item" href="#">Top Box Office</a>
+                            <a class="dropdown-item" href="#">Coming Soon</a>
+                            <a class="dropdown-item" href="#">Certified Fresh Movies</a>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <div class="btn-group">
+                        <button type="button" class="btn bg-theme btn-lg">TV</button>
+                        <button type="button" class="btn bg-theme btn-lg dropdown-toggle dropdown-toggle-split"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="sr-only">Toggle Dropdown</span>
+                        </button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Separated link</a>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <div class="btn-group">
+                        <button type="button" class="btn bg-theme btn-lg">News</button>
+                        <button type="button" class="btn bg-theme btn-lg dropdown-toggle dropdown-toggle-split"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="sr-only">Toggle Dropdown</span>
+                        </button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Separated link</a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <form>
+                <div class="form-row align-items-center">
+                    <div class="col-auto">
+                        <input class="form-control mr-lg-5" type="search" placeholder="Search" aria-label="Search">
+                    </div>
+                    <div class="col-auto">
+                        <select class="custom-select">
+                            <option value="1">Movies</option>
+                            <option value="2">Actors</option>
+                            <option value="3">Director</option>
+                            <option value="4">Writer</option>
+                        </select>
+                    </div>
+                    <div class="col-auto">
+                        <button class="btn btn-danger my-2 my-sm-0" type="submit">Search</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </nav>
+
+    <!--body-->
+    <div class="row">
+        <div class="col-md-12 px-0">
+            <div class="tab pt-4 pl-4 bg-light">
+                <h6 class="pl-2 font-weight-bold">IN THEATERS</h6>
+                <button class="tablinks pl-4" onclick="changeTab(event, 'Opening-This-Week')" id="defaultOpen">Opening
+                    This Week
+                </button>
+                <button class="tablinks pl-4" onclick="changeTab(event, 'Top-Box-Office')">Top Box Office</button>
+                <button class="tablinks pl-4" onclick="changeTab(event, 'Coming-Soon')">Coming Soon</button>
+                <button class="tablinks pl-4" onclick="changeTab(event, 'Certified-Fresh-Movies')">Certified Fresh
+                    Movies
+                </button>
+            </div>
+
+            <div id="Opening-This-Week" class="tabcontent pt-4">
+                <h4 class="text-uppercase font-weight-bold">Opening This Week</h4>
+                <nav class="navbar navbar-expand-lg navbar-light bg-light noshadow border py-0">
+                    <a class="navbar-brand" href="#"></a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse"
+                            data-target="#navbarNavAltMarkup-1" aria-controls="navbarNavAltMarkup-1"
+                            aria-expanded="false"
+                            aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse container px-0" id="navbarNavAltMarkup-1">
+                        <div class="navbar-nav container">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-5 px-0">
+                                        <div class="row">
+                                            <div class="col-1 px-0 mr-2">
+                                                <img class="ico-size" src="img/rank3.png">
+                                                <span id="meter-range-start-1">0%</span>
+                                            </div>
+                                            <div class="col-auto px-0">
+                                                <input id="meter-slider-1" data-slider-handle="square" type="text"
+                                                       name="meterrange">
+                                            </div>
+                                            <div class="col-1 px-0">
+                                                <img class="ico-size" src="img/rank2.png">
+                                                <span id="meter-range-end-1">100%</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-1 px-0">
+                                        <select id="genre-multiple-selected-1" multiple="multiple">
+                                            <option value="1" selected="selected">Option 1</option>
+                                            <option value="2" selected="selected">Option 2</option>
+                                            <option value="3" selected="selected">Option 3</option>
+                                            <option value="4" selected="selected">Option 4</option>
+                                            <option value="5" selected="selected">Option 5</option>
+                                            <option value="6" selected="selected">Option 6</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-1 offset-4 pl-5">
+                                        <div class="btn-group ">
+                                            <button type="button" class="btn btn-light dropdown-toggle"
+                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                Sort By
+                                            </button>
+                                            <div class="dropdown-menu dropdown-menu-right">
+                                                <button class="dropdown-item" type="button">Action</button>
+                                                <button class="dropdown-item" type="button">Another action</button>
+                                                <button class="dropdown-item" type="button">Something else here</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+                <div class="container">
+                    <div class="row m-5">
+                        <div class="col-md-3 ">
+                            <a href="https://placeholder.com"><img class="img-center" src="img/moviedemo.jpg"></a>
+                            <p class="font-weight-bold text-md-center my-0">Tomb Raider</p>
+                            <i class="ico-rank3 mx-auto">50%</i>
+                            <p class="text-md-center">In Theater Mar 16</p>
+                        </div>
+                        <div class="col-md-3 ">
+                            <a href="https://placeholder.com"><img class="img-center"
+                                                                   src="http://via.placeholder.com/130x193"></a>
+                            <p class="font-weight-bold text-md-center my-0">NAME</p>
+                            <i class="ico-rank3 mx-auto">50%</i>
+                            <p class="text-md-center">In Theater Mar 16</p>
+                        </div>
+                        <div class="col-md-3 ">
+                            <a href="https://placeholder.com"><img class="img-center"
+                                                                   src="http://via.placeholder.com/130x193"></a>
+                            <p class="font-weight-bold text-md-center my-0">NAME</p>
+                            <i class="ico-rank3 mx-auto">50%</i>
+                            <p class="text-md-center">In Theater Mar 16</p>
+                        </div>
+                        <div class="col-md-3 ">
+                            <a href="https://placeholder.com"><img class="img-center"
+                                                                   src="http://via.placeholder.com/130x193"></a>
+                            <p class="font-weight-bold text-md-center my-0">NAME</p>
+                            <i class="ico-rank3 mx-auto">50%</i>
+                            <p class="text-md-center">In Theater Mar 16</p>
+                        </div>
+                    </div>
+                    <div class="row m-5">
+                        <div class="col-md-3 ">
+                            <a href="https://placeholder.com"><img class="img-center"
+                                                                   src="http://via.placeholder.com/130x193"></a>
+                            <p class="font-weight-bold text-md-center my-0">NAME</p>
+                            <i class="ico-rank3 mx-auto">50%</i>
+                            <p class="text-md-center">In Theater Mar 16</p>
+                        </div>
+                        <div class="col-md-3 ">
+                            <a href="https://placeholder.com"><img class="img-center"
+                                                                   src="http://via.placeholder.com/130x193"></a>
+                            <p class="font-weight-bold text-md-center my-0">NAME</p>
+                            <i class="ico-rank3 mx-auto">50%</i>
+                            <p class="text-md-center">In Theater Mar 16</p>
+                        </div>
+                        <div class="col-md-3 ">
+                            <a href="https://placeholder.com"><img class="img-center"
+                                                                   src="http://via.placeholder.com/130x193"></a>
+                            <p class="font-weight-bold text-md-center my-0">NAME</p>
+                            <i class="ico-rank3 mx-auto">50%</i>
+                            <p class="text-md-center">In Theater Mar 16</p>
+                        </div>
+                        <div class="col-md-3 ">
+                            <a href="https://placeholder.com"><img class="img-center"
+                                                                   src="http://via.placeholder.com/130x193"></a>
+                            <p class="font-weight-bold text-md-center my-0">NAME</p>
+                            <i class="ico-rank3 mx-auto">50%</i>
+                            <p class="text-md-center">In Theater Mar 16</p>
+                        </div>
+                    </div>
+                    <div class="row m-5">
+                        <div class="col-md-3 ">
+                            <a href="https://placeholder.com"><img class="img-center"
+                                                                   src="http://via.placeholder.com/130x193"></a>
+                            <p class="font-weight-bold text-md-center my-0">NAME</p>
+                            <i class="ico-rank3 mx-auto">50%</i>
+                            <p class="text-md-center">In Theater Mar 16</p>
+                        </div>
+                        <div class="col-md-3 ">
+                            <a href="https://placeholder.com"><img class="img-center"
+                                                                   src="http://via.placeholder.com/130x193"></a>
+                            <p class="font-weight-bold text-md-center my-0">NAME</p>
+                            <i class="ico-rank3 mx-auto">50%</i>
+                            <p class="text-md-center">In Theater Mar 16</p>
+                        </div>
+                        <div class="col-md-3 ">
+                            <a href="https://placeholder.com"><img class="img-center"
+                                                                   src="http://via.placeholder.com/130x193"></a>
+                            <p class="font-weight-bold text-md-center my-0">NAME</p>
+                            <i class="ico-rank3 mx-auto">50%</i>
+                            <p class="text-md-center">In Theater Mar 16</p>
+                        </div>
+                        <div class="col-md-3 ">
+                            <a href="https://placeholder.com"><img class="img-center"
+                                                                   src="http://via.placeholder.com/130x193"></a>
+                            <p class="font-weight-bold text-md-center my-0">NAME</p>
+                            <i class="ico-rank3 mx-auto">50%</i>
+                            <p class="text-md-center">In Theater Mar 16</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="Top-Box-Office" class="tabcontent pt-4">
+                <h4 class="text-uppercase font-weight-bold">Top Box Office</h4>
+                <nav class="navbar navbar-expand-lg navbar-light bg-light noshadow border py-0">
+                    <a class="navbar-brand" href="#"></a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse"
+                            data-target="#navbarNavAltMarkup-1" aria-controls="navbarNavAltMarkup-1"
+                            aria-expanded="false"
+                            aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse container px-0" id="navbarNavAltMarkup-2">
+                        <div class="navbar-nav container">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-5 px-0">
+                                        <div class="row">
+                                            <div class="col-1 px-0 mr-2">
+                                                <img class="ico-size" src="img/rank3.png">
+                                                <span id="meter-range-start-2">0%</span>
+                                            </div>
+                                            <div class="col-auto px-0">
+                                                <input id="meter-slider-2" data-slider-handle="square" type="text"
+                                                       name="meterrange">
+                                            </div>
+                                            <div class="col-1 px-0">
+                                                <img class="ico-size" src="img/rank2.png">
+                                                <span id="meter-range-end-2">100%</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-1 px-0">
+                                        <select id="genre-multiple-selected-2" multiple="multiple">
+                                            <option value="1" selected="selected">Option 1</option>
+                                            <option value="2" selected="selected">Option 2</option>
+                                            <option value="3" selected="selected">Option 3</option>
+                                            <option value="4" selected="selected">Option 4</option>
+                                            <option value="5" selected="selected">Option 5</option>
+                                            <option value="6" selected="selected">Option 6</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-1 offset-4 pl-5">
+                                        <div class="btn-group ">
+                                            <button type="button" class="btn btn-light dropdown-toggle"
+                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                Sort By
+                                            </button>
+                                            <div class="dropdown-menu dropdown-menu-right">
+                                                <button class="dropdown-item" type="button">Action</button>
+                                                <button class="dropdown-item" type="button">Another action</button>
+                                                <button class="dropdown-item" type="button">Something else here</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+                <div class="container">
+                    <div class="row m-5">
+                        <div class="col-md-3 ">
+                            <a href="https://placeholder.com"><img class="img-center" src="img/moviedemo.jpg"></a>
+                            <p class="font-weight-bold text-md-center my-0">Tomb Raider</p>
+                            <i class="ico-rank3 mx-auto">50%</i>
+                            <p class="text-md-center">In Theater Mar 16</p>
+                        </div>
+                        <div class="col-md-3 ">
+                            <a href="https://placeholder.com"><img class="img-center"
+                                                                   src="http://via.placeholder.com/130x193"></a>
+                            <p class="font-weight-bold text-md-center my-0">NAME</p>
+                            <i class="ico-rank3 mx-auto">50%</i>
+                            <p class="text-md-center">In Theater Mar 16</p>
+                        </div>
+                        <div class="col-md-3 ">
+                            <a href="https://placeholder.com"><img class="img-center"
+                                                                   src="http://via.placeholder.com/130x193"></a>
+                            <p class="font-weight-bold text-md-center my-0">NAME</p>
+                            <i class="ico-rank3 mx-auto">50%</i>
+                            <p class="text-md-center">In Theater Mar 16</p>
+                        </div>
+                        <div class="col-md-3 ">
+                            <a href="https://placeholder.com"><img class="img-center"
+                                                                   src="http://via.placeholder.com/130x193"></a>
+                            <p class="font-weight-bold text-md-center my-0">NAME</p>
+                            <i class="ico-rank3 mx-auto">50%</i>
+                            <p class="text-md-center">In Theater Mar 16</p>
+                        </div>
+                    </div>
+                    <div class="row m-5">
+                        <div class="col-md-3 ">
+                            <a href="https://placeholder.com"><img class="img-center"
+                                                                   src="http://via.placeholder.com/130x193"></a>
+                            <p class="font-weight-bold text-md-center my-0">NAME</p>
+                            <i class="ico-rank3 mx-auto">50%</i>
+                            <p class="text-md-center">In Theater Mar 16</p>
+                        </div>
+                        <div class="col-md-3 ">
+                            <a href="https://placeholder.com"><img class="img-center"
+                                                                   src="http://via.placeholder.com/130x193"></a>
+                            <p class="font-weight-bold text-md-center my-0">NAME</p>
+                            <i class="ico-rank3 mx-auto">50%</i>
+                            <p class="text-md-center">In Theater Mar 16</p>
+                        </div>
+                        <div class="col-md-3 ">
+                            <a href="https://placeholder.com"><img class="img-center"
+                                                                   src="http://via.placeholder.com/130x193"></a>
+                            <p class="font-weight-bold text-md-center my-0">NAME</p>
+                            <i class="ico-rank3 mx-auto">50%</i>
+                            <p class="text-md-center">In Theater Mar 16</p>
+                        </div>
+                        <div class="col-md-3 ">
+                            <a href="https://placeholder.com"><img class="img-center"
+                                                                   src="http://via.placeholder.com/130x193"></a>
+                            <p class="font-weight-bold text-md-center my-0">NAME</p>
+                            <i class="ico-rank3 mx-auto">50%</i>
+                            <p class="text-md-center">In Theater Mar 16</p>
+                        </div>
+                    </div>
+                    <div class="row m-5">
+                        <div class="col-md-3 ">
+                            <a href="https://placeholder.com"><img class="img-center"
+                                                                   src="http://via.placeholder.com/130x193"></a>
+                            <p class="font-weight-bold text-md-center my-0">NAME</p>
+                            <i class="ico-rank3 mx-auto">50%</i>
+                            <p class="text-md-center">In Theater Mar 16</p>
+                        </div>
+                        <div class="col-md-3 ">
+                            <a href="https://placeholder.com"><img class="img-center"
+                                                                   src="http://via.placeholder.com/130x193"></a>
+                            <p class="font-weight-bold text-md-center my-0">NAME</p>
+                            <i class="ico-rank3 mx-auto">50%</i>
+                            <p class="text-md-center">In Theater Mar 16</p>
+                        </div>
+                        <div class="col-md-3 ">
+                            <a href="https://placeholder.com"><img class="img-center"
+                                                                   src="http://via.placeholder.com/130x193"></a>
+                            <p class="font-weight-bold text-md-center my-0">NAME</p>
+                            <i class="ico-rank3 mx-auto">50%</i>
+                            <p class="text-md-center">In Theater Mar 16</p>
+                        </div>
+                        <div class="col-md-3 ">
+                            <a href="https://placeholder.com"><img class="img-center"
+                                                                   src="http://via.placeholder.com/130x193"></a>
+                            <p class="font-weight-bold text-md-center my-0">NAME</p>
+                            <i class="ico-rank3 mx-auto">50%</i>
+                            <p class="text-md-center">In Theater Mar 16</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="Coming-Soon" class="tabcontent pt-4">
+                <h4 class="text-uppercase font-weight-bold">Coming Soon</h4>
+                <nav class="navbar navbar-expand-lg navbar-light bg-light noshadow border py-0">
+                    <a class="navbar-brand" href="#"></a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse"
+                            data-target="#navbarNavAltMarkup-1" aria-controls="navbarNavAltMarkup-1"
+                            aria-expanded="false"
+                            aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse container px-0" id="navbarNavAltMarkup-3">
+                        <div class="navbar-nav container">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-5 px-0">
+                                        <div class="row">
+                                            <div class="col-1 px-0 mr-2">
+                                                <img class="ico-size" src="img/rank3.png">
+                                                <span id="meter-range-start-3">0%</span>
+                                            </div>
+                                            <div class="col-auto px-0">
+                                                <input id="meter-slider-3" data-slider-handle="square" type="text"
+                                                       name="meterrange">
+                                            </div>
+                                            <div class="col-1 px-0">
+                                                <img class="ico-size" src="img/rank2.png">
+                                                <span id="meter-range-end-3">100%</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-1 px-0">
+                                        <select id="genre-multiple-selected-3" multiple="multiple">
+                                            <option value="1" selected="selected">Option 1</option>
+                                            <option value="2" selected="selected">Option 2</option>
+                                            <option value="3" selected="selected">Option 3</option>
+                                            <option value="4" selected="selected">Option 4</option>
+                                            <option value="5" selected="selected">Option 5</option>
+                                            <option value="6" selected="selected">Option 6</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-1 offset-4 pl-5">
+                                        <div class="btn-group ">
+                                            <button type="button" class="btn btn-light dropdown-toggle"
+                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                Sort By
+                                            </button>
+                                            <div class="dropdown-menu dropdown-menu-right">
+                                                <button class="dropdown-item" type="button">Action</button>
+                                                <button class="dropdown-item" type="button">Another action</button>
+                                                <button class="dropdown-item" type="button">Something else here</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+                <div class="container">
+                    <div class="row m-5">
+                        <div class="col-md-3 ">
+                            <a href="https://placeholder.com"><img class="img-center" src="img/moviedemo.jpg"></a>
+                            <p class="font-weight-bold text-md-center my-0">Tomb Raider</p>
+                            <i class="ico-rank3 mx-auto">50%</i>
+                            <p class="text-md-center">In Theater Mar 16</p>
+                        </div>
+                        <div class="col-md-3 ">
+                            <a href="https://placeholder.com"><img class="img-center"
+                                                                   src="http://via.placeholder.com/130x193"></a>
+                            <p class="font-weight-bold text-md-center my-0">NAME</p>
+                            <i class="ico-rank3 mx-auto">50%</i>
+                            <p class="text-md-center">In Theater Mar 16</p>
+                        </div>
+                        <div class="col-md-3 ">
+                            <a href="https://placeholder.com"><img class="img-center"
+                                                                   src="http://via.placeholder.com/130x193"></a>
+                            <p class="font-weight-bold text-md-center my-0">NAME</p>
+                            <i class="ico-rank3 mx-auto">50%</i>
+                            <p class="text-md-center">In Theater Mar 16</p>
+                        </div>
+                        <div class="col-md-3 ">
+                            <a href="https://placeholder.com"><img class="img-center"
+                                                                   src="http://via.placeholder.com/130x193"></a>
+                            <p class="font-weight-bold text-md-center my-0">NAME</p>
+                            <i class="ico-rank3 mx-auto">50%</i>
+                            <p class="text-md-center">In Theater Mar 16</p>
+                        </div>
+                    </div>
+                    <div class="row m-5">
+                        <div class="col-md-3 ">
+                            <a href="https://placeholder.com"><img class="img-center"
+                                                                   src="http://via.placeholder.com/130x193"></a>
+                            <p class="font-weight-bold text-md-center my-0">NAME</p>
+                            <i class="ico-rank3 mx-auto">50%</i>
+                            <p class="text-md-center">In Theater Mar 16</p>
+                        </div>
+                        <div class="col-md-3 ">
+                            <a href="https://placeholder.com"><img class="img-center"
+                                                                   src="http://via.placeholder.com/130x193"></a>
+                            <p class="font-weight-bold text-md-center my-0">NAME</p>
+                            <i class="ico-rank3 mx-auto">50%</i>
+                            <p class="text-md-center">In Theater Mar 16</p>
+                        </div>
+                        <div class="col-md-3 ">
+                            <a href="https://placeholder.com"><img class="img-center"
+                                                                   src="http://via.placeholder.com/130x193"></a>
+                            <p class="font-weight-bold text-md-center my-0">NAME</p>
+                            <i class="ico-rank3 mx-auto">50%</i>
+                            <p class="text-md-center">In Theater Mar 16</p>
+                        </div>
+                        <div class="col-md-3 ">
+                            <a href="https://placeholder.com"><img class="img-center"
+                                                                   src="http://via.placeholder.com/130x193"></a>
+                            <p class="font-weight-bold text-md-center my-0">NAME</p>
+                            <i class="ico-rank3 mx-auto">50%</i>
+                            <p class="text-md-center">In Theater Mar 16</p>
+                        </div>
+                    </div>
+                    <div class="row m-5">
+                        <div class="col-md-3 ">
+                            <a href="https://placeholder.com"><img class="img-center"
+                                                                   src="http://via.placeholder.com/130x193"></a>
+                            <p class="font-weight-bold text-md-center my-0">NAME</p>
+                            <i class="ico-rank3 mx-auto">50%</i>
+                            <p class="text-md-center">In Theater Mar 16</p>
+                        </div>
+                        <div class="col-md-3 ">
+                            <a href="https://placeholder.com"><img class="img-center"
+                                                                   src="http://via.placeholder.com/130x193"></a>
+                            <p class="font-weight-bold text-md-center my-0">NAME</p>
+                            <i class="ico-rank3 mx-auto">50%</i>
+                            <p class="text-md-center">In Theater Mar 16</p>
+                        </div>
+                        <div class="col-md-3 ">
+                            <a href="https://placeholder.com"><img class="img-center"
+                                                                   src="http://via.placeholder.com/130x193"></a>
+                            <p class="font-weight-bold text-md-center my-0">NAME</p>
+                            <i class="ico-rank3 mx-auto">50%</i>
+                            <p class="text-md-center">In Theater Mar 16</p>
+                        </div>
+                        <div class="col-md-3 ">
+                            <a href="https://placeholder.com"><img class="img-center"
+                                                                   src="http://via.placeholder.com/130x193"></a>
+                            <p class="font-weight-bold text-md-center my-0">NAME</p>
+                            <i class="ico-rank3 mx-auto">50%</i>
+                            <p class="text-md-center">In Theater Mar 16</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="Certified-Fresh-Movies" class="tabcontent pt-4">
+                <h4 class="text-uppercase font-weight-bold">Certified Fresh Movies</h4>
+                <nav class="navbar navbar-expand-lg navbar-light bg-light noshadow border py-0">
+                    <a class="navbar-brand" href="#"></a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse"
+                            data-target="#navbarNavAltMarkup-1" aria-controls="navbarNavAltMarkup-1"
+                            aria-expanded="false"
+                            aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse container px-0" id="navbarNavAltMarkup-4">
+                        <div class="navbar-nav container">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-5 px-0">
+                                        <div class="row">
+                                            <div class="col-1 px-0 mr-2">
+                                                <img class="ico-size" src="img/rank3.png">
+                                                <span id="meter-range-start-4">0%</span>
+                                            </div>
+                                            <div class="col-auto px-0">
+                                                <input id="meter-slider-4" data-slider-handle="square" type="text"
+                                                       name="meterrange">
+                                            </div>
+                                            <div class="col-1 px-0">
+                                                <img class="ico-size" src="img/rank2.png">
+                                                <span id="meter-range-end-4">100%</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-1 px-0">
+                                        <select id="genre-multiple-selected-4" multiple="multiple">
+                                            <option value="1" selected="selected">Option 1</option>
+                                            <option value="2" selected="selected">Option 2</option>
+                                            <option value="3" selected="selected">Option 3</option>
+                                            <option value="4" selected="selected">Option 4</option>
+                                            <option value="5" selected="selected">Option 5</option>
+                                            <option value="6" selected="selected">Option 6</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-1 offset-4 pl-5">
+                                        <div class="btn-group ">
+                                            <button type="button" class="btn btn-light dropdown-toggle"
+                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                Sort By
+                                            </button>
+                                            <div class="dropdown-menu dropdown-menu-right">
+                                                <button class="dropdown-item" type="button">Action</button>
+                                                <button class="dropdown-item" type="button">Another action</button>
+                                                <button class="dropdown-item" type="button">Something else here</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+                <div class="container">
+                    <div class="row m-5">
+                        <div class="col-md-3 ">
+                            <a href="https://placeholder.com"><img class="img-center" src="img/moviedemo.jpg"></a>
+                            <p class="font-weight-bold text-md-center my-0">Tomb Raider</p>
+                            <i class="ico-rank3 mx-auto">50%</i>
+                            <p class="text-md-center">In Theater Mar 16</p>
+                        </div>
+                        <div class="col-md-3 ">
+                            <a href="https://placeholder.com"><img class="img-center"
+                                                                   src="http://via.placeholder.com/130x193"></a>
+                            <p class="font-weight-bold text-md-center my-0">NAME</p>
+                            <i class="ico-rank3 mx-auto">50%</i>
+                            <p class="text-md-center">In Theater Mar 16</p>
+                        </div>
+                        <div class="col-md-3 ">
+                            <a href="https://placeholder.com"><img class="img-center"
+                                                                   src="http://via.placeholder.com/130x193"></a>
+                            <p class="font-weight-bold text-md-center my-0">NAME</p>
+                            <i class="ico-rank3 mx-auto">50%</i>
+                            <p class="text-md-center">In Theater Mar 16</p>
+                        </div>
+                        <div class="col-md-3 ">
+                            <a href="https://placeholder.com"><img class="img-center"
+                                                                   src="http://via.placeholder.com/130x193"></a>
+                            <p class="font-weight-bold text-md-center my-0">NAME</p>
+                            <i class="ico-rank3 mx-auto">50%</i>
+                            <p class="text-md-center">In Theater Mar 16</p>
+                        </div>
+                    </div>
+                    <div class="row m-5">
+                        <div class="col-md-3 ">
+                            <a href="https://placeholder.com"><img class="img-center"
+                                                                   src="http://via.placeholder.com/130x193"></a>
+                            <p class="font-weight-bold text-md-center my-0">NAME</p>
+                            <i class="ico-rank3 mx-auto">50%</i>
+                            <p class="text-md-center">In Theater Mar 16</p>
+                        </div>
+                        <div class="col-md-3 ">
+                            <a href="https://placeholder.com"><img class="img-center"
+                                                                   src="http://via.placeholder.com/130x193"></a>
+                            <p class="font-weight-bold text-md-center my-0">NAME</p>
+                            <i class="ico-rank3 mx-auto">50%</i>
+                            <p class="text-md-center">In Theater Mar 16</p>
+                        </div>
+                        <div class="col-md-3 ">
+                            <a href="https://placeholder.com"><img class="img-center"
+                                                                   src="http://via.placeholder.com/130x193"></a>
+                            <p class="font-weight-bold text-md-center my-0">NAME</p>
+                            <i class="ico-rank3 mx-auto">50%</i>
+                            <p class="text-md-center">In Theater Mar 16</p>
+                        </div>
+                        <div class="col-md-3 ">
+                            <a href="https://placeholder.com"><img class="img-center"
+                                                                   src="http://via.placeholder.com/130x193"></a>
+                            <p class="font-weight-bold text-md-center my-0">NAME</p>
+                            <i class="ico-rank3 mx-auto">50%</i>
+                            <p class="text-md-center">In Theater Mar 16</p>
+                        </div>
+                    </div>
+                    <div class="row m-5">
+                        <div class="col-md-3 ">
+                            <a href="https://placeholder.com"><img class="img-center"
+                                                                   src="http://via.placeholder.com/130x193"></a>
+                            <p class="font-weight-bold text-md-center my-0">NAME</p>
+                            <i class="ico-rank3 mx-auto">50%</i>
+                            <p class="text-md-center">In Theater Mar 16</p>
+                        </div>
+                        <div class="col-md-3 ">
+                            <a href="https://placeholder.com"><img class="img-center"
+                                                                   src="http://via.placeholder.com/130x193"></a>
+                            <p class="font-weight-bold text-md-center my-0">NAME</p>
+                            <i class="ico-rank3 mx-auto">50%</i>
+                            <p class="text-md-center">In Theater Mar 16</p>
+                        </div>
+                        <div class="col-md-3 ">
+                            <a href="https://placeholder.com"><img class="img-center"
+                                                                   src="http://via.placeholder.com/130x193"></a>
+                            <p class="font-weight-bold text-md-center my-0">NAME</p>
+                            <i class="ico-rank3 mx-auto">50%</i>
+                            <p class="text-md-center">In Theater Mar 16</p>
+                        </div>
+                        <div class="col-md-3 ">
+                            <a href="https://placeholder.com"><img class="img-center"
+                                                                   src="http://via.placeholder.com/130x193"></a>
+                            <p class="font-weight-bold text-md-center my-0">NAME</p>
+                            <i class="ico-rank3 mx-auto">50%</i>
+                            <p class="text-md-center">In Theater Mar 16</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <script>
+                function changeTab(evt, tabname) {
+                    var i, tabcontent, tablinks;
+                    tabcontent = document.getElementsByClassName("tabcontent");
+                    for (i = 0; i < tabcontent.length; i++) {
+                        tabcontent[i].style.display = "none";
+                    }
+                    tablinks = document.getElementsByClassName("tablinks");
+                    for (i = 0; i < tablinks.length; i++) {
+                        tablinks[i].className = tablinks[i].className.replace(" active", "");
+                    }
+                    document.getElementById(tabname).style.display = "inline-block";
+                    evt.currentTarget.className += " active";
+                }
+
+                // Get the element with id="defaultOpen" and click on it
+                document.getElementById("defaultOpen").click();
+            </script>
+        </div>
+    </div>
+
+    <footer class="footer row bg-darker">
+        <div class="container">
+            <div class="copyright text-right">
+                &copy;
+                <script>
+                    document.write(new Date().getFullYear())
+                </script>
+                , The Redwood Team
+            </div>
+        </div>
+    </footer>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="signupModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="signupModalLabel">Sign Up</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <input type="email" class="form-control" id="signupInputEmail" aria-describedby="emailHelp"
+                               placeholder="Enter email">
+                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
+                            else.
+                        </small>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" placeholder="Password">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" placeholder="Retype Password">
+                    </div>
+                    <div class="form-group">
+                        <input type="email" class="form-control" aria-describedby="emailHelp"
+                               placeholder="Enter First Name">
+                    </div>
+                    <div class="form-group">
+                        <input type="email" class="form-control" aria-describedby="emailHelp"
+                               placeholder="Enter Last Name">
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                        <label class="form-check-label">Check if you are applying as a
+                            critic</label>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer mb-1">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Sign In</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <input type="email" class="form-control" aria-describedby="emailHelp"
+                               placeholder="Enter email">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" placeholder="Password">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer mb-1">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Sign In</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.0/bootstrap-slider.min.js"></script>
+<script type="text/javascript" src="js/bootstrap-multiselect.js"></script>
+<script src="js/holder.min.js"></script>
+<script>
+    Holder.addTheme('thumb', {
+        bg: '#55595c',
+        fg: '#eceeef',
+        text: 'Thumbnail'
+    });
+</script>
+<!--slider-->
+<script>
+    $(document).ready(function () {
+
+        for (var i = 1; i < 5; i++) {
+            $('#meter-slider-' + i).slider({
+                id: "slider3v" + i,
+                min: 0,
+                max: 100,
+                range: true,
+                value: [0, 100]
+            }).on("slide", function (slideEvt) {
+                var res = String(slideEvt.value).split(',');
+                var jsonObj = slideEvt.target;
+                for (var key in jsonObj) {
+                    if (jsonObj.hasOwnProperty(key)) {
+                        var prop = jsonObj[key];
+                        if (prop.hasOwnProperty('slider')) {
+                            var id = prop.slider.options.id;
+                            var lastChar = id.substr(id.length - 1);
+                            $("#meter-range-start-" + lastChar).text(res[0] + '%');
+                            $("#meter-range-end-" + lastChar).text(res[1] + '%');
+                        }
+                    }
+                }
+
+            });
+        }
+
+    });
+</script>
+<!--multiselect-->
+<script type="text/javascript">
+    $(document).ready(function () {
+        for (var i = 1; i < 5; i++) {
+            $('#genre-multiple-selected-' + i).multiselect({
+                allSelectedText: 'Genre',
+                numberDisplayed: 1,
+                buttonClass: 'btn btn-light'
+            });
+        }
+    });
+</script>
+</body>
+</html>

@@ -4,11 +4,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class RottenpotatoApplication
-{
+public class RottenpotatoApplication {
 
-	public static void main(String[] args)
-    {
-		SpringApplication.run(RottenpotatoApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(RottenpotatoApplication.class, args);
+    }
 }
