@@ -6,11 +6,12 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @EnableAutoConfiguration
-public class HelloWorldController {
+public class HelloWorldController
+{
 
     @RequestMapping("/hello")
     String home() {
-        return "Hello World!";
+        return "Hello World! haha";
     }
 
 }
