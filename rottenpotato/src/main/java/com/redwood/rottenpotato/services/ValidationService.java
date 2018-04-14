@@ -22,4 +22,8 @@ public class ValidationService {
         Matcher matcher = email_pattern.matcher(email);
         return matcher.matches();
     }
+
+    public boolean validPassword(String password, String passwordConfirm) {
+        return password.equals(passwordConfirm);
+    }
 }
