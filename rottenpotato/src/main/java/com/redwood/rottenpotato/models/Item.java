@@ -20,8 +20,6 @@ public class Item
     private Set<String> photos;
     private Set<Person> cast;
 
-
-
     //Setters
     public void setName(String s) {this.name = s;}
     public void setVideos(Set<String> s) {this.videos = s;}
