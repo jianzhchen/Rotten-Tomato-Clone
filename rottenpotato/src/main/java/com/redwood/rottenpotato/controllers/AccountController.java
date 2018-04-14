@@ -20,12 +20,14 @@ public class AccountController {
     private ValidationService validationService;
 
     @RequestMapping(value = "/signup", method = RequestMethod.POST, consumes = "text/plain")
-    public String accountRegistration(@RequestBody String postPayload) {
+    public String accountRegistration(@RequestBody String postPayload)
+    {
         JsonObject userForm = jsonService.parseAsJsonObject(postPayload);
         boolean emailValid = validationService.validEmail(userForm.get("email").getAsString());
         boolean passwordValid = validationService.validPassword(userForm.get("password").getAsString(),
                 userForm.get("passwordConfirm").getAsString());
-        if (!emailValid || !passwordValid) {
+        if (!emailValid || !passwordValid)
+        {
             return jsonService.constructStatusMessage(AjaxCallStatus.ERROR, "");
         }
         return "";

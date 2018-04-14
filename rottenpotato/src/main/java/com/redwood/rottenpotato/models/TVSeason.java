@@ -1,20 +1,41 @@
 package com.redwood.rottenpotato.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Set;
 
 @Entity // This tells Hibernate to make a table out of this class
+@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 public class TVSeason extends Item
 {
-
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @ElementCollection
     private Set<TVEpisode> episodes;
+
+    @OneToOne(cascade=CascadeType.PERSIST)
     private TVSeasonInfo seasonInfo;
+
+    @OneToMany(
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
     private Set<Review> criticReviews;
+
+    @OneToMany(
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
     private Set<Review> audienceReviews;
+
+    //Constructor for JPA
+    protected TVSeason(){}
+
+    //Constructor for instantiation
+    public TVSeason(Set<TVEpisode> episodes, TVSeasonInfo seasonInfo, Set<Review> criticReviews, Set<Review> audienceReviews)
+    {
+        this.episodes = episodes;
+        this.seasonInfo = seasonInfo;
+        this.criticReviews = criticReviews;
+        this.audienceReviews = audienceReviews;
+    }
 
     //Setters
     public void setEpisodes( Set<TVEpisode>  s) {this.episodes = s;}
