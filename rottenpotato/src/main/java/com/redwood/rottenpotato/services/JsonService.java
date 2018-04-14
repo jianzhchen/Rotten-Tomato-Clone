@@ -21,10 +21,10 @@ public class JsonService {
         return jsonParser.parse(jsonText).getAsJsonObject();
     }
 
-    public String constructErrorMessage(AjaxCallStatus status, String message)
+    public String constructStatusMessage(AjaxCallStatus status, String message)
     {
         JsonObject jsonObject = new JsonObject();
-        jsonObject.addProperty("status", status.getString());
+        jsonObject.addProperty("status", status.toString());
         jsonObject.addProperty("message", message);
         return jsonObject.toString();
     }

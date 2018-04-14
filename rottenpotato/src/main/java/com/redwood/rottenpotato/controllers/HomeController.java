@@ -28,7 +28,7 @@ public class HomeController
                 userForm.get("passwordConfirm").getAsString());
         if(!emailValid || !passwordValid)
         {
-            return jsonService.constructErrorMessage(AjaxCallStatus.ERROR,"");
+            return jsonService.constructStatusMessage(AjaxCallStatus.ERROR,"");
         }
         return "";
     }

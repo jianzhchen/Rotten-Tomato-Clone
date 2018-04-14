@@ -1,16 +1,17 @@
 package com.redwood.rottenpotato.enums;
 
 public enum AjaxCallStatus {
-    OK("ROLE_ADMIN"),
-    ERROR("ROLE_MEMBER");
+    OK("ok"),
+    ERROR("error");
 
-    private String str;
+    private final String text;
 
-    AjaxCallStatus(String str) {
-        this.str = str;
+    AjaxCallStatus(final String text) {
+        this.text = text;
     }
 
-    public String getString() {
-        return str;
+    @Override
+    public String toString() {
+        return text;
     }
 }
