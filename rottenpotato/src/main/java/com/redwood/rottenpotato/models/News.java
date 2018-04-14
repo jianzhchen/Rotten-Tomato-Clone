@@ -7,18 +7,19 @@ import javax.persistence.Id;
 import java.util.Set;
 
 @Entity // This tells Hibernate to make a table out of this class
-public class SeriesInfo
+public class News
 {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Set<Person> creater;
-    private Set<Person> starring;
+    private String title;
+    private String link;
 
     //Setters
-    public void setCreater( Set<Person>  s) {this.creater = s;}
-    public void setStarring( Set<Person>  s) {this.starring = s;}
+    public void setTitle( String  s) {this.title = s;}
+    public void setLink( String  s) {this.link = s;}
 
     //Getters
-    public Set<Person> getCreater() {return this.creater;}
-    public Set<Person> getStarring() {return this.starring;}
+    public String getTitle() {return this.title;}
+    public String getLink() {return this.link;}
+
 }
