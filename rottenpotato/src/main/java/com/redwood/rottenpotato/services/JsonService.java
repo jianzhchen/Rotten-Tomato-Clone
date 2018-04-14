@@ -1,5 +1,6 @@
 package com.redwood.rottenpotato.services;
 
+import com.redwood.rottenpotato.enums.AjaxCallStatus;
 import org.springframework.stereotype.Service;
 import com.google.gson.JsonParser;
 import com.google.gson.JsonObject;
@@ -18,5 +19,12 @@ public class JsonService {
 
     public JsonObject parseAsJsonObject(String jsonText) {
         return jsonParser.parse(jsonText).getAsJsonObject();
+    }
+
+    public String constructErrorMessage(AjaxCallStatus status, String message) {
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("status", status.getString());
+        jsonObject.addProperty("message", message);
+        return jsonObject.toString();
     }
 }

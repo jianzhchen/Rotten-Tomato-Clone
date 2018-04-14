@@ -1,12 +1,12 @@
 package com.redwood.rottenpotato.models;
 
 import javax.persistence.*;
-import java.util.Set;
 
 @Entity
 public class Account {
     private Long id;
     private String email;
+    private String password;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -26,5 +26,11 @@ public class Account {
         this.email = email;
     }
 
+    public String getPassword() {
+        return password;
+    }
 
+    public void setPassword(String password) {
+        this.password = password;
+    }
 }

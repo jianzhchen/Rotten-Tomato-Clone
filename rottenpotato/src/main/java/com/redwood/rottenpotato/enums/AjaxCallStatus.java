@@ -1,13 +1,12 @@
 package com.redwood.rottenpotato.enums;
 
-public enum SecurityRoles {
-    ADMIN("ROLE_ADMIN"),
-    MEMEBR("ROLE_MEMBER"),
-    CRITIC("ROLE_CRITIC");
+public enum AjaxCallStatus {
+    OK("ROLE_ADMIN"),
+    ERROR("ROLE_MEMBER");
 
     private String str;
 
-    SecurityRoles(String str) {
+    AjaxCallStatus(String str) {
         this.str = str;
     }
 
