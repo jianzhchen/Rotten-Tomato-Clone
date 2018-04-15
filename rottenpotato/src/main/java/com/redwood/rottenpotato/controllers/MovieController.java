@@ -1,6 +1,5 @@
 package com.redwood.rottenpotato.controllers;
 
-
 import com.redwood.rottenpotato.services.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
