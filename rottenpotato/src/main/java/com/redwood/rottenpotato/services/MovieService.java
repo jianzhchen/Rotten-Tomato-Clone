@@ -1,6 +1,7 @@
 package com.redwood.rottenpotato.services;
 
 import com.redwood.rottenpotato.enums.AjaxCallStatus;
+import com.redwood.rottenpotato.models.Movie;
 import com.redwood.rottenpotato.repositories.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -8,6 +9,7 @@ import com.google.gson.JsonParser;
 import com.google.gson.JsonObject;
 
 import javax.annotation.PostConstruct;
+import java.util.Date;
 
 @Service
 public class MovieService
@@ -15,24 +17,8 @@ public class MovieService
     @Autowired
     private MovieRepository movieRepository;
 
-
-    private static JsonParser jsonParser;
-
-    @PostConstruct
-    public void initialize() {
-        jsonParser = new JsonParser();
-    }
-
-    public JsonObject parseAsJsonObject(String jsonText) {
-        return jsonParser.parse(jsonText).getAsJsonObject();
-    }
-
-
-    public String constructStatusMessage(AjaxCallStatus status, String message)
+    public void addMovie(String movieName, Date movieDate, double rate, double boxOffice)
     {
-        JsonObject jsonObject = new JsonObject();
-        jsonObject.addProperty("status", status.toString());
-        jsonObject.addProperty("message", message);
-        return jsonObject.toString();
+        movieRepository.save(new Movie(movieName, movieDate, rate, boxOffice));
     }
 }

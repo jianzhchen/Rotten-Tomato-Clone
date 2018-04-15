@@ -23,7 +23,7 @@ public class RottenpotatoApplication
 
     private static final Logger log = LoggerFactory.getLogger(RottenpotatoApplication.class);
 
-    @Bean
+    /*@Bean
     public CommandLineRunner demo( MovieRepository repository)
     {
         return (args) ->
@@ -35,7 +35,7 @@ public class RottenpotatoApplication
             Set<String> photos1 = new HashSet<String>();
             photos1.add("photo1-1");
             photos1.add("photo1-2");
-            repository.save(new Item("Item1", videos1, photos1));
+            //repository.save(new Item("Item1", videos1, photos1));
 
             Set<String> videos2 = new HashSet<String>();
             videos2.add("video2-1");
@@ -43,7 +43,7 @@ public class RottenpotatoApplication
             Set<String> photos2 = new HashSet<String>();
             photos2.add("photo2-1");
             photos2.add("photo2-2");
-            repository.save(new Item("Item2", videos2, photos2));
+            //repository.save(new Item("Item2", videos2, photos2));
 
             // fetch all customers
             log.info("*****************************************************************************");
@@ -67,6 +67,6 @@ public class RottenpotatoApplication
             });
             log.info("");
         };
-    }
+    }*/
 
 }
