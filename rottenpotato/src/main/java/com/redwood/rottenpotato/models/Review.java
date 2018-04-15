@@ -10,7 +10,7 @@ public class Review
     //Primary key for the entity Item
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "ITEM_ID")
+    @Column(name = "Review_ID")
     private long id;
     public long getId() {
         return id;

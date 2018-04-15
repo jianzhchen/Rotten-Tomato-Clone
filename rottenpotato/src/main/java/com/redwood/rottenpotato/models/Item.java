@@ -1,11 +1,8 @@
 package com.redwood.rottenpotato.models;
 
-import javafx.scene.image.Image;
 
 import javax.persistence.*;
-import java.util.Date;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 
@@ -15,17 +12,14 @@ public class Item
     //Primary key for the entity Item
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "ITEM_ID")
+    @Column(name = "Item_ID")
     private long id;
-    public long getId() {
-        return id;
-    }
-    public void setId(Long id) {
-        this.id = id;
-    }
+    public long getId() {return id;}
+    public void setId(Long id) {this.id = id;}
 
     //Private Fields
     private String name;
+
     @ElementCollection
     private Set<String> videos;
     @ElementCollection
@@ -59,4 +53,12 @@ public class Item
     public Set<String> getVideos() {return this.videos;}
     public Set<String> getPhotos() {return this.photos;}
     public Set<Person> getCastPhotos() {return this.cast;}
+
+    @Override
+    public String toString()
+    {
+        return String.format(
+                "Item[id=%d, name=%s]",
+                id, name);
+    }
 }

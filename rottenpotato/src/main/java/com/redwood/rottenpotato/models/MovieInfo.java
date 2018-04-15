@@ -11,6 +11,7 @@ public class MovieInfo
     //Primary Key
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "MovieInfo_ID")
     private long id;
     public long getId() {
         return id;

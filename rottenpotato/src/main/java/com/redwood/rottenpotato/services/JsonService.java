@@ -21,6 +21,7 @@ public class JsonService {
         return jsonParser.parse(jsonText).getAsJsonObject();
     }
 
+
     public String constructStatusMessage(AjaxCallStatus status, String message)
     {
         JsonObject jsonObject = new JsonObject();

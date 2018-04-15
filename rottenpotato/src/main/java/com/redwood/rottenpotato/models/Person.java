@@ -12,6 +12,7 @@ public class Person
     //Primary Key
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "Person_ID")
     private Long id;
     public Long getId() {
         return id;
