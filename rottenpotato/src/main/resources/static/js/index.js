@@ -2,8 +2,9 @@
     function addMovie()
     {
         var nameOfAddMovie = document.getElementById("nameOfAddMovie").value;
-        var videosOfAddMovie = document.getElementById("videosOfAddMovie").value;
-        var photosOfAddMovie = document.getElementById("photosOfAddMovie").value;
+        var dateOfAddMovie = document.getElementById("dateOfAddMovie").value;
+        var rateOfAddMovie = document.getElementById("rateOfAddMovie").value;
+        var boxOfficeOfAddMovie = document.getElementById("boxOfficeOfAddMovie").value;
 
         document.cookie="userID="+$("#reg_id").val();
         document.cookie="userPassword="+$("#reg_password").val();
