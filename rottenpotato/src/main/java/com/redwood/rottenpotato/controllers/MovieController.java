@@ -28,22 +28,10 @@ public class MovieController
                            @RequestParam(value = "rate") double rate,
                            @RequestParam(value = "boxOffice") double boxOffice)
     {
-        try
-        {
-            DateFormat formatter;
-            Date date1;
-            formatter = new SimpleDateFormat("yyyy-mm-dd");
-            date1 = formatter.parse(date);
 
-            movieService.addMovie(name, date1, rate, boxOffice );
-        }
-        catch (ParseException e)
-        {
 
-        }
+         movieService.addMovie(name,date,rate,boxOffice);
+         return name;
 
-        //For debugging purpose
-        System.out.print(date);
-        return date;
     }
 }
