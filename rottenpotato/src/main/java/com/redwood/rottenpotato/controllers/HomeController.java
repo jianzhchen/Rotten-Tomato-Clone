@@ -3,7 +3,7 @@ package com.redwood.rottenpotato.controllers;
 import com.google.gson.JsonObject;
 import com.redwood.rottenpotato.enums.AjaxCallStatus;
 import com.redwood.rottenpotato.services.JsonService;
-import com.redwood.rottenpotato.services.ValidationService;
+import com.redwood.rottenpotato.security.service.ValidationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.*;
 import org.springframework.web.bind.annotation.*;
