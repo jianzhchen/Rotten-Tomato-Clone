@@ -9,16 +9,28 @@ import com.google.gson.JsonParser;
 import com.google.gson.JsonObject;
 
 import javax.annotation.PostConstruct;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Service
-public class MovieService
-{
+public class MovieService {
     @Autowired
     private MovieRepository movieRepository;
 
-    public void addMovie(String movieName, Date movieDate, double rate, double boxOffice)
-    {
-        movieRepository.save(new Movie(movieName, movieDate, rate, boxOffice));
+    public void addMovie(String movieName, String movieDate, double rate, double boxOffice) {
+        try {
+            DateFormat formatter;
+            Date date1;
+            formatter = new SimpleDateFormat("yyyy-mm-dd");
+            date1 = formatter.parse(movieDate);
+
+            Movie movie = new Movie(movieName, date1, rate, boxOffice);
+            movieRepository.save(movie);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
     }
 }
