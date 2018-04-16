@@ -28,7 +28,7 @@ function addMovie()
             }
             console.log(returnData);
        });
-
+}
 
 
 
