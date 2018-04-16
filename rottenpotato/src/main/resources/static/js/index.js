@@ -1,4 +1,3 @@
-
 function addMovie()
 {
     if($("#nameOfAddMovie").val() == "" ||$("#dateOfAddMovie").val() == ""
