@@ -46,6 +46,43 @@ function signupPost() {
         }
     });
 }
+function init() {
+
+    var textBeforeRate = "<a class=\"list-group-item py-0 pt-1 border-0\">" +
+        "    <div class=\"container row px-0 mx-0\">" +
+        "    <div class=\"'col-1 mx-0\">" +
+        "    <i class=\"ico-rank1\">";
+    var textBtwRateAndName = "%</i>" +
+        "    </div>\n" +
+        "    <div class='col-md-7 mx-0'>" +
+        "    <p>";
+    var textBtwNameAndBoxOffice = "</p>" +
+        "</div>\n" +
+        "<div class=\"'col-md-1 mx-0\">" +
+        "    <p>$";
+    var last = "</p>" +
+        "</div>" +
+        "</div>" +
+        "</a>";
+
+    var list = document.getElementById("topBoxOffice");
+    var context="";
+
+    $.get("/movie/getTopBoxOffice", function (returndata) {
+        console.log(returndata)
+        for(var i=0;i<10;i++){
+            context=context+textBeforeRate;
+            context=context+returndata[i].rate;
+            context=context+textBtwRateAndName;
+            context=context+returndata[i].movieName;
+            context=context+textBtwNameAndBoxOffice;
+            context=context+returndata[i].boxOffice;
+            context=context+last;
+        }
+        list.innerHTML=context;
+
+    });
+}
 
 
 

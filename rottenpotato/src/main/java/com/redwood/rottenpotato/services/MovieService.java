@@ -14,7 +14,7 @@ import javax.annotation.PostConstruct;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.*;
 
 @Service
 public class MovieService
@@ -40,5 +40,30 @@ public class MovieService
             e.printStackTrace();
         }
 
+    }
+
+    public List<Movie> getTopBoxOffice(){
+        List<Movie> list = new ArrayList<Movie>();
+        Iterable<Movie> movies = movieRepository.findAll();
+        movies.forEach(e->{
+            list.add(e);
+        });
+        Collections.sort(list, new Comparator<Movie>() {
+            @Override
+            public int compare(Movie o1, Movie o2) {
+                if (o1.getBoxOffice() < o2.getBoxOffice()){
+                    return 1;
+                }else if(o1.getBoxOffice() == o2.getBoxOffice()){
+                    return 0;
+                }else{
+                    return -1;
+                }
+            }
+        });
+        List<Movie> topTen = new ArrayList<Movie>();
+        for(int i=0;i<10;i++){
+            topTen.add(list.get(i));
+        }
+        return topTen;
     }
 }
