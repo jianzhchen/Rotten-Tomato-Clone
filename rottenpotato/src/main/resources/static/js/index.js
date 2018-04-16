@@ -96,6 +96,25 @@ function init() {
     });
 }
 
+var testAn = document.getElementById("info");
+function loadMovies(){
+    $.get("/movie/loadMovies",
+    {
+    },
+    function(returnData){
+//        console.log(returnData)
+        render(returnData);
+        });
+}
+function  render(data){
+    var htmlString = "";
+    for(i = 0; i < data.length; i++){
+        htmlString += "<p>" + data[i].movieName +"<br>"+data[i].movieDate.substring(0, 10) + "</p>";
+    }
+    testAn.insertAdjacentHTML('beforeend', htmlString);
+}
+
+
 
 
 
