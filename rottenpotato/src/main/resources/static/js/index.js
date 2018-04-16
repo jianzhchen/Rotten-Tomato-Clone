@@ -1,24 +1,36 @@
-function addMovie() {
-    if ($("#nameOfAddMovie").val() == "" || $("#dateOfAddMovie").val() == "" || $("#rateOfAddMovie").val() == "" || $("#boxOfficeOfAddMovie").val() == "") {
-        //Movie is successfully added to repository in service by controller, display success message
-        alert("Fail to add movie " + $("#nameOfAddMovie").val());
-        return;
-    }
-    else {
-        //Movie is not successfully added to repository in service by controller, display error message
-        alert("Movie " + $("#nameOfAddMovie").val() + " has been added successfully!");
-    }
-    var error = true;
-    $.post("/movie/addMovie",
+
+function addMovie()
+{
+    if($("#nameOfAddMovie").val() == "" ||$("#dateOfAddMovie").val() == ""
+       ||$("#rateOfAddMovie").val() == "" || $("#boxOfficeOfAddMovie").val() == "")
+      {
+            alert("Fail to add movie : none of the field can be empty!");
+            return;
+      }
+
+   $.post("/movie/addMovie",
         {
-            "name": $("#nameOfAddMovie").val(),
-            "date": $("#dateOfAddMovie").val(),
-            "rate": $("#rateOfAddMovie").val(),
-            "boxOffice": $("#boxOfficeOfAddMovie").val()
+        "name" : $("#nameOfAddMovie").val(),
+        "date" : $("#dateOfAddMovie").val(),
+        "rate" : $("#rateOfAddMovie").val(),
+        "boxOffice" : $("#boxOfficeOfAddMovie").val()
         },
-        function (returnData) {
-        });
+       function (returnData)
+       {
+            if (returnData === 'SUCCESS')
+            {
+                //Movie is not successfully added to repository in service by controller, display error message
+                alert("Movie "+$("#nameOfAddMovie").val()+" has been added successfully!");
+            }
+            else
+            {
+                alert("Fail to add movie: " +$("#nameOfAddMovie").val());
+            }
+            console.log(returnData);
+       });
 }
+
+
 
 function signupPost() {
     $.ajax({
@@ -83,6 +95,25 @@ function init() {
 
     });
 }
+
+var testAn = document.getElementById("info");
+function loadMovies(){
+    $.get("/movie/loadMovies",
+    {
+    },
+    function(returnData){
+//        console.log(returnData)
+        render(returnData);
+        });
+}
+function  render(data){
+    var htmlString = "";
+    for(i = 0; i < data.length; i++){
+        htmlString += "<p>" + data[i].movieName +"<br>"+data[i].movieDate.substring(0, 10) + "</p>";
+    }
+    testAn.insertAdjacentHTML('beforeend', htmlString);
+}
+
 
 
 
