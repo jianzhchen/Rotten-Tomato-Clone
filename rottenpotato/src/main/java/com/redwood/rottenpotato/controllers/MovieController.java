@@ -49,6 +49,12 @@ public class MovieController
         return movieService.getMoviesOpeningThisWeek();
     }
 
+    @RequestMapping(value = "/getTopTenBoxOffice", method = RequestMethod.GET)
+    public List<Movie> getTopTenBoxOffice() {
+        return movieService.getTopTenBoxOffice();
+
+    }
+
     @RequestMapping(value = "/getTopBoxOffice", method = RequestMethod.GET)
     public List<Movie> getTopBoxOffice() {
         return movieService.getTopBoxOffice();

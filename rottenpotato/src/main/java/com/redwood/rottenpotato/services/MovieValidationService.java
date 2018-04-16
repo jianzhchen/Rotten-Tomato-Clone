@@ -21,7 +21,7 @@ public class MovieValidationService
         {
             DateFormat formatter;
             Date date1;
-            formatter = new SimpleDateFormat("yyyy-mm-dd");
+            formatter = new SimpleDateFormat("yyyy-MM-dd");
             date1 = formatter.parse(movieDate);
 
             if(rate < 0 || boxOffice <0)

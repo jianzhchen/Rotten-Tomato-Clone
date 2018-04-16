@@ -117,9 +117,9 @@ function loadTopBoxOffice() {
     var list2 = document.getElementById("topBoxOffice");
     var context="";
 
-    $.get("/movie/getTopBoxOffice", function (returndata) {
+    $.get("/movie/getTopTenBoxOffice", function (returndata) {
         console.log(returndata)
-        for(var i=0;i<10;i++){
+        for(var i=0;i<returndata.length;i++){
             context=context+textBeforeRate;
             context=context+returndata[i].rate;
             context=context+textBtwRateAndName;

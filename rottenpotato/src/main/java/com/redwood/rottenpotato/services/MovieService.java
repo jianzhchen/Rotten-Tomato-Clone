@@ -40,6 +40,15 @@ public class MovieService
 
     }
 
+    public List<Movie> getTopTenBoxOffice(){
+        List<Movie> list = getTopBoxOffice();
+        List<Movie> topTen = new ArrayList<Movie>();
+        for(int i=0; i<10; i++){
+            topTen.add(list.get(i));
+        }
+        return topTen;
+    }
+
     public List<Movie> getTopBoxOffice(){
         List<Movie> list = new ArrayList<Movie>();
         Iterable<Movie> movies = movieRepository.findAll();
@@ -58,11 +67,7 @@ public class MovieService
                 }
             }
         });
-        List<Movie> topTen = new ArrayList<Movie>();
-        for(int i=0;i<10;i++){
-            topTen.add(list.get(i));
-        }
-        return topTen;
+        return list;
     }
 
     public List<Movie> getMoviesOpeningThisWeek() {
