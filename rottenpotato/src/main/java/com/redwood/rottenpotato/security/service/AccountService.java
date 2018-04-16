@@ -1,6 +1,7 @@
 package com.redwood.rottenpotato.security.service;
 
 import com.google.gson.JsonObject;
+import com.redwood.rottenpotato.restful.SignupForm;
 import com.redwood.rottenpotato.security.exception.EmailExistsException;
 import com.redwood.rottenpotato.security.model.Account;
 import com.redwood.rottenpotato.admin.models.CriticAppReview;
@@ -26,16 +27,16 @@ public class AccountService {
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Transactional
-    public Account createAccount(JsonObject signupForm) throws EmailExistsException {
-        if (emailExist(signupForm.get("email").getAsString())) {
+    public Account createAccount(SignupForm signupForm) throws EmailExistsException {
+        if (emailExist(signupForm.getEmail())) {
             throw new EmailExistsException();
         }
         Member member = new Member();
-        member.setPassword(bCryptPasswordEncoder.encode(signupForm.get("password").getAsString()));
-        member.setEmail(signupForm.get("email").getAsString());
-        member.setUsername(signupForm.get("username").getAsString());
+        member.setPassword(bCryptPasswordEncoder.encode(signupForm.getPassword()));
+        member.setEmail(signupForm.getEmail());
+        member.setUsername(signupForm.getUsername());
         member.setCritic(false);
-        if(signupForm.get("isCritic").getAsBoolean()){
+        if(signupForm.isCritic()){
             criticAppReviewRepository.save(new CriticAppReview(member));
         }
         return memberRepository.saveAndFlush(member);
