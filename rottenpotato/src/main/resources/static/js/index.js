@@ -1,19 +1,12 @@
-<<<<<<< HEAD
 function addMovie()
 {
     if($("#nameOfAddMovie").val() == "" ||$("#dateOfAddMovie").val() == ""
        ||$("#rateOfAddMovie").val() == "" || $("#boxOfficeOfAddMovie").val() == "")
       {
-            //Movie is successfully added to repository in service by controller, display success message
-             alert("Fail to add movie "+$("#nameOfAddMovie").val());
+            alert("Fail to add movie : none of the field can be empty!");
             return;
       }
-      else
-      {
-           //Movie is not successfully added to repository in service by controller, display error message
-            alert("Movie "+$("#nameOfAddMovie").val()+" has been added successfully!");
-      }
-   var error = true;
+
    $.post("/movie/addMovie",
         {
         "name" : $("#nameOfAddMovie").val(),
@@ -23,21 +16,17 @@ function addMovie()
         },
        function (returnData)
        {
-       });
-
-
-=======
-function addMovie() {
-    $.post("/movie/addMovie",
-        {
-            "name": $("#nameOfAddMovie").val(),
-            "date": $("#dateOfAddMovie").val(),
-            "rate": $("#rateOfAddMovie").val(),
-            "boxOffice": $("#boxOfficeOfAddMovie").val()
-        },
-        function (returnData) {
+            if (returnData === 'SUCCESS')
+            {
+                //Movie is not successfully added to repository in service by controller, display error message
+                alert("Movie "+$("#nameOfAddMovie").val()+" has been added successfully!");
+            }
+            else
+            {
+                alert("Fail to add movie: " +$("#nameOfAddMovie").val());
+            }
             console.log(returnData);
-        });
+       });
 }
 
 function signupPost() {
@@ -65,5 +54,4 @@ function signupPost() {
             console.log(returnData);
         }
     });
->>>>>>> 5cf625a6fdb3ad2057ae35d6c0ba313c7b372208
-}
+};

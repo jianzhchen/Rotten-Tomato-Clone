@@ -1,8 +1,10 @@
 package com.redwood.rottenpotato.services;
 
 import com.redwood.rottenpotato.enums.AjaxCallStatus;
+import com.redwood.rottenpotato.exception.MovieException;
 import com.redwood.rottenpotato.models.Movie;
 import com.redwood.rottenpotato.repositories.MovieRepository;
+import com.redwood.rottenpotato.security.exception.EmailExistsException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.google.gson.JsonParser;
@@ -15,12 +17,14 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Service
-public class MovieService {
+public class MovieService
+{
     @Autowired
     private MovieRepository movieRepository;
 
     public void addMovie(String movieName, String movieDate, double rate, double boxOffice)
     {
+        //add the movie to the movie repository persistent layer
         try
         {
             DateFormat formatter;
@@ -30,9 +34,8 @@ public class MovieService {
 
             Movie movie = new Movie(movieName, date1, rate, boxOffice);
             movieRepository.save(movie);
-
         }
-        catch(Exception e)
+        catch(ParseException e)
         {
             e.printStackTrace();
         }
