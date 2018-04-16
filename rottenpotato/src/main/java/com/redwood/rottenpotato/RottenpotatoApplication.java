@@ -4,13 +4,9 @@ import com.redwood.rottenpotato.models.Item;
 import com.redwood.rottenpotato.repositories.MovieRepository;
 import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
-import org.springframework.boot.CommandLineRunner;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
-
-import java.util.HashSet;
-import java.util.Set;
 
 @SpringBootApplication
 public class RottenpotatoApplication

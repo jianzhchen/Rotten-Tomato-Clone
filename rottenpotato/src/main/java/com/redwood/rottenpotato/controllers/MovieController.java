@@ -1,49 +1,51 @@
 package com.redwood.rottenpotato.controllers;
 
-
+import com.redwood.rottenpotato.enums.MovieStatus;
+import com.redwood.rottenpotato.models.Movie;
 import com.redwood.rottenpotato.services.MovieService;
+import com.redwood.rottenpotato.services.MovieValidationService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.List;
+
 
 @RestController
 @RequestMapping("/movie")
 public class MovieController
 {
     @Autowired
+    //Used for validate the new movie
+    private MovieValidationService movieValidationService;
+
+    @Autowired
+    //Used for validate add movie if it passes movieValidation
     private MovieService movieService;
+
 
     @RequestMapping(value = "/addMovie", method = RequestMethod.POST)
     public String addMovie(@RequestParam(value = "name") String name,
-                           @RequestParam(value = "date") String date,
-                           @RequestParam(value = "rate") double rate,
-                           @RequestParam(value = "boxOffice") double boxOffice)
+                               @RequestParam(value = "date") String date,
+                               @RequestParam(value = "rate") double rate,
+                               @RequestParam(value = "boxOffice") double boxOffice)
     {
-        try
+        //Check if the new movie is valid by using movieValiadationService, if so, then return error message by service
+        if (!movieValidationService.validMovie(name, date, rate, boxOffice))
         {
-            DateFormat formatter;
-            Date date1;
-            formatter = new SimpleDateFormat("yyyy-mm-dd");
-            date1 = formatter.parse(date);
-
-            movieService.addMovie(name, date1, rate, boxOffice );
-        }
-        catch (ParseException e)
-        {
-
+            return MovieStatus.FAILURE.toString();
         }
 
-        //For debugging purpose
-        System.out.print(date);
-        return date;
+        //Try to add movie to database by using movieService, then return a string of jsonObject which contains status
+        movieService.addMovie(name, date, rate, boxOffice);
+        return MovieStatus.SUCCESS.toString();
+    }
+
+    @RequestMapping(value = "/getTopBoxOffice", method = RequestMethod.GET)
+    public List<Movie> getTopBoxOffice() {
+        return movieService.getTopBoxOffice();
+
     }
 }
