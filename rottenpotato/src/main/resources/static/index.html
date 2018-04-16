@@ -870,37 +870,43 @@
                 </button>
             </div>
             <div class="modal-body">
+                <div id="signupOk" class="alert alert-success d-none" role="alert">
+                    Success!
+                </div>
+                <div id="signupError" class="alert alert-danger d-none" role="alert">
+                    Error!
+                </div>
                 <form>
                     <div class="form-group">
-                        <input type="email" class="form-control" id="signupInputEmail" aria-describedby="emailHelp"
+                        <input id="signupInputE" type="email" class="form-control"  aria-describedby="emailHelp"
                                placeholder="Enter email">
-                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
-                            else.
-                        </small>
                     </div>
                     <div class="form-group">
-                        <input type="password" class="form-control" placeholder="Password">
+                        <input id="signupInputP1" type="password" class="form-control" placeholder="Password">
                     </div>
                     <div class="form-group">
-                        <input type="password" class="form-control" placeholder="Retype Password">
+                        <input id="signupInputP2" type="password" class="form-control" placeholder="Retype Password">
                     </div>
                     <div class="form-group">
-                        <input type="email" class="form-control" aria-describedby="emailHelp"
-                               placeholder="Enter First Name">
-                    </div>
-                    <div class="form-group">
-                        <input type="email" class="form-control" aria-describedby="emailHelp"
-                               placeholder="Enter Last Name">
+                        <input id="signupInputN" type="text" class="form-control" aria-describedby="emailHelp"
+                               placeholder="Enter UserName">
                     </div>
                     <div class="form-check">
+<<<<<<< HEAD
                         <input type="checkbox" class="form-check-input" id="exampleCheck1">
                         <label class="form-check-label">Check if you are applying as a critic</label>
+=======
+                        <input id="signupInputC" type="checkbox" class="form-check-input" >
+                        <label class="form-check-label">Check if you are applying as a
+                            critic</label>
+>>>>>>> 5cf625a6fdb3ad2057ae35d6c0ba313c7b372208
                     </div>
                 </form>
             </div>
             <div class="modal-footer mb-1">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" data-dismiss="modal">Submit</button>
+                <button type="button" class="btn btn-primary" onclick="signupPost()">Submit</button>
+                <!--<button type="button" class="btn btn-primary" data-dismiss="modal">Submit</button>-->
             </div>
         </div>
     </div>

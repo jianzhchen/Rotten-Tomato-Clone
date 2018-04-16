@@ -1,4 +1,4 @@
-package com.redwood.rottenpotato.services;
+package com.redwood.rottenpotato.security.service;
 
 import org.springframework.stereotype.Service;
 
@@ -26,4 +26,5 @@ public class ValidationService {
     public boolean validPassword(String password, String passwordConfirm) {
         return password.equals(passwordConfirm);
     }
+
 }
