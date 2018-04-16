@@ -19,8 +19,10 @@ public class MovieService {
     @Autowired
     private MovieRepository movieRepository;
 
-    public void addMovie(String movieName, String movieDate, double rate, double boxOffice) {
-        try {
+    public void addMovie(String movieName, String movieDate, double rate, double boxOffice)
+    {
+        try
+        {
             DateFormat formatter;
             Date date1;
             formatter = new SimpleDateFormat("yyyy-mm-dd");
@@ -28,7 +30,10 @@ public class MovieService {
 
             Movie movie = new Movie(movieName, date1, rate, boxOffice);
             movieRepository.save(movie);
-        } catch (ParseException e) {
+
+        }
+        catch(Exception e)
+        {
             e.printStackTrace();
         }
 

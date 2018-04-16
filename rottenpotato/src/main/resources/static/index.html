@@ -824,7 +824,7 @@
 
 
 <!-- Modal -->
-<div class="modal fade" id="loginMovieModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel"
+<div class="modal fade" id="addMovieModal" tabindex="-1" role="dialog" aria-labelledby="addMovieModalLabel"
      aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -852,14 +852,15 @@
             </div>
             <div class="modal-footer mb-1">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" onclick = addMovie()>Add</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" onclick = "addMovie()">
+                    Add
+                </button>
             </div>
         </div>
     </div>
 </div>
 
-<div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="signupModalLabel"
-     aria-hidden="true">
+<div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="signupModalLabel"aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -893,8 +894,7 @@
                     </div>
                     <div class="form-check">
                         <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                        <label class="form-check-label">Check if you are applying as a
-                            critic</label>
+                        <label class="form-check-label">Check if you are applying as a critic</label>
                     </div>
                 </form>
             </div>
