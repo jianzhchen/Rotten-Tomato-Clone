@@ -1,11 +1,11 @@
 package com.redwood.rottenpotato.repositories;
 
 import com.redwood.rottenpotato.models.Item;
+import com.redwood.rottenpotato.models.Movie;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
 
-public interface MovieRepository extends CrudRepository<Item, Long>
+public interface MovieRepository extends CrudRepository<Movie, Long>
 {
-    List<Item> findByName(String name);
 }

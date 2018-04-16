@@ -49,4 +49,10 @@ public class Movie
     public Date getMovieDate() {return this.movieDate;}
     public double getRate() {return this.rate;}
     public double getBoxOffice() {return this.boxOffice;}
+
+    public String toString()
+    {
+        return "movieName= "+this.movieName+" movieDate= "+this.movieDate
+                +" rate= "+this.rate+" boxOffice= "+this.boxOffice;
+    }
 }
