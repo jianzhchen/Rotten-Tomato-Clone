@@ -93,6 +93,11 @@ function init() {
         list.innerHTML=context;
 
     });
+
+    $.get("/movie/getMoviesOpeningThisWeek",function (returndata) {
+        console.log(returndata);
+
+    })
 }
 
 var testAn = document.getElementById("info");
@@ -112,7 +117,6 @@ function  render(data){
     }
     testAn.insertAdjacentHTML('beforeend', htmlString);
 }
-
 
 
 

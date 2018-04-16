@@ -27,11 +27,9 @@ public class MovieService
         //add the movie to the movie repository persistent layer
         try
         {
-            DateFormat formatter;
             Date date1;
-            formatter = new SimpleDateFormat("yyyy-mm-dd");
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
             date1 = formatter.parse(movieDate);
-
             Movie movie = new Movie(movieName, date1, rate, boxOffice);
             movieRepository.save(movie);
         }
@@ -65,5 +63,47 @@ public class MovieService
             topTen.add(list.get(i));
         }
         return topTen;
+    }
+
+    public List<Movie> getMoviesOpeningThisWeek() {
+        List<Movie> list = new ArrayList<Movie>();
+        Iterable<Movie> movies = movieRepository.findAll();
+        movies.forEach(e->{
+            list.add(e);
+        });
+        Date now = new Date();
+        Date startDay = getNowWeekSunday(now);
+        Date endDay = getNowWeekSaturday(now);
+        fliterMovieBetweenTwoDay(list,startDay,endDay);
+        return list;
+
+
+    }
+
+    public  Date getNowWeekSunday(Date date) {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        cal.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
+        return cal.getTime();
+    }
+
+    public  Date getNowWeekSaturday(Date date) {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        cal.set(Calendar.DAY_OF_WEEK, Calendar.SATURDAY);
+        return cal.getTime();
+    }
+
+    public void fliterMovieBetweenTwoDay(List<Movie> list, Date startDay, Date endDay){
+        int index = 0;
+        while(index < list.size()){
+            if(list.get(index).getMovieDate().before(startDay) ||
+                    list.get(index).getMovieDate().after(endDay)){
+                list.remove(index);
+            }else {
+                index++;
+            }
+        }
+
     }
 }

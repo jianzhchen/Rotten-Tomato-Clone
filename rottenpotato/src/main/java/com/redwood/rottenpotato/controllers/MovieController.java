@@ -43,9 +43,17 @@ public class MovieController
         return MovieStatus.SUCCESS.toString();
     }
 
+
+    @RequestMapping(value = "/getMoviesOpeningThisWeek",method = RequestMethod.GET)
+    public List<Movie> getMoviesOpeningThisWeek(){
+        return movieService.getMoviesOpeningThisWeek();
+    }
+
     @RequestMapping(value = "/getTopBoxOffice", method = RequestMethod.GET)
     public List<Movie> getTopBoxOffice() {
         return movieService.getTopBoxOffice();
 
     }
+
+
 }
