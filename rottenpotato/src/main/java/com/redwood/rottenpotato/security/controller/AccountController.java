@@ -1,6 +1,5 @@
 package com.redwood.rottenpotato.security.controller;
 
-import com.google.gson.JsonObject;
 import com.redwood.rottenpotato.email.service.EmailService;
 import com.redwood.rottenpotato.enums.AjaxCallStatus;
 import com.redwood.rottenpotato.restful.SignupForm;
@@ -16,7 +15,6 @@ import org.springframework.web.bind.annotation.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.context.request.WebRequest;
-
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
@@ -66,5 +64,4 @@ public class AccountController {
             response.sendRedirect("/badToken.html");
         }
     }
-
 }
