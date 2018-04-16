@@ -4,7 +4,7 @@ function init(){
     var rowtail = "</div>";
 
     var movieTextBeforeName = "<div class=\"col-md-3 \">" +
-        "    <a href=\"https://placeholder.com\"><img class=\"img-center\" src=\"http://via.placeholder.com/130x193.jpg\"></a>" +
+        "    <a href=\"https://placeholder.com\"><img class=\"img-center\" src=\"img/moviedemo.jpg\"></a>" +
         "    <p class=\"font-weight-bold text-md-center my-0\">";
     var textBtwNameAndRate = "</p>" +
         "    <i class=\"ico-rank3 mx-auto\">";
