@@ -17,7 +17,7 @@
     <link href="css/custom.css" rel="stylesheet">
 </head>
 
-<body class="bg-dark">
+<body class="bg-dark" onload="init()">
 
 <div class="container bg-light">
     <!--header and navbar-->
@@ -280,7 +280,7 @@
                             <div class="row">
                                 <div class="col-12">
                                     <h5 class="font-weight-bold mb-4">Top Box Office</h5>
-                                    <ul class="list-group py-0">
+                                    <ul class="list-group py-0" id="topBoxOffice">
                                         <a class="list-group-item py-0 pt-1 border-0">
                                             <div class="container row px-0 mx-0">
                                                 <div class="'col-1 mx-0">
@@ -895,19 +895,8 @@
                                placeholder="Enter UserName">
                     </div>
                     <div class="form-check">
-
-
-                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                        <label class="form-check-label">Check if you are applying as a critic</label>
-
-                        <input id="signupInputC" type="checkbox" class="form-check-input" >
-                        <label class="form-check-label">Check if you are applying as a
-                            critic</label>
-
-
                         <input id="signupInputC" type="checkbox" class="form-check-input">
                         <label class="form-check-label">Check if you are applying as a critic</label>
-
                     </div>
                 </form>
             </div>
@@ -969,6 +958,7 @@ crossorigin="anonymous"></script>-->
         fg: '#eceeef',
         text: 'Thumbnail'
     });
+
 </script>
 <!--link to add movie script-->
 <script type="text/javascript" src="js/index.js"></script>

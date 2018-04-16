@@ -1,6 +1,7 @@
 package com.redwood.rottenpotato.controllers;
 
 import com.redwood.rottenpotato.enums.MovieStatus;
+import com.redwood.rottenpotato.models.Movie;
 import com.redwood.rottenpotato.services.MovieService;
 import com.redwood.rottenpotato.services.MovieValidationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 
 @RestController
@@ -38,5 +41,11 @@ public class MovieController
         //Try to add movie to database by using movieService, then return a string of jsonObject which contains status
         movieService.addMovie(name, date, rate, boxOffice);
         return MovieStatus.SUCCESS.toString();
+    }
+
+    @RequestMapping(value = "/getTopBoxOffice", method = RequestMethod.GET)
+    public List<Movie> getTopBoxOffice() {
+        return movieService.getTopBoxOffice();
+
     }
 }
