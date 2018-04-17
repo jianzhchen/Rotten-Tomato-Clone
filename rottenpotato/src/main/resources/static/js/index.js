@@ -18,7 +18,7 @@ function addMovie()
        {
             if (returnData === 'SUCCESS')
             {
-                //Movie is not successfully added to repository in service by controller, display error message
+                //Movie has been successfully added to repository in service by controller, display success message
                 alert("Movie "+$("#nameOfAddMovie").val()+" has been added successfully!");
             }
             else

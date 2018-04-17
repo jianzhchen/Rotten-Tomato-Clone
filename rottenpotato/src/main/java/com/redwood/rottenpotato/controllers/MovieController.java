@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 
@@ -47,5 +49,22 @@ public class MovieController
     public List<Movie> getTopBoxOffice() {
         return movieService.getTopBoxOffice();
 
+    }
+
+    @RequestMapping(value = "/loadMovies", method = RequestMethod.GET)
+    public List<Movie> loadMovies(){
+        List<Movie> movies = movieService.loadMovies();
+        Collections.sort(movies, new Comparator<Movie>() {
+            @Override
+            public int compare(Movie o1, Movie o2) {
+                if(o1.getMovieDate().before(o2.getMovieDate())){
+                    return 1;
+                }else if(o1.getMovieDate().equals(o2.getMovieDate())){
+                    return 0;
+                }
+                return -1;
+            }
+        });
+        return movies;
     }
 }

@@ -66,4 +66,11 @@ public class MovieService
         }
         return topTen;
     }
+
+    public List<Movie> loadMovies(){
+        Iterator<Movie> source = movieRepository.findAll().iterator();
+        List<Movie> movies = new ArrayList<>();
+        source.forEachRemaining(movies::add);
+        return movies;
+    }
 }
