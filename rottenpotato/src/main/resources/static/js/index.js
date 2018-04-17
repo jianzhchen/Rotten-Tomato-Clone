@@ -57,8 +57,47 @@ function signupPost() {
         }
     });
 }
-function init() {
+function loadMoviesOpeningThisWeek() {
 
+    var textBeforeRate = "<a class=\"list-group-item py-0 pt-1 border-0\">" +
+        "    <div class=\"container row px-0 mx-0\">" +
+        "    <div class=\"'col-1 mx-0\">" +
+        "    <i class=\"ico-rank1\">";
+    var textBtwRateAndName = "%</i>" +
+        "    </div>\n" +
+        "    <div class='col-md-7 mx-0'>" +
+        "    <p>";
+
+    var textBtwNameAndDate = "</p>" +
+        "</div>\n" +
+        "<div class=\"'col-md-1 mx-0\">" +
+        "    <p>";
+
+    var last = "</p>" +
+        "</div>" +
+        "</div>" +
+        "</a>";
+
+    var list1 = document.getElementById("moviesOpeningThisWeek");
+    var context="";
+
+    $.get("/movie/getMoviesOpeningThisWeek",function (returndata) {
+        console.log(returndata);
+        for(var i=0;i<returndata.length;i++){
+            context=context+textBeforeRate;
+            context=context+returndata[i].rate;
+            context=context+textBtwRateAndName;
+            context=context+returndata[i].movieName;
+            context=context+textBtwNameAndDate;
+            context=context+returndata[i].movieDate.substring(6,10);
+            context=context+last;
+        }
+        list1.innerHTML=context;
+        returndata.clear;
+
+    });
+}
+function loadTopBoxOffice() {
     var textBeforeRate = "<a class=\"list-group-item py-0 pt-1 border-0\">" +
         "    <div class=\"container row px-0 mx-0\">" +
         "    <div class=\"'col-1 mx-0\">" +
@@ -75,13 +114,12 @@ function init() {
         "</div>" +
         "</div>" +
         "</a>";
-
-    var list = document.getElementById("topBoxOffice");
+    var list2 = document.getElementById("topBoxOffice");
     var context="";
 
-    $.get("/movie/getTopBoxOffice", function (returndata) {
+    $.get("/movie/getTopTenBoxOffice", function (returndata) {
         console.log(returndata)
-        for(var i=0;i<10;i++){
+        for(var i=0;i<returndata.length;i++){
             context=context+textBeforeRate;
             context=context+returndata[i].rate;
             context=context+textBtwRateAndName;
@@ -90,11 +128,11 @@ function init() {
             context=context+returndata[i].boxOffice;
             context=context+last;
         }
-        list.innerHTML=context;
+        list2.innerHTML=context;
 
     });
-}
 
+}
 var testAn = document.getElementById("info");
 function loadMovies(){
     $.get("/movie/loadMovies",
@@ -112,7 +150,6 @@ function  render(data){
     }
     testAn.insertAdjacentHTML('beforeend', htmlString);
 }
-
 
 
 
