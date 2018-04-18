@@ -1,13 +1,11 @@
 package com.redwood.rottenpotato.security.service;
 
-import com.google.gson.JsonObject;
 import com.redwood.rottenpotato.email.Mail;
 import com.redwood.rottenpotato.email.service.EmailService;
-import com.redwood.rottenpotato.restful.SignupForm;
+import com.redwood.rottenpotato.security.restful.SignupForm;
 import com.redwood.rottenpotato.security.exception.EmailExistsException;
 import com.redwood.rottenpotato.security.model.Account;
 import com.redwood.rottenpotato.admin.models.CriticAppReview;
-import com.redwood.rottenpotato.security.model.Member;
 import com.redwood.rottenpotato.security.model.VerificationToken;
 import com.redwood.rottenpotato.security.repository.AccountRepository;
 import com.redwood.rottenpotato.admin.repositories.CriticAppReviewRepository;
@@ -15,6 +13,8 @@ import com.redwood.rottenpotato.security.repository.VerificationTokenRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.transaction.Transactional;
 import java.util.Calendar;
@@ -35,21 +35,24 @@ public class AccountService {
     private VerificationTokenRepository verificationTokenRepository;
     @Autowired
     private EmailService emailService;
+    private final Logger log = LoggerFactory.getLogger(this.getClass());
 
     @Transactional
     public Account createAccount(SignupForm signupForm) throws EmailExistsException {
         if (emailExist(signupForm.getEmail())) {
             throw new EmailExistsException();
         }
-        Member member = new Member();
-        member.setPassword(bCryptPasswordEncoder.encode(signupForm.getPassword()));
-        member.setEmail(signupForm.getEmail());
-        member.setUsername(signupForm.getUsername());
-        member.setCritic(false);
+        Account account = new Account();
+        account.setPassword(bCryptPasswordEncoder.encode(signupForm.getPassword()));
+        account.setEmail(signupForm.getEmail());
+        account.setUsername(signupForm.getUsername());
+        account.setCritic(false);
         if (signupForm.isCritic()) {
-            criticAppReviewRepository.save(new CriticAppReview(member));
+            CriticAppReview criticAppReview=new CriticAppReview();
+            criticAppReview.setAccount(account);
+            criticAppReviewRepository.save(criticAppReview);
         }
-        return memberRepository.save(member);
+        return memberRepository.save(account);
     }
 
     private boolean emailExist(String email) {
@@ -63,7 +66,7 @@ public class AccountService {
         Mail mail = new Mail();
         String recipientAddress = account.getEmail();
         String subject = "Registration Confirmation";
-        String confirmationUrl = appUrl + "/api0/verification.html?token=" + token;
+        String confirmationUrl = appUrl + "/api0/auth/verification.html?token=" + token;
         mail.setTo(recipientAddress);
         mail.setSubject(subject);
         mail.setContent("Confirm your email by clicking the link below\n" + confirmationUrl);
@@ -89,6 +92,4 @@ public class AccountService {
         accountRepository.save(account);
         return true;
     }
-
-
 }

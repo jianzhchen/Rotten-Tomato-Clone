@@ -2,7 +2,7 @@ package com.redwood.rottenpotato.security.controller;
 
 import com.redwood.rottenpotato.email.service.EmailService;
 import com.redwood.rottenpotato.enums.AjaxCallStatus;
-import com.redwood.rottenpotato.restful.SignupForm;
+import com.redwood.rottenpotato.security.restful.SignupForm;
 import com.redwood.rottenpotato.security.exception.EmailExistsException;
 import com.redwood.rottenpotato.security.model.Account;
 import com.redwood.rottenpotato.security.properties.AuthErrorProperty;
@@ -14,7 +14,8 @@ import org.springframework.boot.autoconfigure.*;
 import org.springframework.web.bind.annotation.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.context.request.WebRequest;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
@@ -38,7 +39,7 @@ public class AccountController {
 
     @RequestMapping(value = "/signup", method = RequestMethod.POST)
     @ResponseBody
-    public String accountRegistration(@RequestBody SignupForm signupForm, WebRequest request) {
+    public String accountRegistration(@RequestBody SignupForm signupForm, HttpServletRequest request) {
         if (!validationService.validEmail(signupForm.getEmail())) {
             return jsonService.constructStatusMessage(AjaxCallStatus.ERROR, authErrorProperty.getErrorMessage(0));
         }
@@ -51,11 +52,12 @@ public class AccountController {
         } catch (EmailExistsException e) {
             return jsonService.constructStatusMessage(AjaxCallStatus.ERROR, authErrorProperty.getErrorMessage(2));
         }
-        accountService.accountVerification(account, request.getContextPath());
+        String path = String.format("%s://%s:%d",request.getScheme(),  request.getServerName(), request.getServerPort());
+        accountService.accountVerification(account, path);
         return jsonService.constructStatusMessage(AjaxCallStatus.OK);
     }
 
-    @RequestMapping(value = "/verification", method = RequestMethod.GET)
+    @RequestMapping(value = "/verification.html", method = RequestMethod.GET)
     @ResponseBody
     public void accountVerification(HttpServletResponse response, @RequestParam("token") String token) throws IOException {
         if (accountService.verifyToken(token)) {

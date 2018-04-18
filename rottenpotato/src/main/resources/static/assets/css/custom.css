@@ -1,0 +1,38 @@
+.font-16 {
+    font-size: 16px !important;
+    line-height: 2;
+}
+
+.font-18 {
+    font-size: 16px !important;
+    line-height: 2;
+}
+
+.font-20 {
+    font-size: 16px !important;
+    line-height: 2;
+}
+
+.font-24 {
+    font-size: 16px !important;
+    line-height: 2;
+}
+
+.icon-oscar {
+    background: url('../img/oscar.png');
+    height: 32px;
+    width: 32px;
+    background-size: 32px 32px;
+    background-repeat: no-repeat;
+    display: block;
+    /* Other styles here */
+}
+
+.carousel-inner{
+    width: 100%;
+    height: 480px;
+}
+.carousel-inner img{
+    width: 100%;
+    height: 100%;
+}

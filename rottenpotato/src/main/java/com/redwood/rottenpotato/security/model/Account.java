@@ -12,11 +12,13 @@ public class Account {
     private String password;
     private boolean enabled;
     private int accessLevel;
+    private String username;
+    private boolean isCritic;
 
     public Account() {
         super();
         this.enabled = false;
-        accessLevel = 0;
+        this.accessLevel = 0;
     }
 
     @Id
@@ -63,5 +65,21 @@ public class Account {
 
     public void setAccessLevel(int accessLevel) {
         this.accessLevel = accessLevel;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public boolean isCritic() {
+        return isCritic;
+    }
+
+    public void setCritic(boolean critic) {
+        isCritic = critic;
     }
 }

@@ -28,6 +28,10 @@ public class VerificationToken {
         return new Date(cal.getTime().getTime());
     }
 
+    public VerificationToken() {
+
+    }
+
     public VerificationToken(String token, Account account) {
         super();
         this.token = token;

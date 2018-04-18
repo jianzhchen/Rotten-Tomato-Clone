@@ -9,9 +9,8 @@ public class CriticAppReview {
     private Long id;
     private Account account;
 
-    public CriticAppReview(Account account){
-        super();
-        this.account=account;
+    public CriticAppReview(){
+
     }
 
     @Id

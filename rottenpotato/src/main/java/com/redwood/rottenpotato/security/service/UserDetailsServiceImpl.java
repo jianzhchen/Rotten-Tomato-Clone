@@ -21,19 +21,18 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     @Transactional(readOnly = true)
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        Account account = accountRepository.findByEmail(email);
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        Account account = accountRepository.findByUsername(username);
         if (account == null) {
-            throw new UsernameNotFoundException("No user found with username: " + email);
+            throw new UsernameNotFoundException("No user found with username: " + username);
         }
-        boolean enabled = true;
         boolean accountNonExpired = true;
         boolean credentialsNonExpired = true;
         boolean accountNonLocked = true;
         List<GrantedAuthority> authorities = new ArrayList<>();
         authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
         return new org.springframework.security.core.userdetails.User
-                (account.getEmail(), account.getPassword().toLowerCase(), enabled, accountNonExpired,
+                (account.getUsername(), account.getPassword().toLowerCase(), account.isEnabled(), accountNonExpired,
                         credentialsNonExpired, accountNonLocked, authorities);
     }
 }
