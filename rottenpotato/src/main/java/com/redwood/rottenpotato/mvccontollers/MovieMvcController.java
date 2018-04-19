@@ -38,4 +38,5 @@ public class MovieMvcController {
         newMovieService.top10BoxWithPage(model, p);
         return "topBox.html";
     }
+
 }

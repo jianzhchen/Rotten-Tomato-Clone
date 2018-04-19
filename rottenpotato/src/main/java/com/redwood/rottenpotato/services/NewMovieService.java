@@ -9,19 +9,19 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
+import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Service
-public class NewMovieService
-{
+public class NewMovieService {
     @Autowired
     private NewMovieRepository newMovieRepository;
 
 
-    public void top10BoxWithPage(Model model,int page){
+    public List<Map> top10BoxWithPage(Model model, int page) {
         List<Map> templist = new ArrayList<>();
         for (NewMovie temp : newMovieRepository.findTop10ByOrderByBoxOfficeDesc(PageRequest.of(page, 10))) {
             Map<String, String> map = new HashMap<>();
@@ -37,6 +37,24 @@ public class NewMovieService
             map.put("boxOffice", output);
             templist.add(map);
         }
-        model.addAttribute("topBoxOffice", templist);
+        return templist;
+    }
+
+    public List<Map> top10InTheatersDatePage(Model model, int page) {
+        List<Map> templist = new ArrayList<>();
+        for (NewMovie temp : newMovieRepository.findTop10ByOrderByInTheatersDateDesc(PageRequest.of(page, 10))) {
+            Map<String, String> map = new HashMap<>();
+            if (temp.getScore() > 0) {
+                map.put("rate", String.valueOf(temp.getScore() + "%"));
+            } else {
+                map.put("rate", "N/A");
+            }
+            map.put("movieName", temp.getName());
+            DateFormat formatter = new SimpleDateFormat("MMM-dd");
+            map.put("movieDate", formatter.format(temp.getInTheatersDate()));
+            templist.add(map);
+        }
+        return templist;
+
     }
 }

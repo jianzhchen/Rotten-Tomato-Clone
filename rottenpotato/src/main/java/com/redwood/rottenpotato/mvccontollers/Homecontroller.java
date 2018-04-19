@@ -38,7 +38,9 @@ public class Homecontroller {
             model.addAttribute("username", principal.getName());
         }
 
-        newMovieService.top10BoxWithPage(model, 0);
+        model.addAttribute("topBoxOffice", newMovieService.top10BoxWithPage(model, 0));
+        model.addAttribute("movieOpeningThisWeek", newMovieService.top10InTheatersDatePage(model, 0));
+
         return "index.html";
     }
 }

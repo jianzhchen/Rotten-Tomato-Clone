@@ -16,4 +16,6 @@ public interface NewMovieRepository extends JpaRepository<NewMovie, Long> {
 
     public List<NewMovie> findTop10ByOrderByBoxOfficeDesc(Pageable pageable);
 
+    @Query("SELECT m FROM NewMovie m order by m.inTheatersDate DESC")
+    public List<NewMovie> findTop10ByOrderByInTheatersDateDesc(Pageable pageable);
 }
