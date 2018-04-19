@@ -55,7 +55,7 @@
                 </button>
             </form>
             <div th:if="${isLogin} == true">
-                <p th:bgcolor="white" th:text="${userName}"></p>
+                <p th:bgcolor="white" th:text="${username}"></p>
             </div>
             <div th:if="${isLogin} == false">
                 <ul class="navbar-nav">
@@ -119,7 +119,7 @@
                             <tr th:each="movie:${topBoxOffice}">
                                 <td th:text="${movie.rate}">N/A</td>
                                 <td th:text="${movie.movieName}">Bangalore</td>
-                                <td th:text="${movie.boxOffice}">MAR 2</tdth:>
+                                <td th:text="${movie.boxOffice}">MAR 2</td>
                             </tr>
                             </tbody>
                         </table>
@@ -137,7 +137,7 @@
                             <tr th:each="movie:${comingSoonToTheaters}">
                                 <td th:text="${movie.rate}">N/A</td>
                                 <td th:text="${movie.movieName}">Bangalore</td>
-                                <td th:text="${movie.movieDate}">MAR 2</tdth:>
+                                <td th:text="${movie.movieDate}">MAR 2</td>
                             </tr>
                             </tbody>
                         </table>
@@ -338,6 +338,7 @@
         </div>
     </div>
 </div>
+
 <!--  End Modal -->
 <footer class="footer ">
     <div class="container">
