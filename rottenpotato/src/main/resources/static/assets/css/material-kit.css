@@ -8951,10 +8951,8 @@ label {
     .card.card-rotate.bg-grey .front,
     .card.card-rotate.bg-grey .back {
       background: #222222 }
-.card .card-header-light, .card.bg-light,
-.card.card-rotate.bg-light .front,
-.card.card-rotate.bg-light .back {
-  background: #343535 }
+
+
   .card .card-header-primary {
     -webkit-box-shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.2), 0 13px 24px -11px rgba(156, 39, 176, 0.6);
             box-shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.2), 0 13px 24px -11px rgba(156, 39, 176, 0.6); }

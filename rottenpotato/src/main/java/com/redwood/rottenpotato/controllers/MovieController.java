@@ -5,6 +5,7 @@ import com.redwood.rottenpotato.models.Movie;
 import com.redwood.rottenpotato.services.MovieService;
 import com.redwood.rottenpotato.services.MovieValidationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -80,5 +81,12 @@ public class MovieController
         });
         return movies;
     }
+
+    @RequestMapping(value = "/test", method = RequestMethod.GET)
+    public String t(Model model){
+        model.addAttribute("mes","na");
+        return "/index.html";
+    }
+
 
 }
