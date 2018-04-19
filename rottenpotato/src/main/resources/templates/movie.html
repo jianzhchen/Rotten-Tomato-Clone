@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="utf-8">
@@ -54,13 +55,19 @@
                     </button>
                 </form>
 
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a href="#pablo" class="nav-link">SignUp</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#pablo" class="nav-link">LogIn</a>
-                    </li>
+                <ul class="navbar-nav ml-auto">
+                    <div th:if="${isLogin} == true">
+                        <p th:bgcolor="white" th:text="${username}"></p>
+                    </div>
+                    <div th:if="${isLogin} == false">
+                        <div>
+                            <button class="btn btn-sm btn-primary mx-1" data-toggle="modal" data-target="#loginModal">Login
+                            </button>
+                            <button class="btn btn-sm btn-primary mx-1" data-toggle="modal" data-target="#signupModal">Sign
+                                up
+                            </button>
+                        </div>
+                    </div>
                 </ul>
 
             </div>
@@ -91,176 +98,110 @@
                         </div>
                     </div>
                     <div class="col-sm-9">
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <label class="input-group-text" for="inputGroupSelect01">Sort By</label>
-                            </div>
-                            <select class="custom-select" id="inputGroupSelect01">
-                                <option selected>Options......</option>
-                                <option value="1">Time</option>
-                                <option value="2">Rating</option>
-                                <option value="3">Reviews</option>
-                            </select>
+                        <div class="sort bar">
+                            <table>
+                                <td>Genre: </td>
+                                <td width="200">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-sm btn-primary dropdown-toggle" data-toggle="dropdown">
+                                            <span class="caret">All</span>
+                                        </button>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li> <input type="checkbox">Active</li>
+                                            <li> <input type="checkbox">Animation</li>
+                                            <li> <input type="checkbox">Art & Foreign</li>
+                                            <li> <input type="checkbox">Classics</li>
+                                            <li> <input type="checkbox">Comedy</li>
+                                        </ul>
+                                    </div>
+                                </td>
+                                <td>Sort By: </td>
+                                <td>
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-sm btn-primary dropdown-toggle" data-toggle="dropdown">
+                                            <span class="caret">Popularity</span>
+                                        </button>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li><a href="#">Release Date</a></li>
+                                            <li><a href="#">Popularity</a></li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </table>
+
                         </div>
                         <div class="card">
                             <div class="card-body">
-                               <div class = "row">
-                                   <div>
-                                       <img src="assets/img/black3.jpeg" class="rounded float-left">
-                                   </div>
-                                   <div>
-                                       <img src="assets/img/black3.jpeg" class="rounded float-left">
-                                   </div>
-                               </div>
+                                <div class="row m-5">
+                                    <div class="col-md-3 ">
+                                        <a href="https://placeholder.com">
+                                            <img class="img-center" src="http://via.placeholder.com/130x193"></a>
+                                        <p class="font-weight-bold text-md-center my-0">NAME</p>
+                                        <i class="ico-rank3 mx-auto">50%</i>
+                                        <p class="text-md-center">In Theater Mar 16</p>
+                                    </div>
+                                    <div class="col-md-3 ">
+                                        <a href="https://placeholder.com">
+                                            <img class="img-center" src="http://via.placeholder.com/130x193"></a>
+                                        <p class="font-weight-bold text-md-center my-0">NAME</p>
+                                        <i class="ico-rank3 mx-auto">50%</i>
+                                        <p class="text-md-center">In Theater Mar 16</p>
+                                    </div>
+                                    <div class="col-md-3 ">
+                                        <a href="https://placeholder.com">
+                                            <img class="img-center" src="http://via.placeholder.com/130x193"></a>
+                                        <p class="font-weight-bold text-md-center my-0">NAME</p>
+                                        <i class="ico-rank3 mx-auto">50%</i>
+                                        <p class="text-md-center">In Theater Mar 16</p>
+                                    </div>
+                                    <div class="col-md-3 ">
+                                        <a href="https://placeholder.com">
+                                            <img class="img-center" src="http://via.placeholder.com/130x193"></a>
+                                        <p class="font-weight-bold text-md-center my-0">NAME</p>
+                                        <i class="ico-rank3 mx-auto">50%</i>
+                                        <p class="text-md-center">In Theater Mar 16</p>
+                                    </div>
+                                </div>
+                                <div class="row m-5">
+                                    <div class="col-md-3 ">
+                                        <a href="https://placeholder.com">
+                                            <img class="img-center" src="http://via.placeholder.com/130x193"></a>
+                                        <p class="font-weight-bold text-md-center my-0">NAME</p>
+                                        <i class="ico-rank3 mx-auto">50%</i>
+                                        <p class="text-md-center">In Theater Mar 16</p>
+                                    </div>
+                                    <div class="col-md-3 ">
+                                        <a href="https://placeholder.com">
+                                            <img class="img-center" src="http://via.placeholder.com/130x193"></a>
+                                        <p class="font-weight-bold text-md-center my-0">NAME</p>
+                                        <i class="ico-rank3 mx-auto">50%</i>
+                                        <p class="text-md-center">In Theater Mar 16</p>
+                                    </div>
+                                    <div class="col-md-3 ">
+                                        <a href="https://placeholder.com">
+                                            <img class="img-center" src="http://via.placeholder.com/130x193"></a>
+                                        <p class="font-weight-bold text-md-center my-0">NAME</p>
+                                        <i class="ico-rank3 mx-auto">50%</i>
+                                        <p class="text-md-center">In Theater Mar 16</p>
+                                    </div>
+                                    <div class="col-md-3 ">
+                                        <a href="https://placeholder.com">
+                                            <img class="img-center" src="http://via.placeholder.com/130x193"></a>
+                                        <p class="font-weight-bold text-md-center my-0">NAME</p>
+                                        <i class="ico-rank3 mx-auto">50%</i>
+                                        <p class="text-md-center">In Theater Mar 16</p>
+                                    </div>
+                                </div>
                             </div>
+                        </div>
+                        <div align="left" style="float:left">
+                            <button type="button" class="btn btn-primary">Prev</button>
+                        </div>
+                        <div align="right">
+                            <button type="button" class="btn btn-primary">Next</button>
                         </div>
                     </div>
                 </div>
-                <!--<div class="row">-->
-                    <!--<div class="col-sm-5">-->
-    <!---->
-                        <!--<img src="assets/img/Spotlight.jpg" class="rounded float-left">-->
-                    <!--</div>-->
-    <!---->
-                    <!--<div class="col-sm-5 offset-sm-1">-->
-                        <!--<div class="title">-->
-                            <!--<h3>Today Airing TV Episodes</h3>-->
-                        <!--</div>-->
-                        <!--<div class="card">-->
-                            <!--<div class="card-body">-->
-                                <!--<h5 class="card-title">Special title treatment</h5>-->
-                                <!--<p class="card-text">With supporting text below as a natural lead-in to additional-->
-                                    <!--content.</p>-->
-                                <!--<p class="card-text">With supporting text below as a natural lead-in to additional-->
-                                    <!--content.</p>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</div>-->
-
-                <!--<div class="row">-->
-                    <!--<div class="col-sm-5">-->
-                        <!--<div class="title">-->
-                            <!--<h3>Highest Rating Movies</h3>-->
-                        <!--</div>-->
-                        <!--&lt;!&ndash;<div class="card">&ndash;&gt;-->
-                            <!--&lt;!&ndash;<div class="card-body">&ndash;&gt;-->
-                                <!--&lt;!&ndash;<h5 class="card-title">Special title treatment</h5>&ndash;&gt;-->
-                                <!--&lt;!&ndash;<p class="card-text">With supporting text below as a natural lead-in to additional&ndash;&gt;-->
-                                    <!--&lt;!&ndash;content.</p>&ndash;&gt;-->
-                                <!--&lt;!&ndash;<p class="card-text">With supporting text below as a natural lead-in to additional&ndash;&gt;-->
-                                    <!--&lt;!&ndash;content.</p>&ndash;&gt;-->
-                            <!--&lt;!&ndash;</div>&ndash;&gt;-->
-                        <!--&lt;!&ndash;</div>&ndash;&gt;-->
-                        <!--<ul class="nav nav-tabs bg-dark">-->
-                            <!--<li class="nav-item">-->
-                                <!--<a class="nav-link active">In Theater</a>-->
-                            <!--</li>-->
-                            <!--<li class="nav-item">-->
-                                <!--<a class="nav-link">All Time</a>-->
-                            <!--</li>-->
-                        <!--</ul>-->
-                    <!--</div>-->
-                    <!--<div class="col-sm-5 offset-sm-1">-->
-                        <!--<div class="title">-->
-                            <!--<h3>Highest Rating TV Show</h3>-->
-                        <!--</div>-->
-                        <!--<div class="card">-->
-                            <!--<div class="card-body">-->
-                                <!--<h5 class="card-title">Special title treatment</h5>-->
-                                <!--<p class="card-text">With supporting text below as a natural lead-in to additional-->
-                                    <!--content.</p>-->
-                                <!--<p class="card-text">With supporting text below as a natural lead-in to additional-->
-                                    <!--content.</p>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</div>-->
-
-                <!--<div class="row">-->
-                    <!--<div class="col-sm-5">-->
-                        <!--<div class="title">-->
-                            <!--<h3>Oscar Best Picture</h3>-->
-                        <!--</div>-->
-                        <!--<div class="card">-->
-                            <!--<div class="card-body">-->
-                                <!--<h5 class="card-title">Special title treatment</h5>-->
-                                <!--<p class="card-text">With supporting text below as a natural lead-in to additional-->
-                                    <!--content.</p>-->
-                                <!--<p class="card-text">With supporting text below as a natural lead-in to additional-->
-                                    <!--content.</p>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                    <!--<div class="col-sm-5 offset-sm-1">-->
-                        <!--<div class="title">-->
-                            <!--<h3>TV Show This Week</h3>-->
-                        <!--</div>-->
-                        <!--<ul class="nav nav-tabs bg-dark">-->
-                            <!--<li class="nav-item">-->
-                                <!--<a class="nav-link active">Mon</a>-->
-                            <!--</li>-->
-                            <!--<li class="nav-item">-->
-                                <!--<a class="nav-link">Tues</a>-->
-                            <!--</li>-->
-                            <!--<li class="nav-item">-->
-                                <!--<a class="nav-link">Web</a>-->
-                            <!--</li>-->
-                            <!--<li class="nav-item">-->
-                                <!--<a class="nav-link">Thru</a>-->
-                            <!--</li>-->
-                            <!--<li class="nav-item">-->
-                                <!--<a class="nav-link">Fir</a>-->
-                            <!--</li>-->
-                            <!--<li class="nav-item">-->
-                                <!--<a class="nav-link">Sat</a>-->
-                            <!--</li>-->
-                            <!--<li class="nav-item">-->
-                                <!--<a class="nav-link">Sun</a>-->
-                            <!--</li>-->
-                        <!--</ul>-->
-                    <!--</div>-->
-                <!--</div>-->
-
-                <!--<div class="title">-->
-                    <!--<h3>Trailers & Videos</h3>-->
-                <!--</div>-->
-                <!--<div class="card">-->
-                    <!--<div class="card-body">-->
-                        <!--This is some text within a card body.-->
-                    <!--</div>-->
-                <!--</div>-->
-
-                <!--<div class="row">-->
-                    <!--<div class="col-sm-5">-->
-                        <!--<div class="title">-->
-                            <!--<h3>News and  features</h3>-->
-                        <!--</div>-->
-                        <!--<div class="card">-->
-                            <!--<div class="card-body">-->
-                                <!--<h5 class="card-title">Special title treatment</h5>-->
-                                <!--<p class="card-text">With supporting text below as a natural lead-in to additional-->
-                                    <!--content.</p>-->
-                                <!--<p class="card-text">With supporting text below as a natural lead-in to additional-->
-                                    <!--content.</p>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                    <!--<div class="col-sm-5 offset-sm-1">-->
-                        <!--<div class="title">-->
-                            <!--<h3>Headlines</h3>-->
-                        <!--</div>-->
-                        <!--<div class="card">-->
-                            <!--<div class="card-body">-->
-                                <!--<h5 class="card-title">Special title treatment</h5>-->
-                                <!--<p class="card-text">With supporting text below as a natural lead-in to additional-->
-                                    <!--content.</p>-->
-                                <!--<p class="card-text">With supporting text below as a natural lead-in to additional-->
-                                    <!--content.</p>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</div>-->
             </div>
         </div>
     </div>
@@ -289,6 +230,84 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-link">Nice Button</button>
                     <button type="button" class="btn btn-danger btn-link" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="signupModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="signupModalLabel">Sign Up</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <input type="email" class="form-control" id="signupInputEmail" aria-describedby="emailHelp"
+                                   placeholder="Enter email">
+                            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
+                                else.
+                            </small>
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" placeholder="Password">
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" placeholder="Retype Password">
+                        </div>
+                        <div class="form-group">
+                            <input type="email" class="form-control" aria-describedby="emailHelp"
+                                   placeholder="Enter First Name">
+                        </div>
+                        <div class="form-group">
+                            <input type="email" class="form-control" aria-describedby="emailHelp"
+                                   placeholder="Enter Last Name">
+                        </div>
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                            <label class="form-check-label">Check if you are applying as a
+                                critic</label>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer mb-1">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Sign In</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <input type="email" class="form-control" aria-describedby="emailHelp"
+                                   placeholder="Enter email">
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" placeholder="Password">
+                        </div>
+                        <div class="text-danger" th:text="${errorMessage}">error</div>
+                    </form>
+                </div>
+
+                <div class="modal-footer mb-1">
+                    <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-sm btn-primary">Sign In</button>
                 </div>
             </div>
         </div>
