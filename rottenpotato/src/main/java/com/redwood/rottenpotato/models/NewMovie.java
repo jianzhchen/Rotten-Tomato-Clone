@@ -14,7 +14,6 @@ public class NewMovie
     public long getId() {return id;}
     public void setId(long id) {this.id = id;}
 
-
     private String name;
     private String info;
     private String rating;
@@ -23,9 +22,11 @@ public class NewMovie
     private String writer;
     private String inTheaters;    //In theater time
     private String onDisc;
-    private String boxOffice;
+    private Long boxOffice;
     private String runTime;
     private String studio;
+    private int score;
+    private int scoreCount;
 
     //Constructor for JPA
     protected NewMovie(){}
@@ -45,7 +46,7 @@ public class NewMovie
     public void setWriter(String writer) {this.writer = writer;}
     public void setInTheaters(String inTheaters) {this.inTheaters = inTheaters;}
     public void setOnDisc(String onDisc) {this.onDisc = onDisc;}
-    public void setBoxOffice(String boxOffice) {this.boxOffice = boxOffice;}
+    public void setBoxOffice(Long boxOffice) {this.boxOffice = boxOffice;}
     public void setRunTime(String runTime) {this.runTime = runTime;}
     public void setStudio(String studio) {this.studio = studio;}
 
@@ -59,8 +60,23 @@ public class NewMovie
     public String getWriter() {return this.writer;}
     public String getInTheaters() {return this.inTheaters;}
     public String getOnDisc() {return this.onDisc;}
-    public String getBoxOffice() {return this.boxOffice;}
+    public Long getBoxOffice() {return this.boxOffice;}
     public String getRunTime() {return this.runTime;}
     public String getStudio() {return this.studio ;}
 
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
+
+    public int getScoreCount() {
+        return scoreCount;
+    }
+
+    public void setScoreCount(int scoreCount) {
+        this.scoreCount = scoreCount;
+    }
 }
