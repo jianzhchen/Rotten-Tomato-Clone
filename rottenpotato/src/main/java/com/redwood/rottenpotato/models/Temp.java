@@ -1,9 +1,6 @@
 package com.redwood.rottenpotato.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Entity
@@ -11,6 +8,7 @@ public class Temp {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "movie_id")
     private Long movieID;
     private String name;
     private String info;
@@ -20,7 +18,7 @@ public class Temp {
     private String writer;
     private String inTheaters;
     private String onDisc;
-    private BigDecimal boxOffice;
+    private Long boxOffice;
     private String runTime;
     private String studio;
 
@@ -96,11 +94,11 @@ public class Temp {
         this.onDisc = onDisc;
     }
 
-    public BigDecimal getBoxOffice() {
+    public Long getBoxOffice() {
         return boxOffice;
     }
 
-    public void setBoxOffice(BigDecimal boxOffice) {
+    public void setBoxOffice(Long boxOffice) {
         this.boxOffice = boxOffice;
     }
 
