@@ -13,4 +13,6 @@ import java.util.List;
 public interface TempRepository extends JpaRepository<Temp, Long> {
     @Query("SELECT t FROM Temp t WHERE t.name LIKE %:searchTerm%")
     public List<Temp> searchByName(@Param("searchTerm") String searchTerm);
+
+    public List<Temp> findTop10ByOrderByBoxOfficeDesc();
 }

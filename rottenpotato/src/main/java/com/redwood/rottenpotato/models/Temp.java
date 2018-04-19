@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.math.BigDecimal;
 
 @Entity
 public class Temp {
@@ -19,7 +20,7 @@ public class Temp {
     private String writer;
     private String inTheaters;
     private String onDisc;
-    private String boxOffice;
+    private BigDecimal boxOffice;
     private String runTime;
     private String studio;
 
@@ -95,11 +96,11 @@ public class Temp {
         this.onDisc = onDisc;
     }
 
-    public String getBoxOffice() {
+    public BigDecimal getBoxOffice() {
         return boxOffice;
     }
 
-    public void setBoxOffice(String boxOffice) {
+    public void setBoxOffice(BigDecimal boxOffice) {
         this.boxOffice = boxOffice;
     }
 
