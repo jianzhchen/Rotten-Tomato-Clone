@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="utf-8">
@@ -33,12 +34,18 @@
         </div>
         <div class="collapse navbar-collapse">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a href="#pablo" class="nav-link">SignUp</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#pablo" class="nav-link">LogIn</a>
-                </li>
+                <div th:if="${isLogin} == true">
+                    <p th:bgcolor="white" th:text="${username}"></p>
+                </div>
+                <div th:if="${isLogin} == false">
+                    <div>
+                        <button class="btn btn-sm btn-primary mx-1" data-toggle="modal" data-target="#loginModal">Login
+                        </button>
+                        <button class="btn btn-sm btn-primary mx-1" data-toggle="modal" data-target="#signupModal">Sign
+                            up
+                        </button>
+                    </div>
+                </div>
             </ul>
 
         </div>
@@ -64,13 +71,12 @@
                             <div class="form-group col-md-2 mt-4">
                                 <select class="custom-select custom-select" id="searchSelect">
                                     <option value="1">Movies</option>
-                                    <option value="2">Actors</option>
-                                    <option value="3">Director</option>
-                                    <option value="4">Writer</option>
+                                    <option value="2">TVs</option>
+                                    <option value="3">Celebrities</option>
                                 </select>
                             </div>
                             <div class="form-group col-md-1 mt-3">
-                                <button type="submit" class="btn btn-dark contain mt-2">Search</button>
+                                <button type="submit" class="btn btn-primary contain mt-2">Search</button>
                             </div>
 
                         </div>
@@ -79,55 +85,50 @@
             </div>
             <div class="card">
                 <div class="card-body">
-                    <table id="search-result-table">
-                        <tbody>
-                            <tr>
-                                <td>97%</td>
+                    <div th:if="${isItem}==true">
+                        <table id="search-result-table-item">
+                            <tbody>
+                                <tr th:each="item:${itemList}">
+                                    <td th:text="${item.rate}">97%</td>
+                                        <td>
+                                            <img th:scr="@{item.poster}"src="http://via.placeholder.com/240x135" width="240" height="135">
+                                        </td>
+                                    <td>
+                                        <ul class="list-unstyled">
+                                            <li th:text="${item.name}">Movie Name</li>
+                                            <li th:text="${item.info}">Info</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div th:if="${isItem} == false">
+                        <table id="search-result-table-cele">
+                            <tbody>
+                            <tr th:each="cele:${celebrityList}">
                                 <td>
-                                    <img src="http://via.placeholder.com/240x135" width="240" height="135">
+                                    <img th:scr="@{cele.photo}"src="http://via.placeholder.com/240x135" width="240" height="135">
                                 </td>
                                 <td>
                                     <ul class="list-unstyled">
-                                        <li>Movie Name</li>
-                                        <li>Directiors</li>
+                                        <li th:text="${cele.name}">Movie Name</li>
+                                        <li th:text="${cele.info}">Info</li>
                                     </ul>
                                 </td>
                             </tr>
-                            <tr>
-                                <td>97%</td>
-                                <td>
-                                    <img src="http://via.placeholder.com/240x135" width="240" height="135">
-                                </td>
-                                <td>
-                                    <ul class="list-unstyled">
-                                        <li>Movie Name</li>
-                                        <li>Directiors</li>
-                                    </ul>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>97%</td>
-                                <td>
-                                    <img src="http://via.placeholder.com/240x135" width="240" height="135">
-                                </td>
-                                <td>
-                                    <ul class="list-unstyled">
-                                        <li>Movie Name</li>
-                                        <li>Directiors</li>
-                                    </ul>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                            </tbody>
+                        </table>
+                    </div>
 
                 </div>
             </div>
             <div>
                 <div align="left" style="float:left">
-                    <button type="button" class="btn btn-default">Prev</button>
+                    <button type="button" class="btn btn-primary">Prev</button>
                 </div>
                 <div align="right">
-                    <button type="button" class="btn btn-default">Next</button>
+                    <button type="button" class="btn btn-primary">Next</button>
                 </div>
             </div>
         </div>

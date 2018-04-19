@@ -1,5 +1,6 @@
 package com.redwood.rottenpotato.mvccontollers;
 
+import com.redwood.rottenpotato.repositories.MovieRepository;
 import com.redwood.rottenpotato.repositories.TempRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +14,8 @@ public class Homecontroller {
 
     @Autowired
     private TempRepository tempRepository;
+    @Autowired
+    private MovieRepository movieRepository;
     @GetMapping(value = {"", "/", "index.html"})
     public String greeting(Model model, Principal principal) {
         if (principal == null) {
@@ -22,7 +25,7 @@ public class Homecontroller {
             model.addAttribute("username", principal.getName());
         }
 
-        model.addAttribute("movieOpeningThisWeek", tempRepository.findTop10ByOrderByBoxOfficeDesc());
+        model.addAttribute("movieOpeningThisWeek", movieRepository.findAll());
 
         return "index.html";
     }
