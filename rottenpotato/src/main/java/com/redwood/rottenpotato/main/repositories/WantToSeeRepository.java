@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface WantToSeeRepository extends JpaRepository<WantToSee, Long> {
-    long removeByMovieIdAndUserId(long movieId, long userId);
+    long removeByMovieKeyAndUserId(String movieKey, long userId);
 }

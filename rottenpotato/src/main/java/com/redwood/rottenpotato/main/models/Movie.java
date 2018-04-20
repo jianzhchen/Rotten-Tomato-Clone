@@ -7,18 +7,7 @@ import java.util.Date;
 public class Movie {
     //Primary key for the entity Item
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "movie_id")
-    private long id;
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
+    private String movieKey;
     private String name;
     private String info;
     private String rating;
@@ -167,5 +156,13 @@ public class Movie {
 
     public void setOnDiscDate(Date onDiscDate) {
         this.onDiscDate = onDiscDate;
+    }
+
+    public String getMovieKey() {
+        return movieKey;
+    }
+
+    public void setMovieKey(String movieKey) {
+        this.movieKey = movieKey;
     }
 }

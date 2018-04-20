@@ -31,7 +31,7 @@ public class TwoListService {
             return jsonService.constructStatusMessage(AjaxCallStatus.ERROR, "Can't find user");
         }
         WantToSee wantToSee = new WantToSee();
-        wantToSee.setMovieId(movie.getMovieKey());
+        wantToSee.setMovieKey(movie.getMovieKey());
         wantToSee.setUserId(user.getId());
         wantToSeeRepository.save(wantToSee);
         return jsonService.constructStatusMessage(AjaxCallStatus.OK);
@@ -46,7 +46,7 @@ public class TwoListService {
         if (user == null) {
             return jsonService.constructStatusMessage(AjaxCallStatus.ERROR, "Can't find user");
         }
-        wantToSeeRepository.removeByMovieIdAndUserId(movie.getMovieKey(), user.getId());
+        wantToSeeRepository.removeByMovieKeyAndUserId(movie.getMovieKey(), user.getId());
         return jsonService.constructStatusMessage(AjaxCallStatus.OK);
     }
 
@@ -60,7 +60,7 @@ public class TwoListService {
             return jsonService.constructStatusMessage(AjaxCallStatus.ERROR, "Can't find user");
         }
         NotInterested notInterested = new NotInterested();
-        notInterested.setMovieId(movie.getMovieKey());
+        notInterested.setMovieKey(movie.getMovieKey());
         notInterested.setUserId(user.getId());
         notInterestedRepository.save(notInterested);
         return jsonService.constructStatusMessage(AjaxCallStatus.OK);
@@ -75,7 +75,7 @@ public class TwoListService {
         if (user == null) {
             return jsonService.constructStatusMessage(AjaxCallStatus.ERROR, "Can't find user");
         }
-        notInterestedRepository.removeByMovieIdAndUserId(movie.getMovieKey(), user.getId());
+        notInterestedRepository.removeByMovieKeyAndUserId(movie.getMovieKey(), user.getId());
         return jsonService.constructStatusMessage(AjaxCallStatus.OK);
     }
 

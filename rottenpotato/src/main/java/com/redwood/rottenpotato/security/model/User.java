@@ -1,6 +1,7 @@
 package com.redwood.rottenpotato.security.model;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 import java.util.Collection;
 
 @Entity
@@ -16,6 +17,9 @@ public class User {
     private String email;
     private String password;
     private boolean enable;
+
+    private String token;
+    private Timestamp tokenEndTime;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(
@@ -110,5 +114,21 @@ public class User {
 
     public void setEnable(boolean enable) {
         this.enable = enable;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+    public Timestamp getTokenEndTime() {
+        return tokenEndTime;
+    }
+
+    public void setTokenEndTime(Timestamp tokenEndTime) {
+        this.tokenEndTime = tokenEndTime;
     }
 }

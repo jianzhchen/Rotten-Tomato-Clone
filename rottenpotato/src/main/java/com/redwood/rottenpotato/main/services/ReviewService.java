@@ -37,7 +37,7 @@ public class ReviewService {
         Review review = new Review();
         review.setUserId(user.getId());
         review.setContent(content);
-        review.setMovieId(movie.getMovieKey());
+        review.setMovieKey(movie.getMovieKey());
         reviewRepository.save(review);
         return jsonService.constructStatusMessage(AjaxCallStatus.OK);
     }

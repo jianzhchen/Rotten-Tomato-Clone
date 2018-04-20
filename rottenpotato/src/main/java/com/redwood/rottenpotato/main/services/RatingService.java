@@ -38,7 +38,7 @@ public class RatingService {
             return jsonService.constructStatusMessage(AjaxCallStatus.ERROR, "Rating out of range");
         }
         Rating ratingEntity = new Rating();
-        ratingEntity.setMovieId(movie.getMovieKey());
+        ratingEntity.setMovieKey(movie.getMovieKey());
         ratingEntity.setRating(rating);
         ratingEntity.setUserId(user.getId());
         ratingRepository.save(ratingEntity);
@@ -57,7 +57,7 @@ public class RatingService {
         if (rating > 5 || rating < 1) {
             return jsonService.constructStatusMessage(AjaxCallStatus.ERROR, "Rating out of range");
         }
-        Rating ratingEntity = ratingRepository.findByMovieIdAndUserId(movie.getMovieKey(), user.getId());
+        Rating ratingEntity = ratingRepository.findByMovieKeyAndUserId(movie.getMovieKey(), user.getId());
         if (ratingEntity == null) {
             return jsonService.constructStatusMessage(AjaxCallStatus.ERROR, "rating not found");
         }
@@ -75,7 +75,7 @@ public class RatingService {
         if (user == null) {
             return jsonService.constructStatusMessage(AjaxCallStatus.ERROR, "Can't find user");
         }
-        Rating ratingEntity = ratingRepository.findByMovieIdAndUserId(movie.getMovieKey(), user.getId());
+        Rating ratingEntity = ratingRepository.findByMovieKeyAndUserId(movie.getMovieKey(), user.getId());
         if (ratingEntity == null) {
             return jsonService.constructStatusMessage(AjaxCallStatus.ERROR, "rating not found");
         }

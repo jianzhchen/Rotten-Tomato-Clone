@@ -13,7 +13,7 @@ public class Rating {
     private long id;
 
     private long userId;
-    private long movieId;
+    private String movieKey;
     private int rating;
 
     //Constructor for JPA
@@ -36,13 +36,6 @@ public class Rating {
         this.userId = userId;
     }
 
-    public long getMovieId() {
-        return movieId;
-    }
-
-    public void setMovieId(long movieId) {
-        this.movieId = movieId;
-    }
 
     public int getRating() {
         return rating;
@@ -50,5 +43,13 @@ public class Rating {
 
     public void setRating(int rating) {
         this.rating = rating;
+    }
+
+    public String getMovieKey() {
+        return movieKey;
+    }
+
+    public void setMovieKey(String movieKey) {
+        this.movieKey = movieKey;
     }
 }

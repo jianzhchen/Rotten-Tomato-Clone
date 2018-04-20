@@ -10,7 +10,7 @@ public class Review {
     private long id;
 
     private long userId;
-    private long movieId;
+    private String movieKey;
     private String content;
 
     //Constructor for JPA
@@ -33,19 +33,19 @@ public class Review {
         this.userId = userId;
     }
 
-    public long getMovieId() {
-        return movieId;
-    }
-
-    public void setMovieId(long movieId) {
-        this.movieId = movieId;
-    }
-
     public String getContent() {
         return content;
     }
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public String getMovieKey() {
+        return movieKey;
+    }
+
+    public void setMovieKey(String movieKey) {
+        this.movieKey = movieKey;
     }
 }

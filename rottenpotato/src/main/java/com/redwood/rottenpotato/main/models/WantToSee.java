@@ -12,7 +12,7 @@ public class WantToSee {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    private long movieId;
+    private String movieKey;
     private long userId;
 
     //Constructor for JPA
@@ -35,11 +35,11 @@ public class WantToSee {
         this.userId = userId;
     }
 
-    public long getMovieId() {
-        return movieId;
+    public String getMovieKey() {
+        return movieKey;
     }
 
-    public void setMovieId(long movieId) {
-        this.movieId = movieId;
+    public void setMovieKey(String movieKey) {
+        this.movieKey = movieKey;
     }
 }
