@@ -1,4 +1,4 @@
-package com.redwood.rottenpotato.main.email;
+package com.redwood.rottenpotato.email;
 
 public class Mail {
 

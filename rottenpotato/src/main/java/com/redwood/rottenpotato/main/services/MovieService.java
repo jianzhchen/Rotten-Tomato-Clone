@@ -13,7 +13,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Service
-public class NewMovieService {
+public class MovieService {
     @Autowired
     private MovieRepository MovieRepository;
 

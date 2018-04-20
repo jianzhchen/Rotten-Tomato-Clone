@@ -1,6 +1,6 @@
-package com.redwood.rottenpotato.main.email.service;
+package com.redwood.rottenpotato.email.service;
 
-import com.redwood.rottenpotato.main.email.Mail;
+import com.redwood.rottenpotato.email.Mail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;

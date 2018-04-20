@@ -4,7 +4,6 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity // This tells Hibernate to make a table out of this class
-@Table(name = "new_movie")
 public class Movie {
     //Primary key for the entity Item
     @Id

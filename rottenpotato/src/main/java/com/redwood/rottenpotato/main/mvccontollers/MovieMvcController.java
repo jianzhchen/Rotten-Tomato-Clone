@@ -2,7 +2,7 @@ package com.redwood.rottenpotato.main.mvccontollers;
 
 import com.redwood.rottenpotato.main.models.Movie;
 import com.redwood.rottenpotato.main.repositories.MovieRepository;
-import com.redwood.rottenpotato.main.services.NewMovieService;
+import com.redwood.rottenpotato.main.services.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,7 +17,7 @@ public class MovieMvcController {
     @Autowired
     private MovieRepository MovieRepository;
     @Autowired
-    private NewMovieService newMovieService;
+    private MovieService movieService;
 
     @GetMapping(value = "searchResult.html")
     public String search(@RequestParam("term") String searchTerm, Model model) {
@@ -29,7 +29,7 @@ public class MovieMvcController {
 
     @GetMapping(value = "topBox.html")
     public String topbox(@RequestParam("p") int p, Model model) {
-        newMovieService.top10BoxWithPage(model, p);
+        movieService.top10BoxWithPage(model, p);
         return "topBox.html";
     }
 

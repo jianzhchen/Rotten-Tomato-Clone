@@ -1,6 +1,6 @@
 package com.redwood.rottenpotato.main.mvccontollers;
 
-import com.redwood.rottenpotato.main.services.NewMovieService;
+import com.redwood.rottenpotato.main.services.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,7 +14,7 @@ import org.slf4j.LoggerFactory;
 public class HomeMvcController {
 
     @Autowired
-    private NewMovieService newMovieService;
+    private MovieService movieService;
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
     @GetMapping(value = {"", "/", "index.html"})
@@ -26,8 +26,8 @@ public class HomeMvcController {
             model.addAttribute("username", principal.getName());
         }
 
-        model.addAttribute("topBoxOffice", newMovieService.top10BoxWithPage(model, 0));
-        model.addAttribute("movieOpeningThisWeek", newMovieService.top10InTheatersDatePage(model, 0));
+        model.addAttribute("topBoxOffice", movieService.top10BoxWithPage(model, 0));
+        model.addAttribute("movieOpeningThisWeek", movieService.top10InTheatersDatePage(model, 0));
 
         return "index.html";
     }
