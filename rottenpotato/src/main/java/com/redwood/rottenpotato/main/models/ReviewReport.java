@@ -1,20 +1,23 @@
 package com.redwood.rottenpotato.main.models;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @Entity // This tells Hibernate to make a table out of this class
-public class Review {
+public class ReviewReport {
     //Primary key for the entity Item
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
+    private long reviewId;
     private long userId;
-    private long movieId;
     private String content;
 
     //Constructor for JPA
-    public Review() {
+    public ReviewReport() {
     }
 
     public long getId() {
@@ -25,20 +28,12 @@ public class Review {
         this.id = id;
     }
 
-    public long getUserId() {
-        return userId;
+    public long getReviewId() {
+        return reviewId;
     }
 
-    public void setUserId(long userId) {
-        this.userId = userId;
-    }
-
-    public long getMovieId() {
-        return movieId;
-    }
-
-    public void setMovieId(long movieId) {
-        this.movieId = movieId;
+    public void setReviewId(long reviewId) {
+        this.reviewId = reviewId;
     }
 
     public String getContent() {
@@ -47,5 +42,13 @@ public class Review {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(long userId) {
+        this.userId = userId;
     }
 }

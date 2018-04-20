@@ -1,9 +1,12 @@
 package com.redwood.rottenpotato.main.models;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @Entity // This tells Hibernate to make a table out of this class
-public class Review {
+public class Rating {
     //Primary key for the entity Item
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -11,10 +14,10 @@ public class Review {
 
     private long userId;
     private long movieId;
-    private String content;
+    private int rating;
 
     //Constructor for JPA
-    public Review() {
+    public Rating() {
     }
 
     public long getId() {
@@ -41,11 +44,11 @@ public class Review {
         this.movieId = movieId;
     }
 
-    public String getContent() {
-        return content;
+    public int getRating() {
+        return rating;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setRating(int rating) {
+        this.rating = rating;
     }
 }
