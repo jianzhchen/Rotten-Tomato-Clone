@@ -1,7 +1,9 @@
 package com.redwood.rottenpotato.main.services;
 
 import com.redwood.rottenpotato.main.enums.AjaxCallStatus;
+import com.redwood.rottenpotato.main.models.FCount;
 import com.redwood.rottenpotato.main.models.Follow;
+import com.redwood.rottenpotato.main.repositories.FCountRepository;
 import com.redwood.rottenpotato.main.repositories.FollowRepository;
 import com.redwood.rottenpotato.security.model.User;
 import com.redwood.rottenpotato.security.repository.UserRepository;
@@ -13,6 +15,8 @@ public class FollowService {
 
     @Autowired
     private FollowRepository followRepository;
+    @Autowired
+    private FCountRepository fCountRepository;
     @Autowired
     private UserRepository userRepository;
     @Autowired
@@ -27,6 +31,17 @@ public class FollowService {
         followEntity.setUserIdFrom(user.getId());
         followEntity.setUserIdTo(userId);
         followRepository.save(followEntity);
+        FCount fCount = fCountRepository.findByUserId(userId);
+        if(fCount==null){
+            fCount=new FCount();
+            fCount.setUserId(userId);
+            fCount.setFollowerCount(1);
+            fCountRepository.save(fCount);
+        }
+        else{
+            fCount.incFollowerCount();
+            fCountRepository.save(fCount);
+        }
         return jsonService.constructStatusMessage(AjaxCallStatus.OK);
     }
 
@@ -36,6 +51,17 @@ public class FollowService {
             return jsonService.constructStatusMessage(AjaxCallStatus.ERROR, "Can't find user");
         }
         followRepository.removeByUserIdFromAndUserIdTo(user.getId(), userId);
+        FCount fCount = fCountRepository.findByUserId(userId);
+        if(fCount==null){
+            fCount=new FCount();
+            fCount.setUserId(userId);
+            fCount.setFollowerCount(0);
+            fCountRepository.save(fCount);
+        }
+        else{
+            fCount.decFollowerCount();
+            fCountRepository.save(fCount);
+        }
         return jsonService.constructStatusMessage(AjaxCallStatus.OK);
     }
 
