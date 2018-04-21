@@ -30,10 +30,10 @@ public class AccountRestController {
         return accountService.changePassword(userEmail, currPassword, newPassword);
     }
 
-//    @PostMapping("deleteAccount")
-//    public String deleteAccount(Principal principal, @RequestParam("password") String currPassword) {
-//        String userEmail = principal.getName();
-//        return accountService.deleteAccount(userEmail, currPassword);
-//    }
+    @PostMapping("deleteAccount")
+    public String deleteAccount(Principal principal, @RequestParam("password") String currPassword) {
+        String userEmail = principal.getName();
+        return accountService.deleteAccount(userEmail, currPassword);
+    }
 
 }

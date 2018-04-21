@@ -3,6 +3,10 @@ package com.redwood.rottenpotato.security.service;
 import com.redwood.rottenpotato.email.Mail;
 import com.redwood.rottenpotato.email.service.EmailService;
 import com.redwood.rottenpotato.main.enums.AjaxCallStatus;
+import com.redwood.rottenpotato.main.repositories.NotInterestedRepository;
+import com.redwood.rottenpotato.main.repositories.RatingRepository;
+import com.redwood.rottenpotato.main.repositories.ReviewRepository;
+import com.redwood.rottenpotato.main.repositories.WantToSeeRepository;
 import com.redwood.rottenpotato.main.services.JsonService;
 import com.redwood.rottenpotato.security.model.User;
 import com.redwood.rottenpotato.security.repository.UserRepository;
@@ -25,6 +29,14 @@ public class AccountService {
     private BCryptPasswordEncoder passwordEncoder;
     @Autowired
     private EmailService emailService;
+    @Autowired
+    private WantToSeeRepository wantToSeeRepository;
+    @Autowired
+    private NotInterestedRepository notInterestedRepository;
+    @Autowired
+    private RatingRepository ratingRepository;
+    @Autowired
+    private ReviewRepository reviewRepository;
 
     public String changeEmail(String userEmail, String currPassword, String newEmail) {
         User user = userRepository.findByEmail(userEmail);
@@ -88,6 +100,17 @@ public class AccountService {
             return jsonService.constructStatusMessage(AjaxCallStatus.ERROR, "token invalid or expired");
         }
         user.setPassword(passwordEncoder.encode(newPassword));
+        userRepository.save(user);
+        return jsonService.constructStatusMessage(AjaxCallStatus.OK);
+    }
+
+    public String deleteAccount(String email, String newPassword) {
+        User user = userRepository.findByEmail(email);
+        if (user == null) {
+            return jsonService.constructStatusMessage(AjaxCallStatus.ERROR, "Can't find user");
+        }
+        Long userId = user.getId();
+        user.setEnable(false);
         userRepository.save(user);
         return jsonService.constructStatusMessage(AjaxCallStatus.OK);
     }

@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ReviewRepository extends JpaRepository<Review, Long> {
     Review findById(long id);
-
     long removeById(long id);
+    long removeByUserId(long userId);
 }

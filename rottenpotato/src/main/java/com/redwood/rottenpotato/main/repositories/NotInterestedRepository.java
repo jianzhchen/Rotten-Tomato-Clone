@@ -8,4 +8,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface NotInterestedRepository extends JpaRepository<NotInterested, Long> {
     long removeByMovieKeyAndUserId(String movieKey, long userId);
+    long removeByUserId(long userId);
 }
