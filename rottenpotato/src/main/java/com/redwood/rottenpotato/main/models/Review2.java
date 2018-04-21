@@ -11,6 +11,8 @@ public class Review2 {
     private String movieKey;
     private String criticKey;
 
+    private String reviewTime;
+    private String reviewRating;
     private String reviewContent;
 
     //Constructor for JPA
