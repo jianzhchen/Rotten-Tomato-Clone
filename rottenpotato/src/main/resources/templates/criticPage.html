@@ -107,45 +107,9 @@
                             </div>
                         </div>
                     </div>
-                    <!--photo-->
-                    <div id="photo">
-                        <h3 class="title float-left">Photos</h3>
-                        <div class="float-right mt-3">
-                            <button type="button" class="btn btn-sm btn-primary">Veiw All</button>
-                        </div>
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-md-2 ">
-                                        <div class="text-center">
-                                            <a href="https://placeholder.com">
-                                                <img class="" src="http://via.placeholder.com/100x100"></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--highest rated movies-->
-                    <div id="higest-rated-movies">
-                        <h3 class="title float-left">Higest rated movies</h3>
-                        <div class="float-right mt-3">
-                            <button type="button" class="btn btn-sm btn-primary">view all</button>
-                        </div>
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="col-md-3 ">
-                                    <a href="https://placeholder.com">
-                                        <img class="img-center" src="http://via.placeholder.com/130x193"></a>
-                                    <p class="font-weight-bold text-md-center my-0">NAME</p>
-                                    <p class="text-md-center">50%</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--filmography-->
+                    <!--Review-->
                     <div id="filmography">
-                        <h3 class="title">Filmography</h3>
+                        <h3 class="title">Reviews</h3>
                         <div class="card">
                             <div class="card-body">
                                 <div id="film-table">
@@ -158,28 +122,38 @@
                                                href="#nav-tv" role="tab" aria-controls="nav-profile" aria-selected="false">TVs</a>
                                         </div>
                                     </nav>
-
+                                    <!--pagination-->
+                                    <div class="float-right">
+                                        <br>
+                                        <ul class="pagination">
+                                            <li class="page-item"><a class="page-link" href="#">Prev</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                            <li class="page-item active"><a class="page-link" href="#">2</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">4</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">5</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                                        </ul>
+                                    </div>
                                     <div class="tab-content" id="nav-tabContent">
                                         <!--movie list-->
                                         <div class="tab-pane fade show active" id="nav-movie" role="tabpanel"
                                              aria-labelledby="nav-home-tab">
                                             <div class="filmography-list">
-                                                <table class="table table-striped" id="movielist-table">
+                                                <table class="table table-striped review-table">
                                                     <thead>
-                                                        <tr>
-                                                            <th>RATING</th>
-                                                            <th>TITLE</th>
-                                                            <th>Credit</th>
-                                                            <th>BOX OFFICE</th>
-                                                            <th>YEAR</th>
-                                                        </tr>
+                                                       <tr>
+                                                           <th>RATING</th>
+                                                           <th>TITLE</th>
+                                                           <th>YEAR</th>
+                                                           <th>REVIEW</th>
+                                                       </tr>
                                                     </thead>
                                                     <tr>
                                                         <td>55%</td>
                                                         <td>XXX</td>
-                                                        <td>XXX</td>
-                                                        <td>-</td>
                                                         <td>2018</td>
+                                                        <td>-</td>
                                                     </tr>
                                                 </table>
                                             </div>
@@ -188,20 +162,20 @@
                                         <div class="tab-pane fade" id="nav-tv" role="tabpanel"
                                              aria-labelledby="nav-profile-tab">
                                             <div class="filmography-list">
-                                                <table class="table table-striped" id="tvlist-table">
+                                                <table class="table table-striped review-table">
                                                     <thead>
                                                         <tr>
                                                             <th>RATING</th>
                                                             <th>TITLE</th>
-                                                            <th>CREDIT</th>
                                                             <th>YEAR</th>
+                                                            <th>REVIEW</th>
                                                         </tr>
                                                     </thead>
                                                     <tr>
                                                         <td>55%</td>
                                                         <td>XXX</td>
-                                                        <td>XXX</td>
                                                         <td>2018</td>
+                                                        <td>-</td>
                                                     </tr>
                                                 </table>
                                             </div>
@@ -213,14 +187,21 @@
                     </div>
                 </div>
                 <div class="col-md-4 mt-3">
-                    <!--news and interview-->
-                    <h3 class="title mx-4">News and Interviews</h3>
+                    <!--Best Reviewed Movies-->
+                    <h3 class="title mx-4">Best Reviewed Movies</h3>
                     <div class="card mx-4">
                         <div class="card-body">
-                            <ul>
-                                <li>
-                                    <a href="#">news or interview link</a>
-                                </li>
+                            <ul class="list-unstyled">
+                                <li>link to movie</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!--worest Reviewed Movies-->
+                    <h3 class="title mx-4">Worest Reviewed Movies</h3>
+                    <div class="card mx-4">
+                        <div class="card-body">
+                            <ul class="list-unstyled">
+                                <li>link to movie</li>
                             </ul>
                         </div>
                     </div>
