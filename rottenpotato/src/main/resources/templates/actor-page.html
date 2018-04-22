@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
- 
+<html xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"/>
@@ -66,153 +67,168 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-8">
-                    <div class="row mt-5">
-                        <div class="col-md-8">
-                            <div class="profile">
-                                <div class="avatar">
-                                    <img src="assets/img/kit/faces/christian.jpg" alt="Circle Image"
-                                         class="img-raised rounded-circle img-fluid">
-                                </div>
-                            </div>
-                            <div class="description text-center">
-                                <p>An artist of considerable range, Chet Faker &#x2014; the name taken by
-                                    Melbourne-raised,
-                                    Brooklyn-based Nick Murphy &#x2014; writes, performs and records all of his own
-                                    music,
-                                    giving it a warm, intimate feel with a solid groove structure. </p>
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="title">
-                                <h3>Full Name</h3>
-                            </div>
-                            <div class="card">
-                                <div class="card-body">
-                                    <p>
-                                        Rated:
-                                    </p>
-                                    <p>
-                                        Gender:
-                                    </p>
-                                    <p>
-                                        Birthday:
-                                    </p>
-                                    <p>
-                                        Birthplace:
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="title">
-                        <h3>Higest rated movies:</h3>
-                    </div>
-                    <div class="card">
-                        <div class="card-body">
-                            movie pictures and link.
-                        </div>
-                    </div>
-                    <div class="title">
-                        <h3>Filmography</h3>
-                    </div>
-
-                    <div class="card">
-                        <div class="card-body">
-                            <nav>
-                                <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                                    <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab"
-                                       href="#nav-home" role="tab" aria-controls="nav-home"
-                                       aria-selected="true">Movie</a>
-                                    <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab"
-                                       href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Movie</a>
-                                </div>
-                            </nav>
-                            <div class="tab-content" id="nav-tabContent">
-                                <div class="tab-pane fade show active" id="nav-home" role="tabpanel"
-                                     aria-labelledby="nav-home-tab">
-                                    <div class="filmography-list">
-                                        <table border="1" width="100%">
-                                            <tr>
-                                                <td>RATING</td>
-                                                <td>TITLE</td>
-                                                <td>CREDIT</td>
-                                                <td>BOX OFFICE</td>
-                                                <td>YEAR</td>
-                                            </tr>
-                                            <tr>
-                                                <td>55%</td>
-                                                <td>XXX</td>
-                                                <td>XXX</td>
-                                                <td>-</td>
-                                                <td>2018</td>
-
-                                            </tr>
-                                            <tr>
-                                                <td>55%</td>
-                                                <td>XXX</td>
-                                                <td>XXX</td>
-                                                <td>-</td>
-                                                <td>2018</td>
-
-                                            </tr>
-                                        </table>
+                    <div class="row">
+                        <!--personal info-->
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-6 text-center">
+                                        <div class="avatar">
+                                            <img src="assets/img/kit/faces/christian.jpg" alt="Circle Image"
+                                                 class="img-raised rounded img-fluid img-thumbnail">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 text-left">
+                                    <h3 class="title">Full Name</h3>
+                                    <div id="info-section">
+                                        <ul class="list-unstyled">
+                                            <li>Highest Rated: </li>
+                                            <li>Lowest Rated: </li>
+                                            <li>Birthday:</li>
+                                            <li>Birthplace</li>
+                                        </ul>
+                                        <div class="description text-left" style="height: 110px;">
+                                            <p>An artist of considerable range, Chet Faker &#x2014; the name taken by
+                                                Melbourne-raised,
+                                                Brooklyn-based Nick Murphy &#x2014; writes, performs and records all of his own
+                                                music,
+                                                giving it a warm, intimate feel with a solid groove structure. </p>
+                                        </div>
+                                        <div class="float-right">
+                                            <button type="button" class="btn btn-sm btn-primary">More</button>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="tab-pane fade" id="nav-profile" role="tabpanel"
-                                     aria-labelledby="nav-profile-tab">
-                                    <div class="filmography-list">
-                                        <table border="1" width="100%">
-                                            <tr>
-                                                <td>RATING</td>
-                                                <td>TITLE</td>
-                                                <td>CREDIT</td>
-                                                <td>BOX OFFICE</td>
-                                                <td>YEAR</td>
-                                            </tr>
-                                            <tr>
-                                                <td>55%</td>
-                                                <td>XXX</td>
-                                                <td>XXX</td>
-                                                <td>-</td>
-                                                <td>2018</td>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--photo-->
+                    <div id="photo">
+                        <h3 class="title">Photos</h3>
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-2 ">
+                                        <div class="text-center">
+                                            <a href="https://placeholder.com">
+                                                <img class="" src="http://via.placeholder.com/100x100"></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--highest rated movies-->
+                    <div id="higest-rated-movies">
+                        <h3 class="title">Higest rated movies</h3>
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="col-md-3 ">
+                                    <a href="https://placeholder.com">
+                                        <img class="img-center" src="http://via.placeholder.com/130x193"></a>
+                                    <p class="font-weight-bold text-md-center my-0">NAME</p>
+                                    <p class="text-md-center">50%</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--filmography-->
+                    <div id="filmography">
+                        <h3 class="title">Filmography</h3>
+                        <div class="card">
+                            <div class="card-body">
+                                <div id="film-table">
+                                    <nav>
+                                        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                            <a class="nav-item nav-link active text-center" style="width: 290px" id="nav-movie-tab" data-toggle="tab"
+                                               href="#nav-movie" role="tab" aria-controls="nav-home"
+                                               aria-selected="true">Movies</a>
+                                            <a class="nav-item nav-link text-center" style="width: 350px"  id="nav-tv-tab" data-toggle="tab"
+                                               href="#nav-tv" role="tab" aria-controls="nav-profile" aria-selected="false">TVs</a>
+                                        </div>
+                                    </nav>
+                                    <div class="tab-content" id="nav-tabContent">
+                                        <div class="tab-pane fade show active" id="nav-movie" role="tabpanel"
+                                             aria-labelledby="nav-home-tab">
+                                            <div class="filmography-list">
+                                                <table class="table table-striped">
+                                                    <tr>
+                                                        <td>Rating</td>
+                                                        <td>TITLE</td>
+                                                        <td>CREDIT</td>
+                                                        <td>BOX OFFICE</td>
+                                                        <td>YEAR</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>55%</td>
+                                                        <td>XXX</td>
+                                                        <td>XXX</td>
+                                                        <td>-</td>
+                                                        <td>2018</td>
 
-                                            </tr>
-                                            <tr>
-                                                <td>55%</td>
-                                                <td>XXX</td>
-                                                <td>XXX</td>
-                                                <td>-</td>
-                                                <td>2018</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>55%</td>
+                                                        <td>XXX</td>
+                                                        <td>XXX</td>
+                                                        <td>-</td>
+                                                        <td>2018</td>
 
-                                            </tr>
-                                        </table>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade" id="nav-tv" role="tabpanel"
+                                             aria-labelledby="nav-profile-tab">
+                                            <div class="filmography-list">
+                                                <table class="table table-striped">
+                                                    <tr>
+                                                        <td>Rating</td>
+                                                        <td>TITLE</td>
+                                                        <td>CREDIT</td>
+                                                        <td>BOX OFFICE</td>
+                                                        <td>YEAR</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>55%</td>
+                                                        <td>XXX</td>
+                                                        <td>XXX</td>
+                                                        <td>-</td>
+                                                        <td>2018</td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td>55%</td>
+                                                        <td>XXX</td>
+                                                        <td>XXX</td>
+                                                        <td>-</td>
+                                                        <td>2018</td>
+
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
-                <div class="col-sm-3 offset-sm-1 mt-5">
-                    <div class="title">
-                        <h3>News and Interviews</h3>
-                    </div>
+                <div class="col-md-4 mt-3">
+                    <h3 class="title">News and Interviews</h3>
                     <div class="card">
                         <div class="card-body">
                             <ul>
-                                <li class="card-title">
-                                    <a href="">news or interview link</a>
+                                <li>
+                                    <a href="#">news or interview link</a>
                                 </li>
-                                <li class="card-title">
-                                    <a href="">news or interview link</a>
-                                </li>
-
                             </ul>
                         </div>
                     </div>
                 </div>
-                <div class="tab-content tab-space">
-                </div>
+            </div>
+
             </div>
         </div>
     </div>
