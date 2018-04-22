@@ -11,6 +11,8 @@ public class FCount {
     private long userId;
     private long followerCount;
 
+    public FCount() {
+    }
 
     public long getFollowerCount() {
         return followerCount;

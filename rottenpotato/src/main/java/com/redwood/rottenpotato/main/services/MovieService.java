@@ -22,11 +22,7 @@ public class MovieService {
         List<Map> templist = new ArrayList<>();
         for (Movie temp : MovieRepository.findTop10ByOrderByBoxOfficeDesc(PageRequest.of(page, 10))) {
             Map<String, String> map = new HashMap<>();
-            if (temp.getScore() > 0) {
-                map.put("rate", String.valueOf(temp.getScore() + "%"));
-            } else {
-                map.put("rate", "N/A");
-            }
+
             map.put("movieName", temp.getName());
             Long box = temp.getBoxOffice();
             DecimalFormat myFormatter = new DecimalFormat("$###,###.###");
@@ -41,15 +37,10 @@ public class MovieService {
         List<Map> templist = new ArrayList<>();
         for (Movie temp : MovieRepository.findTop10ByOrderByInTheatersDateDesc(PageRequest.of(page, 10))) {
             Map<String, String> map = new HashMap<>();
-            if (temp.getScore() > 0) {
-                map.put("rate", String.valueOf(temp.getScore() + "%"));
-            } else {
-                map.put("rate", "N/A");
-            }
+
             map.put("movieName", temp.getName());
             DateFormat formatter = new SimpleDateFormat("MMM-dd");
-            map.put("movieDate", formatter.format(temp.getInTheatersDate()));
-            templist.add(map);
+ templist.add(map);
         }
         return templist;
 

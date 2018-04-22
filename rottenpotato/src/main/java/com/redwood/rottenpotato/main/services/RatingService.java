@@ -2,13 +2,9 @@ package com.redwood.rottenpotato.main.services;
 
 import com.redwood.rottenpotato.main.enums.AjaxCallStatus;
 import com.redwood.rottenpotato.main.models.Movie;
-import com.redwood.rottenpotato.main.models.Rating;
-import com.redwood.rottenpotato.main.models.Review;
-import com.redwood.rottenpotato.main.models.ReviewReport;
+import com.redwood.rottenpotato.main.models.UserRating;
 import com.redwood.rottenpotato.main.repositories.MovieRepository;
 import com.redwood.rottenpotato.main.repositories.RatingRepository;
-import com.redwood.rottenpotato.main.repositories.ReviewReportRepository;
-import com.redwood.rottenpotato.main.repositories.ReviewRepository;
 import com.redwood.rottenpotato.security.model.User;
 import com.redwood.rottenpotato.security.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,13 +31,13 @@ public class RatingService {
             return jsonService.constructStatusMessage(AjaxCallStatus.ERROR, "Can't find user");
         }
         if (rating > 5 || rating < 1) {
-            return jsonService.constructStatusMessage(AjaxCallStatus.ERROR, "Rating out of range");
+            return jsonService.constructStatusMessage(AjaxCallStatus.ERROR, "UserRating out of range");
         }
-        Rating ratingEntity = new Rating();
-        ratingEntity.setMovieKey(movie.getMovieKey());
-        ratingEntity.setRating(rating);
-        ratingEntity.setUserId(user.getId());
-        ratingRepository.save(ratingEntity);
+        UserRating userRatingEntity = new UserRating();
+        userRatingEntity.setMovieKey(movie.getMovieKey());
+        userRatingEntity.setRating(rating);
+        userRatingEntity.setUserId(user.getId());
+        ratingRepository.save(userRatingEntity);
         return jsonService.constructStatusMessage(AjaxCallStatus.OK);
     }
 
@@ -55,14 +51,14 @@ public class RatingService {
             return jsonService.constructStatusMessage(AjaxCallStatus.ERROR, "Can't find user");
         }
         if (rating > 5 || rating < 1) {
-            return jsonService.constructStatusMessage(AjaxCallStatus.ERROR, "Rating out of range");
+            return jsonService.constructStatusMessage(AjaxCallStatus.ERROR, "UserRating out of range");
         }
-        Rating ratingEntity = ratingRepository.findByMovieKeyAndUserId(movie.getMovieKey(), user.getId());
-        if (ratingEntity == null) {
+        UserRating userRatingEntity = ratingRepository.findByMovieKeyAndUserId(movie.getMovieKey(), user.getId());
+        if (userRatingEntity == null) {
             return jsonService.constructStatusMessage(AjaxCallStatus.ERROR, "rating not found");
         }
-        ratingEntity.setRating(rating);
-        ratingRepository.save(ratingEntity);
+        userRatingEntity.setRating(rating);
+        ratingRepository.save(userRatingEntity);
         return jsonService.constructStatusMessage(AjaxCallStatus.OK);
     }
 
@@ -75,11 +71,11 @@ public class RatingService {
         if (user == null) {
             return jsonService.constructStatusMessage(AjaxCallStatus.ERROR, "Can't find user");
         }
-        Rating ratingEntity = ratingRepository.findByMovieKeyAndUserId(movie.getMovieKey(), user.getId());
-        if (ratingEntity == null) {
+        UserRating userRatingEntity = ratingRepository.findByMovieKeyAndUserId(movie.getMovieKey(), user.getId());
+        if (userRatingEntity == null) {
             return jsonService.constructStatusMessage(AjaxCallStatus.ERROR, "rating not found");
         }
-        ratingRepository.removeById(ratingEntity.getId());
+        ratingRepository.removeById(userRatingEntity.getId());
         return jsonService.constructStatusMessage(AjaxCallStatus.OK);
     }
 }

@@ -2,8 +2,8 @@ package com.redwood.rottenpotato.main.services;
 
 import com.redwood.rottenpotato.main.enums.AjaxCallStatus;
 import com.redwood.rottenpotato.main.models.Movie;
-import com.redwood.rottenpotato.main.models.Review;
-import com.redwood.rottenpotato.main.models.ReviewReport;
+import com.redwood.rottenpotato.main.models.UserReview;
+import com.redwood.rottenpotato.main.models.UserReviewReport;
 import com.redwood.rottenpotato.main.repositories.MovieRepository;
 import com.redwood.rottenpotato.main.repositories.ReviewReportRepository;
 import com.redwood.rottenpotato.main.repositories.ReviewRepository;
@@ -34,28 +34,28 @@ public class ReviewService {
         if (user == null) {
             return jsonService.constructStatusMessage(AjaxCallStatus.ERROR, "Can't find user");
         }
-        Review review = new Review();
-        review.setUserId(user.getId());
-        review.setContent(content);
-        review.setMovieKey(movie.getMovieKey());
-        reviewRepository.save(review);
+        UserReview userReview = new UserReview();
+        userReview.setUserId(user.getId());
+        userReview.setContent(content);
+        userReview.setMovieKey(movie.getMovieKey());
+        reviewRepository.save(userReview);
         return jsonService.constructStatusMessage(AjaxCallStatus.OK);
     }
 
     public String reportReview(long reviewId, String userEmail, String content) {
-        Review review = reviewRepository.findById(reviewId);
-        if (review == null) {
-            return jsonService.constructStatusMessage(AjaxCallStatus.ERROR, "review doesn't exist");
+        UserReview userReview = reviewRepository.findById(reviewId);
+        if (userReview == null) {
+            return jsonService.constructStatusMessage(AjaxCallStatus.ERROR, "userReview doesn't exist");
         }
         User user = userRepository.findByEmail(userEmail);
         if (user == null) {
             return jsonService.constructStatusMessage(AjaxCallStatus.ERROR, "Can't find user");
         }
-        ReviewReport reviewReport = new ReviewReport();
-        reviewReport.setUserId(user.getId());
-        reviewReport.setContent(content);
-        reviewReport.setReviewId(review.getId());
-        reviewReportRepository.save(reviewReport);
+        UserReviewReport userReviewReport = new UserReviewReport();
+        userReviewReport.setUserId(user.getId());
+        userReviewReport.setContent(content);
+        userReviewReport.setReviewId(userReview.getId());
+        reviewReportRepository.save(userReviewReport);
         return jsonService.constructStatusMessage(AjaxCallStatus.OK);
     }
 
@@ -65,12 +65,12 @@ public class ReviewService {
             return jsonService.constructStatusMessage(AjaxCallStatus.ERROR, "Can't find user");
         }
 
-        Review review = reviewRepository.findById(reviewId);
-        if (review == null) {
-            return jsonService.constructStatusMessage(AjaxCallStatus.ERROR, "review doesn't exist");
+        UserReview userReview = reviewRepository.findById(reviewId);
+        if (userReview == null) {
+            return jsonService.constructStatusMessage(AjaxCallStatus.ERROR, "userReview doesn't exist");
         }
-        if (review.getUserId() != user.getId()) {
-            return jsonService.constructStatusMessage(AjaxCallStatus.ERROR, "review not own by you");
+        if (userReview.getUserId() != user.getId()) {
+            return jsonService.constructStatusMessage(AjaxCallStatus.ERROR, "userReview not own by you");
         }
         reviewRepository.removeById(reviewId);
         reviewReportRepository.removeByReviewId(reviewId);
@@ -82,15 +82,15 @@ public class ReviewService {
         if (user == null) {
             return jsonService.constructStatusMessage(AjaxCallStatus.ERROR, "Can't find user");
         }
-        Review review = reviewRepository.findById(reviewId);
-        if (review == null) {
-            return jsonService.constructStatusMessage(AjaxCallStatus.ERROR, "review doesn't exist");
+        UserReview userReview = reviewRepository.findById(reviewId);
+        if (userReview == null) {
+            return jsonService.constructStatusMessage(AjaxCallStatus.ERROR, "userReview doesn't exist");
         }
-        if (review.getUserId() != user.getId()) {
-            return jsonService.constructStatusMessage(AjaxCallStatus.ERROR, "review not own by you");
+        if (userReview.getUserId() != user.getId()) {
+            return jsonService.constructStatusMessage(AjaxCallStatus.ERROR, "userReview not own by you");
         }
-        review.setContent(content);
-        reviewRepository.save(review);
+        userReview.setContent(content);
+        reviewRepository.save(userReview);
         return jsonService.constructStatusMessage(AjaxCallStatus.OK);
     }
 }

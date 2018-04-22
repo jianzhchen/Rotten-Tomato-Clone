@@ -3,7 +3,7 @@ package com.redwood.rottenpotato.main.models;
 import javax.persistence.*;
 
 @Entity // This tells Hibernate to make a table out of this class
-public class Review {
+public class UserReview {
     //Primary key for the entity Item
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -14,7 +14,7 @@ public class Review {
     private String content;
 
     //Constructor for JPA
-    public Review() {
+    public UserReview() {
     }
 
     public long getId() {

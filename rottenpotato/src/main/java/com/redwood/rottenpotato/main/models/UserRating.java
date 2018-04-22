@@ -6,18 +6,18 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity // This tells Hibernate to make a table out of this class
-public class ReviewReport {
+public class UserRating {
     //Primary key for the entity Item
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    private long reviewId;
     private long userId;
-    private String content;
+    private String movieKey;
+    private int rating;
 
     //Constructor for JPA
-    public ReviewReport() {
+    public UserRating() {
     }
 
     public long getId() {
@@ -28,27 +28,28 @@ public class ReviewReport {
         this.id = id;
     }
 
-    public long getReviewId() {
-        return reviewId;
-    }
-
-    public void setReviewId(long reviewId) {
-        this.reviewId = reviewId;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
-
     public long getUserId() {
         return userId;
     }
 
     public void setUserId(long userId) {
         this.userId = userId;
+    }
+
+
+    public int getRating() {
+        return rating;
+    }
+
+    public void setRating(int rating) {
+        this.rating = rating;
+    }
+
+    public String getMovieKey() {
+        return movieKey;
+    }
+
+    public void setMovieKey(String movieKey) {
+        this.movieKey = movieKey;
     }
 }
