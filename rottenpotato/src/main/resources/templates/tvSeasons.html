@@ -269,35 +269,35 @@
                 <div class="card m-1">
                     <div class="card-body">
                         <!--<div class="row">-->
-                            <!--<div class="col-md-2 ">-->
-                                <!--<div class="text-center">-->
-                                    <!--<a href="https://placeholder.com">-->
-                                        <!--<img class="" src="http://via.placeholder.com/100x100"></a>-->
-                                    <!--<p class="font-weight-bold text-md-center my-0" th:text="${movie.name}">NAME</p>-->
-                                <!--</div>-->
-                            <!--</div>-->
-                            <!--<div class="col-md-2 ">-->
-                                <!--<div class="text-center">-->
-                                    <!--<a href="https://placeholder.com">-->
-                                        <!--<img class="" src="http://via.placeholder.com/100x100"></a>-->
-                                    <!--<p class="font-weight-bold text-md-center my-0" th:text="${movie.name}">NAME</p>-->
-                                <!--</div>-->
-                            <!--</div>-->
+                        <!--<div class="col-md-2 ">-->
+                        <!--<div class="text-center">-->
+                        <!--<a href="https://placeholder.com">-->
+                        <!--<img class="" src="http://via.placeholder.com/100x100"></a>-->
+                        <!--<p class="font-weight-bold text-md-center my-0" th:text="${movie.name}">NAME</p>-->
                         <!--</div>-->
-                        <!--here are the links to each TV episode's tvInfo.html-->
-                        <ul id="playlist" th:each="tvEpisode : ${tvEpisodes}">
-                            <a th:href=" ${tvEpisode.link}" th:text="${tvEpisode.title}">episode name</a>
+                        <!--</div>-->
+                        <!--<div class="col-md-2 ">-->
+                        <!--<div class="text-center">-->
+                        <!--<a href="https://placeholder.com">-->
+                        <!--<img class="" src="http://via.placeholder.com/100x100"></a>-->
+                        <!--<p class="font-weight-bold text-md-center my-0" th:text="${movie.name}">NAME</p>-->
+                        <!--</div>-->
+                        <!--</div>-->
+                        <!--</div>-->
+                        <!--here are the links to each TV season's tvSeason.html-->
+                        <ul id="playlist" th:each="tvSeason : ${tvSeasons}">
+                            <a th:href=" ${tvSeason.link}" th:text="${tvSeason.title}">episode name</a>
                         </ul>
 
                         <!--<div class="list-group">-->
-                            <!--<a href="#" class="list-group-item list-group-item-action">First item</a>-->
-                            <!--<a href="#" class="list-group-item list-group-item-action">Second item</a>-->
-                            <!--<a href="#" class="list-group-item list-group-item-action">Third item</a>-->
+                        <!--<a href="#" class="list-group-item list-group-item-action">First item</a>-->
+                        <!--<a href="#" class="list-group-item list-group-item-action">Second item</a>-->
+                        <!--<a href="#" class="list-group-item list-group-item-action">Third item</a>-->
                         <!--</div>-->
                     </div>
                 </div>
                 <!--<div class="text-right">-->
-                    <!--<button type="button" class="btn btn-default btn-sm">View All</button>-->
+                <!--<button type="button" class="btn btn-default btn-sm">View All</button>-->
                 <!--</div>-->
             </section>
 
