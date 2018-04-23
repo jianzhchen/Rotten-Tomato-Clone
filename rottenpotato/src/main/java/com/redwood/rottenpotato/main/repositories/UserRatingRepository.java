@@ -4,9 +4,15 @@ import com.redwood.rottenpotato.main.models.UserRating;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
-public interface RatingRepository extends JpaRepository<UserRating, Long> {
+public interface UserRatingRepository extends JpaRepository<UserRating, Long> {
     UserRating findByMovieKeyAndUserId(String movieKey, long userId);
+
+    List<UserRating> findByMovieKey(String movieKey);
+
     long removeById(long id);
+
     long removeByUserId(long userId);
 }

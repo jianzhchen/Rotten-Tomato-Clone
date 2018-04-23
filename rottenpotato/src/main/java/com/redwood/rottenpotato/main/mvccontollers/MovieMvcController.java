@@ -1,17 +1,24 @@
 package com.redwood.rottenpotato.main.mvccontollers;
 
 import com.redwood.rottenpotato.main.models.Actor;
+import com.redwood.rottenpotato.main.models.CriticReview;
 import com.redwood.rottenpotato.main.models.Movie;
+import com.redwood.rottenpotato.main.models.UserRating;
 import com.redwood.rottenpotato.main.repositories.ActorRepository;
+import com.redwood.rottenpotato.main.repositories.CriticReviewRepository;
 import com.redwood.rottenpotato.main.repositories.MovieRepository;
+import com.redwood.rottenpotato.main.repositories.UserRatingRepository;
 import com.redwood.rottenpotato.main.services.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -24,13 +31,10 @@ public class MovieMvcController {
     @Autowired
     private ActorRepository actorRepository;
     @Autowired
-    private MovieService movieService;
+    private CriticReviewRepository criticReviewRepository;
+    @Autowired
+    private UserRatingRepository userRatingRepository;
 
-    @GetMapping(value = "topBox.html")
-    public String topbox(@RequestParam("p") int p, Model model) {
-        movieService.top10BoxWithPage(model, p);
-        return "topBox.html";
-    }
 
     @GetMapping(value = "m/{movieKey}")
     public String movieDetail(@PathVariable("movieKey") String movieKey, Model model) {
@@ -55,13 +59,69 @@ public class MovieMvcController {
         model.addAttribute("studio", movie.getStudio());
         String cast = movie.getCast();
         List<String> actorKeys = Arrays.asList(cast.split("\\s*,\\s*"));
-        HashMap<String, String> actorsMap = new HashMap<>();
-        for(String actorKey :actorKeys){
+        List<HashMap> actors = new ArrayList<>();
+        for (String actorKey : actorKeys) {
+            HashMap<String, String> actorMap = new HashMap<>();
             Actor actor = actorRepository.findByActorKey(actorKey);
+            actorMap.put("name", actor.getActorName());
+            actorMap.put("key", actor.getActorName());
+            actors.add(actorMap);
         }
+        model.addAttribute("actors", actors);
+        List<CriticReview> crs = criticReviewRepository.findByMovieKey(movieKey);
+        int criticScore = 0;
+        int criticScoreCount = 0;
+        for (CriticReview criticReview : crs) {
+            if (criticReview.getReviewRating() != 0) {
+                criticScore = criticScore + criticReview.getReviewRating();
+                criticScoreCount++;
+            }
+        }
+        model.addAttribute("criticRating", String.format("%.2f", criticScore / criticScoreCount));
 
-        return "topBox.html";
-
+        List<UserRating> userRatings = userRatingRepository.findByMovieKey(movieKey);
+        int userScore = 0;
+        int userScoreCount = 0;
+        for (UserRating userRating : userRatings) {
+            if (userRating.getRating() != 0) {
+                userScore = userScore + userRating.getRating();
+                userScoreCount++;
+            }
+        }
+        model.addAttribute("userRating", String.format("%.2f", userScore / userScoreCount));
+        //poster
+        return "movieInfo.html";
     }
 
+    @GetMapping(value = "m/d/{page}")
+    public String movieByDate(@PathVariable("page") int page, Model model) {
+        List<Movie> movies = movieRepository.findTop10ByOrderByInTheatersTimeDesc(PageRequest.of(page, 10));
+        List<HashMap> movieList = new ArrayList<>();
+        for (Movie movie : movies) {
+            HashMap<String, String> movieDetail = new HashMap<>();
+            movieDetail.put("name", movie.getName());
+            movieDetail.put("key", movie.getMovieKey());
+            movieDetail.put("date", movie.getInTheaters());
+            //poster
+            movieList.add(movieDetail);
+        }
+        model.addAttribute("movies", movieList);
+        return "movieTopDate.html";
+    }
+
+    @GetMapping(value = "m/b/{page}")
+    public String movieByBox(@PathVariable("page") int page, Model model) {
+        List<Movie> movies = movieRepository.findTop10ByOrderByBoxOfficeDesc(PageRequest.of(page, 10));
+        List<HashMap> movieList = new ArrayList<>();
+        for (Movie movie : movies) {
+            HashMap<String, String> movieDetail = new HashMap<>();
+            movieDetail.put("name", movie.getName());
+            movieDetail.put("key", movie.getMovieKey());
+            movieDetail.put("boxOffice", "$" + movie.getBoxOffice());
+            //poster
+            movieList.add(movieDetail);
+        }
+        model.addAttribute("movies", movieList);
+        return "movieTopBox.html";
+    }
 }

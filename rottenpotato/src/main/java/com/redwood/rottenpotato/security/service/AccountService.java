@@ -4,7 +4,7 @@ import com.redwood.rottenpotato.email.Mail;
 import com.redwood.rottenpotato.email.service.EmailService;
 import com.redwood.rottenpotato.main.enums.AjaxCallStatus;
 import com.redwood.rottenpotato.main.repositories.NotInterestedRepository;
-import com.redwood.rottenpotato.main.repositories.RatingRepository;
+import com.redwood.rottenpotato.main.repositories.UserRatingRepository;
 import com.redwood.rottenpotato.main.repositories.ReviewRepository;
 import com.redwood.rottenpotato.main.repositories.WantToSeeRepository;
 import com.redwood.rottenpotato.main.services.JsonService;
@@ -34,7 +34,7 @@ public class AccountService {
     @Autowired
     private NotInterestedRepository notInterestedRepository;
     @Autowired
-    private RatingRepository ratingRepository;
+    private UserRatingRepository userRatingRepository;
     @Autowired
     private ReviewRepository reviewRepository;
 

@@ -1,6 +1,7 @@
 package com.redwood.rottenpotato.main.models;
 
 import javax.persistence.*;
+import java.sql.Date;
 
 @Entity // This tells Hibernate to make a table out of this class
 public class CriticReview {
@@ -14,6 +15,7 @@ public class CriticReview {
     private String reviewTime;
     private int reviewRating;
     private String reviewContent;
+    private Date reviewTimeDate;
 
     //Constructor for JPA
     public CriticReview() {
@@ -65,5 +67,13 @@ public class CriticReview {
 
     public void setReviewContent(String reviewContent) {
         this.reviewContent = reviewContent;
+    }
+
+    public Date getReviewTimeDate() {
+        return reviewTimeDate;
+    }
+
+    public void setReviewTimeDate(Date reviewTimeDate) {
+        this.reviewTimeDate = reviewTimeDate;
     }
 }

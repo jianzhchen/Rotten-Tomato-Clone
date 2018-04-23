@@ -17,6 +17,7 @@ public class User {
     private String email;
     private String password;
     private boolean enable;
+    private boolean openProfile;
 
     private String token;
     private Timestamp tokenEndTime;
@@ -31,6 +32,7 @@ public class User {
     private Collection<Role> roles;
 
     public User() {
+        openProfile = true;
     }
 
     public User(String firstName, String lastName, String email, String password) {
@@ -38,6 +40,7 @@ public class User {
         this.lastName = lastName;
         this.email = email;
         this.password = password;
+        openProfile = true;
     }
 
     public User(String firstName, String lastName, String email, String password, Collection<Role> roles) {
@@ -130,5 +133,13 @@ public class User {
 
     public void setTokenEndTime(Timestamp tokenEndTime) {
         this.tokenEndTime = tokenEndTime;
+    }
+
+    public boolean isOpenProfile() {
+        return openProfile;
+    }
+
+    public void setOpenProfile(boolean openProfile) {
+        this.openProfile = openProfile;
     }
 }

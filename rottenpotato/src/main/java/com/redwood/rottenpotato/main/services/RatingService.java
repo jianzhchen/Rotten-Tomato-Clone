@@ -4,7 +4,7 @@ import com.redwood.rottenpotato.main.enums.AjaxCallStatus;
 import com.redwood.rottenpotato.main.models.Movie;
 import com.redwood.rottenpotato.main.models.UserRating;
 import com.redwood.rottenpotato.main.repositories.MovieRepository;
-import com.redwood.rottenpotato.main.repositories.RatingRepository;
+import com.redwood.rottenpotato.main.repositories.UserRatingRepository;
 import com.redwood.rottenpotato.security.model.User;
 import com.redwood.rottenpotato.security.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class RatingService {
     @Autowired
-    private RatingRepository ratingRepository;
+    private UserRatingRepository userRatingRepository;
     @Autowired
     private MovieRepository movieRepository;
     @Autowired
@@ -37,7 +37,7 @@ public class RatingService {
         userRatingEntity.setMovieKey(movie.getMovieKey());
         userRatingEntity.setRating(rating);
         userRatingEntity.setUserId(user.getId());
-        ratingRepository.save(userRatingEntity);
+        userRatingRepository.save(userRatingEntity);
         return jsonService.constructStatusMessage(AjaxCallStatus.OK);
     }
 
@@ -53,12 +53,12 @@ public class RatingService {
         if (rating > 5 || rating < 1) {
             return jsonService.constructStatusMessage(AjaxCallStatus.ERROR, "UserRating out of range");
         }
-        UserRating userRatingEntity = ratingRepository.findByMovieKeyAndUserId(movie.getMovieKey(), user.getId());
+        UserRating userRatingEntity = userRatingRepository.findByMovieKeyAndUserId(movie.getMovieKey(), user.getId());
         if (userRatingEntity == null) {
             return jsonService.constructStatusMessage(AjaxCallStatus.ERROR, "rating not found");
         }
         userRatingEntity.setRating(rating);
-        ratingRepository.save(userRatingEntity);
+        userRatingRepository.save(userRatingEntity);
         return jsonService.constructStatusMessage(AjaxCallStatus.OK);
     }
 
@@ -71,11 +71,11 @@ public class RatingService {
         if (user == null) {
             return jsonService.constructStatusMessage(AjaxCallStatus.ERROR, "Can't find user");
         }
-        UserRating userRatingEntity = ratingRepository.findByMovieKeyAndUserId(movie.getMovieKey(), user.getId());
+        UserRating userRatingEntity = userRatingRepository.findByMovieKeyAndUserId(movie.getMovieKey(), user.getId());
         if (userRatingEntity == null) {
             return jsonService.constructStatusMessage(AjaxCallStatus.ERROR, "rating not found");
         }
-        ratingRepository.removeById(userRatingEntity.getId());
+        userRatingRepository.removeById(userRatingEntity.getId());
         return jsonService.constructStatusMessage(AjaxCallStatus.OK);
     }
 }
