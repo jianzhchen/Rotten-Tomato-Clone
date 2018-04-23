@@ -16,7 +16,7 @@ public class Movie {
     private String writer;
     private String inTheaters;    //In theater time
     private String onDisc;
-    private Long boxOffice;
+    private long boxOffice;
     private String runTime;
     private String studio;
     private String cast;
