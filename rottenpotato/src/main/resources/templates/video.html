@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 
 <head>
     <meta charset="utf-8">
@@ -64,68 +64,24 @@
 
                             <div class="card">
                                 <div class="card-body">
-                                    <h5 class="card-title">Basic Information</h5>
-                                    <p>
-                                        Name
-                                    </p>
-                                    <p>
-                                        Gender:
-                                    </p>
-                                    <p>
-                                        Country
-                                    </p>
-                                    <p>
-                                        Birthday
-                                    </p>
-                                </div>
-                            </div>
 
+                                    <video id="videoarea" controls="controls" poster="" src=""></video>
 
-                            <div class="card">
-                                <div class="card-body">
-                                    <h5 class="card-title">Account Information</h5>
-
-                                    <div class="row">
-                                        <div class="col-sm-6">
-                                            <div>
-                                                Account ID:
-                                            </div>
-                                        </div>
-
-                                        <div class="col-sm-4">
-                                            <button type="button" class="btn btn-light btn-sm">Change Password</button>
-                                        </div>
-
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-sm-6">
-                                            <div>
-                                                Email:
-                                            </div>
-                                        </div>
-
-                                        <div class="col-sm-4">
-                                            <button type="button" class="btn btn-light btn-sm">Change Email</button>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="card">
-                                <div class="card-body">
-                                    <h5 class="card-title">Privacy Setting</h5>
-
-                                    <select class="form-control">
-                                        <option>Hide</option>
-                                        <option>Restrict</option>
-                                        <option>Show to All</option>
-                                    </select>
+                                    <!--<ul id="playlist">-->
+                                    <!--<li movieurl="testSample.mp4">Happy Fit</li>-->
+                                    <!--<li movieurl="testSample1.mp4">Sintel</li>-->
+                                    <!--<li movieurl="testSample.mp4">Resident Evil</li>-->
+                                    <!--<li movieurl="testSample1.mp4">Big Buck Bunny</li>-->
+                                    <!--</ul>-->
+                                    <ul id="playlist">
+                                        <li th:each="test : ${testSample}" th:movieurl="${test}">user name</li>
+                                    </ul>
 
                                 </div>
                             </div>
+
+
+
 
 
                         </div>
@@ -199,6 +155,32 @@
 <script src="./assets/js/material-kit.js?v=2.0.2"></script>
 <!-- Fixed Sidebar Nav - js With initialisations For Demo Purpose, Don't Include it in your project -->
 <script src="./assets/assets-for-demo/js/material-kit-demo.js"></script>
+
+
+<script>$(function() {
+    $("#playlist li").on("click", function() {
+        $("#videoarea").attr({
+            "src": $(this).attr("movieurl"),
+            "poster": "",
+            "autoplay": "autoplay"
+        })
+    })
+     <!--$("#abc123").on("click", function() {-->
+        <!--$("#videoarea").attr({-->
+            <!--"src": $(this).next().attr("movieurl"),-->
+            <!--"poster": "",-->
+            <!--"autoplay": "autoplay"-->
+        <!--})-->
+        <!--console.log("asda")-->
+    <!--})-->
+    $("#videoarea").attr({
+        "src": $("#playlist li").eq(0).attr("movieurl"),
+        "poster": $("#playlist li").eq(0).attr("moviesposter")
+    })
+})
+</script>
+
+
 
 </body>
 
