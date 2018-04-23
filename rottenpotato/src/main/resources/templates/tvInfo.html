@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" href="./assets/img/kit/free/apple-icon.png">
+    <link rel="icon" href="./assets/img/kit/free/favicon.png">
+    <title>
+        Rotten Potato
+    </title>
+    <!--     Fonts and icons     -->
+    <link rel="stylesheet" type="text/css"
+          href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="./assets/css/material-kit.css?v=2.0.2">
+    <link rel="stylesheet" href="./assets/css/custom.css">
+</head>
+
+<body class="index-page ">
+<nav class="navbar navbar-expand-lg fixed-top  bg-dark">
+    <div class="container">
+        <div class="navbar-translate">
+            <a class="navbar-brand" href="/index.html">Rotten Potato</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                <span class="navbar-toggler-icon"></span>
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+        <div class="collapse navbar-collapse">
+
+
+            <form class="form-inline ml-auto mr-5">
+                <div class="form-group has-white">
+                    <input type="text" class="form-control" style="width:300px" placeholder="Search">
+                </div>
+                <div class="col-auto my-0">
+                    <select class="custom-select custom-select-sm" id="searchSelect" style="height: 30px;">
+                        <option value="1">Movies</option>
+                        <option value="2">TVs</option>
+                        <option value="3">Celebrities</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-white btn-raised btn-fab btn-sm">
+                    <i class="material-icons">search</i>
+                </button>
+            </form>
+
+            <div th:if="${isLogin} == true">
+                <p th:bgcolor="white" th:text="${username}"></p>
+            </div>
+            <div th:if="${isLogin} == false">
+                <div>
+                    <button class="btn btn-sm btn-primary mx-1" data-toggle="modal" data-target="#loginModal">Login
+                    </button>
+                    <button class="btn btn-sm btn-primary mx-1" data-toggle="modal" data-target="#signupModal">Sign
+                        up
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</nav>
+
+<div class="page-header" data-parallax="false"
+     style="height: 18vh !important;">
+
+</div>
+
+<div class="main main-raised">
+    <div class="section section-basic mx-2">
+        <div class="container">
+
+            <div class="row">
+                <!--video-->
+                <div class="col-md-8">
+                    <p>
+                        Put a TV photo here
+                    </p>
+                    <!--<div>-->
+                        <!--<img th:src="${tvPhotoModel}" alt="Mountain View">-->
+
+                    <!--</div>-->
+                    <!--<div class="embed-responsive embed-responsive-16by9 mt-4">-->
+                        <!--<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/DCIL7WbyIKM"-->
+                                <!--allowfullscreen></iframe>-->
+                    <!--</div>-->
+                </div>
+                <!--Plot-->
+                <div class="col-md-4">
+                    <h3 class="title text-center" th:text="${movie.name}">TV Name</h3>
+                    <div class="card"style="height: 340px;" >
+                        <div class="card-body" >
+                            <!--Import the TV Name here-->
+                            <!--<p th:text="${TV.plot}">Plot:Everyone's favorite law enforcement team is back by popular demand with the long anticipated follow up to the cult comedy classic... SUPER TROOPERS. When an international border dispute arises between the U.S. and Canada, the Super Troopers- Mac, Thorny, Foster, Rabbit and Farva, are called in to set up a new Highway Patrol station in the disputed area. Unconventional police work follows, and the result is...SUPER TROOPERS 2.</p>-->
+                            <p>Plot:Everyone's favorite law enforcement team is back by popular demand with the long anticipated follow up to the cult comedy classic... SUPER TROOPERS. When an international border dispute arises between the U.S. and Canada, the Super Troopers- Mac, Thorny, Foster, Rabbit and Farva, are called in to set up a new Highway Patrol station in the disputed area. Unconventional police work follows, and the result is...SUPER TROOPERS 2.</p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <!--rate-->
+                <div class="col-md-3">
+                    <div class="card" style="height: 16rem;">
+                        <div class="card-body">
+                            <ul class="list-unstyled">
+                                <li>
+                                    <h3 class="text-center" th:${movie.rate}>97%</h3>
+                                </li>
+                                <li>
+                                    <div class="progress">
+                                        <div class="progress-bar bg-danger" role="progressbar"
+                                             aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"
+                                             style="width: 97%;" th:width="${movie.rate}">
+                                        </div>
+                                    </div>
+                                </li>
+                                <div class="text-left">
+                                    <li th:text="${movie.reviewCount}">Reviews Counted: 334</li>
+                                    <li>Fresh: 323</li>
+                                    <li>Rotten: 11</li>
+                                </div>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!--give your rate and review-->
+                <div class="col-md-5">
+                    <div class="card" style="height: 16rem">
+
+                        <div class="card-body">
+                            <div>
+                                <div class="float-left">
+                                    <h5 class="title">Add your rate</h5>
+                                </div>
+                                <div class="float-right">
+                                    <select class="custom-select custom-select-sm" style="width: 50px">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                    </select>
+                                </div>
+
+
+                            </div>
+                            <form role="form">
+                                <div class="form-group" >
+                                    <textarea class="form-control text-muted" rows="5" placeholder="Enter your review here"></textarea>
+                                </div>
+                            </form>
+                            <div class="float-left">
+                                <button type="button" class="btn btn-sm">Want to see</button>
+                                <button type="button" class="btn btn-danger btn-sm">Not interested</button>
+                            </div>
+                            <div class="float-right">
+                                <button type="button" class="btn btn-sm">Post</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            <!--moreInfo-->
+            <sction id="moreInfo">
+                <h3 class="title text-left">TV Information</h3>
+                <div class="card">
+                    <div class="card-body">
+                        <!--<table>-->
+                            <!--<tr>-->
+                                <!--<td class="text-right" width="150px">-->
+                                    <!--Rating:-->
+                                <!--</td>-->
+                                <!--<td class="text-left px-3"width="800px" th:text="${movie.rating}">-->
+                                    <!--R (for crude sexual content and language throughout, drug material and some graphic nudity)-->
+                                <!--</td>-->
+                            <!--</tr>-->
+                            <!--<tr>-->
+                                <!--<td class="text-right" width="150px">-->
+                                    <!--Genre:-->
+                                <!--</td>-->
+                                <!--<td class="text-left px-3"width="800px" th:text="${movie.genre}">-->
+                                    <!--Comedy-->
+                                <!--</td>-->
+                            <!--</tr>-->
+                            <!--<tr>-->
+                                <!--<td class="text-right" width="150px">-->
+                                    <!--Directed By:-->
+                                <!--</td>-->
+                                <!--<td class="text-left px-3"width="800px">-->
+                                    <!--director name-->
+                                <!--</td>-->
+                            <!--</tr>-->
+                            <!--<tr>-->
+                                <!--<td class="text-right" width="150px">-->
+                                    <!--Written By:-->
+                                <!--</td>-->
+                                <!--<td class="text-left px-3"width="800px">-->
+                                    <!--writer name-->
+                                <!--</td>-->
+                            <!--</tr>-->
+                            <!--<tr>-->
+                                <!--<td class="text-right" width="150px">-->
+                                    <!--In Theaters :-->
+                                <!--</td>-->
+                                <!--<td class="text-left px-3"width="800px">-->
+                                    <!--date-->
+                                <!--</td>-->
+                            <!--</tr>-->
+                            <!--<tr>-->
+                                <!--<td class="text-right" width="150px">-->
+                                    <!--Runtime-->
+                                <!--</td>-->
+                                <!--<td class="text-left px-3"width="800px">-->
+                                    <!--time-->
+                                <!--</td>-->
+                            <!--</tr>-->
+                            <!--<tr>-->
+                                <!--<td class="text-right" width="150px">-->
+                                    <!--Studio:-->
+                                <!--</td>-->
+                                <!--<td class="text-left px-3"width="800px">-->
+                                    <!--Studio name-->
+                                <!--</td>-->
+                            <!--</tr>-->
+                        <!--</table>-->
+
+                        <table>
+                            <tr>
+                                <td class="text-right" width="150px">
+                                    Rating:
+                                </td>
+                                <td class="text-left px-3"width="800px" th:text="${tv.rating}">
+                                    R (for crude sexual content and language throughout, drug material and some graphic nudity)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-right" width="150px">
+                                    Genre:
+                                </td>
+                                <td class="text-left px-3"width="800px" th:text="${tv.genre}">
+                                    Comedy
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-right" width="150px">
+                                    Directed By:
+                                </td>
+                                <td class="text-left px-3"width="800px" th:text="${tv.direct}">
+                                    director name
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-right" width="150px">
+                                    Written By:
+                                </td>
+                                <td class="text-left px-3"width="800px" th:text="${tv.write}">
+                                    writer name
+                                </td>
+                            </tr>
+                            <!--<tr>-->
+                                <!--<td class="text-right" width="150px" th:text="${tv.actors}">-->
+                                    <!--Actor :-->
+                                <!--</td>-->
+                                <!--<td class="text-left px-3"width="800px" >-->
+                                    <!--actors-->
+                                <!--</td>-->
+                            <!--</tr>-->
+                            <tr>
+                                <td class="text-right" width="150px">
+                                    Description
+                                </td>
+                                <td class="text-left px-3"width="800px" th:text="${tv.description}">
+                                    description
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-right" width="150px">
+                                    Network:
+                                </td>
+                                <td class="text-left px-3"width="800px" th:text="${tv.network}">
+                                    network
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-right" width="150px">
+                                    Air Date:
+                                </td>
+                                <td class="text-left px-3"width="800px" th:text="${tv.airDate}">
+                                    air date
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </sction>
+            <!--cast-->
+            <section id="cast">
+                <h3 class="title text-left">Cast</h3>
+                <div class="card m-1">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-2 ">
+                                <div class="text-center">
+                                    <a href="https://placeholder.com">
+                                        <img class="" src="http://via.placeholder.com/100x100"></a>
+                                    <p class="font-weight-bold text-md-center my-0" th:text="${movie.name}">NAME</p>
+                                </div>
+                            </div>
+                            <div class="col-md-2 ">
+                                <div class="text-center">
+                                    <a href="https://placeholder.com">
+                                        <img class="" src="http://via.placeholder.com/100x100"></a>
+                                    <p class="font-weight-bold text-md-center my-0" th:text="${movie.name}">NAME</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-right">
+                    <button type="button" class="btn btn-default btn-sm">View All</button>
+                </div>
+            </section>
+            <!--photo-->
+            <section id="photo">
+                <h3 class="title text-left">Photo</h3>
+                <div class="card m-1">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-2 ">
+                                <div class="text-center">
+                                    <a href="https://placeholder.com">
+                                        <img class="" src="http://via.placeholder.com/100x100"></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-right">
+                    <button type="button" class="btn btn-default btn-sm">View All</button>
+                </div>
+            </section>
+            <!--video-->
+            <section id="video">
+                <h3 class="title text-left">Video</h3>
+                <div class="card m-1">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-2 ">
+                                <div class="text-center">
+                                    <div class="embed-responsive embed-responsive-16by9 mt-4">
+                                        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/DCIL7WbyIKM"
+                                                allowfullscreen></iframe>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!--critic review-->
+            <!--<section id="critic_review">-->
+                <!--<h3 class="title text-left">Critic Reviews</h3>-->
+                <!--<div class="card m-1">-->
+                    <!--<div class="card-body">-->
+                        <!--<div class="card-columns">-->
+                            <!--<div class="card card-block">-->
+                                <!--<div class="m-3">-->
+                                    <!--<p>This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>-->
+                                <!--</div>-->
+
+                            <!--</div>-->
+                            <!--<div class=" card card-block">-->
+                                <!--<div class="m-3">-->
+                                    <!--<p>This card has supporting text below as a natural lead-in to additional content.</p>-->
+                                    <!--<p class="text-right"><small class="text-muted">Last updated 3 mins ago</small></p>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <!--<div class=" card card-block">-->
+                                <!--<div class="m-3">-->
+                                    <!--<p>This card has supporting text below as a natural lead-in to additional content.</p>-->
+                                    <!--<p class="text-right"><small class="text-muted">Last updated 3 mins ago</small></p>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <!--<div class=" card card-block">-->
+                                <!--<div class="m-3">-->
+                                    <!--<p>This card has supporting text below as a natural lead-in to additional content.</p>-->
+                                    <!--<p class="text-right"><small class="text-muted">Last updated 3 mins ago</small></p>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <!--<div class=" card card-block">-->
+                                <!--<div class="m-3">-->
+                                    <!--<p>This card has supporting text below as a natural lead-in to additional content.</p>-->
+                                    <!--<p class="text-right"><small class="text-muted">Last updated 3 mins ago</small></p>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <!--<div class=" card card-block">-->
+                                <!--<div class="m-3">-->
+                                    <!--<p>This card has supporting text below as a natural lead-in to additional content.</p>-->
+                                    <!--<p class="text-right"><small class="text-muted">Last updated 3 mins ago</small></p>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<div class="text-right">-->
+                    <!--<button type="button" class="btn btn-default btn-sm">View All</button>-->
+                <!--</div>-->
+            <!--</section>-->
+            <!--audience review-->
+            <!--<section id="audience_review">-->
+                <!--<h3 class="title text-left">Audience Reviews</h3>-->
+                <!--<div class="card m-1">-->
+                    <!--<div class="card-body">-->
+                        <!--<div class="card-columns">-->
+                            <!--<div class="card card-block">-->
+                                <!--<div class="m-3">-->
+                                    <!--<p>This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>-->
+                                <!--</div>-->
+
+                            <!--</div>-->
+                            <!--<div class=" card card-block">-->
+                                <!--<div class="m-3">-->
+                                    <!--<p>This card has supporting text below as a natural lead-in to additional content.</p>-->
+                                    <!--<p class="text-right"><small class="text-muted">Last updated 3 mins ago</small></p>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <!--<div class=" card card-block">-->
+                                <!--<div class="m-3">-->
+                                    <!--<p>This card has supporting text below as a natural lead-in to additional content.</p>-->
+                                    <!--<p class="text-right"><small class="text-muted">Last updated 3 mins ago</small></p>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <!--<div class=" card card-block">-->
+                                <!--<div class="m-3">-->
+                                    <!--<p>This card has supporting text below as a natural lead-in to additional content.</p>-->
+                                    <!--<p class="text-right"><small class="text-muted">Last updated 3 mins ago</small></p>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <!--<div class=" card card-block">-->
+                                <!--<div class="m-3">-->
+                                    <!--<p>This card has supporting text below as a natural lead-in to additional content.</p>-->
+                                    <!--<p class="text-right"><small class="text-muted">Last updated 3 mins ago</small></p>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <!--<div class=" card card-block">-->
+                                <!--<div class="m-3">-->
+                                    <!--<p>This card has supporting text below as a natural lead-in to additional content.</p>-->
+                                    <!--<p class="text-right"><small class="text-muted">Last updated 3 mins ago</small></p>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<div class="text-right">-->
+                    <!--<button type="button" class="btn btn-default btn-sm">View All</button>-->
+                <!--</div>-->
+            <!--</section>-->
+            <!--news-->
+            <section id="news">
+                <h3 class="title text-left">News & Feature</h3>
+                <div class="card m-1">
+                    <div class="card-body">
+                        <div class="row">
+                            <!--news with picture-->
+                            <div class="col-md-7">
+                                <div class="row">
+                                    <div class="col-md-4 mx-5">
+                                        <div class="text-center">
+                                            <a href="https://placeholder.com">
+                                                <img class="" src="http://via.placeholder.com/200x150"></a>
+                                            <p class="font-weight-bold text-md-center my-0" >title</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mx-5">
+                                        <div class="text-center">
+                                            <a href="https://placeholder.com">
+                                                <img class="" src="http://via.placeholder.com/200x150"></a>
+                                            <p class="font-weight-bold text-md-center my-0" >title</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4 mx-5">
+                                        <div class="text-center">
+                                            <a href="https://placeholder.com">
+                                                <img class="" src="http://via.placeholder.com/200x150"></a>
+                                            <p class="font-weight-bold text-md-center my-0" >title</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mx-5">
+                                        <div class="text-center">
+                                            <a href="https://placeholder.com">
+                                                <img class="" src="http://via.placeholder.com/200x150"></a>
+                                            <p class="font-weight-bold text-md-center my-0">title</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--headline-->
+                            <div class="col-md-4">
+                                <ul>
+                                    <li>
+                                        <a href="#">headline</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-right">
+                    <button type="button" class="btn btn-default btn-sm">View All</button>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+
+
+<!-- Classic Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <i class="material-icons">clear</i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live
+                    the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large
+                    language ocean. A small river named Duden flows by their place and supplies it with the necessary
+                    regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.
+                    Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic
+                    life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the
+                    far World of Grammar.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-link">Nice Button</button>
+                <button type="button" class="btn btn-danger btn-link" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="signupModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="signupModalLabel">Sign Up</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <input type="email" class="form-control" id="signupInputEmail" aria-describedby="emailHelp"
+                               placeholder="Enter email">
+                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
+                            else.
+                        </small>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" placeholder="Password">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" placeholder="Retype Password">
+                    </div>
+                    <div class="form-group">
+                        <input type="email" class="form-control" aria-describedby="emailHelp"
+                               placeholder="Enter First Name">
+                    </div>
+                    <div class="form-group">
+                        <input type="email" class="form-control" aria-describedby="emailHelp"
+                               placeholder="Enter Last Name">
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                        <label class="form-check-label">Check if you are applying as a
+                            critic</label>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer mb-1">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Sign In</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <input type="email" class="form-control" aria-describedby="emailHelp"
+                               placeholder="Enter email">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" placeholder="Password">
+                    </div>
+                    <div class="text-danger" th:text="${errorMessage}">error</div>
+                </form>
+            </div>
+
+            <div class="modal-footer mb-1">
+                <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-sm btn-primary">Sign In</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--  End Modal -->
+<footer class="footer ">
+    <div class="container">
+        <nav class="pull-left">
+            <ul>
+                <li>
+                    <a href="http://presentation.creative-tim.com">
+                        About Us
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <div class="copyright pull-right">
+            &copy;
+            <script>
+                document.write(new Date().getFullYear())
+            </script>
+            , The Redwood Team
+        </div>
+    </div>
+</footer>
+<!--   Core JS Files   -->
+<script src="./assets/js/core/jquery.min.js"></script>
+<script src="./assets/js/core/popper.min.js"></script>
+<script src="./assets/js/bootstrap-material-design.js"></script>
+<!--  Plugin for Date Time Picker and Full Calendar Plugin  -->
+<script src="./assets/js/plugins/moment.min.js"></script>
+<!--	Plugin for the Datepicker, full documentation here: https://github.com/Eonasdan/bootstrap-datetimepicker -->
+<script src="./assets/js/plugins/bootstrap-datetimepicker.min.js"></script>
+<!--	Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
+<script src="./assets/js/plugins/nouislider.min.js"></script>
+<!-- Material Kit Core initialisations of plugins and Bootstrap Material Design Library -->
+<script src="./assets/js/material-kit.js?v=2.0.2"></script>
+<!-- Fixed Sidebar Nav - js With initialisations For Demo Purpose, Don't Include it in your project -->
+<script src="./assets/assets-for-demo/js/material-kit-demo.js"></script>
+
+</body>
+
+</html>
