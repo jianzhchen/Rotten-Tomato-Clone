@@ -12,7 +12,6 @@ public class Critic
     private String criticName;
     private String criticInfo;
 
-    private String criticPublication;
 
     //Constructor for JPA
     public Critic() {
