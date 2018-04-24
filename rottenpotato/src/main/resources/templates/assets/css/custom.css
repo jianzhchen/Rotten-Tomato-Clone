@@ -60,6 +60,8 @@
     width: 800px;
 }
 
+
+
 .card .card-header-light, .card.bg-light,
 .card.card-rotate.bg-light .front,
 .card.card-rotate.bg-light .back {
@@ -116,4 +118,61 @@
 }
 .review-table th:last-child{
     width: 300px;
+}
+
+.infolist-height{
+    height: 96px;
+}
+.rating-history-table th:first-child{
+    width: 100px;
+    text-align: left;
+}
+
+.rating-history-table td:first-child{
+    width: 100px;
+    text-align: left;
+}
+.rating-history-table th:nth-child(2){
+    width: 200px;
+    text-align: left;
+}
+.rating-history-table td:nth-child(2){
+    width: 200px;
+    text-align: left;
+}
+.rating-history-table th:nth-child(3){
+    width: 500px;
+    text-align: left;
+}
+.rating-history-table td:nth-child(3){
+    width: 600px;
+    text-align: left;
+}
+.rating-history-table th:nth-child(4){
+    text-align: end;
+}
+.rating-history-table td:nth-child(4){
+    text-align: end;
+}
+
+.rating-history-table th:last-child{
+    text-align: end;
+}
+.rating-history-table td:last-child{
+    text-align: end;
+}
+
+#want-to-see-table td:first-child{
+    padding: 10px;
+    width: 240px;
+    text-align: center;
+}
+#want-to-see-table td:nth-child(2){
+    padding: 10px;
+    width: 800px;
+    height: 150px;
+    text-align: center;
+}
+#want-to-see-table td:last-child{
+    text-align: end;
 }
