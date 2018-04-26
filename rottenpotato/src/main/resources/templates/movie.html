@@ -23,7 +23,7 @@
     <!-- iframe removal -->
 </head>
 
-<body class="index-page ">
+<body class="index-page">
     <nav class="navbar navbar-expand-lg fixed-top  bg-dark">
         <div class="container">
             <div class="navbar-translate">
@@ -87,13 +87,13 @@
                     <div class = "col-sm-3">
                         <div class="btn-group btn-group-toggle btn-group-vertical" data-toggle="buttons">
                             <label class="btn btn-secondary active">
-                                <input type="radio" name="options" id="option1" autocomplete="off" checked> Opening This Week
+                                <input type="radio" name="movieType" id="option1" autocomplete="off" value="openingThisWeek" checked> Opening This Week
                             </label>
                             <label class="btn btn-secondary">
-                                <input type="radio" name="options" id="option2" autocomplete="off"> Top Box Office
+                                <input type="radio" name="movieType" id="option2" autocomplete="off" value="topBoxOffice"> Top Box Office
                             </label>
                             <label class="btn btn-secondary">
-                                <input type="radio" name="options" id="option3" autocomplete="off"> Coming Soon
+                                <input type="radio" name="movieType" id="option3" autocomplete="off" value="comingSoon"> Coming Soon
                             </label>
                         </div>
                     </div>
@@ -134,12 +134,12 @@
                             <div class="card-body">
                                 <div class="row m-5">
                                     <div class="col-md-3 ">
-                                        <div th:each="movie${movieList}">
+                                        <div th:each="movie,stat:${movieList}">
                                             <a href="https://placeholder.com">
                                                 <img class="img-center" src="http://via.placeholder.com/130x193"></a>
-                                            <p class="font-weight-bold text-md-center my-0" th:text="${movie.name}">NAME</p>
-                                            <i class="ico-rank3 mx-auto" th:text="${movie.rate}">50%</i>
-                                            <p class="text-md-center" th:text="${movie.Name}">In Theater Mar 16</p>
+                                            <p class="font-weight-bold text-md-center my-0" th:text="${movie.movieName}">NAME</p>
+                                            <!--<i class="ico-rank3 mx-auto" th:text="${movie.rate}">50%</i>-->
+                                            <!--<p class="text-md-center" th:text="${movie.Date}">In Theater Mar 16</p>-->
                                         </div>
                                     </div>
                                 </div>
@@ -298,6 +298,8 @@
     <script src="./assets/js/material-kit.js?v=2.0.2"></script>
     <!-- Fixed Sidebar Nav - js With initialisations For Demo Purpose, Don't Include it in your project -->
     <script src="./assets/assets-for-demo/js/material-kit-demo.js"></script>
+
+
 
 </body>
 

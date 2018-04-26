@@ -7439,7 +7439,7 @@ button:focus {
     .open > .btn.btn-secondary.dropdown-toggle,
     .show > .btn.btn-secondary.dropdown-toggle {
       color: rgba(0, 0, 0, 0.87);
-      background-color: #f2f2f2;
+      background-color: #9124a3;
       border-color: #adadad;
       -webkit-box-shadow: 0 2px 2px 0 rgba(250, 250, 250, 0.14), 0 3px 1px -2px rgba(250, 250, 250, 0.2), 0 1px 5px 0 rgba(250, 250, 250, 0.12);
               box-shadow: 0 2px 2px 0 rgba(250, 250, 250, 0.14), 0 3px 1px -2px rgba(250, 250, 250, 0.2), 0 1px 5px 0 rgba(250, 250, 250, 0.12); }
@@ -8951,8 +8951,6 @@ label {
     .card.card-rotate.bg-grey .front,
     .card.card-rotate.bg-grey .back {
       background: #222222 }
-
-
   .card .card-header-primary {
     -webkit-box-shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.2), 0 13px 24px -11px rgba(156, 39, 176, 0.6);
             box-shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.2), 0 13px 24px -11px rgba(156, 39, 176, 0.6); }
@@ -8971,10 +8969,7 @@ label {
   .card .card-header-success {
     -webkit-box-shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.2), 0 13px 24px -11px rgba(76, 175, 80, 0.6);
             box-shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.2), 0 13px 24px -11px rgba(76, 175, 80, 0.6); }
-  .card .card-header-grey {
-      -webkit-box-shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.2), 0 13px 24px -11px rgba(0, 0, 0, 0.6);
-              box-shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.2), 0 13px 24px -11px rgba(0, 0, 0, 0.6); }
-  .card .card-header-light {
+    .card .card-header-grey {
       -webkit-box-shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.2), 0 13px 24px -11px rgba(0, 0, 0, 0.6);
               box-shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.2), 0 13px 24px -11px rgba(0, 0, 0, 0.6); }
   .card [class*="header-"], .card[class*="bg-"] {
