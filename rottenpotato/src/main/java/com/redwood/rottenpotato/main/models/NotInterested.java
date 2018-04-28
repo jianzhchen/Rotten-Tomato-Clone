@@ -12,7 +12,8 @@ public class NotInterested {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    private String movieKey;
+    private String itemKey;
+    private boolean isMovie;
     private long userId;
 
     //Constructor for JPA
@@ -35,11 +36,19 @@ public class NotInterested {
         this.userId = userId;
     }
 
-    public String getMovieKey() {
-        return movieKey;
+    public String getItemKey() {
+        return itemKey;
     }
 
-    public void setMovieKey(String movieKey) {
-        this.movieKey = movieKey;
+    public void setItemKey(String itemKey) {
+        this.itemKey = itemKey;
+    }
+
+    public boolean isMovie() {
+        return isMovie;
+    }
+
+    public void setMovie(boolean movie) {
+        isMovie = movie;
     }
 }

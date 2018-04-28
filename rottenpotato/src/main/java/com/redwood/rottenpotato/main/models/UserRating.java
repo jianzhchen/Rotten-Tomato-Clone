@@ -13,7 +13,8 @@ public class UserRating {
     private long id;
 
     private long userId;
-    private String movieKey;
+    private String itemKey;
+    private boolean isMovie;
     private int rating;
 
     //Constructor for JPA
@@ -45,11 +46,19 @@ public class UserRating {
         this.rating = rating;
     }
 
-    public String getMovieKey() {
-        return movieKey;
+    public String getItemKey() {
+        return itemKey;
     }
 
-    public void setMovieKey(String movieKey) {
-        this.movieKey = movieKey;
+    public void setItemKey(String itemKey) {
+        this.itemKey = itemKey;
+    }
+
+    public boolean isMovie() {
+        return isMovie;
+    }
+
+    public void setMovie(boolean movie) {
+        isMovie = movie;
     }
 }
