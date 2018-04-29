@@ -10,10 +10,9 @@ public class TV {
     private String TVKey;
     private String TVName;
     private String TVInfo;
-    private String TVLength;
     private String TVGenre;
-    private String TVTime;
-    private String TVWriter;
+    private String TVNetwork;
+    private String TVDate;
     private String TVCast;
 
     //Constructor for JPA
