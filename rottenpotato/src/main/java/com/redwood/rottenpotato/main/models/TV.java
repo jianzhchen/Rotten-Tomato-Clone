@@ -16,7 +16,7 @@ public class TV {
     private String TVCast;
 
     //Constructor for JPA
-    protected TV() {
+    public TV() {
     }
 
     public String getTVKey() {

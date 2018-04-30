@@ -114,4 +114,19 @@ public class AccountService {
         userRepository.save(user);
         return jsonService.constructStatusMessage(AjaxCallStatus.OK);
     }
+
+    public void sendVerifyEmail(String email, String appUrl) {
+        User user = userRepository.findByEmail(email);
+        String token = UUID.randomUUID().toString().replace("-", "");
+        user.setToken(token);
+        user.setTokenEndTime(new Timestamp(System.currentTimeMillis() + 1200000));
+        userRepository.save(user);
+        Mail mail = new Mail();
+        String subject = "Verify";
+        String confirmationUrl = appUrl + "/verify?token=" + token;
+        mail.setTo(email);
+        mail.setSubject(subject);
+        mail.setContent("Verify Account by clicking the link below in the next 20 minutes\n" + confirmationUrl);
+        emailService.sendSimpleMessage(mail);
+    }
 }

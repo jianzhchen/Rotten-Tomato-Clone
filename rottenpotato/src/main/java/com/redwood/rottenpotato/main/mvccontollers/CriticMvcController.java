@@ -30,7 +30,7 @@ public class CriticMvcController {
         Critic critic = criticRepository.findByCriticKey(criticKey);
         model.addAttribute("name", critic.getCriticName());
         model.addAttribute("info", critic.getCriticInfo());
-        List<CriticReview> criticReviews = criticReviewRepository.findTop10ByCriticKeyOrderByReviewTimeDateAndCriticKey(criticKey, PageRequest.of(0, 10));
+        List<CriticReview> criticReviews = criticReviewRepository.findTop10ByCriticKeyOrderByReviewTimeDateDesc(criticKey, PageRequest.of(0, 10));
         List<HashMap> reviews = new ArrayList<>();
         for (CriticReview cv : criticReviews) {
             HashMap<String, String> map = new HashMap<>();

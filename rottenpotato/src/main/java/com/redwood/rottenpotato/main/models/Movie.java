@@ -24,7 +24,7 @@ public class Movie {
     private Date onDiscTime;
 
     //Constructor for JPA
-    protected Movie() {
+    public Movie() {
     }
 
     public String getMovieKey() {

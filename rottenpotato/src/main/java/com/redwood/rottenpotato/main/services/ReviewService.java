@@ -3,10 +3,8 @@ package com.redwood.rottenpotato.main.services;
 import com.redwood.rottenpotato.main.enums.AjaxCallStatus;
 import com.redwood.rottenpotato.main.models.UserReview;
 import com.redwood.rottenpotato.main.models.UserReviewReport;
-import com.redwood.rottenpotato.main.repositories.MovieRepository;
-import com.redwood.rottenpotato.main.repositories.ReviewReportRepository;
+import com.redwood.rottenpotato.main.repositories.UserReviewReportRepository;
 import com.redwood.rottenpotato.main.repositories.UserReviewRepository;
-import com.redwood.rottenpotato.main.repositories.TVRepository;
 import com.redwood.rottenpotato.security.model.User;
 import com.redwood.rottenpotato.security.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +15,7 @@ public class ReviewService {
     @Autowired
     private UserReviewRepository userReviewRepository;
     @Autowired
-    private ReviewReportRepository reviewReportRepository;
+    private UserReviewReportRepository userReviewReportRepository;
     @Autowired
     private UserRepository userRepository;
     @Autowired
@@ -50,7 +48,7 @@ public class ReviewService {
         userReviewReport.setUserId(user.getId());
         userReviewReport.setContent(content);
         userReviewReport.setReviewId(userReview.getId());
-        reviewReportRepository.save(userReviewReport);
+        userReviewReportRepository.save(userReviewReport);
         return jsonService.constructStatusMessage(AjaxCallStatus.OK);
     }
 
@@ -68,7 +66,7 @@ public class ReviewService {
             return jsonService.constructStatusMessage(AjaxCallStatus.ERROR, "userReview not own by you");
         }
         userReviewRepository.removeById(reviewId);
-        reviewReportRepository.removeByReviewId(reviewId);
+        userReviewReportRepository.removeByReviewId(reviewId);
         return jsonService.constructStatusMessage(AjaxCallStatus.OK);
     }
 

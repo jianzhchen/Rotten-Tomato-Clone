@@ -20,4 +20,6 @@ public interface MovieRepository extends JpaRepository<Movie, Long> {
     public List<Movie> findTop10ByOrderByInTheatersTimeDesc(Pageable pageable);
 
     public Movie findByMovieKey(String movieKey);
+
+    long removeByMovieKey(String movieKey);
 }

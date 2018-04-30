@@ -20,6 +20,7 @@ public class User {
     private boolean openProfile;
     @Lob
     private byte[] image;
+    private boolean isAdmin;
 
     private String token;
     private Timestamp tokenEndTime;
@@ -145,4 +146,19 @@ public class User {
         this.openProfile = openProfile;
     }
 
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
+    }
+
+    public boolean isAdmin() {
+        return isAdmin;
+    }
+
+    public void setAdmin(boolean admin) {
+        isAdmin = admin;
+    }
 }
