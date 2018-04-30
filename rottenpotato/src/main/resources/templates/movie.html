@@ -132,17 +132,22 @@
                         </div>
                         <div class="card">
                             <div class="card-body">
-                                <div class="row m-5">
-                                    <div class="col-md-3 ">
-                                        <div th:each="movie,stat:${movieList}">
-                                            <a href="https://placeholder.com">
-                                                <img class="img-center" src="http://via.placeholder.com/130x193"></a>
-                                            <p class="font-weight-bold text-md-center my-0" th:text="${movie.movieName}">NAME</p>
-                                            <!--<i class="ico-rank3 mx-auto" th:text="${movie.rate}">50%</i>-->
-                                            <!--<p class="text-md-center" th:text="${movie.Date}">In Theater Mar 16</p>-->
-                                        </div>
-                                    </div>
-                                </div>
+                                <table id="search-result-table-item">
+                                    <tbody>
+                                    <tr th:each="movie:${movieList}">
+                                        <td th:text="${movie.rate}">97%</td>
+                                        <td>
+                                            <img th:scr="@{movie.posterLink}" src="http://via.placeholder.com/240x135" width="240" height="135">
+                                        </td>
+                                        <td>
+                                            <ul class="list-unstyled">
+                                                <li th:text="${movie.name}">Movie Name</li>
+                                                <li th:text="${movie.info}">Info</li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                         <div class="float-left">
