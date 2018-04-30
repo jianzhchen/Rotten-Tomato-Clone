@@ -2,11 +2,13 @@ package com.redwood.rottenpotato.main.services;
 
 import com.redwood.rottenpotato.main.enums.AjaxCallStatus;
 import com.redwood.rottenpotato.main.models.Movie;
+import com.redwood.rottenpotato.main.models.TV;
 import com.redwood.rottenpotato.main.models.UserReview;
 import com.redwood.rottenpotato.main.models.UserReviewReport;
 import com.redwood.rottenpotato.main.repositories.MovieRepository;
 import com.redwood.rottenpotato.main.repositories.ReviewReportRepository;
 import com.redwood.rottenpotato.main.repositories.ReviewRepository;
+import com.redwood.rottenpotato.main.repositories.TVRepository;
 import com.redwood.rottenpotato.security.model.User;
 import com.redwood.rottenpotato.security.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,12 +26,10 @@ public class ReviewService {
     private UserRepository userRepository;
     @Autowired
     private JsonService jsonService;
+    @Autowired
+    private TVRepository tTVRepository;
 
-    public String postReview(String movieKey, String userEmail, String content) {
-        Movie movie = movieRepository.findByMovieKey(movieKey);
-        if (movie == null) {
-            return jsonService.constructStatusMessage(AjaxCallStatus.ERROR, "movie doesn't exist");
-        }
+    public String postReview(String itemKey, String userEmail, String content) {
         User user = userRepository.findByEmail(userEmail);
         if (user == null) {
             return jsonService.constructStatusMessage(AjaxCallStatus.ERROR, "Can't find user");
@@ -37,7 +37,7 @@ public class ReviewService {
         UserReview userReview = new UserReview();
         userReview.setUserId(user.getId());
         userReview.setContent(content);
-        userReview.setMovieKey(movie.getMovieKey());
+        userReview.setItemKey(itemKey);
         reviewRepository.save(userReview);
         return jsonService.constructStatusMessage(AjaxCallStatus.OK);
     }

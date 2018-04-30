@@ -7,11 +7,9 @@ import java.sql.Date;
 public class CriticReview {
     //Primary key for the entity Item
     @Id
-
     private String reviewKey;
-    private String movieKey;
+    private String itemKey;
     private String criticKey;
-
     private String reviewTime;
     private int reviewRating;
     private String reviewContent;
@@ -29,12 +27,12 @@ public class CriticReview {
         this.reviewKey = reviewKey;
     }
 
-    public String getMovieKey() {
-        return movieKey;
+    public String getItemKey() {
+        return itemKey;
     }
 
-    public void setMovieKey(String movieKey) {
-        this.movieKey = movieKey;
+    public void setItemKey(String itemKey) {
+        this.itemKey = itemKey;
     }
 
     public String getCriticKey() {

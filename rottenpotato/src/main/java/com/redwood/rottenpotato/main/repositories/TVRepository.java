@@ -15,4 +15,5 @@ public interface TVRepository extends JpaRepository<TV, Long> {
     @Query("SELECT t FROM TV t WHERE t.TVName LIKE %:searchTerm%")
     public List<TV> searchByName(@Param("searchTerm") String searchTerm);
 
+    public TV findByTVKey(String tVkey);
 }

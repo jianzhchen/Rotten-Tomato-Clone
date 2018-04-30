@@ -8,7 +8,7 @@ import java.util.List;
 
 @Repository
 public interface WantToSeeRepository extends JpaRepository<WantToSee, Long> {
-    long removeByMovieKeyAndUserId(String movieKey, long userId);
+    long removeByItemKeyAndUserId(String itemKey, long userId);
 
     long removeByUserId(long userId);
 

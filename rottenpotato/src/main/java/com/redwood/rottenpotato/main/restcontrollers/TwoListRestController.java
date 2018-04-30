@@ -19,26 +19,26 @@ public class TwoListRestController {
     private TwoListService twoListService;
 
     @PostMapping("addWantToSee")
-    public String addWantToSee(@RequestParam("movieKey") String movieKey, Principal principal) {
+    public String addWantToSee(@RequestParam("itemKey") String itemKey, Principal principal) {
         String userEmail = principal.getName();
-        return twoListService.addWantToSee(movieKey, userEmail);
+        return twoListService.addWantToSee(itemKey, userEmail);
     }
 
     @PostMapping("removeWantToSee")
-    public String removeWantToSee(@RequestParam("movieKey") String movieKey, Principal principal) {
+    public String removeWantToSee(@RequestParam("itemKey") String itemKey, Principal principal) {
         String userEmail = principal.getName();
-        return twoListService.removeWantToSee(movieKey, userEmail);
+        return twoListService.removeWantToSee(itemKey, userEmail);
     }
 
     @PostMapping("addNotInterested")
-    public String addNotInterested(@RequestParam("movieKey") String movieKey, Principal principal) {
+    public String addNotInterested(@RequestParam("itemKey") String itemKey, Principal principal) {
         String userEmail = principal.getName();
-        return twoListService.addNotInterested(movieKey, userEmail);
+        return twoListService.addNotInterested(itemKey, userEmail);
     }
 
     @PostMapping("removeNotInterested")
-    public String removeNotInterested(@RequestParam("movieKey") String movieKey, Principal principal) {
+    public String removeNotInterested(@RequestParam("itemKey") String itemKey, Principal principal) {
         String userEmail = principal.getName();
-        return twoListService.removeNotInterested(movieKey, userEmail);
+        return twoListService.removeNotInterested(itemKey, userEmail);
     }
 }

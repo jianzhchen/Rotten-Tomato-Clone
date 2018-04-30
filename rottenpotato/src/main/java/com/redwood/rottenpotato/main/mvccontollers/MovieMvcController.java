@@ -39,6 +39,9 @@ public class MovieMvcController {
     @GetMapping(value = "m/{movieKey}")
     public String movieDetail(@PathVariable("movieKey") String movieKey, Model model) {
         Movie movie = movieRepository.findByMovieKey(movieKey);
+        if(movie==null){
+            model.addAttribute("exist", false);
+        }
         model.addAttribute("name", movie.getName());
         model.addAttribute("info", movie.getInfo());
         model.addAttribute("movieRating", movie.getRating());
@@ -68,7 +71,7 @@ public class MovieMvcController {
             actors.add(actorMap);
         }
         model.addAttribute("actors", actors);
-        List<CriticReview> crs = criticReviewRepository.findByMovieKey(movieKey);
+        List<CriticReview> crs = criticReviewRepository.findByItemKey(movieKey);
         int criticScore = 0;
         int criticScoreCount = 0;
         for (CriticReview criticReview : crs) {
@@ -79,7 +82,7 @@ public class MovieMvcController {
         }
         model.addAttribute("criticRating", String.format("%.2f", criticScore / criticScoreCount));
 
-        List<UserRating> userRatings = userRatingRepository.findByMovieKey(movieKey);
+        List<UserRating> userRatings = userRatingRepository.findByItemKey(movieKey);
         int userScore = 0;
         int userScoreCount = 0;
         for (UserRating userRating : userRatings) {
@@ -89,7 +92,7 @@ public class MovieMvcController {
             }
         }
         model.addAttribute("userRating", String.format("%.2f", userScore / userScoreCount));
-        //poster
+        //TODO poster
         return "movieInfo.html";
     }
 
@@ -102,7 +105,7 @@ public class MovieMvcController {
             movieDetail.put("name", movie.getName());
             movieDetail.put("key", movie.getMovieKey());
             movieDetail.put("date", movie.getInTheaters());
-            //poster
+            //TODO
             movieList.add(movieDetail);
         }
         model.addAttribute("movies", movieList);
@@ -118,7 +121,7 @@ public class MovieMvcController {
             movieDetail.put("name", movie.getName());
             movieDetail.put("key", movie.getMovieKey());
             movieDetail.put("boxOffice", "$" + movie.getBoxOffice());
-            //poster
+            //TODO
             movieList.add(movieDetail);
         }
         model.addAttribute("movies", movieList);

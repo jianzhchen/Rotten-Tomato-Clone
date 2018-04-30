@@ -43,14 +43,6 @@ public class TV {
         this.TVInfo = TVInfo;
     }
 
-    public String getTVLength() {
-        return TVLength;
-    }
-
-    public void setTVLength(String TVLength) {
-        this.TVLength = TVLength;
-    }
-
     public String getTVGenre() {
         return TVGenre;
     }
@@ -59,20 +51,20 @@ public class TV {
         this.TVGenre = TVGenre;
     }
 
-    public String getTVTime() {
-        return TVTime;
+    public String getTVNetwork() {
+        return TVNetwork;
     }
 
-    public void setTVTime(String TVTime) {
-        this.TVTime = TVTime;
+    public void setTVNetwork(String TVNetwork) {
+        this.TVNetwork = TVNetwork;
     }
 
-    public String getTVWriter() {
-        return TVWriter;
+    public String getTVDate() {
+        return TVDate;
     }
 
-    public void setTVWriter(String TVWriter) {
-        this.TVWriter = TVWriter;
+    public void setTVDate(String TVDate) {
+        this.TVDate = TVDate;
     }
 
     public String getTVCast() {

@@ -11,6 +11,7 @@ import java.util.List;
 
 @Repository
 public interface CriticReviewRepository extends JpaRepository<CriticReview, Long> {
-    List<CriticReview> findByMovieKey(String movieKey);
+    List<CriticReview> findByItemKey(String itemKey);
     List<CriticReview> findTop10ByOrderByReviewTimeDateDesc(Pageable pageable);
+    List<CriticReview> findTop10ByCriticKeyOrderByReviewTimeDateAndCriticKey(String criticKey,Pageable pageable);
 }

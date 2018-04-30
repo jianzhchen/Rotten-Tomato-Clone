@@ -13,7 +13,6 @@ public class NotInterested {
     private long id;
 
     private String itemKey;
-    private boolean isMovie;
     private long userId;
 
     //Constructor for JPA
@@ -44,11 +43,5 @@ public class NotInterested {
         this.itemKey = itemKey;
     }
 
-    public boolean isMovie() {
-        return isMovie;
-    }
 
-    public void setMovie(boolean movie) {
-        isMovie = movie;
-    }
 }

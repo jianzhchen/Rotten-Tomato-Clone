@@ -14,9 +14,9 @@ public class ReviewRestController {
     private ReviewService reviewService;
 
     @PostMapping("postReview")
-    public String postReview(@RequestParam("movieKey") String movieKey, Principal principal, @RequestParam("content") String content) {
+    public String postReview(@RequestParam("itemKey") String itemKey, Principal principal, @RequestParam("content") String content) {
         String userEmail = principal.getName();
-        return reviewService.postReview(movieKey,userEmail,content);
+        return reviewService.postReview(itemKey,userEmail,content);
     }
 
     @PostMapping("reportReview")

@@ -14,7 +14,6 @@ public class UserRating {
 
     private long userId;
     private String itemKey;
-    private boolean isMovie;
     private int rating;
 
     //Constructor for JPA
@@ -54,11 +53,4 @@ public class UserRating {
         this.itemKey = itemKey;
     }
 
-    public boolean isMovie() {
-        return isMovie;
-    }
-
-    public void setMovie(boolean movie) {
-        isMovie = movie;
-    }
 }

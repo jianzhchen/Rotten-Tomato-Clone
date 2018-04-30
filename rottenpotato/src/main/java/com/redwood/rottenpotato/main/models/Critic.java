@@ -17,4 +17,27 @@ public class Critic
     public Critic() {
     }
 
+    public String getCriticKey() {
+        return criticKey;
+    }
+
+    public void setCriticKey(String criticKey) {
+        this.criticKey = criticKey;
+    }
+
+    public String getCriticName() {
+        return criticName;
+    }
+
+    public void setCriticName(String criticName) {
+        this.criticName = criticName;
+    }
+
+    public String getCriticInfo() {
+        return criticInfo;
+    }
+
+    public void setCriticInfo(String criticInfo) {
+        this.criticInfo = criticInfo;
+    }
 }

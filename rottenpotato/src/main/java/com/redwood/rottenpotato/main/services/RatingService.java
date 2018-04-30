@@ -21,11 +21,7 @@ public class RatingService {
     @Autowired
     private JsonService jsonService;
 
-    public String postRating(String movieKey, String userEmail, int rating) {
-        Movie movie = movieRepository.findByMovieKey(movieKey);
-        if (movie == null) {
-            return jsonService.constructStatusMessage(AjaxCallStatus.ERROR, "movie doesn't exist");
-        }
+    public String postRating(String itemKey, String userEmail, int rating) {
         User user = userRepository.findByEmail(userEmail);
         if (user == null) {
             return jsonService.constructStatusMessage(AjaxCallStatus.ERROR, "Can't find user");
@@ -34,18 +30,15 @@ public class RatingService {
             return jsonService.constructStatusMessage(AjaxCallStatus.ERROR, "UserRating out of range");
         }
         UserRating userRatingEntity = new UserRating();
-        userRatingEntity.setMovieKey(movie.getMovieKey());
+        userRatingEntity.setItemKey(itemKey);
         userRatingEntity.setRating(rating);
         userRatingEntity.setUserId(user.getId());
         userRatingRepository.save(userRatingEntity);
         return jsonService.constructStatusMessage(AjaxCallStatus.OK);
     }
 
-    public String editRating(String movieKey, String userEmail, int rating) {
-        Movie movie = movieRepository.findByMovieKey(movieKey);
-        if (movie == null) {
-            return jsonService.constructStatusMessage(AjaxCallStatus.ERROR, "movie doesn't exist");
-        }
+    public String editRating(String itemKey, String userEmail, int rating) {
+
         User user = userRepository.findByEmail(userEmail);
         if (user == null) {
             return jsonService.constructStatusMessage(AjaxCallStatus.ERROR, "Can't find user");
@@ -53,7 +46,7 @@ public class RatingService {
         if (rating > 5 || rating < 1) {
             return jsonService.constructStatusMessage(AjaxCallStatus.ERROR, "UserRating out of range");
         }
-        UserRating userRatingEntity = userRatingRepository.findByMovieKeyAndUserId(movie.getMovieKey(), user.getId());
+        UserRating userRatingEntity = userRatingRepository.findByItemKeyAndUserId(itemKey, user.getId());
         if (userRatingEntity == null) {
             return jsonService.constructStatusMessage(AjaxCallStatus.ERROR, "rating not found");
         }
@@ -62,16 +55,12 @@ public class RatingService {
         return jsonService.constructStatusMessage(AjaxCallStatus.OK);
     }
 
-    public String deleteRating(String movieKey, String userEmail) {
-        Movie movie = movieRepository.findByMovieKey(movieKey);
-        if (movie == null) {
-            return jsonService.constructStatusMessage(AjaxCallStatus.ERROR, "movie doesn't exist");
-        }
+    public String deleteRating(String itemKey, String userEmail) {
         User user = userRepository.findByEmail(userEmail);
         if (user == null) {
             return jsonService.constructStatusMessage(AjaxCallStatus.ERROR, "Can't find user");
         }
-        UserRating userRatingEntity = userRatingRepository.findByMovieKeyAndUserId(movie.getMovieKey(), user.getId());
+        UserRating userRatingEntity = userRatingRepository.findByItemKeyAndUserId(itemKey, user.getId());
         if (userRatingEntity == null) {
             return jsonService.constructStatusMessage(AjaxCallStatus.ERROR, "rating not found");
         }

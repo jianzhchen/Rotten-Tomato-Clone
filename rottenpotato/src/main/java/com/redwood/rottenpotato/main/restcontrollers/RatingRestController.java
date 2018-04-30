@@ -18,20 +18,20 @@ public class RatingRestController {
     private RatingService ratingService;
 
     @PostMapping("postRating")
-    public String postRating(@RequestParam("movieKey") String movieKey, Principal principal, @RequestParam("rating") int rating) {
+    public String postRating(@RequestParam("itemKey") String itemKey, Principal principal, @RequestParam("rating") int rating) {
         String userEmail = principal.getName();
-        return ratingService.postRating(movieKey, userEmail, rating);
+        return ratingService.postRating(itemKey, userEmail, rating);
     }
 
     @PostMapping("deleteRating")
-    public String deleteRating(@RequestParam("movieKey") String movieKey, Principal principal) {
+    public String deleteRating(@RequestParam("itemKey") String itemKey, Principal principal) {
         String userEmail = principal.getName();
-        return ratingService.deleteRating(movieKey, userEmail);
+        return ratingService.deleteRating(itemKey, userEmail);
     }
 
     @PostMapping("editRating")
-    public String editRating(@RequestParam("movieKey") String movieKey, Principal principal, @RequestParam("rating") int rating) {
+    public String editRating(@RequestParam("itemKey") String itemKey, Principal principal, @RequestParam("rating") int rating) {
         String userEmail = principal.getName();
-        return ratingService.editRating(movieKey, userEmail, rating);
+        return ratingService.editRating(itemKey, userEmail, rating);
     }
 }

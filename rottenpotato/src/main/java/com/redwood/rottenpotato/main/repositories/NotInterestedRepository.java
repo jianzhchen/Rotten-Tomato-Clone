@@ -5,8 +5,11 @@ import com.redwood.rottenpotato.main.models.WantToSee;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface NotInterestedRepository extends JpaRepository<NotInterested, Long> {
-    long removeByMovieKeyAndUserId(String movieKey, long userId);
+    long removeByItemKeyAndUserId(String itemKey, long userId);
     long removeByUserId(long userId);
+    List<NotInterested> findByUserId( long userId);
 }

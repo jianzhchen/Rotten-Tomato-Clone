@@ -1,9 +1,6 @@
 package com.redwood.rottenpotato.main.mvccontollers;
 
-import com.redwood.rottenpotato.main.models.Actor;
-import com.redwood.rottenpotato.main.models.Follow;
-import com.redwood.rottenpotato.main.models.Movie;
-import com.redwood.rottenpotato.main.models.WantToSee;
+import com.redwood.rottenpotato.main.models.*;
 import com.redwood.rottenpotato.main.repositories.*;
 import com.redwood.rottenpotato.security.model.User;
 import com.redwood.rottenpotato.security.repository.UserRepository;
@@ -34,6 +31,8 @@ public class UserMvcController {
     @Autowired
     private MovieRepository movieRepository;
     @Autowired
+    private TVRepository tVRepository;
+    @Autowired
     private EntityManager entityManager;
 
     @RequestMapping("/u/{userId}")
@@ -46,12 +45,21 @@ public class UserMvcController {
             model.addAttribute("followerCount", followBy.size());
             List<WantToSee> wantToSeeList = wantToSeeRepository.findByUserId(user.getId());
             Map<String, String> movieMap = new HashMap<>();
+            Map<String, String> tVMap = new HashMap<>();
             for (WantToSee wantToSee : wantToSeeList) {
-                Movie movie = movieRepository.findByMovieKey(wantToSee.getMovieKey());
-                movieMap.put("MovieKey", movie.getMovieKey());
-                movieMap.put("MovieName", movie.getName());
+
+                Movie movie = movieRepository.findByMovieKey(wantToSee.getItemKey());
+                TV tV = tVRepository.findByTVKey(wantToSee.getItemKey());
+                if (movie != null) {
+                    movieMap.put("key", movie.getMovieKey());
+                    movieMap.put("name", movie.getName());
+                } else {
+                    movieMap.put("key", tV.getTVKey());
+                    movieMap.put("name", tV.getTVName());
+                }
             }
-            model.addAttribute("WantToSeeList", movieMap);
+            model.addAttribute("WantToSeeListMovie", movieMap);
+            model.addAttribute("WantToSeeListTV", tVMap);
         }
         String sqlQuery = "SELECT\n" +
                 "  FIND_IN_SET(follower_count, (\n" +

@@ -21,61 +21,45 @@ public class TwoListService {
     @Autowired
     private NotInterestedRepository notInterestedRepository;
 
-    public String addWantToSee(String movieKey, String userEmail) {
-        Movie movie = movieRepository.findByMovieKey(movieKey);
-        if (movie == null) {
-            return jsonService.constructStatusMessage(AjaxCallStatus.ERROR, "movie doesn't exist");
-        }
+    public String addWantToSee(String itemKey, String userEmail) {
         User user = userRepository.findByEmail(userEmail);
         if (user == null) {
             return jsonService.constructStatusMessage(AjaxCallStatus.ERROR, "Can't find user");
         }
         WantToSee wantToSee = new WantToSee();
-        wantToSee.setMovieKey(movie.getMovieKey());
+        wantToSee.setItemKey(itemKey);
         wantToSee.setUserId(user.getId());
         wantToSeeRepository.save(wantToSee);
         return jsonService.constructStatusMessage(AjaxCallStatus.OK);
     }
 
-    public String removeWantToSee(String movieKey, String userEmail) {
-        Movie movie = movieRepository.findByMovieKey(movieKey);
-        if (movie == null) {
-            return jsonService.constructStatusMessage(AjaxCallStatus.ERROR, "movie doesn't exist");
-        }
+    public String removeWantToSee(String itemKey, String userEmail) {
         User user = userRepository.findByEmail(userEmail);
         if (user == null) {
             return jsonService.constructStatusMessage(AjaxCallStatus.ERROR, "Can't find user");
         }
-        wantToSeeRepository.removeByMovieKeyAndUserId(movie.getMovieKey(), user.getId());
+        wantToSeeRepository.removeByItemKeyAndUserId(itemKey, user.getId());
         return jsonService.constructStatusMessage(AjaxCallStatus.OK);
     }
 
-    public String addNotInterested(String movieKey, String userEmail) {
-        Movie movie = movieRepository.findByMovieKey(movieKey);
-        if (movie == null) {
-            return jsonService.constructStatusMessage(AjaxCallStatus.ERROR, "movie doesn't exist");
-        }
+    public String addNotInterested(String itemKey, String userEmail) {
         User user = userRepository.findByEmail(userEmail);
         if (user == null) {
             return jsonService.constructStatusMessage(AjaxCallStatus.ERROR, "Can't find user");
         }
         NotInterested notInterested = new NotInterested();
-        notInterested.setMovieKey(movie.getMovieKey());
+        notInterested.setItemKey(itemKey);
         notInterested.setUserId(user.getId());
         notInterestedRepository.save(notInterested);
         return jsonService.constructStatusMessage(AjaxCallStatus.OK);
     }
 
-    public String removeNotInterested(String movieKey, String userEmail) {
-        Movie movie = movieRepository.findByMovieKey(movieKey);
-        if (movie == null) {
-            return jsonService.constructStatusMessage(AjaxCallStatus.ERROR, "movie doesn't exist");
-        }
+    public String removeNotInterested(String itemKey, String userEmail) {
         User user = userRepository.findByEmail(userEmail);
         if (user == null) {
             return jsonService.constructStatusMessage(AjaxCallStatus.ERROR, "Can't find user");
         }
-        notInterestedRepository.removeByMovieKeyAndUserId(movie.getMovieKey(), user.getId());
+        notInterestedRepository.removeByItemKeyAndUserId(itemKey, user.getId());
         return jsonService.constructStatusMessage(AjaxCallStatus.OK);
     }
 
