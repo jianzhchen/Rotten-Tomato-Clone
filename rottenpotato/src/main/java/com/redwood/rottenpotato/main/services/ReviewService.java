@@ -1,13 +1,11 @@
 package com.redwood.rottenpotato.main.services;
 
 import com.redwood.rottenpotato.main.enums.AjaxCallStatus;
-import com.redwood.rottenpotato.main.models.Movie;
-import com.redwood.rottenpotato.main.models.TV;
 import com.redwood.rottenpotato.main.models.UserReview;
 import com.redwood.rottenpotato.main.models.UserReviewReport;
 import com.redwood.rottenpotato.main.repositories.MovieRepository;
 import com.redwood.rottenpotato.main.repositories.ReviewReportRepository;
-import com.redwood.rottenpotato.main.repositories.ReviewRepository;
+import com.redwood.rottenpotato.main.repositories.UserReviewRepository;
 import com.redwood.rottenpotato.main.repositories.TVRepository;
 import com.redwood.rottenpotato.security.model.User;
 import com.redwood.rottenpotato.security.repository.UserRepository;
@@ -17,17 +15,14 @@ import org.springframework.stereotype.Service;
 @Service
 public class ReviewService {
     @Autowired
-    private ReviewRepository reviewRepository;
+    private UserReviewRepository userReviewRepository;
     @Autowired
     private ReviewReportRepository reviewReportRepository;
-    @Autowired
-    private MovieRepository movieRepository;
     @Autowired
     private UserRepository userRepository;
     @Autowired
     private JsonService jsonService;
-    @Autowired
-    private TVRepository tTVRepository;
+
 
     public String postReview(String itemKey, String userEmail, String content) {
         User user = userRepository.findByEmail(userEmail);
@@ -38,12 +33,12 @@ public class ReviewService {
         userReview.setUserId(user.getId());
         userReview.setContent(content);
         userReview.setItemKey(itemKey);
-        reviewRepository.save(userReview);
+        userReviewRepository.save(userReview);
         return jsonService.constructStatusMessage(AjaxCallStatus.OK);
     }
 
     public String reportReview(long reviewId, String userEmail, String content) {
-        UserReview userReview = reviewRepository.findById(reviewId);
+        UserReview userReview = userReviewRepository.findById(reviewId);
         if (userReview == null) {
             return jsonService.constructStatusMessage(AjaxCallStatus.ERROR, "userReview doesn't exist");
         }
@@ -65,14 +60,14 @@ public class ReviewService {
             return jsonService.constructStatusMessage(AjaxCallStatus.ERROR, "Can't find user");
         }
 
-        UserReview userReview = reviewRepository.findById(reviewId);
+        UserReview userReview = userReviewRepository.findById(reviewId);
         if (userReview == null) {
             return jsonService.constructStatusMessage(AjaxCallStatus.ERROR, "userReview doesn't exist");
         }
         if (userReview.getUserId() != user.getId()) {
             return jsonService.constructStatusMessage(AjaxCallStatus.ERROR, "userReview not own by you");
         }
-        reviewRepository.removeById(reviewId);
+        userReviewRepository.removeById(reviewId);
         reviewReportRepository.removeByReviewId(reviewId);
         return jsonService.constructStatusMessage(AjaxCallStatus.OK);
     }
@@ -82,7 +77,7 @@ public class ReviewService {
         if (user == null) {
             return jsonService.constructStatusMessage(AjaxCallStatus.ERROR, "Can't find user");
         }
-        UserReview userReview = reviewRepository.findById(reviewId);
+        UserReview userReview = userReviewRepository.findById(reviewId);
         if (userReview == null) {
             return jsonService.constructStatusMessage(AjaxCallStatus.ERROR, "userReview doesn't exist");
         }
@@ -90,7 +85,7 @@ public class ReviewService {
             return jsonService.constructStatusMessage(AjaxCallStatus.ERROR, "userReview not own by you");
         }
         userReview.setContent(content);
-        reviewRepository.save(userReview);
+        userReviewRepository.save(userReview);
         return jsonService.constructStatusMessage(AjaxCallStatus.OK);
     }
 }

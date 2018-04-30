@@ -11,4 +11,6 @@ import java.util.List;
 @Repository
 public interface CriticRepository extends JpaRepository<Critic, Long> {
     Critic findByCriticKey(String criticKey);
+
+    List<Critic> findTopByOrderByCriticNameDesc(Pageable pageable);
 }

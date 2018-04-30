@@ -18,6 +18,8 @@ public class User {
     private String password;
     private boolean enable;
     private boolean openProfile;
+    @Lob
+    private byte[] image;
 
     private String token;
     private Timestamp tokenEndTime;
@@ -142,4 +144,5 @@ public class User {
     public void setOpenProfile(boolean openProfile) {
         this.openProfile = openProfile;
     }
+
 }

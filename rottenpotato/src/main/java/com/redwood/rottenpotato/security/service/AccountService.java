@@ -5,7 +5,7 @@ import com.redwood.rottenpotato.email.service.EmailService;
 import com.redwood.rottenpotato.main.enums.AjaxCallStatus;
 import com.redwood.rottenpotato.main.repositories.NotInterestedRepository;
 import com.redwood.rottenpotato.main.repositories.UserRatingRepository;
-import com.redwood.rottenpotato.main.repositories.ReviewRepository;
+import com.redwood.rottenpotato.main.repositories.UserReviewRepository;
 import com.redwood.rottenpotato.main.repositories.WantToSeeRepository;
 import com.redwood.rottenpotato.main.services.JsonService;
 import com.redwood.rottenpotato.security.model.User;
@@ -36,7 +36,7 @@ public class AccountService {
     @Autowired
     private UserRatingRepository userRatingRepository;
     @Autowired
-    private ReviewRepository reviewRepository;
+    private UserReviewRepository userReviewRepository;
 
     public String changeEmail(String userEmail, String currPassword, String newEmail) {
         User user = userRepository.findByEmail(userEmail);

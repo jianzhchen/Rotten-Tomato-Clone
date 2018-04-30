@@ -71,4 +71,11 @@ public class CriticMvcController {
         model.addAttribute("reviews", reviews);
         return "criticReviews.html";
     }
+
+    @RequestMapping("/critic_all/{page}")
+    public String criticAll(@PathVariable("page") int page, Model model) {
+        List<Critic> critics = criticRepository.findTopByOrderByCriticNameDesc(PageRequest.of(page, 10));
+        model.addAttribute("critics", critics);
+        return "criticList.html";
+    }
 }
