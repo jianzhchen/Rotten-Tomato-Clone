@@ -177,3 +177,6 @@
     text-align: end;
 }
 
+.overflow{
+    overflow: hidden;
+}
