@@ -84,10 +84,10 @@
                 </div>
                 <!--Plot-->
                 <div class="col-md-4">
-                    <h3 class="title text-center" th:text="${movie.name}">Movie Name</h3>
+                    <h3 class="title text-center" th:text="${name}">Movie Name</h3>
                     <div class="card"style="height: 340px;" >
                         <div class="card-body" >
-                            <p th:text="${movie.plot}">Plot:Everyone's favorite law enforcement team is back by popular demand with the long anticipated follow up to the cult comedy classic... SUPER TROOPERS. When an international border dispute arises between the U.S. and Canada, the Super Troopers- Mac, Thorny, Foster, Rabbit and Farva, are called in to set up a new Highway Patrol station in the disputed area. Unconventional police work follows, and the result is...SUPER TROOPERS 2.</p>
+                            <p th:text="${info}">Plot:Everyone's favorite law enforcement team is back by popular demand with the long anticipated follow up to the cult comedy classic... SUPER TROOPERS. When an international border dispute arises between the U.S. and Canada, the Super Troopers- Mac, Thorny, Foster, Rabbit and Farva, are called in to set up a new Highway Patrol station in the disputed area. Unconventional police work follows, and the result is...SUPER TROOPERS 2.</p>
                         </div>
 
                     </div>
@@ -107,12 +107,12 @@
                                     <div class="progress">
                                         <div class="progress-bar bg-danger" role="progressbar"
                                              aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"
-                                             style="width: 97%;" th:width="${movie.rate}">
+                                             style="width: 97%;" th:width="${movieRating}">
                                         </div>
                                     </div>
                                 </li>
                                 <div class="text-left">
-                                    <li th:text="${movie.reviewCount}">Reviews Counted: 334</li>
+                                    <li >Reviews Counted: 334</li>
                                     <li>Fresh: 323</li>
                                     <li>Rotten: 11</li>
                                 </div>
@@ -169,7 +169,7 @@
                             <td class="text-right" width="150px">
                                 Rating:
                             </td>
-                            <td class="text-left px-3"width="800px" th:text="${movie.rating}">
+                            <td class="text-left px-3"width="800px" th:text="${movieRating}">
                                 R (for crude sexual content and language throughout, drug material and some graphic nudity)
                             </td>
                         </tr>
@@ -177,7 +177,7 @@
                             <td class="text-right" width="150px">
                                 Genre:
                             </td>
-                            <td class="text-left px-3"width="800px" th:text="${movie.genre}">
+                            <td class="text-left px-3"width="800px" th:text="${genre}">
                                 Comedy
                             </td>
                         </tr>
@@ -185,7 +185,7 @@
                             <td class="text-right" width="150px">
                                 Directed By:
                             </td>
-                            <td class="text-left px-3"width="800px">
+                            <td class="text-left px-3"width="800px" th:text="${director}">
                                 director name
                             </td>
                         </tr>
@@ -193,7 +193,7 @@
                             <td class="text-right" width="150px">
                                 Written By:
                             </td>
-                            <td class="text-left px-3"width="800px">
+                            <td class="text-left px-3"width="800px" th:text="${writer}">
                                 writer name
                             </td>
                         </tr>
@@ -201,7 +201,7 @@
                             <td class="text-right" width="150px">
                                  In Theaters :
                             </td>
-                            <td class="text-left px-3"width="800px">
+                            <td class="text-left px-3"width="800px" th:text="${inTheater}">
                                 date
                             </td>
                         </tr>
@@ -209,7 +209,7 @@
                             <td class="text-right" width="150px">
                                 Runtime
                             </td>
-                            <td class="text-left px-3"width="800px">
+                            <td class="text-left px-3"width="800px" th:text="${runTime}">
                                 time
                             </td>
                         </tr>
@@ -217,8 +217,16 @@
                             <td class="text-right" width="150px">
                                 Studio:
                             </td>
-                            <td class="text-left px-3"width="800px">
+                            <td class="text-left px-3"width="800px" th:text="${studio}">
                                 Studio name
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text-right" width="150px">
+                                Box Office:
+                            </td>
+                            <td class="text-left px-3"width="800px" th:text="${boxOffice}">
+                                box office
                             </td>
                         </tr>
                     </table>
