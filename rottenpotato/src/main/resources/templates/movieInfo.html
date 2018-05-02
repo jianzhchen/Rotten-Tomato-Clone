@@ -51,10 +51,7 @@
                 </button>
             </form>
 
-            <div th:if="${isLogin} == true">
-                <p th:bgcolor="white" th:text="${username}"></p>
-            </div>
-            <div th:if="${isLogin} == false">
+
                 <div>
                     <button class="btn btn-sm btn-primary mx-1" data-toggle="modal" data-target="#loginModal">Login
                     </button>
@@ -62,7 +59,7 @@
                         up
                     </button>
                 </div>
-            </div>
+
 
         </div>
     </div>
@@ -238,14 +235,14 @@
                                 <div class="text-center">
                                     <a href="https://placeholder.com">
                                         <img class="" src="http://via.placeholder.com/100x100"></a>
-                                    <p class="font-weight-bold text-md-center my-0" th:text="${movie.name}">NAME</p>
+                                    <p class="font-weight-bold text-md-center my-0">NAME</p>
                                 </div>
                             </div>
                             <div class="col-md-2 ">
                                 <div class="text-center">
                                     <a href="https://placeholder.com">
                                         <img class="" src="http://via.placeholder.com/100x100"></a>
-                                    <p class="font-weight-bold text-md-center my-0" th:text="${movie.name}">NAME</p>
+                                    <p class="font-weight-bold text-md-center my-0">NAME</p>
                                 </div>
                             </div>
                         </div>

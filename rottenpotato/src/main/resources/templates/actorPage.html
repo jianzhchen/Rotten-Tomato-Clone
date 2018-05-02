@@ -7,7 +7,7 @@
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     <!-- Favicons -->
-    <link rel="icon" href=".//assets/img/kit/free/favicon.png">
+    <link rel="icon" href="../assets/img/kit/free/favicon.png">
     <title>
         Rotten Potato
     </title>
@@ -15,8 +15,8 @@
     <link rel="stylesheet" type="text/css"
           href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css"/>
-    <link rel="stylesheet" href=".//.//assets/css/material-kit.css?v=2.0.2">
-    <link rel="stylesheet" href=".//.//assets/css/custom.css">
+    <link rel="stylesheet" href="../assets/css/material-kit.css?v=2.0.2">
+    <link rel="stylesheet" href="../assets/css/custom.css">
 </head>
 
 <body class="profile-page ">
@@ -61,7 +61,7 @@
     </div>
 </nav>
 <div class="page-header header-filter" data-parallax="true"
-     style="background-image: url('.//.//assets/img/kit/city.jpg');"></div>
+     style="background-image: url('../assets/img/kit/city.jpg');"></div>
 <div class="main main-raised">
     <div class="profile-content">
         <div class="container">
@@ -74,29 +74,25 @@
                                 <div class="row">
                                     <div class="col-md-6 text-center">
                                         <div class="avatar">
-                                            <img src=".//.//assets/img/kit/faces/christian.jpg" alt="Circle Image"
+                                            <img src="../assets/img/kit/faces/christian.jpg" alt="Circle Image"
                                                  class="img-raised rounded img-fluid img-thumbnail">
                                         </div>
                                     </div>
                                     <div class="col-md-6 text-left">
-                                    <h3 class="title">Full Name</h3>
+                                    <h3 class="title" th:text="${name}">Full Name</h3>
                                     <div id="info-section">
                                         <ul class="list-unstyled infolist-height">
                                             <li>Highest Rated: </li>
                                             <li>Lowest Rated: </li>
-                                            <li>Birthday:</li>
-                                            <li>Birthplace</li>
+                                            <li th:text="${birthday}">Birthday:</li>
+                                            <li th:text="${birthplace}">Birthplace</li>
                                         </ul>
                                         <div class="description text-left" style="height: 110px;overflow: hidden;">
-                                            <p>An artist of considerable range, Chet Faker &#x2014; the name taken by
+                                            <p th:text="${info}">An artist of considerable range, Chet Faker &#x2014; the name taken by
                                                 Melbourne-raised,
                                                 Brooklyn-based Nick Murphy &#x2014; writes, performs and records all of his own
                                                 music,
-                                                Brooklyn-based Nick Murphy &#x2014; writes, performs and records all of his own
-                                                music,
-                                                Brooklyn-based Nick Murphy &#x2014; writes, performs and records all of his own
-                                                music,
-                                                giving it a warm, intimate feel with a solid groove structure. </p>
+                                            </p>
                                         </div>
                                         <div class="float-right">
                                             <button type="button" class="btn btn-sm btn-primary">More</button>
@@ -252,19 +248,19 @@
     </div>
 </footer>
 <!--   Core JS Files   -->
-<script src=".//assets/js/core/jquery.min.js"></script>
-<script src=".//assets/js/core/popper.min.js"></script>
-<script src=".//assets/js/bootstrap-material-design.js"></script>
+<script src="../assets/js/core/jquery.min.js"></script>
+<script src="../assets/js/core/popper.min.js"></script>
+<script src="../assets/js/bootstrap-material-design.js"></script>
 <!--  Plugin for Date Time Picker and Full Calendar Plugin  -->
-<script src=".//assets/js/plugins/moment.min.js"></script>
+<script src="../assets/js/plugins/moment.min.js"></script>
 <!--	Plugin for the Datepicker, full documentation here: https://github.com/Eonasdan/bootstrap-datetimepicker -->
-<script src=".//assets/js/plugins/bootstrap-datetimepicker.min.js"></script>
+<script src="../assets/js/plugins/bootstrap-datetimepicker.min.js"></script>
 <!--	Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
-<script src=".//assets/js/plugins/nouislider.min.js"></script>
+<script src="../assets/js/plugins/nouislider.min.js"></script>
 <!-- Material Kit Core initialisations of plugins and Bootstrap Material Design Library -->
-<script src=".//assets/js/material-kit.js?v=2.0.2"></script>
+<script src="../assets/js/material-kit.js?v=2.0.2"></script>
 <!-- Fixed Sidebar Nav - js With initialisations For Demo Purpose, Don't Include it in your project -->
-<script src=".//assets/assets-for-demo/js/material-kit-demo.js"></script>
+<script src="../assets/assets-for-demo/js/material-kit-demo.js"></script>
 
 </body>
 

@@ -24,6 +24,7 @@ public class MovieService {
             Map<String, String> map = new HashMap<>();
 
             map.put("movieName", temp.getName());
+            map.put("id",temp.getMovieKey());
             Long box = temp.getBoxOffice();
             DecimalFormat myFormatter = new DecimalFormat("$###,###.###");
             String output = myFormatter.format(box);
@@ -39,8 +40,9 @@ public class MovieService {
             Map<String, String> map = new HashMap<>();
 
             map.put("movieName", temp.getName());
+            map.put("id",temp.getMovieKey());
             DateFormat formatter = new SimpleDateFormat("MMM-dd");
- templist.add(map);
+            templist.add(map);
         }
         return templist;
     }
