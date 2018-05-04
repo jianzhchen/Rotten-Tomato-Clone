@@ -78,10 +78,11 @@
                                         </div>
                                     </div>
                                     <div class="col-md-6 text-left">
-                                        <h3 class="title">Full Name</h3>
+                                        <h3 class="title" th:text="${firstname} ${lastname}">Full Name</h3>
                                         <div id="info-section">
                                             <ul class="list-unstyled infolist-height">
                                                 <li>Account:</li>
+                                                <li th:text="email">Email:</li>
                                                 <li>Follower count:</li>
                                             </ul>
                                             <div class="description text-left" style="height: 110px;overflow: hidden;">

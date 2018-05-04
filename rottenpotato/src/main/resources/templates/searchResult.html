@@ -32,23 +32,20 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
         </div>
-        <div class="collapse navbar-collapse">
-            <ul class="navbar-nav ml-auto">
-                <div th:if="${isLogin} == true">
-                    <p th:bgcolor="white" th:text="${username}"></p>
-                </div>
-                <div th:if="${isLogin} == false">
-                    <div>
-                        <button class="btn btn-sm btn-primary mx-1" data-toggle="modal" data-target="#loginModal">Login
-                        </button>
-                        <button class="btn btn-sm btn-primary mx-1" data-toggle="modal" data-target="#signupModal">Sign
-                            up
-                        </button>
-                    </div>
-                </div>
-            </ul>
-
-        </div>
+        <!--login signup button-->
+        <!--<div th:if="${isLogin} == true">-->
+            <!--<p th:bgcolor="white" th:text="${username}"></p>-->
+        <!--</div>-->
+        <!--<div th:if="${isLogin} == false">-->
+            <!--<div>-->
+                <!--<button class="btn btn-sm btn-primary mx-1" data-toggle="modal" data-target="#loginModal">Login-->
+                <!--</button>-->
+                <!--<button class="btn btn-sm btn-primary mx-1" data-toggle="modal" data-target="#signupModal">Sign-->
+                    <!--up-->
+                <!--</button>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--login signup button end-->
     </div>
 </nav>
 
@@ -63,10 +60,10 @@
         <div class="container">
             <div class="card">
                 <div class="card-body">
-                    <form>
+                    <form action="searchResult" method="get">
                         <div class="form-row">
                             <div class="form-group col-md-8">
-                                <input type="search" class="form-control" id="search" placeholder="Search">
+                                <input type="search" class="form-control" name="term" placeholder="Search">
                             </div>
                             <div class="form-group col-md-2 mt-4">
                                 <select class="custom-select custom-select" id="searchSelect">
@@ -85,42 +82,22 @@
             </div>
             <div class="card">
                 <div class="card-body">
-                    <div th:if="${isItem}==true">
-                        <table id="search-result-table-item">
-                            <tbody>
-                                <tr th:each="item:${itemList}">
-                                    <td th:text="${item.rate}">97%</td>
-                                        <td>
-                                            <img th:scr="@{item.poster}"src="http://via.placeholder.com/240x135" width="240" height="135">
-                                        </td>
-                                    <td>
-                                        <ul class="list-unstyled">
-                                            <li th:text="${item.name}">Movie Name</li>
-                                            <li th:text="${item.info}">Info</li>
-                                        </ul>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div th:if="${isItem} == false">
+                    <h3 class="title" th:text="'Search Result for: '+${key}" >search result</h3>
                         <table id="search-result-table-cele">
                             <tbody>
-                            <tr th:each="cele:${celebrityList}">
+                            <tr th:each="item:${movies}">
                                 <td>
-                                    <img th:scr="@{cele.photo}"src="http://via.placeholder.com/240x135" width="240" height="135">
+                                    <img src="http://via.placeholder.com/240x135" width="240" height="135">
                                 </td>
                                 <td>
                                     <ul class="list-unstyled">
-                                        <li th:text="${cele.name}">Celebrity Name</li>
-                                        <li th:text="${cele.info}">Info</li>
+                                        <li th:text="${item.name}">Celebrity Name</li>
+                                        <li th:text="${item.info}">Info</li>
                                     </ul>
                                 </td>
                             </tr>
                             </tbody>
                         </table>
-                    </div>
-
                 </div>
             </div>
             <div>

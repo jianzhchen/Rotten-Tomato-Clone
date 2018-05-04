@@ -86,6 +86,7 @@ public class SearchMvcController {
         model.addAttribute("movies", movies);
         model.addAttribute("tvs", tvs);
         model.addAttribute("actors", actors);
-        return "searchResult";
+        model.addAttribute("key",searchTerm);
+        return "searchResult.html";
     }
 }

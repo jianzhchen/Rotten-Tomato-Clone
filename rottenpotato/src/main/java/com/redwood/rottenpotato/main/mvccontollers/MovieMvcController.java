@@ -66,8 +66,8 @@ public class MovieMvcController {
         for (String actorKey : actorKeys) {
             HashMap<String, String> actorMap = new HashMap<>();
             Actor actor = actorRepository.findByActorKey(actorKey);
-            actorMap.put("name", actor.getActorName());
-            actorMap.put("key", actor.getActorName());
+//            actorMap.put("name", actor.getActorName());
+//            actorMap.put("key", actor.getActorName());
             actors.add(actorMap);
         }
         model.addAttribute("actors", actors);
@@ -80,7 +80,7 @@ public class MovieMvcController {
                 criticScoreCount++;
             }
         }
-        model.addAttribute("criticRating", String.format("%.2f", criticScore / criticScoreCount));
+//        model.addAttribute("criticRating", String.format("%.2f", criticScore / criticScoreCount));
 
         List<UserRating> userRatings = userRatingRepository.findByItemKey(movieKey);
         int userScore = 0;
@@ -91,7 +91,7 @@ public class MovieMvcController {
                 userScoreCount++;
             }
         }
-        model.addAttribute("userRating", String.format("%.2f", userScore / userScoreCount));
+//        model.addAttribute("userRating", String.format("%.2f", userScore / userScoreCount));
         //TODO poster
         return "movieInfo.html";
     }
@@ -109,6 +109,7 @@ public class MovieMvcController {
             movieList.add(movieDetail);
         }
         model.addAttribute("movies", movieList);
+        model.addAttribute("page",page);
         return "movieTopDate.html";
     }
 
@@ -125,6 +126,8 @@ public class MovieMvcController {
             movieList.add(movieDetail);
         }
         model.addAttribute("movies", movieList);
+        model.addAttribute("page",page);
+
         return "movieTopBox.html";
     }
 }
