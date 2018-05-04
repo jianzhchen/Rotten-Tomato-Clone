@@ -56,6 +56,8 @@ public class SearchMvcController {
             movieDetail.put("name", movie.getName());
             movieDetail.put("info", movie.getInfo());
             movieDetail.put("key", movie.getMovieKey());
+//            movieDetail.put("casts", movie.getCast());
+            movieDetail.put("casts", castTransfer(movie.getCast()));
             //TODO poster
             movies.add(movieDetail);
         }
@@ -89,4 +91,19 @@ public class SearchMvcController {
         model.addAttribute("key",searchTerm);
         return "searchResult.html";
     }
+
+    public String castTransfer(String casts){
+        String castsStr = "";
+        String[] castsArr = casts.split(",");
+
+        for(int i = 0; i <= castsArr.length - 1 && i < 10; i ++){
+            castsStr += castsArr[i].replace("_", " ") + ", ";
+        }
+
+        castsStr = castsStr.substring(0, castsStr.length() - 2);
+        castsStr += ".";
+        return castsStr;
+    }
+
+
 }

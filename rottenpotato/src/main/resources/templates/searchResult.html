@@ -92,7 +92,7 @@
                                 <td>
                                     <ul class="list-unstyled">
                                         <li th:text="${item.name}">Celebrity Name</li>
-                                        <li th:text="${item.info}">Info</li>
+                                        <li th:text="${item.casts}" th:onclick="'javascript:getMovie(\''+${item.key}+'\')'">Info</li>
                                     </ul>
                                 </td>
                             </tr>
@@ -175,6 +175,7 @@
 <script src="./assets/js/material-kit.js?v=2.0.2"></script>
 <!-- Fixed Sidebar Nav - js With initialisations For Demo Purpose, Don't Include it in your project -->
 <script src="./assets/assets-for-demo/js/material-kit-demo.js"></script>
+<script type="text/javascript" src="../js/searchResult.js"></script>
 
 </body>
 

@@ -24,11 +24,8 @@ public class MovieService {
             Map<String, String> map = new HashMap<>();
 
             map.put("movieName", temp.getName());
-            map.put("id",temp.getMovieKey());
-            Long box = temp.getBoxOffice();
-            DecimalFormat myFormatter = new DecimalFormat("$###,###.###");
-            String output = myFormatter.format(box);
-            map.put("boxOffice", output);
+            map.put("key",temp.getMovieKey());
+            map.put("boxOffice", boxOfficeTransfer(temp.getBoxOffice()));
             templist.add(map);
         }
         return templist;
@@ -40,11 +37,27 @@ public class MovieService {
             Map<String, String> map = new HashMap<>();
 
             map.put("movieName", temp.getName());
-            map.put("id",temp.getMovieKey());
+            map.put("key",temp.getMovieKey());
             DateFormat formatter = new SimpleDateFormat("MMM-dd");
             templist.add(map);
         }
         return templist;
+    }
+
+
+    public String boxOfficeTransfer(long boxOffice){
+        String boxOfficeStr;
+
+        if(boxOffice >= 1000000000){
+            boxOfficeStr = "$" + boxOffice / 1000000000 + "." + (boxOffice % 1000000000) / 100000000 + "B";
+        }else if (boxOffice >= 1000000){
+            boxOfficeStr = "$" + boxOffice / 1000000 + "." + (boxOffice % 1000000) / 100000 + "M";
+        }else if (boxOffice > 1000){
+            boxOfficeStr = "$" + boxOffice / 1000 + "." + (boxOffice % 1000) / 100 + "K";
+        }else{
+            boxOfficeStr = "$" + boxOffice;
+        }
+        return boxOfficeStr;
     }
 
 

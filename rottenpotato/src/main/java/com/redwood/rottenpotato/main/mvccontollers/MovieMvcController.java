@@ -50,14 +50,7 @@ public class MovieMvcController {
         model.addAttribute("writer", movie.getWriter());
         model.addAttribute("inTheater", movie.getInTheaters());
         model.addAttribute("onDisc", movie.getOnDisc());
-        long boxOffice = movie.getBoxOffice();
-        String boxOfficeText = "$";
-        if (boxOffice == 0) {
-            boxOfficeText = "";
-        } else {
-            boxOfficeText = boxOfficeText + boxOffice;
-        }
-        model.addAttribute("boxOffice", boxOfficeText);
+        model.addAttribute("boxOffice", boxOfficeTransfer(movie.getBoxOffice()));
         model.addAttribute("runTime", movie.getRunTime());
         model.addAttribute("studio", movie.getStudio());
         String cast = movie.getCast();
@@ -66,8 +59,6 @@ public class MovieMvcController {
         for (String actorKey : actorKeys) {
             HashMap<String, String> actorMap = new HashMap<>();
             Actor actor = actorRepository.findByActorKey(actorKey);
-//            actorMap.put("name", actor.getActorName());
-//            actorMap.put("key", actor.getActorName());
             actors.add(actorMap);
         }
         model.addAttribute("actors", actors);
@@ -129,5 +120,21 @@ public class MovieMvcController {
         model.addAttribute("page",page);
 
         return "movie.html";
+    }
+
+
+    public String boxOfficeTransfer(long boxOffice){
+        String boxOfficeStr;
+
+        if(boxOffice >= 1000000000){
+            boxOfficeStr = "$" + boxOffice / 1000000000 + "." + (boxOffice % 1000000000) / 100000000 + "B";
+        }else if (boxOffice >= 1000000){
+            boxOfficeStr = "$" + boxOffice / 1000000 + "." + (boxOffice % 1000000) / 100000 + "M";
+        }else if (boxOffice > 1000){
+            boxOfficeStr = "$" + boxOffice / 1000 + "." + (boxOffice % 1000) / 100 + "K";
+        }else{
+            boxOfficeStr = "$" + boxOffice;
+        }
+        return boxOfficeStr;
     }
 }
