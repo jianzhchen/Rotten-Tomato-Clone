@@ -89,7 +89,7 @@ public class MovieMvcController {
 
     @GetMapping(value = "m/d/{page}")
     public String movieByDate(@PathVariable("page") int page, Model model) {
-        List<Movie> movies = movieRepository.findTop10ByOrderByInTheatersTimeDesc(PageRequest.of(page, 10));
+        List<Movie> movies = movieRepository.findTop10ByOrderByInTheatersTimeDesc(PageRequest.of(page, 8));
         List<HashMap> movieList = new ArrayList<>();
         for (Movie movie : movies) {
             HashMap<String, String> movieDetail = new HashMap<>();
@@ -101,12 +101,12 @@ public class MovieMvcController {
         }
         model.addAttribute("movies", movieList);
         model.addAttribute("page",page);
-        return "movie.html";
+        return "movieToDate.html";
     }
 
     @GetMapping(value = "m/b/{page}")
     public String movieByBox(@PathVariable("page") int page, Model model) {
-        List<Movie> movies = movieRepository.findTop10ByOrderByBoxOfficeDesc(PageRequest.of(page, 10));
+        List<Movie> movies = movieRepository.findTop10ByOrderByBoxOfficeDesc(PageRequest.of(page, 8));
         List<HashMap> movieList = new ArrayList<>();
         for (Movie movie : movies) {
             HashMap<String, String> movieDetail = new HashMap<>();
@@ -119,7 +119,7 @@ public class MovieMvcController {
         model.addAttribute("movies", movieList);
         model.addAttribute("page",page);
 
-        return "movie.html";
+        return "movieToBox.html";
     }
 
 
