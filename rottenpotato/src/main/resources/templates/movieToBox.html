@@ -95,8 +95,8 @@
                 <div class = "row">
                     <div class = "col-sm-3">
                         <ul class="list-group">
-                            <a href="/m/d/1" class="list-group-item link-white-color-active">Opening This Week</a>
-                            <a href="/m/b/1" class="list-group-item ">Top Box Office</a>
+                            <a href="/m/d/1" class="list-group-item ">Opening This Week</a>
+                            <a href="/m/b/1" class="list-group-item link-white-color-active">Top Box Office</a>
                             <a href="#" class="list-group-item">Coming Soon</a>
                         </ul>
                     </div>
@@ -139,16 +139,16 @@
                                     <div th:each="col :${#numbers.sequence(0,3)}" th:if="${row + col < movies.size()}" class="col-md-3 text-center">
                                         <a href="https://placeholder.com"><img
                                                 src="http://via.placeholder.com/100x150"></a>
-                                        <h6 th:text="${movies.get(row+col).name}">some text</h6>
-                                        <p >some text</p>
+                                        <h6 th:text="${movies.get(row+col).name}" th:onclick="'javascript:getMovie(\''+${movies.get(row+col).key}+'\')'">some text</h6>
+                                        <p th:text="${movies.get(row+col).boxOffice}">some text</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="pull-right">
-                            <button type="button" class="btn btn-primary">Prev</button>
-                            Page
-                            <button type="button" class="btn btn-primary">Next</button>
+                            <button type="button" class="btn btn-primary" th:if="${page} != 1" th:onclick="'javascript:getPrevPage(\''+${page}+'\')'" >Prev</button>
+                            <p style="display: inline" th:text="${page}">Page</p>
+                            <button type="button" class="btn btn-primary" th:onclick="'javascript:getNextPage(\''+${page}+'\')'">Next</button>
                         </div>
                     </div>
                 </div>
@@ -297,7 +297,7 @@
     <script th:src="@{~/assets/js/material-kit.js?v=2.0.2}"></script>
     <!-- Fixed Sidebar Nav - js With initialisations For Demo Purpose, Don't Include it in your project -->
     <script th:src="@{~/assets/assets-for-demo/js/material-kit-demo.js}"></script>
-
+    <script type="text/javascript" th:src="@{~/js/movieToBox.js}"></script>
     <!--for test-->
     <script src="./assets/js/core/jquery.min.js"></script>
     <script src="./assets/js/core/popper.min.js"></script>
@@ -312,7 +312,7 @@
     <script src="./assets/js/material-kit.js?v=2.0.2}"></script>
     <!-- Fixed Sidebar Nav - js With initialisations For Demo Purpose, Don't Include it in your project -->
     <script src="./assets/assets-for-demo/js/material-kit-demo.js"></script>
-
+    <script type="text/javascript" src="../js/index.js"></script>
 
 
 </body>
