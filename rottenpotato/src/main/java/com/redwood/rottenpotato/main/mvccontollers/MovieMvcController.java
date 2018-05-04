@@ -110,7 +110,7 @@ public class MovieMvcController {
         }
         model.addAttribute("movies", movieList);
         model.addAttribute("page",page);
-        return "movieTopDate.html";
+        return "movie.html";
     }
 
     @GetMapping(value = "m/b/{page}")
@@ -128,6 +128,6 @@ public class MovieMvcController {
         model.addAttribute("movies", movieList);
         model.addAttribute("page",page);
 
-        return "movieTopBox.html";
+        return "movie.html";
     }
 }

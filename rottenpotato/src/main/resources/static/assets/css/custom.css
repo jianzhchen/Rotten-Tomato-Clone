@@ -180,3 +180,9 @@
 .overflow{
     overflow: hidden;
 }
+
+.link-white-color-active{
+    color: #FFFFFF;
+    background-color: #7b1fa2;
+
+}

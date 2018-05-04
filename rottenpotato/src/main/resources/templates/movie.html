@@ -7,18 +7,27 @@
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     <!-- Favicons -->
-    <link rel="apple-touch-icon" href="./assets/img/kit/free/apple-icon.png">
-    <link rel="icon" href="./assets/img/kit/free/favicon.png">
+    <link rel="apple-touch-icon" th:href="@{~/assets/img/kit/free/apple-icon.png}">
+    <link rel="icon" th:href="@{~/assets/img/kit/free/favicon.png}">
     <title>
         Rotten Potato
     </title>
     <!--     Fonts and icons     -->
+
+    <link rel="stylesheet" type="text/css"
+          th:href="@{https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons}"/>
     <link rel="stylesheet" type="text/css"
           href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons"/>
+    <link rel="stylesheet" th:href="@{https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css}"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css"/>
+
+    <link rel="stylesheet" th:href="@{~/assets/css/material-kit.css?v=2.0.2}">
     <link rel="stylesheet" href="./assets/css/material-kit.css?v=2.0.2">
+    <link rel="stylesheet" th:href="@{~/assets/css/custom.css}">
+    <link rel="stylesheet" href="./assets/css/custom.css">
     <!-- Documentation extras -->
     <!-- CSS Just for demo purpose, don't include it in your project -->
+    <link th:href="@{~/assets/assets-for-demo/demo.css}" rel="stylesheet"/>
     <link href="./assets/assets-for-demo/demo.css" rel="stylesheet"/>
     <!-- iframe removal -->
 </head>
@@ -45,9 +54,9 @@
                     <div class="col-auto my-0">
                         <select class="custom-select custom-select-sm" id="searchSelect" style="height: 30px;">
                             <option value="1">Movies</option>
-                            <option value="2">Actors</option>
-                            <option value="3">Director</option>
-                            <option value="4">Writer</option>
+                            <option value="2">Tvs</option>
+                            <option value="3">Celebrities</option>
+
                         </select>
                     </div>
                     <button type="submit" class="btn btn-white btn-raised btn-fab btn-sm">
@@ -85,17 +94,11 @@
 
                 <div class = "row">
                     <div class = "col-sm-3">
-                        <div class="btn-group btn-group-toggle btn-group-vertical" data-toggle="buttons">
-                            <label class="btn btn-secondary active">
-                                <input type="radio" name="movieType" id="option1" autocomplete="off" value="openingThisWeek" checked> Opening This Week
-                            </label>
-                            <label class="btn btn-secondary">
-                                <input type="radio" name="movieType" id="option2" autocomplete="off" value="topBoxOffice"> Top Box Office
-                            </label>
-                            <label class="btn btn-secondary">
-                                <input type="radio" name="movieType" id="option3" autocomplete="off" value="comingSoon"> Coming Soon
-                            </label>
-                        </div>
+                        <ul class="list-group">
+                            <a href="/m/d/1" class="list-group-item link-white-color-active">Opening This Week</a>
+                            <a href="/m/b/1" class="list-group-item ">Top Box Office</a>
+                            <a href="#" class="list-group-item">Coming Soon</a>
+                        </ul>
                     </div>
                     <div class="col-sm-9">
                         <div class="sort bar">
@@ -132,29 +135,19 @@
                         </div>
                         <div class="card">
                             <div class="card-body">
-                                <table id="search-result-table-item">
-                                    <tbody>
-                                    <tr th:each="movie:${movieList}">
-                                        <td th:text="${movie.rate}">97%</td>
-                                        <td>
-                                            <img th:scr="@{movie.posterLink}" src="http://via.placeholder.com/240x135" width="240" height="135">
-                                        </td>
-                                        <td>
-                                            <ul class="list-unstyled">
-                                                <li th:text="${movie.name}">Movie Name</li>
-                                                <li th:text="${movie.info}">Info</li>
-                                            </ul>
-                                        </td>
-                                    </tr>
-                                    </tbody>
-                                </table>
+                                <div th:each="row :${#numbers.sequence(0,movies.size(),4)}" class="row">
+                                    <div th:each="col :${#numbers.sequence(0,3)}" th:if="${row + col < movies.size()}" class="col-md-3 text-center">
+                                        <a href="https://placeholder.com"><img
+                                                src="http://via.placeholder.com/100x150"></a>
+                                        <h6 th:text="${movies.get(row+col).name}">some text</h6>
+                                        <p >some text</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="float-left">
+                        <div class="pull-right">
                             <button type="button" class="btn btn-primary">Prev</button>
-                        </div>
-                        <p th:text="${page}">Page</p>
-                        <div class="float-right">
+                            Page
                             <button type="button" class="btn btn-primary">Next</button>
                         </div>
                     </div>
@@ -291,6 +284,21 @@
         </div>
     </footer>
     <!--   Core JS Files   -->
+    <script th:src="@{~/assets/js/core/jquery.min.js}"></script>
+    <script th:src="@{~/assets/js/core/popper.min.js}"></script>
+    <script th:src="@{~/assets/js/bootstrap-material-design.js}"></script>
+    <!--  Plugin for Date Time Picker and Full Calendar Plugin  -->
+    <script th:src="@{~/assets/js/plugins/moment.min.js}"></script>
+    <!--	Plugin for the Datepicker, full documentation here: https://github.com/Eonasdan/bootstrap-datetimepicker -->
+    <script th:src="@{~/assets/js/plugins/bootstrap-datetimepicker.min.js}"></script>
+    <!--	Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
+    <script th:src="@{~/assets/js/plugins/nouislider.min.js}"></script>
+    <!-- Material Kit Core initialisations of plugins and Bootstrap Material Design Library -->
+    <script th:src="@{~/assets/js/material-kit.js?v=2.0.2}"></script>
+    <!-- Fixed Sidebar Nav - js With initialisations For Demo Purpose, Don't Include it in your project -->
+    <script th:src="@{~/assets/assets-for-demo/js/material-kit-demo.js}"></script>
+
+    <!--for test-->
     <script src="./assets/js/core/jquery.min.js"></script>
     <script src="./assets/js/core/popper.min.js"></script>
     <script src="./assets/js/bootstrap-material-design.js"></script>
@@ -301,7 +309,7 @@
     <!--	Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
     <script src="./assets/js/plugins/nouislider.min.js"></script>
     <!-- Material Kit Core initialisations of plugins and Bootstrap Material Design Library -->
-    <script src="./assets/js/material-kit.js?v=2.0.2"></script>
+    <script src="./assets/js/material-kit.js?v=2.0.2}"></script>
     <!-- Fixed Sidebar Nav - js With initialisations For Demo Purpose, Don't Include it in your project -->
     <script src="./assets/assets-for-demo/js/material-kit-demo.js"></script>
 
