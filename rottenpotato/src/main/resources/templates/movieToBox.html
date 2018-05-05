@@ -45,18 +45,16 @@
                 </button>
             </div>
             <div class="collapse navbar-collapse">
-
-
-                <form class="form-inline ml-auto mr-5">
+                <!--search form-->
+                <form class="form-inline ml-auto mr-5" action="searchResult" method="get">
                     <div class="form-group has-white">
-                        <input type="text" class="form-control" style="width:300px" placeholder="Search">
+                        <input name="term" type="text" class="form-control" style="width:300px" placeholder="Search">
                     </div>
                     <div class="col-auto my-0">
-                        <select class="custom-select custom-select-sm" id="searchSelect" style="height: 30px;">
-                            <option value="1">Movies</option>
-                            <option value="2">Tvs</option>
-                            <option value="3">Celebrities</option>
-
+                        <select class="custom-select custom-select-sm" name="searchSelect" style="height: 30px;">
+                            <option value="Movies">Movies</option>
+                            <option value="TVs">Tvs</option>
+                            <option value="Celebrities">Celebrities</option>
                         </select>
                     </div>
                     <button type="submit" class="btn btn-white btn-raised btn-fab btn-sm">
@@ -137,8 +135,8 @@
                             <div class="card-body">
                                 <div th:each="row :${#numbers.sequence(0,movies.size(),4)}" class="row">
                                     <div th:each="col :${#numbers.sequence(0,3)}" th:if="${row + col < movies.size()}" class="col-md-3 text-center">
-                                        <a href="https://placeholder.com"><img
-                                                src="http://via.placeholder.com/100x150"></a>
+                                        <a th:onclick="'javascript:getMovie(\''+${movies.get(row+col).key}+'\')'">
+                                            <img src="http://via.placeholder.com/100x150"></a>
                                         <h6 th:text="${movies.get(row+col).name}" th:onclick="'javascript:getMovie(\''+${movies.get(row+col).key}+'\')'">some text</h6>
                                         <p th:text="${movies.get(row+col).boxOffice}">some text</p>
                                     </div>

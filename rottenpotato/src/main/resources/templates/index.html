@@ -7,8 +7,12 @@
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     <!-- Favicons -->
+    <link rel="apple-touch-icon" th:href="@{~/assets/img/kit/free/apple-icon.png}">
     <link rel="apple-touch-icon" href="./assets/img/kit/free/apple-icon.png">
+
     <link rel="icon" href="./assets/img/kit/free/favicon.png">
+    <link rel="icon" th:href="@{~/assets/img/kit/free/favicon.png}">
+
     <title>
         Rotten Potato
     </title>
@@ -16,9 +20,11 @@
     <link rel="stylesheet" type="text/css"
           href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css"/>
+    <link rel="stylesheet" th:href="@{~/assets/css/material-kit.css?v=2.0.2}">
     <link rel="stylesheet" href="./assets/css/material-kit.css?v=2.0.2">
     <!-- Documentation extras -->
     <!-- CSS Just for demo purpose, don't include it in your project -->
+    <link th:href="@{~/assets/assets-for-demo/demo.css}" rel="stylesheet"/>
     <link href="./assets/assets-for-demo/demo.css" rel="stylesheet"/>
     <!-- iframe removal -->
 </head>
@@ -35,16 +41,18 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
         </div>
+
         <div class="collapse navbar-collapse">
+            <!--search form-->
             <form class="form-inline ml-auto mr-5" action="searchResult" method="get">
                 <div class="form-group has-white">
                     <input name="term" type="text" class="form-control" style="width:300px" placeholder="Search">
                 </div>
                 <div class="col-auto my-0">
-                    <select class="custom-select custom-select-sm" id="searchSelect" style="height: 30px;">
-                        <option value="1">Movies</option>
-                        <option value="2">TVs</option>
-                        <option value="3">Celebrities</option>
+                    <select class="custom-select custom-select-sm" name="searchSelect" style="height: 30px;">
+                        <option value="Movies">Movies</option>
+                        <option value="TVs">Tvs</option>
+                        <option value="Celebrities">Celebrities</option>
                     </select>
                 </div>
                 <button type="submit" class="btn btn-white btn-raised btn-fab btn-sm">
@@ -108,9 +116,9 @@
                         <h2 class="card-title">TOP BOX OFFICE</h2>
                         <table class="table table-striped">
                             <tbody>
-                            <tr th:each="movie:${topBoxOffice}">
+                            <tr th:each="movie:${topBoxOffice}" th:onclick="'javascript:getMovie(\''+${movie.key}+'\')'">
                                 <!--<td th:text="${movie.rate}">N/A</td>-->
-                                <td th:text="${movie.movieName}" th:onclick="'javascript:getMovie(\''+${movie.key}+'\')'">Bangalore</td>
+                                <td th:text="${movie.movieName}">Bangalore</td>
                                 <td th:text="${movie.boxOffice}">MAR 2</td>
                             </tr>
                             </tbody>
@@ -123,7 +131,7 @@
                         <h2 class="card-title">COMING SOON TO THEATERS</h2>
                         <table class="table table-striped">
                             <tbody>
-                            <!--<tr th:each="movie:${comingSoonToTheaters}" th:onclick="'javascript:getMovie(\''+${movie.Id}+'\')'"-->
+                            <!--<tr th:each="movie:${comingSoonToTheaters}" th:onclick="'javascript:getMovie(\''+${movie.key}+'\')'"-->
                                 <!--<td th:text="${movie.rate}">N/A</td>-->
                                 <!--<td th:text="${movie.movieName}">Bangalore</td>-->
                                 <!--<td th:text="${movie.movieDate}">MAR 2</td>-->
@@ -343,6 +351,22 @@
     </div>
 </footer>
 <!--   Core JS Files   -->
+<script th:src="@{~/assets/js/core/jquery.min.js}"></script>
+<script th:src="@{~/assets/js/core/popper.min.js}"></script>
+<script th:src="@{~/assets/js/bootstrap-material-design.js}"></script>
+<!--  Plugin for Date Time Picker and Full Calendar Plugin  -->
+<script th:src="@{~/assets/js/plugins/moment.min.js}"></script>
+<!--	Plugin for the Datepicker, full documentation here: https://github.com/Eonasdan/bootstrap-datetimepicker -->
+<script th:src="@{~/assets/js/plugins/bootstrap-datetimepicker.min.js}"></script>
+<!--	Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
+<script th:src="@{~/assets/js/plugins/nouislider.min.js}"></script>
+<!-- Material Kit Core initialisations of plugins and Bootstrap Material Design Library -->
+<script th:src="@{~/assets/js/material-kit.js?v=2.0.2}"></script>
+<!-- Fixed Sidebar Nav - js With initialisations For Demo Purpose, Don't Include it in your project -->
+<script th:src="@{~/assets/assets-for-demo/js/material-kit-demo.js}"></script>
+<script type="text/javascript" th:src="@{~/js/index.js}"></script>
+
+<!--test-->
 <script src="./assets/js/core/jquery.min.js"></script>
 <script src="./assets/js/core/popper.min.js"></script>
 <script src="./assets/js/bootstrap-material-design.js"></script>
@@ -356,7 +380,7 @@
 <script src="./assets/js/material-kit.js?v=2.0.2"></script>
 <!-- Fixed Sidebar Nav - js With initialisations For Demo Purpose, Don't Include it in your project -->
 <script src="./assets/assets-for-demo/js/material-kit-demo.js"></script>
-<script type="text/javascript" src="../js/index.js"></script>
+
 
 </body>
 
