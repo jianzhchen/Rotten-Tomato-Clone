@@ -39,6 +39,11 @@ public class HomeMvcController {
         return "about.html";
     }
 
+    @GetMapping("/loginPage")
+    public String loginPage(){
+        return "login.html";
+    }
+
 
 
 

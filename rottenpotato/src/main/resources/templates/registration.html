@@ -1,113 +1,174 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="utf-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <title>Registration</title>
-</head>
-<body>
-<div class="container">
-    <div class="row">
-        <div class="col-md-6 col-md-offset-3">
+<html lang="en">
 
-            <div th:if="${param.success}">
-                <div class="alert alert-info">
-                    You've successfully registered to our awesome app!
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" href="./assets/img/kit/free/apple-icon.png">
+    <link rel="icon" href="./assets/img/kit/free/favicon.png">
+    <title>
+        Signup &#45; Material Kit by Creative Tim
+    </title>
+    <!--     Fonts and icons     -->
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="./assets/css/material-kit.css?v=2.0.2">
+    <!-- Documentation extras -->
+    <!-- CSS Just for demo purpose, don't include it in your project -->
+    <link href="./assets/assets-for-demo/demo.css" rel="stylesheet" />
+    <!-- iframe removal -->
+</head>
+
+<body class="signup-page ">
+<nav class="navbar navbar-expand-lg fixed-top  bg-dark">
+    <div class="container">
+        <div class="navbar-translate">
+            <a class="navbar-brand" href="/index.html">Rotten Potato</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                <span class="navbar-toggler-icon"></span>
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+
+        <div class="collapse navbar-collapse">
+            <!--search form-->
+            <form class="form-inline ml-auto mr-5" action="searchResult" method="get">
+                <div class="form-group has-white">
+                    <input name="term" type="text" class="form-control" style="width:300px" placeholder="Search">
                 </div>
+                <div class="col-auto my-0">
+                    <select class="custom-select custom-select-sm" name="searchSelect" style="height: 30px;">
+                        <option value="Movies">Movies</option>
+                        <option value="TVs">Tvs</option>
+                        <option value="Celebrities">Celebrities</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-white btn-raised btn-fab btn-sm">
+                    <i class="material-icons">search</i>
+                </button>
+            </form>
+            <!--login signup button-->
+            <div>
+                <button class="btn btn-sm btn-primary mx-1" data-toggle="modal" data-target="#loginModal">Login
+                </button>
+                <button class="btn btn-sm btn-primary mx-1" data-toggle="modal" data-target="#signupModal">Sign
+                    up
+                </button>
             </div>
 
-            <h1>Registration</h1>
-            <form th:action="@{/registration}" th:object="${user}" method="post">
-
-                <p class="error-message"
-                   th:if="${#fields.hasGlobalErrors()}"
-                   th:each="error : ${#fields.errors('global')}"
-                   th:text="${error}">Validation error</p>
-
-                <div class="form-group"
-                     th:classappend="${#fields.hasErrors('firstName')}? 'has-error':''">
-                    <label for="firstName" class="control-label">First name</label>
-                    <input id="firstName"
-                           class="form-control"
-                           th:field="*{firstName}"/>
-                    <p class="error-message"
-                       th:each="error: ${#fields.errors('firstName')}"
-                       th:text="${error}">Validation error</p>
-                </div>
-                <div class="form-group"
-                     th:classappend="${#fields.hasErrors('lastName')}? 'has-error':''">
-                    <label for="lastName" class="control-label">Last name</label>
-                    <input id="lastName"
-                           class="form-control"
-                           th:field="*{lastName}"/>
-                    <p class="error-message"
-                       th:each="error : ${#fields.errors('lastName')}"
-                       th:text="${error}">Validation error</p>
-                </div>
-                <div class="form-group"
-                     th:classappend="${#fields.hasErrors('email')}? 'has-error':''">
-                    <label for="email" class="control-label">E-mail</label>
-                    <input id="email"
-                           class="form-control"
-                           th:field="*{email}"/>
-                    <p class="error-message"
-                       th:each="error : ${#fields.errors('email')}"
-                       th:text="${error}">Validation error</p>
-                </div>
-                <div class="form-group"
-                     th:classappend="${#fields.hasErrors('confirmEmail')}? 'has-error':''">
-                    <label for="confirmEmail" class="control-label">Confirm e-mail</label>
-                    <input id="confirmEmail"
-                           class="form-control"
-                           th:field="*{confirmEmail}"/>
-                    <p class="error-message"
-                       th:each="error : ${#fields.errors('confirmEmail')}"
-                       th:text="${error}">Validation error</p>
-                </div>
-                <div class="form-group"
-                     th:classappend="${#fields.hasErrors('password')}? 'has-error':''">
-                    <label for="password" class="control-label">Password</label>
-                    <input id="password"
-                           class="form-control"
-                           type="password"
-                           th:field="*{password}"/>
-                    <p class="error-message"
-                       th:each="error : ${#fields.errors('password')}"
-                       th:text="${error}">Validation error</p>
-                </div>
-                <div class="form-group"
-                     th:classappend="${#fields.hasErrors('confirmPassword')}? 'has-error':''">
-                    <label for="confirmPassword" class="control-label">Confirm password</label>
-                    <input id="confirmPassword"
-                           class="form-control"
-                           type="password"
-                           th:field="*{confirmPassword}"/>
-                    <p class="error-message"
-                       th:each="error : ${#fields.errors('confirmPassword')}"
-                       th:text="${error}">Validation error</p>
-                </div>
-                <div class="form-group"
-                     th:classappend="${#fields.hasErrors('terms')}? 'has-error':''">
-                    <input id="terms"
-                           type="checkbox"
-                           th:field="*{terms}"/>  
-                    <label class="control-label" for="terms">
-                        I agree with the <a href="#">terms and conditions</a> for Registration.
-                    </label>
-                    <p class="error-message"
-                       th:each="error : ${#fields.errors('terms')}"
-                       th:text="${error}">Validation error</p>
-                </div>
-                <div class="form-group">
-                    <button type="submit" class="btn btn-success">Register</button>
-                    <span>Already registered? <a href="/" th:href="@{/login}">Login here</a></span>
-                </div>
-
-            </form>
+            <!--login signup button end-->
         </div>
     </div>
-</div>
+</nav>
+    <div class="page-header header-filter" filter-color="purple" style="background-image: url(&apos;./assets/img/kit/free/bg7.jpg&apos;); background-size: cover; background-position: top center;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 ml-auto mr-auto">
+                    <div class="card card-signup">
+                        <h2 class="card-title text-center">Register</h2>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12 mr-auto">
+                                    <form class="form" method="post" th:action="@{/login}">
+                                        <div th:if="${param.error}">
+                                            <div class="alert alert-danger">
+                                                Invalid username or password.
+                                            </div>
+                                        </div>
+                                        <div th:if="${param.logout}">
+                                            <div class="alert alert-primary">
+                                                You have been logged out.
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">
+                                                        <i class="material-icons">mail</i>
+                                                    </span>
+                                                </div>
+                                                <input type="text"
+                                                       id="username"
+                                                       name="username"
+                                                       class="form-control"
+                                                       autofocus="autofocus"
+                                                       placeholder="Username"/>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">
+                                                        <i class="material-icons">lock_outline</i>
+                                                    </span>
+                                                </div>
+                                                <input type="password"
+                                                       id="password"
+                                                       name="password"
+                                                       class="form-control"
+                                                       placeholder="Password"/>
+                                            </div>
+                                        </div>
 
+                                        <div class="form-group">
+                                            <div class="row pull-right">
+                                                    <input type="submit"
+                                                           name="login-submit"
+                                                           id="login-submit"
+                                                           class=" btn btn-primary"
+                                                           value="Log In"/>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <span>Already has account? <a href="/" th:href="@{/loginPage}">Login here</a></span>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="footer ">
+            <div class="container">
+                <nav class="pull-left">
+                    <ul>
+                        <li>
+                            <a href="/about">
+                                About Us
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                <div class="copyright pull-right">
+                    &copy;
+                    <script>
+                        document.write(new Date().getFullYear())
+                    </script>
+                    , The Redwood Team
+                </div>
+            </div>
+        </footer>
+    </div>
+    <!--   Core JS Files   -->
+    <script src="./assets/js/core/jquery.min.js"></script>
+    <script src="./assets/js/core/popper.min.js"></script>
+    <script src="./assets/js/bootstrap-material-design.js"></script>
+    <!--  Plugin for Date Time Picker and Full Calendar Plugin  -->
+    <script src="./assets/js/plugins/moment.min.js"></script>
+    <!--	Plugin for the Datepicker, full documentation here: https://github.com/Eonasdan/bootstrap-datetimepicker -->
+    <script src="./assets/js/plugins/bootstrap-datetimepicker.min.js"></script>
+    <!--	Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
+    <script src="./assets/js/plugins/nouislider.min.js"></script>
+    <!-- Material Kit Core initialisations of plugins and Bootstrap Material Design Library -->
+    <script src="./assets/js/material-kit.js?v=2.0.2"></script>
+    <!-- Fixed Sidebar Nav - js With initialisations For Demo Purpose, Don't Include it in your project -->
+    <script src="./assets/assets-for-demo/js/material-kit-demo.js"></script>
 </body>
+
 </html>

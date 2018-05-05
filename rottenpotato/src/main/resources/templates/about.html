@@ -50,18 +50,14 @@
                 </button>
             </form>
             <!--login signup button-->
-            <div th:if="${isLogin} == true">
-                <p th:bgcolor="white" th:text="${username}" th:onclick="'javascript:goToProfile()'"></p>
+            <div>
+                <button class="btn btn-sm btn-primary mx-1" data-toggle="modal" data-target="#loginModal">Login
+                </button>
+                <button class="btn btn-sm btn-primary mx-1" data-toggle="modal" data-target="#signupModal">Sign
+                    up
+                </button>
             </div>
-            <div th:if="${isLogin} == false">
-                <div>
-                    <button class="btn btn-sm btn-primary mx-1" data-toggle="modal" data-target="#loginModal">Login
-                    </button>
-                    <button class="btn btn-sm btn-primary mx-1" data-toggle="modal" data-target="#signupModal">Sign
-                        up
-                    </button>
-                </div>
-            </div>
+
             <!--login signup button end-->
         </div>
     </div>
@@ -76,53 +72,7 @@
     <div class="section section-basic mx-2">
         <div class="container">
             <div class="row">
-                <h3 class="title">ABOUT ROTTEN POTATO®</h3>
-                <p>Rotten Tomatoes® and the Tomatometer® score are the most trusted recommendation sources for quality
-                    entertainment. As the leading online aggregator of movie and TV show reviews from professional critics,
-                    Rotten Tomatoes offers the most comprehensive guide to what's Fresh.
-                    The world famous Tomatometer score represents the percentage of positive professional
-                    reviews for films and TV shows and is used by millions of fans to help with their viewing decisions.
-                    Rotten Tomatoes designates the best-reviewed movies and TV shows as Certified Fresh™.
-                    That accolade is awarded with a Tomatometer score of 75% and higher and a required minimum number of reviews.
-                </p>
-                <p>In 2016, Flixster and Rotten Tomatoes became part of Fandango's portfolio of digital properties,
-                    serving moviegoers and entertainment fans.
-                </p>
-            </div>
-            <div class="row">
 
-                <h3 class="title">WHAT IS THE POTATOMETER®?</h3>
-                <p>
-                    The Tomatometer score – based on the opinions of hundreds of film and television critics – is a trusted measurement of critical recommendation for millions of fans.
-                </p>
-                <p>
-                    Back in the days of the open theaters, when a play was particularly atrocious, the audience expressed their dissatisfaction by not only booing and hissing at the stage, but also throwing whatever was at hand – vegetables and fruits included.
-                </p>
-                <p>
-                    The Tomatometer score represents the percentage of professional critic reviews that are positive for a given film or television show. A Tomatometer score is calculated for a movie or TV show after it receives at least five reviews.
-                </p>
-                <p>
-                    When at least 60% of reviews for a movie or TV show are positive, a red tomato is displayed to indicate its Fresh status.
-                </p>
-                <p>
-                    When less than 60% of reviews for a movie or TV show are positive, a green splat is displayed to indicate its Rotten status.
-                </p>
-            </div>
-            <div class="row">
-
-                <h3 class="title">WHAT IS THE AUDIENCE SCORE?</h3>
-                <p>
-                    The Audience rating, denoted by a popcorn bucket, is the percentage of all users who have rated the movie or TV Show positively.
-                </p>
-                <p>
-                    The full popcorn bucket means the movie received 3.5 stars or higher by users.
-                </p>
-                <p>
-                    The tipped over popcorn bucket means the movie received less than 3.5 stars by users.
-                </p>
-                <p>
-                    The plus sign will appear for movies that do not have audience ratings or reviews. The percentage you see associated with this icon is the percentage of users who added the movie to their Want-to-See list.
-                </p>
             </div>
         </div>
     </div>
@@ -130,28 +80,80 @@
 
 
 <!-- Classic Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog">
+<div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="signupModalLabel"
+     aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Modal title</h5>
+                <h5 class="modal-title" id="signupModalLabel">Sign Up</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <i class="material-icons">clear</i>
+                    <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live
-                    the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large
-                    language ocean. A small river named Duden flows by their place and supplies it with the necessary
-                    regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.
-                    Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic
-                    life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the
-                    far World of Grammar.
-                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="email" class="form-control" id="signupInputEmail" aria-describedby="emailHelp"
+                               placeholder="Enter email">
+                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
+                            else.
+                        </small>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" placeholder="Password">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" placeholder="Retype Password">
+                    </div>
+                    <div class="form-group">
+                        <input type="email" class="form-control" aria-describedby="emailHelp"
+                               placeholder="Enter First Name">
+                    </div>
+                    <div class="form-group">
+                        <input type="email" class="form-control" aria-describedby="emailHelp"
+                               placeholder="Enter Last Name">
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                        <label class="form-check-label">Check if you are applying as a
+                            critic</label>
+                    </div>
+                </form>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-link">Nice Button</button>
-                <button type="button" class="btn btn-danger btn-link" data-dismiss="modal">Close</button>
+            <div class="modal-footer mb-1">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Sign In</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <input type="email" class="form-control" aria-describedby="emailHelp"
+                               placeholder="Enter email">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" placeholder="Password">
+                    </div>
+                    <div class="text-danger" th:text="${errorMessage}">error</div>
+                </form>
+            </div>
+
+            <div class="modal-footer mb-1">
+                <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-sm btn-primary">Sign In</button>
             </div>
         </div>
     </div>
