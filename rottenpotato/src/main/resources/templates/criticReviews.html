@@ -100,24 +100,17 @@
 
 <div class="main main-raised">
     <div class="section section-basic mx-2">
-        <!--Top Critics-->
+        <!--Latest Reviews-->
         <div class="row m-2 px-2">
             <div class="col-md-12 px-0">
-                <h2 class="title">TOP CRITIC</h2>
-                <div>
+                <h2 class="title">Latest Reviews</h2>
+                <div id="critic-list">
                     <table class="search-result-table-cele">
-                        <!--<p th:text="${critics.size()}"></p>-->
                         <tbody>
-                        <tr th:each="critic:${critics}">
-                            <td th:onclick="'javascript:getCritic(\''+${critic.criticKey}+'\')'">
-                                <img src="http://via.placeholder.com/240x135" width="240" height="135">
-                            </td>
-                            <td>
-                                <ul class="list-unstyled">
-                                    <li class="title" th:text="${critic.criticName}" th:onclick="'javascript:getCritic(\''+${critic.criticKey}+'\')'">Celebrity Name</li>
-                                    <li th:text="${critic.criticInfo}">Info</li>
-                                </ul>
-                            </td>
+                        <tr th:each="rev:${reviews}">
+                            <td th:text="${rev.name}">name</td>
+                            <td th:text="${rev.score}">score</td>
+                            <td th:text="${rev.content}">content</td>
                         </tr>
                         </tbody>
                     </table>
