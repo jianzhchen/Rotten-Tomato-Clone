@@ -34,6 +34,10 @@ public class HomeMvcController {
         return "index.html";
     }
 
+    @GetMapping("/about")
+    public String about(){
+        return "about.html";
+    }
 
 
 
