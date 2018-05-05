@@ -76,6 +76,7 @@ public class CriticMvcController {
     public String criticAll(@PathVariable("page") int page, Model model) {
         List<Critic> critics = criticRepository.findTopByOrderByCriticNameDesc(PageRequest.of(page, 10));
         model.addAttribute("critics", critics);
-        return "criticList.html";
+        model.addAttribute("page",page);
+        return "critic.html";
     }
 }
