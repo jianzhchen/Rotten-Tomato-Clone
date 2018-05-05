@@ -91,6 +91,7 @@ public class SearchMvcController {
         model.addAttribute("movies", movies);
         model.addAttribute("tvs", tvs);
         model.addAttribute("actors", actors);
+
         model.addAttribute("key",searchTerm);
         model.addAttribute("select",select);
 

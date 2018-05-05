@@ -6,3 +6,7 @@ function getMovie(movieId){
      window.location.href="/t/"+TvId;
 
  }
+
+ function goToProfile() {
+     window.location.href="/me";
+ }

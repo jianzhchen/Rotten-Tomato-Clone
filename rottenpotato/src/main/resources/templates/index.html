@@ -61,7 +61,7 @@
             </form>
             <!--login signup button-->
             <div th:if="${isLogin} == true">
-                <p th:bgcolor="white" th:text="${username}"></p>
+                <p th:bgcolor="white" th:text="${username}" th:onclick="'javascript:goToProfile()'"></p>
             </div>
             <div th:if="${isLogin} == false">
                 <div>
