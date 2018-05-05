@@ -144,9 +144,9 @@
                             </div>
                         </div>
                         <div class="pull-right">
-                            <button type="button" class="btn btn-primary" th:if="${page} != 1" th:onclick="'javascript:getPrevPage(\''+${page}+'\')'" >Prev</button>
+                            <button type="button" class="btn btn-primary btn-sm" th:if="${page} != 1" th:onclick="'javascript:getPrevPage(\''+${page}+'\')'" >Prev</button>
                             <p style="display: inline" th:text="${page}">Page</p>
-                            <button type="button" class="btn btn-primary" th:onclick="'javascript:getNextPage(\''+${page}+'\')'">Next</button>
+                            <button type="button" class="btn btn-primary btn-sm" th:onclick="'javascript:getNextPage(\''+${page}+'\')'">Next</button>
                         </div>
                     </div>
                 </div>
@@ -310,7 +310,7 @@
     <script src="./assets/js/material-kit.js?v=2.0.2}"></script>
     <!-- Fixed Sidebar Nav - js With initialisations For Demo Purpose, Don't Include it in your project -->
     <script src="./assets/assets-for-demo/js/material-kit-demo.js"></script>
-    <script type="text/javascript" src="../js/index.js"></script>
+
 
 
 </body>

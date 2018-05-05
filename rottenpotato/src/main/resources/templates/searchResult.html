@@ -33,18 +33,18 @@
             </button>
         </div>
         <!--login signup button-->
-        <!--<div th:if="${isLogin} == true">-->
-            <!--<p th:bgcolor="white" th:text="${username}"></p>-->
-        <!--</div>-->
-        <!--<div th:if="${isLogin} == false">-->
-            <!--<div>-->
-                <!--<button class="btn btn-sm btn-primary mx-1" data-toggle="modal" data-target="#loginModal">Login-->
-                <!--</button>-->
-                <!--<button class="btn btn-sm btn-primary mx-1" data-toggle="modal" data-target="#signupModal">Sign-->
-                    <!--up-->
-                <!--</button>-->
-            <!--</div>-->
-        <!--</div>-->
+        <div th:if="${isLogin} == true">
+            <p th:bgcolor="white" th:text="${username}"></p>
+        </div>
+        <div th:if="${isLogin} == false">
+            <div>
+                <button class="btn btn-sm btn-primary mx-1" data-toggle="modal" data-target="#loginModal">Login
+                </button>
+                <button class="btn btn-sm btn-primary mx-1" data-toggle="modal" data-target="#signupModal">Sign
+                    up
+                </button>
+            </div>
+        </div>
         <!--login signup button end-->
     </div>
 </nav>
@@ -66,10 +66,10 @@
                                 <input type="search" class="form-control" name="term" placeholder="Search">
                             </div>
                             <div class="form-group col-md-2 mt-4">
-                                <select class="custom-select custom-select" id="searchSelect">
-                                    <option value="1">Movies</option>
-                                    <option value="2">TVs</option>
-                                    <option value="3">Celebrities</option>
+                                <select class="custom-select custom-select" name="searchSelect" id="searchSelect">
+                                    <option value="Movies">Movies</option>
+                                    <option value="TVs">TVs</option>
+                                    <option value="Celebrities">Celebrities</option>
                                 </select>
                             </div>
                             <div class="form-group col-md-1 mt-3">
@@ -81,30 +81,103 @@
                 </div>
             </div>
             <div class="card">
-                <div class="card-body">
-                    <h3 class="title" th:text="'Search Result for: '+${key}" >search result</h3>
-                        <table id="search-result-table-cele">
+                <!--movie result-->
+                <div class="card-body" th:if="${select} == 'Movies'">
+                    <h3 class="title"  th:text="'Search Result for: \''+${key} +'\' in '+${select}" >search result</h3>
+                    <!--found-->
+                    <div th:if="${movies.size()} != 0">
+                        <table class="search-result-table-item">
                             <tbody>
-                            <tr th:each="item:${movies}">
+                            <tr th:each="item:${movies}" >
                                 <td>
+                                    Rate
+                                </td>
+                                <td th:onclick="'javascript:getMovie(\''+${item.key}+'\')'">
                                     <img src="http://via.placeholder.com/240x135" width="240" height="135">
                                 </td>
                                 <td>
                                     <ul class="list-unstyled">
-                                        <li th:text="${item.name}">Celebrity Name</li>
-                                        <li th:text="${item.casts}" th:onclick="'javascript:getMovie(\''+${item.key}+'\')'">Info</li>
+                                        <li class="title" th:text="${item.name}" th:onclick="'javascript:getMovie(\''+${item.key}+'\')'">movie Name</li>
+                                        <li th:text="${item.casts}">casts</li>
                                     </ul>
                                 </td>
                             </tr>
                             </tbody>
                         </table>
+                    </div>
+                    <!--no found-->
+                    <div th:if="${movies.size()} == 0">
+                        <h3 class="text-center">No result Found</h3>
+                    </div>
+
+
                 </div>
+                <!--tv result-->
+                <div class="card-body" th:if="${select} == 'TVs'">
+                    <h3 class="title"  th:text="'Search Result for: \''+${key} +'\' in '+${select}" >search result</h3>
+                    <!--found-->
+                    <div th:if="${tvs.size()} != 0">
+                        <table class="search-result-table-item">
+                            <tbody>
+                            <tr th:each="item:${tvs}">
+                                <td>
+                                    Rate
+                                </td>
+                                <td th:onclick="'javascript:getTv(\''+${item.key}+'\')'">
+                                    <img src="http://via.placeholder.com/240x135" width="240" height="135">
+                                </td>
+                                <td>
+                                    <ul class="list-unstyled">
+                                        <li class="title" th:text="${item.name}" th:onclick="'javascript:getTv(\''+${item.key}+'\')'">tv Name</li>
+                                        <li th:text="${item.casts}">casts</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!--no found-->
+                    <div th:if="${tvs.size()} == 0">
+                        <h3 class="text-center">No result Found</h3>
+                    </div>
+
+
+                </div>
+                <!--actor result-->
+                <div class="card-body" th:if="${select} == 'Celebrities'">
+
+                    <h3 class="title"  th:text="'Search Result for: \''+${key} +'\' in '+${select}" >search result</h3>
+                    <!--found-->
+                    <div th:if="${actors.size()} != 0">
+                        <table class="search-result-table-cele">
+                            <tbody>
+                            <tr th:each="item:${actors}">
+                                <td th:onclick="'javascript:getCele(\''+${item.key}+'\')'">
+                                    <img src="http://via.placeholder.com/240x135" width="240" height="135">
+                                </td>
+                                <td>
+                                    <ul class="list-unstyled">
+                                        <li class="title" th:text="${item.name}" th:onclick="'javascript:getCele(\''+${item.key}+'\')'">Celebrity Name</li>
+                                        <li th:text="${item.info}">Info</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!--no found-->
+                    <div th:if="${actors.size()} == 0">
+                        <h3 class="text-center">No result Found</h3>
+                    </div>
+
+
+                </div>
+
             </div>
             <div>
-                <div class="float-left">
-                    <button type="button" class="btn btn-primary">Prev</button>
-                </div>
                 <div class="float-right">
+                    <button type="button" class="btn btn-primary">Prev</button>
+                    <p style="display: inline">Page</p>
                     <button type="button" class="btn btn-primary">Next</button>
                 </div>
             </div>
@@ -161,6 +234,8 @@
         </div>
     </div>
 </footer>
+
+<script type="text/javascript" th:src="@{~/js/searchResult.js}"></script>
 <!--   Core JS Files   -->
 <script src="./assets/js/core/jquery.min.js"></script>
 <script src="./assets/js/core/popper.min.js"></script>
@@ -175,7 +250,6 @@
 <script src="./assets/js/material-kit.js?v=2.0.2"></script>
 <!-- Fixed Sidebar Nav - js With initialisations For Demo Purpose, Don't Include it in your project -->
 <script src="./assets/assets-for-demo/js/material-kit-demo.js"></script>
-<script type="text/javascript" src="../js/searchResult.js"></script>
 
 </body>
 

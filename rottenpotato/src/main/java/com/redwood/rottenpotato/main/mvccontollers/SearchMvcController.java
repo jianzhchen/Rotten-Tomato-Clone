@@ -37,7 +37,8 @@ public class SearchMvcController {
     private NotInterestedRepository notInterestedRepository;
 
     @GetMapping(value = "searchResult")
-    public String search(@RequestParam("term") String searchTerm, Model model, Principal principal) {
+    public String search(@RequestParam("term") String searchTerm,
+                         @RequestParam("searchSelect") String select, Model model, Principal principal) {
         List<String> filter = new ArrayList<>();
         if (principal != null) {
             User user = userRepository.findByEmail(principal.getName());
@@ -72,6 +73,7 @@ public class SearchMvcController {
             tvDetail.put("name", tv.getTVName());
             tvDetail.put("info", tv.getTVInfo());
             tvDetail.put("key", tv.getTVKey());
+            tvDetail.put("casts", castTransfer(tv.getTVCast()));
             //TODO poster
             tvs.add(tvDetail);
         }
@@ -82,6 +84,7 @@ public class SearchMvcController {
             HashMap<String, String> actorDetail = new HashMap<>();
             actorDetail.put("name", actor.getActorName());
             actorDetail.put("info", actor.getActorInfo());
+            actorDetail.put("key",actor.getActorKey());
             actors.add(actorDetail);
         }
 
@@ -89,6 +92,8 @@ public class SearchMvcController {
         model.addAttribute("tvs", tvs);
         model.addAttribute("actors", actors);
         model.addAttribute("key",searchTerm);
+        model.addAttribute("select",select);
+
         return "searchResult.html";
     }
 
@@ -99,9 +104,13 @@ public class SearchMvcController {
         for(int i = 0; i <= castsArr.length - 1 && i < 10; i ++){
             castsStr += castsArr[i].replace("_", " ") + ", ";
         }
+        if (castsStr == ""){
+            castsStr = "No Available";
+        }else{
+            castsStr = castsStr.substring(0, castsStr.length() - 2);
+            castsStr += ".";
+        }
 
-        castsStr = castsStr.substring(0, castsStr.length() - 2);
-        castsStr += ".";
         return castsStr;
     }
 

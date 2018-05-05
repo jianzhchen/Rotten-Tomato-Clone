@@ -36,27 +36,27 @@
     width: 100%;
     height: 100%;
 }
-#search-result-table-item td:first-child{
+.search-result-table-item td:first-child{
      padding: 10px;
      width: 100px;
      text-align: center;
  }
-#search-result-table-item td:nth-child(2){
+.search-result-table-item td:nth-child(2){
     padding: 10px;
     width: 300px;
     height: 150px;
     text-align: center;
 }
-#search-result-table-item td:nth-child(3){
+.search-result-table-item td:nth-child(3){
     width: 800px;
 }
-#search-result-table-cele td:first-child{
+.search-result-table-cele td:first-child{
     padding: 10px;
     width: 300px;
     height: 150px;
     text-align: center;
 }
-#search-result-table-cele td:nth-child(2){
+.search-result-table-cele td:nth-child(2){
     width: 800px;
 }
 

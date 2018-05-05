@@ -3,6 +3,6 @@ function getMovie(movieId){
  }
 
  function getTv(TvId){
-     window.location.href="/m/"+movieId;
+     window.location.href="/t/"+TvId;
 
  }
