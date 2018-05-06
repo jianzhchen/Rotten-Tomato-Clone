@@ -2,7 +2,7 @@
 /build/
 !gradle/wrapper/gradle-wrapper.jar
 /out/
-*.jpg
+
 
 ### STS ###
 .apt_generated
@@ -28,3 +28,7 @@
 /nbdist/
 /.nb-gradle/
 
+/src/main/resources/static/assets/img/actorImages/
+/src/main/resources/static/assets/img/movieImages/
+/src/main/resources/static/assets/img/tvImages/
+/src/main/resources/static/assets/img/criticImages/
