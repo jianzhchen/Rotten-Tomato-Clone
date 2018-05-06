@@ -101,6 +101,7 @@ public class SearchMvcController {
         }
         model.addAttribute("result", result);
         model.addAttribute("hasNext", hasNext);
+        model.addAttribute("type",type);
         return "searchResult.html";
     }
 
