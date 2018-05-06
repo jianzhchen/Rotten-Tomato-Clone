@@ -13,7 +13,7 @@ import java.util.List;
 @Repository
 public interface TVRepository extends JpaRepository<TV, Long> {
     @Query("SELECT t FROM TV t WHERE t.TVName LIKE %:searchTerm%")
-    public List<TV> searchByName(@Param("searchTerm") String searchTerm);
+    public List<TV> searchByName(@Param("searchTerm") String searchTerm,Pageable pageable);
 
     @Query("select t from TV t where t.TVKey=:TVKey")
     public TV findByTVKey(String TVKey);

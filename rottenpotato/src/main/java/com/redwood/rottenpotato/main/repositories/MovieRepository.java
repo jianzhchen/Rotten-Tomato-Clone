@@ -12,7 +12,7 @@ import java.util.List;
 @Repository
 public interface MovieRepository extends JpaRepository<Movie, Long> {
     @Query("SELECT m FROM Movie m WHERE m.name LIKE %:searchTerm%")
-    public List<Movie> searchByName(@Param("searchTerm") String searchTerm);
+    public List<Movie> searchByName(@Param("searchTerm") String searchTerm,Pageable pageable);
 
     public List<Movie> findTop10ByOrderByBoxOfficeDesc(Pageable pageable);
 

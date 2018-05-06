@@ -62,6 +62,14 @@ public class CriticMvcController {
         List<HashMap> reviews = new ArrayList<>();
         for (CriticReview criticReview : criticReviews) {
             HashMap<String, String> map = new HashMap<>();
+            String itemKey = criticReview.getItemKey();
+            Movie movie = movieRepository.findByMovieKey(itemKey);
+            TV tv = tVRepository.findByTVKey(itemKey);
+            if (movie != null) {
+                map.put("itemName", movie.getName());
+            } else {
+                map.put("itemName", tv.getTVName());
+            }
             map.put("criticKey", criticReview.getCriticKey());
             Critic critic = criticRepository.findByCriticKey(criticReview.getCriticKey());
             map.put("name", critic.getCriticName());
@@ -74,9 +82,9 @@ public class CriticMvcController {
 
     @RequestMapping("/critic_all/{page}")
     public String criticAll(@PathVariable("page") int page, Model model) {
-        List<Critic> critics = criticRepository.findTopByOrderByCriticNameDesc(PageRequest.of(page, 10));
+        List<Critic> critics = criticRepository.findTop10ByOrderByCriticNameDesc(PageRequest.of(page, 10));
         model.addAttribute("critics", critics);
-        model.addAttribute("page",page);
+        model.addAttribute("page", page);
         return "critic.html";
     }
 }

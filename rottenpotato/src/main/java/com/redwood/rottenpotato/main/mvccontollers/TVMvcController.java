@@ -60,8 +60,11 @@ public class TVMvcController {
                 criticScoreCount++;
             }
         }
-        model.addAttribute("criticRating", String.format("%.2f", criticScore / criticScoreCount));
-
+        if (criticScoreCount == 0) {
+            model.addAttribute("criticRating", "N/A");
+        } else {
+            model.addAttribute("criticRating", String.format("%.2f", criticScore / criticScoreCount));
+        }
         List<UserRating> userRatings = userRatingRepository.findByItemKey(tv.getTVKey());
         int userScore = 0;
         int userScoreCount = 0;
@@ -71,7 +74,12 @@ public class TVMvcController {
                 userScoreCount++;
             }
         }
-        model.addAttribute("userRating", String.format("%.2f", userScore / userScoreCount));
+        if (userScoreCount == 0) {
+            model.addAttribute("userRating", "N/A");
+        } else {
+            model.addAttribute("userRating", String.format("%.2f", userScore / userScoreCount));
+        }
+
         //TODO poster
         return "tvInfo.html";
     }

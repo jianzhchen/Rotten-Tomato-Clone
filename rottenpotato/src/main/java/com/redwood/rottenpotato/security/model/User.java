@@ -21,6 +21,7 @@ public class User {
     @Lob
     private byte[] image;
     private boolean isAdmin;
+    private boolean isCritic;
 
     private String token;
     private Timestamp tokenEndTime;
@@ -160,5 +161,13 @@ public class User {
 
     public void setAdmin(boolean admin) {
         isAdmin = admin;
+    }
+
+    public boolean isCritic() {
+        return isCritic;
+    }
+
+    public void setCritic(boolean critic) {
+        isCritic = critic;
     }
 }

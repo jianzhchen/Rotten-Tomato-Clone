@@ -39,7 +39,7 @@ public class MovieMvcController {
     @GetMapping(value = "m/{movieKey}")
     public String movieDetail(@PathVariable("movieKey") String movieKey, Model model) {
         Movie movie = movieRepository.findByMovieKey(movieKey);
-        if(movie==null){
+        if (movie == null) {
             model.addAttribute("exist", false);
         }
         model.addAttribute("name", movie.getName());
@@ -71,7 +71,11 @@ public class MovieMvcController {
                 criticScoreCount++;
             }
         }
-//        model.addAttribute("criticRating", String.format("%.2f", criticScore / criticScoreCount));
+        if (criticScoreCount == 0) {
+            model.addAttribute("criticRating", "N/A");
+        } else {
+            model.addAttribute("criticRating", String.format("%.2f", criticScore / criticScoreCount));
+        }
 
         List<UserRating> userRatings = userRatingRepository.findByItemKey(movieKey);
         int userScore = 0;
@@ -82,9 +86,14 @@ public class MovieMvcController {
                 userScoreCount++;
             }
         }
-//        model.addAttribute("userRating", String.format("%.2f", userScore / userScoreCount));
+        if (userScoreCount == 0) {
+            model.addAttribute("userRating", "N/A");
+        } else {
+            model.addAttribute("userRating", String.format("%.2f", userScore / userScoreCount));
+        }
         //TODO poster
         return "movieInfo.html";
+
     }
 
     @GetMapping(value = "m/d/{page}")
@@ -100,7 +109,7 @@ public class MovieMvcController {
             movieList.add(movieDetail);
         }
         model.addAttribute("movies", movieList);
-        model.addAttribute("page",page);
+        model.addAttribute("page", page);
         return "movieToDate.html";
     }
 
@@ -117,22 +126,22 @@ public class MovieMvcController {
             movieList.add(movieDetail);
         }
         model.addAttribute("movies", movieList);
-        model.addAttribute("page",page);
+        model.addAttribute("page", page);
 
         return "movieToBox.html";
     }
 
 
-    public String boxOfficeTransfer(long boxOffice){
+    public String boxOfficeTransfer(long boxOffice) {
         String boxOfficeStr;
 
-        if(boxOffice >= 1000000000){
+        if (boxOffice >= 1000000000) {
             boxOfficeStr = "$" + boxOffice / 1000000000 + "." + (boxOffice % 1000000000) / 100000000 + "B";
-        }else if (boxOffice >= 1000000){
+        } else if (boxOffice >= 1000000) {
             boxOfficeStr = "$" + boxOffice / 1000000 + "." + (boxOffice % 1000000) / 100000 + "M";
-        }else if (boxOffice > 1000){
+        } else if (boxOffice > 1000) {
             boxOfficeStr = "$" + boxOffice / 1000 + "." + (boxOffice % 1000) / 100 + "K";
-        }else{
+        } else {
             boxOfficeStr = "$" + boxOffice;
         }
         return boxOfficeStr;
