@@ -2,6 +2,7 @@
 /build/
 !gradle/wrapper/gradle-wrapper.jar
 /out/
+*.jpg
 
 ### STS ###
 .apt_generated
@@ -17,7 +18,7 @@
 *.iws
 *.iml
 *.ipr
-*.jpg
+
 
 ### NetBeans ###
 /nbproject/private/
