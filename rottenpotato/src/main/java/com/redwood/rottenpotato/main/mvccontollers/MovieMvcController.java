@@ -74,7 +74,7 @@ public class MovieMvcController {
         if (criticScoreCount == 0) {
             model.addAttribute("criticRating", "N/A");
         } else {
-            model.addAttribute("criticRating", String.format("%.2f", criticScore / criticScoreCount));
+            model.addAttribute("criticRating", String.format("%.2f", (double)criticScore / criticScoreCount));
         }
 
         List<UserRating> userRatings = userRatingRepository.findByItemKey(movieKey);
@@ -89,7 +89,7 @@ public class MovieMvcController {
         if (userScoreCount == 0) {
             model.addAttribute("userRating", "N/A");
         } else {
-            model.addAttribute("userRating", String.format("%.2f", userScore / userScoreCount));
+            model.addAttribute("userRating", String.format("%.2f", (double)userScore / userScoreCount));
         }
         //TODO poster
         return "movieInfo.html";
