@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.security.Principal;
 import java.util.*;
 
 @Controller
@@ -98,8 +99,14 @@ public class MovieMvcController {
     }
 
     @GetMapping(value = "m/d/{page}")
-    public String movieByDate(@PathVariable("page") int page, Model model) {
-        List<Movie> movies = movieRepository.findTop10ByOrderByInTheatersTimeDesc(PageRequest.of(page, 10));
+    public String movieByDate(@PathVariable("page") int page, Model model, Principal principal) {
+        if (principal == null) {
+            model.addAttribute("isLogin", false);
+        } else {
+            model.addAttribute("isLogin", true);
+            model.addAttribute("username", principal.getName());
+        }
+        List<Movie> movies = movieRepository.findTop8ByOrderByInTheatersTimeDesc(PageRequest.of(page, 8));
         List<HashMap> movieList = new ArrayList<>();
         for (Movie movie : movies) {
             HashMap<String, String> movieDetail = new HashMap<>();
@@ -115,8 +122,14 @@ public class MovieMvcController {
     }
 
     @GetMapping(value = "m/b/{page}")
-    public String movieByBox(@PathVariable("page") int page, Model model) {
-        List<Movie> movies = movieRepository.findTop10ByOrderByBoxOfficeDesc(PageRequest.of(page, 10));
+    public String movieByBox(@PathVariable("page") int page, Model model, Principal principal) {
+        if (principal == null) {
+            model.addAttribute("isLogin", false);
+        } else {
+            model.addAttribute("isLogin", true);
+            model.addAttribute("username", principal.getName());
+        }
+        List<Movie> movies = movieRepository.findTop8ByOrderByBoxOfficeDesc(PageRequest.of(page, 8));
         List<HashMap> movieList = new ArrayList<>();
         for (Movie movie : movies) {
             HashMap<String, String> movieDetail = new HashMap<>();

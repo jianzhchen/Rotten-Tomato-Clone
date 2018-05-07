@@ -15,9 +15,11 @@ public interface MovieRepository extends JpaRepository<Movie, Long> {
     public List<Movie> searchByName(@Param("searchTerm") String searchTerm,Pageable pageable);
 
     public List<Movie> findTop10ByOrderByBoxOfficeDesc(Pageable pageable);
+    public List<Movie> findTop8ByOrderByBoxOfficeDesc(Pageable pageable);
 
     @Query("SELECT m FROM Movie m order by m.inTheatersTime DESC")
     public List<Movie> findTop10ByOrderByInTheatersTimeDesc(Pageable pageable);
+    public List<Movie> findTop8ByOrderByInTheatersTimeDesc(Pageable pageable);
 
     public Movie findByMovieKey(String movieKey);
 
