@@ -7,7 +7,7 @@ function getTv(TvId){
 
 }
 
-function getCele(CeleId){
+function getActor(CeleId){
     window.location.href="/c/"+CeleId;
 
 }
@@ -32,4 +32,8 @@ function getNextPage(page) {
 
     }
     window.location.href=nextUrl;
+}
+function errorImg(img){
+    img.src="http://via.placeholder.com/240x135";
+    img.onerror = null;
 }

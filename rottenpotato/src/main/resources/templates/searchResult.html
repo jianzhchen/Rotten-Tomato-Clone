@@ -89,16 +89,13 @@
                         <table class="search-result-table-item">
                             <tbody>
                             <tr th:each="item:${result}" >
-                                <td>
-                                    Rate
-                                </td>
                                 <td th:onclick="'javascript:getMovie(\''+${item.key}+'\')'">
-                                    <img src="http://via.placeholder.com/240x135" width="240" height="135">
+                                    <img th:src="@{'~/Images/movieImages/'+${item.key}+'.jpg'}" th:width="240" th:height="135" onerror="errorImg(this)">
                                 </td>
                                 <td>
                                     <ul class="list-unstyled">
                                         <li class="title" th:text="${item.name}" th:onclick="'javascript:getMovie(\''+${item.key}+'\')'">movie Name</li>
-                                        <li th:text="${item.info}">casts</li>
+                                        <!--<li th:text="${item.info}">casts</li>-->
                                     </ul>
                                 </td>
                             </tr>
@@ -113,23 +110,20 @@
 
                 </div>
                 <!--tv result-->
-                <div class="card-body" th:if="${select} == 'TVs'">
-                    <h3 class="title"  th:text="'Search Result for: \''+${key} +'\' in '+${select}" >search result</h3>
+                <div class="card-body" th:if="${type} == 'tv'">
+                    <h3 class="title"  th:text="'Search Result for: \''+${term} +'\' in '+${type}" >search result</h3>
                     <!--found-->
-                    <div th:if="${tvs.size()} != 0">
+                    <div th:if="${result.size()} != 0">
                         <table class="search-result-table-item">
                             <tbody>
-                            <tr th:each="item:${tvs}">
-                                <td>
-                                    Rate
-                                </td>
+                            <tr th:each="item:${result}">
                                 <td th:onclick="'javascript:getTv(\''+${item.key}+'\')'">
-                                    <img src="http://via.placeholder.com/240x135" width="240" height="135">
+                                    <img th:src="@{'~/Images/tvImages/'+${item.key}+'.jpg'}" th:width="240" th:height="135" onerror="errorImg(this)">
                                 </td>
                                 <td>
                                     <ul class="list-unstyled">
                                         <li class="title" th:text="${item.name}" th:onclick="'javascript:getTv(\''+${item.key}+'\')'">tv Name</li>
-                                        <li th:text="${item.casts}">casts</li>
+                                        <!--<li th:text="${item.info}">casts</li>-->
                                     </ul>
                                 </td>
                             </tr>
@@ -137,28 +131,28 @@
                         </table>
                     </div>
                     <!--no found-->
-                    <div th:if="${tvs.size()} == 0">
+                    <div th:if="${result.size()} == 0">
                         <h3 class="text-center">No result Found</h3>
                     </div>
 
 
                 </div>
                 <!--actor result-->
-                <div class="card-body" th:if="${select} == 'Celebrities'">
+                <div class="card-body" th:if="${type} == 'actor'">
 
-                    <h3 class="title"  th:text="'Search Result for: \''+${key} +'\' in '+${select}" >search result</h3>
+                    <h3 class="title"  th:text="'Search Result for: \''+${term} +'\' in '+${type}" >search result</h3>
                     <!--found-->
-                    <div th:if="${actors.size()} != 0">
-                        <table class="search-result-table-cele">
+                    <div th:if="${result.size()} != 0">
+                        <table class="search-result-table-item">
                             <tbody>
-                            <tr th:each="item:${actors}">
-                                <td th:onclick="'javascript:getCele(\''+${item.key}+'\')'">
-                                    <img src="http://via.placeholder.com/240x135" width="240" height="135">
+                            <tr th:each="item:${result}">
+                                <td th:onclick="'javascript:getActor(\''+${item.key}+'\')'">
+                                    <img th:src="@{'~/Images/actorImages/'+${item.key}+'.jpg'}" th:width="240" th:height="135" onerror="errorImg(this)">
                                 </td>
                                 <td>
                                     <ul class="list-unstyled">
-                                        <li class="title" th:text="${item.name}" th:onclick="'javascript:getCele(\''+${item.key}+'\')'">Celebrity Name</li>
-                                        <li th:text="${item.info}">Info</li>
+                                        <li class="title" th:text="${item.name}" th:onclick="'javascript:getActor(\''+${item.key}+'\')'">Celebrity Name</li>
+                                        <!--<li th:text="${item.info}">Info</li>-->
                                     </ul>
                                 </td>
                             </tr>
@@ -166,7 +160,7 @@
                         </table>
                     </div>
                     <!--no found-->
-                    <div th:if="${actors.size()} == 0">
+                    <div th:if="${result.size()} == 0">
                         <h3 class="text-center">No result Found</h3>
                     </div>
 
@@ -179,7 +173,7 @@
                     <button type="button" class="btn btn-primary"
                             th:if="${page} != 0" th:onclick="'javascript:getPrevPage(\''+${page}+'\')'">Prev</button>
                     <p style="display: inline"
-                        th:text="${page}">Page</p>
+                        th:text="${page}+1">Page</p>
                     <button type="button" class="btn btn-primary"
                             th:if="${hasNext}" th:onclick="'javascript:getNextPage(\''+${page}+'\')'">Next</button>
                 </div>
