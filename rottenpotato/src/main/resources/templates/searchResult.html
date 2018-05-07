@@ -66,10 +66,10 @@
                                 <input type="search" class="form-control" name="term" placeholder="Search">
                             </div>
                             <div class="form-group col-md-2 mt-4">
-                                <select class="custom-select custom-select" name="searchSelect" id="searchSelect">
-                                    <option value="Movies">Movies</option>
-                                    <option value="TVs">TVs</option>
-                                    <option value="Celebrities">Celebrities</option>
+                                <select class="custom-select custom-select" name="type" id="searchSelect">
+                                    <option value="movie">Movies</option>
+                                    <option value="tv">TVs</option>
+                                    <option value="actor">Actors</option>
                                 </select>
                             </div>
                             <div class="form-group col-md-1 mt-3">
@@ -82,13 +82,13 @@
             </div>
             <div class="card">
                 <!--movie result-->
-                <div class="card-body" th:if="${select} == 'Movies'">
-                    <h3 class="title"  th:text="'Search Result for: \''+${key} +'\' in '+${select}" >search result</h3>
+                <div class="card-body" th:if="${type} == 'movie'">
+                    <h3 class="title"  th:text="'Search Result for: \''+${term} +'\' in '+${type}" >search result</h3>
                     <!--found-->
-                    <div th:if="${movies.size()} != 0">
+                    <div th:if="${result.size()} != 0">
                         <table class="search-result-table-item">
                             <tbody>
-                            <tr th:each="item:${movies}" >
+                            <tr th:each="item:${result}" >
                                 <td>
                                     Rate
                                 </td>
@@ -98,7 +98,7 @@
                                 <td>
                                     <ul class="list-unstyled">
                                         <li class="title" th:text="${item.name}" th:onclick="'javascript:getMovie(\''+${item.key}+'\')'">movie Name</li>
-                                        <li th:text="${item.casts}">casts</li>
+                                        <li th:text="${item.info}">casts</li>
                                     </ul>
                                 </td>
                             </tr>
@@ -106,7 +106,7 @@
                         </table>
                     </div>
                     <!--no found-->
-                    <div th:if="${movies.size()} == 0">
+                    <div th:if="${result.size()} == 0">
                         <h3 class="text-center">No result Found</h3>
                     </div>
 
@@ -176,9 +176,12 @@
             </div>
             <div>
                 <div class="float-right">
-                    <button type="button" class="btn btn-primary">Prev</button>
-                    <p style="display: inline">Page</p>
-                    <button type="button" class="btn btn-primary">Next</button>
+                    <button type="button" class="btn btn-primary"
+                            th:if="${page} != 0" th:onclick="'javascript:getPrevPage(\''+${page}+'\')'">Prev</button>
+                    <p style="display: inline"
+                        th:text="${page}">Page</p>
+                    <button type="button" class="btn btn-primary"
+                            th:if="${hasNext}" th:onclick="'javascript:getNextPage(\''+${page}+'\')'">Next</button>
                 </div>
             </div>
         </div>
@@ -186,34 +189,6 @@
 </div>
 
 
-<!-- Classic Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Modal title</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <i class="material-icons">clear</i>
-                </button>
-            </div>
-            <div class="modal-body">
-                <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live
-                    the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large
-                    language ocean. A small river named Duden flows by their place and supplies it with the necessary
-                    regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.
-                    Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic
-                    life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the
-                    far World of Grammar.
-                </p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-link">Nice Button</button>
-                <button type="button" class="btn btn-danger btn-link" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
-<!--  End Modal -->
 <footer class="footer ">
     <div class="container">
         <nav class="pull-left">

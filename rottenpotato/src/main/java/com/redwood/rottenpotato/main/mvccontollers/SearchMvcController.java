@@ -41,7 +41,7 @@ public class SearchMvcController {
 
     @GetMapping(value = "searchResult")
     public String search(@RequestParam("term") String searchTerm,
-                         @RequestParam("type") String type, @RequestParam("page") int page, Model model, Principal principal) {
+                         @RequestParam("type") String type, @RequestParam(value = "page",defaultValue = "0") int page, Model model, Principal principal) {
         List<String> filter = new ArrayList<>();
         if (principal != null) {
             User user = userRepository.findByEmail(principal.getName());
@@ -102,6 +102,8 @@ public class SearchMvcController {
         model.addAttribute("result", result);
         model.addAttribute("hasNext", hasNext);
         model.addAttribute("type",type);
+        model.addAttribute("term",searchTerm);
+        model.addAttribute("page",page);
         return "searchResult.html";
     }
 

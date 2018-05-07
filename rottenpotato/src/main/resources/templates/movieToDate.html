@@ -93,8 +93,8 @@
                 <div class = "row">
                     <div class = "col-sm-3">
                         <ul class="list-group">
-                            <a href="/m/d/1" class="list-group-item link-white-color-active">Opening This Week</a>
-                            <a href="/m/b/1" class="list-group-item ">Top Box Office</a>
+                            <a href="/m/d/0" class="list-group-item link-white-color-active">Opening This Week</a>
+                            <a href="/m/b/0" class="list-group-item ">Top Box Office</a>
                             <a href="#" class="list-group-item">Coming Soon</a>
                         </ul>
                     </div>
@@ -144,7 +144,7 @@
                             </div>
                         </div>
                         <div class="pull-right">
-                            <button type="button" class="btn btn-primary btn-sm" th:if="${page} != 1" th:onclick="'javascript:getPrevPage(\''+${page}+'\')'" >Prev</button>
+                            <button type="button" class="btn btn-primary btn-sm" th:if="${page} != 0" th:onclick="'javascript:getPrevPage(\''+${page}+'\')'" >Prev</button>
                             <p style="display: inline" th:text="${page}">Page</p>
                             <button type="button" class="btn btn-primary btn-sm" th:onclick="'javascript:getNextPage(\''+${page}+'\')'">Next</button>
                         </div>
