@@ -32,31 +32,46 @@ public class CriticMvcController {
 
     @RequestMapping("/critic/{criticKey}")
     public String criticPage(@PathVariable("criticKey") String criticKey, Model model) {
-//        Critic critic = criticRepository.findByCriticKey(criticKey);
-//        model.addAttribute("name", critic.getCriticName());
-//        model.addAttribute("info", critic.getCriticInfo());
-//        List<CriticReview> criticReviews = criticReviewRepository.findTop10ByCriticKeyOrderByReviewTimeDateDesc(criticKey, PageRequest.of(0, 10));
-//        List<HashMap> reviews = new ArrayList<>();
-//        for (CriticReview cv : criticReviews) {
-//            HashMap<String, String> map = new HashMap<>();
-//            String itemKey = cv.getItemKey();
-//            Movie movie = movieRepository.findByMovieKey(itemKey);
+        Critic critic = criticRepository.findByCriticKey(criticKey);
+        model.addAttribute("name", critic.getCriticName());
+        model.addAttribute("info", critic.getCriticInfo());
+        List<CriticReview> criticReviews = criticReviewRepository.findTop10ByCriticKeyOrderByReviewTimeDateDesc(criticKey, PageRequest.of(0, 10));
+//        System.out.println(criticReviews.get(0).getReviewTime());
+//        System.out.println();
+//        System.out.println();
+//        System.out.println();
+//        System.out.println();
+//        System.out.println();
+//        System.out.println();
+//        System.out.println();
+//        System.out.println();
+
+        List<HashMap> reviews = new ArrayList<>();
+        for (CriticReview cv : criticReviews) {
+            HashMap<String, String> map = new HashMap<>();
+            String itemKey = cv.getItemKey();
+            Movie movie = movieRepository.findByMovieKey(itemKey);
+
 //            TV tv = tVRepository.findByTVKey(itemKey);
-//            if (movie != null) {
-//                map.put("url", "/m/" + itemKey);
-//                map.put("itemName", movie.getName());
-//                map.put("score", Integer.toString(cv.getReviewRating()));
-//                map.put("date", cv.getReviewTime());
-//                map.put("content", cv.getReviewContent());
-//            } else if (tv != null) {
+            if (movie != null) {
+                map.put("url", "/m/" + itemKey);
+                map.put("itemKey", itemKey);
+                map.put("itemName", movie.getName());
+                map.put("score", Integer.toString(cv.getReviewRating()));
+                map.put("date", cv.getReviewTime());
+                map.put("content", cv.getReviewContent());
+                reviews.add(map);
+            }
+//            else if (tv != null) {
 //                map.put("url", "/t/" + itemKey);
 //                map.put("itemName", tv.getTVName());
 //                map.put("score", Integer.toString(cv.getReviewRating()));
 //                map.put("date", cv.getReviewTime());
 //                map.put("content", cv.getReviewContent());
 //            }
-//        }
-//        model.addAttribute("recentReviews", reviews);
+        }
+
+        model.addAttribute("recentReviews", reviews);
         return "criticPage.html";
     }
 
