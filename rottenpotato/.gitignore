@@ -28,7 +28,7 @@
 /nbdist/
 /.nb-gradle/
 
-/src/main/resources/static/assets/img/actorImages/
-/src/main/resources/static/assets/img/movieImages/
-/src/main/resources/static/assets/img/tvImages/
-/src/main/resources/static/assets/img/criticImages/
+/src/main/resources/static/Images/actorImages/
+/src/main/resources/static/Images/movieImages/
+/src/main/resources/static/Images/tvImages/
+/src/main/resources/static/Images/criticImages/
