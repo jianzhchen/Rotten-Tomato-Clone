@@ -104,6 +104,36 @@
         <div class="row m-2 px-2">
             <div class="col-md-12 px-0">
                 <h2 class="title">TOP CRITIC</h2>
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-3 text-center">
+                                <div class="avatar">
+                                    <img src="./assets/img/kit/faces/christian.jpg" alt="Circle Image"
+                                         class="img-raised rounded img-fluid img-thumbnail">
+                                </div>
+                            </div>
+                            <div class="col-md-9 text-left">
+                                <h3 class="title" >Full Name</h3>
+                                <div id="info-section">
+                                    <ul class="list-unstyled infolist-height">
+                                        <li>Highest Rated: </li>
+                                        <li>Lowest Rated: </li>
+                                        <li >Birthday:</li>
+                                        <li>Birthplace</li>
+                                    </ul>
+                                    <div class="text-left">
+                                        <p >An artist of considerable range, Chet Faker &#x2014; the name taken by
+                                            Melbourne-raised,
+                                            Brooklyn-based Nick Murphy &#x2014; writes, performs and records all of his own
+                                            music,
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
 
 
@@ -136,11 +166,11 @@
                         <!--</tbody>-->
                     <!--</table>-->
                 <!--</div>-->
-                <div class="pull-right">
-                    <button type="button" class="btn btn-primary btn-sm" th:if="${page} != 1" th:onclick="'javascript:getPrevPage(\''+${page}+'\')'" >Prev</button>
-                    <p style="display: inline" th:text="${page}">Page</p>
-                    <button type="button" class="btn btn-primary btn-sm" th:onclick="'javascript:getNextPage(\''+${page}+'\')'">Next</button>
-                </div>
+                <!--<div class="pull-right">-->
+                    <!--<button type="button" class="btn btn-primary btn-sm" th:if="${page} != 1" th:onclick="'javascript:getPrevPage(\''+${page}+'\')'" >Prev</button>-->
+                    <!--<p style="display: inline" th:text="${page}">Page</p>-->
+                    <!--<button type="button" class="btn btn-primary btn-sm" th:onclick="'javascript:getNextPage(\''+${page}+'\')'">Next</button>-->
+                <!--</div>-->
             </div>
         </div>
 

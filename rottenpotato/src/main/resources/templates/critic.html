@@ -98,54 +98,83 @@
     </div>
 </div>
 
+
 <div class="main main-raised">
-    <div class="section section-basic mx-2">
-        <!--Top Critics-->
-        <div class="row m-2 px-2">
-            <div class="col-md-12 px-0">
-                <h2 class="title">TOP CRITIC</h2>
+    <div class="profile-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card">
+                        <div class="card-body">
+
+                            <div class="row">
+                                <!--personal info-->
+
+                                <div class="col-md-12 px-0">
+                                    <h2 class="title">TOP CRITIC</h2>
 
 
 
-                <!--<table class="table table-striped">-->
-                    <!--<tbody>-->
-                    <!--&lt;!&ndash;<tr th:each="critic:${critics}" th:onclick="'javascript:getMovie(\''+${movie.key}+'\')'">&ndash;&gt;-->
-                    <!--<tr th:each="critic:${critics}" >-->
-                        <!--&lt;!&ndash;<td th:text="${movie.rate}">N/A</td>&ndash;&gt;-->
-                        <!--<td th:text="${critic.criticName}" th:onclick="'javascript:getCritic(\''+${critic.criticKey}+'\')'">Bangalore</td>-->
-                        <!--<td th:text="${critic.criticKey}">MAR 2</td>-->
-                    <!--</tr>-->
-                    <!--</tbody>-->
-                <!--</table>-->
+                                    <!--<table class="table table-striped">-->
+                                    <!--<tbody>-->
+                                    <!--&lt;!&ndash;<tr th:each="critic:${critics}" th:onclick="'javascript:getMovie(\''+${movie.key}+'\')'">&ndash;&gt;-->
+                                    <!--<tr th:each="critic:${critics}" >-->
+                                    <!--&lt;!&ndash;<td th:text="${movie.rate}">N/A</td>&ndash;&gt;-->
+                                    <!--<td th:text="${critic.criticName}" th:onclick="'javascript:getCritic(\''+${critic.criticKey}+'\')'">Bangalore</td>-->
+                                    <!--<td th:text="${critic.criticKey}">MAR 2</td>-->
+                                    <!--</tr>-->
+                                    <!--</tbody>-->
+                                    <!--</table>-->
 
-                <div>
-                    <table class="search-result-table-cele">
-                        <!--<p th:text="${critics.size()}"></p>-->
-                        <tbody>
-                        <tr th:each="critic:${critics}">
-                            <td th:onclick="'javascript:getCritic(\''+${critic.criticKey}+'\')'">
-                                <img src="http://via.placeholder.com/240x135" width="240" height="135">
-                            </td>
-                            <td>
-                                <ul class="list-unstyled">
-                                    <li class="title" th:text="${critic.criticName}" th:onclick="'javascript:getCritic(\''+${critic.criticKey}+'\')'">Celebrity Name</li>
-                                    <li th:text="${critic.criticInfo}">Info</li>
-                                </ul>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
+                                    <div>
+                                        <table class="search-result-table-cele">
+                                            <!--<p th:text="${critics.size()}"></p>-->
+                                            <tbody>
+                                            <tr th:each="critic:${critics}">
+                                                <td th:onclick="'javascript:getCritic(\''+${critic.criticKey}+'\')'">
+                                                    <img src="http://via.placeholder.com/240x135" width="240" height="135">
+                                                </td>
+                                                <td>
+                                                    <ul class="list-unstyled">
+                                                        <li class="title" th:text="${critic.criticName}" th:onclick="'javascript:getCritic(\''+${critic.criticKey}+'\')'">Celebrity Name</li>
+                                                        <li th:text="${critic.criticInfo}">Info</li>
+                                                    </ul>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="pull-right">
+                                        <button type="button" class="btn btn-primary btn-sm" th:if="${page} != 1" th:onclick="'javascript:getPrevPage(\''+${page}+'\')'" >Prev</button>
+                                        <p style="display: inline" th:text="${page}">Page</p>
+                                        <button type="button" class="btn btn-primary btn-sm" th:onclick="'javascript:getNextPage(\''+${page}+'\')'">Next</button>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+
+
+
                 </div>
-                <div class="pull-right">
-                    <button type="button" class="btn btn-primary btn-sm" th:if="${page} != 1" th:onclick="'javascript:getPrevPage(\''+${page}+'\')'" >Prev</button>
-                    <p style="display: inline" th:text="${page}">Page</p>
-                    <button type="button" class="btn btn-primary btn-sm" th:onclick="'javascript:getNextPage(\''+${page}+'\')'">Next</button>
-                </div>
+
             </div>
-        </div>
 
+        </div>
     </div>
 </div>
+</div>
+
+
+
+
+
+
+
+
+
 <!-- Classic Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
