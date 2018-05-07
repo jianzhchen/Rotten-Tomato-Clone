@@ -1,5 +1,5 @@
 function getCritic(key){
-    window.location.href="/critic/"+key;
+    window.location.href="/critic/" + key;
 }
 
 function getNextPage(page) {

@@ -10,3 +10,4 @@ function getMovie(movieId){
  function goToProfile() {
      window.location.href="/me";
  }
+

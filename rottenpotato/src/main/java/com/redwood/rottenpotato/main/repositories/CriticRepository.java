@@ -12,5 +12,7 @@ import java.util.List;
 public interface CriticRepository extends JpaRepository<Critic, Long> {
     Critic findByCriticKey(String criticKey);
 
+    List<Critic> findAll();
+
     List<Critic> findTop10ByOrderByCriticNameDesc(Pageable pageable);
 }

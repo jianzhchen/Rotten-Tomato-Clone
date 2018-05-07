@@ -239,22 +239,31 @@
                 <h3 class="title text-left">Cast</h3>
                 <div class="card m-1">
                     <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-2 ">
-                                <div class="text-center">
-                                    <a href="https://placeholder.com">
-                                        <img class="" src="http://via.placeholder.com/100x100"></a>
-                                    <p class="font-weight-bold text-md-center my-0">NAME</p>
-                                </div>
-                            </div>
-                            <div class="col-md-2 ">
-                                <div class="text-center">
-                                    <a href="https://placeholder.com">
-                                        <img class="" src="http://via.placeholder.com/100x100"></a>
-                                    <p class="font-weight-bold text-md-center my-0">NAME</p>
-                                </div>
-                            </div>
-                        </div>
+                        <table class="table table-striped">
+                            <tbody>
+                            <tr th:each="cast:${casts}">
+                                <!--<td th:text="${cast.actorKey}" th:onclick="'javascript:getActor(\''+${cast.actorKey}+'\')'">Bangalore</td>-->
+
+                                <td th:text="${cast.actorName}" th:onclick="'javascript:getActor(\''+${cast.actorKey}+'\')'">MAR 2</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <!--<div class="row">-->
+                            <!--<div class="col-md-2 ">-->
+                                <!--<div class="text-center">-->
+                                    <!--<a href="https://placeholder.com">-->
+                                        <!--<img class="" src="http://via.placeholder.com/100x100"></a>-->
+                                    <!--<p class="font-weight-bold text-md-center my-0">NAME</p>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <!--<div class="col-md-2 ">-->
+                                <!--<div class="text-center">-->
+                                    <!--<a href="https://placeholder.com">-->
+                                        <!--<img class="" src="http://via.placeholder.com/100x100"></a>-->
+                                    <!--<p class="font-weight-bold text-md-center my-0">NAME</p>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
                     </div>
                 </div>
                 <div class="text-right">
@@ -598,7 +607,7 @@
 <script src="../assets/js/material-kit.js?v=2.0.2"></script>
 <!-- Fixed Sidebar Nav - js With initialisations For Demo Purpose, Don't Include it in your project -->
 <script src="../assets/assets-for-demo/js/material-kit-demo.js"></script>
-
+<script type="text/javascript" th:src="@{~/js/movieInfo.js}"></script>
 </body>
 
 </html>

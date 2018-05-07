@@ -18,10 +18,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 @Controller
 public class MovieMvcController {
@@ -61,7 +58,11 @@ public class MovieMvcController {
             Actor actor = actorRepository.findByActorKey(actorKey);
             actors.add(actorMap);
         }
-        model.addAttribute("actors", actors);
+//        model.addAttribute("actors", actors);
+        model.addAttribute("casts",castNamesAndKeys(castsTransfer(movie.getCast())));
+        System.out.println(movie.getCast());
+
+
         List<CriticReview> crs = criticReviewRepository.findByItemKey(movieKey);
         int criticScore = 0;
         int criticScoreCount = 0;
@@ -145,5 +146,29 @@ public class MovieMvcController {
             boxOfficeStr = "$" + boxOffice;
         }
         return boxOfficeStr;
+    }
+
+
+    public String[] castsTransfer(String casts){
+        String castsArray[] = casts.split(",");
+        return castsArray;
+    }
+
+    public List<Map>castNamesAndKeys(String[] castsArr){
+        List<Map> tempList = new ArrayList<>();
+        for(int i =  0; i <= castsArr.length - 1 && i < 5; i++){
+
+            Map<String, String> map = new HashMap<>();
+            map.put("actorKey", castsArr[i]);
+            map.put("actorName",toCastName(castsArr[i]));
+            tempList.add(map);
+        }
+        return tempList;
+    }
+
+    public String toCastName(String cast){
+        String temp = cast.replace("_", " ");
+        temp = temp.replace("-", " ");
+        return temp;
     }
 }
