@@ -11,6 +11,8 @@ import com.redwood.rottenpotato.main.services.JsonService;
 import com.redwood.rottenpotato.security.model.User;
 import com.redwood.rottenpotato.security.repository.UserRepository;
 import org.apache.commons.validator.routines.EmailValidator;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -37,6 +39,8 @@ public class AccountService {
     private UserRatingRepository userRatingRepository;
     @Autowired
     private UserReviewRepository userReviewRepository;
+
+    private final Logger log = LoggerFactory.getLogger(this.getClass());
 
     public String changeEmail(String userEmail, String currPassword, String newEmail) {
         User user = userRepository.findByEmail(userEmail);
@@ -117,6 +121,7 @@ public class AccountService {
 
     public void sendVerifyEmail(String email, String appUrl) {
         User user = userRepository.findByEmail(email);
+
         String token = UUID.randomUUID().toString().replace("-", "");
         user.setToken(token);
         user.setTokenEndTime(new Timestamp(System.currentTimeMillis() + 1200000));
