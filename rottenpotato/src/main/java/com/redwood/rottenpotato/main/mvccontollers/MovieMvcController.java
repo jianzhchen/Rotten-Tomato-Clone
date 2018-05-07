@@ -39,6 +39,7 @@ public class MovieMvcController {
         if (movie == null) {
             model.addAttribute("exist", false);
         }
+        model.addAttribute("movieKey", movie.getMovieKey());
         model.addAttribute("name", movie.getName());
         model.addAttribute("info", movie.getInfo());
         model.addAttribute("movieRating", movie.getRating());

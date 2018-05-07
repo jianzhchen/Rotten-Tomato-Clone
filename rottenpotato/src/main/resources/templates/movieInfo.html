@@ -73,19 +73,20 @@
 <div class="main main-raised">
     <div class="section section-basic mx-2">
         <div class="container">
-
+            <!--movie title-->
             <div class="row">
-                <div class="col-md-8">
-
-                    <div class="embed-responsive embed-responsive-16by9 mt-4">
-                        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/DCIL7WbyIKM"
-                                allowfullscreen></iframe>
-                    </div>
-
+                <h2 class="title text-center" th:text="${name}">Movie Name</h2>
+            </div>
+            <div class="row">
+                <div class="col-md-7">
                     <div class="row">
+                        <!--poster-->
+                        <div class="col-md-4">
+                            <img th:src="@{'~/Images/movieImages/'+${movieKey}+'.jpg'}"  onerror="errorImg(this)">
+                        </div>
                         <!--rate-->
-                        <div class="col-md-5">
-                            <div class="card" style="height: 16rem;">
+                        <div class="col-md-3">
+                            <div class="card" >
                                 <div class="card-body">
                                     <ul class="list-unstyled">
                                         <li>
@@ -99,67 +100,60 @@
                                                 </div>
                                             </div>
                                         </li>
-                                        <div class="text-left">
-                                            <li >Reviews Counted: 334</li>
+                                            <li>Reviews Counted: 334</li>
                                             <li>Fresh: 323</li>
                                             <li>Rotten: 11</li>
-                                        </div>
                                     </ul>
                                 </div>
                             </div>
                         </div>
-                        <!--give your rate and review-->
-                        <div class="col-md-7">
-                            <div class="card" style="height: 16rem">
+                    </div>
 
-                                <div class="card-body">
-                                    <div>
-                                        <div class="float-left">
-                                            <h5 class="title">Add your rate</h5>
-                                        </div>
-                                        <div class="text-right">
-                                            <select class="custom-select custom-select-sm" style="width: 50px">
-                                                <option value="1">1</option>
-                                                <option value="2">2</option>
-                                                <option value="3">3</option>
-                                                <option value="4">4</option>
-                                                <option value="5">5</option>
-                                            </select>
-                                        </div>
-
-
-                                    </div>
-                                    <form role="form">
-                                        <div class="form-group" >
-                                            <textarea class="form-control text-muted" rows="5" placeholder="Enter your review here"></textarea>
-                                        </div>
-                                    </form>
-                                    <div class="float-left">
-                                        <button type="button" class="btn btn-sm">Want to see</button>
-                                        <button type="button" class="btn btn-danger btn-sm">Not interested</button>
-                                    </div>
-                                    <div class="float-right">
-                                        <button type="button" class="btn btn-sm">Post</button>
-                                    </div>
+                    <!--give your rate and review-->
+                    <div class="card" style="height: 16rem">
+                        <div class="card-body">
+                            <div>
+                                <div class="float-left">
+                                    <h5 class="title">Add your rate</h5>
+                                </div>
+                                <div class="text-right">
+                                    <select class="custom-select custom-select-sm" style="width: 50px">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                    </select>
                                 </div>
                             </div>
-
+                            <form role="form">
+                                <div class="form-group" >
+                                    <textarea class="form-control text-muted" rows="5" placeholder="Enter your review here"></textarea>
+                                </div>
+                            </form>
+                            <div class="float-left">
+                                <button type="button" class="btn btn-sm">Want to see</button>
+                                <button type="button" class="btn btn-danger btn-sm">Not interested</button>
+                            </div>
+                            <div class="float-right">
+                                <button type="button" class="btn btn-sm">Post</button>
+                            </div>
                         </div>
-
                     </div>
                 </div>
-
-                <div class="col-md-4">
-                    <h3 class="title text-center" th:text="${name}">Movie Name</h3>
-                    <div class="card" >
-                        <div class="card-body overflow" >
-                            <p th:text="${info}">Plot:Everyone's favorite law enforcement team is back by popular demand with the long anticipated follow up to the cult comedy classic... SUPER TROOPERS. When an international border dispute arises between the U.S. and Canada, the Super Troopers- Mac, Thorny, Foster, Rabbit and Farva, are called in to set up a new Highway Patrol station in the disputed area. Unconventional police work follows, and the result is...SUPER TROOPERS 2.</p>
+                <div class="col-md-5">
+                    <!--movieIntroduction-->
+                    <div class="row">
+                        <div class="card" >
+                            <div class="card-body overflow" >
+                                <p th:text="${info}">Plot:Everyone's favorite law enforcement team is back by popular demand with the long anticipated follow up to the cult comedy classic... SUPER TROOPERS. When an international border dispute arises between the U.S. and Canada, the Super Troopers- Mac, Thorny, Foster, Rabbit and Farva, are called in to set up a new Highway Patrol station in the disputed area. Unconventional police work follows, and the result is...SUPER TROOPERS 2.</p>
+                            </div>
                         </div>
-
                     </div>
                 </div>
             </div>
-
+        </div>
+        <div class="container">
             <!--moreInfo-->
             <sction id="moreInfo">
             <h3 class="title text-left">More Information</h3>
@@ -272,14 +266,13 @@
             </section>
             <!--photo-->
             <section id="photo">
-                    <h3 class="title text-left">Photo</h3>
+                    <h3 class="title text-left">Photos</h3>
                     <div class="card m-1">
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-2 ">
                                     <div class="text-center">
-                                        <a href="https://placeholder.com">
-                                            <img class="" src="http://via.placeholder.com/100x100"></a>
+                                        <img th:src="@{'~/Images/movieImages/'+${movieKey}+'.jpg'}"  onerror="errorImg(this)">
                                     </div>
                                 </div>
                             </div>
@@ -291,7 +284,7 @@
             </section>
             <!--video-->
             <section id="video">
-                    <h3 class="title text-left">Video</h3>
+                    <h3 class="title text-left">Videos</h3>
                 <div class="card m-1">
                     <div class="card-body">
                         <div class="row">
