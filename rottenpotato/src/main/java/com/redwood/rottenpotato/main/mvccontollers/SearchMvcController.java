@@ -42,6 +42,14 @@ public class SearchMvcController {
     @GetMapping(value = "searchResult")
     public String search(@RequestParam("term") String searchTerm,
                          @RequestParam("type") String type, @RequestParam(value = "page",defaultValue = "0") int page, Model model, Principal principal) {
+
+        if (principal == null) {
+            model.addAttribute("isLogin", false);
+        } else {
+            model.addAttribute("isLogin", true);
+            model.addAttribute("username", principal.getName());
+        }
+
         List<String> filter = new ArrayList<>();
         if (principal != null) {
             User user = userRepository.findByEmail(principal.getName());
