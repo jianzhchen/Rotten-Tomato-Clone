@@ -119,7 +119,9 @@
 
                                         <div class="row">
                                             <div class="col-md-4 px-0">
-                                                TITLE
+                                               <img th:src="@{'~/Images/criticImages/'+${criticKey}+'.jpg'}"
+                                                    th:width="150" th:height="150"
+                                                    th:onerror="'this.src=\'' + @{~/assets/img/default.jpg} + '\';'">
                                             </div>
 
                                             <div class="col-md-8 px-0" th:text="${info}">
@@ -138,20 +140,29 @@
 
                                         <div class="col-md-12 px-0">
 
-                                            <table class="search-result-table-item">
+                                            <table class="last-review-list table-striped">
+                                                <thead>
+                                                <tr>
+                                                    <th>Movie/TV</th>
+                                                    <th>Score</th>
+                                                    <th>Date</th>
+                                                    <th>Review</th>
+                                                </tr>
+                                                </thead>
                                                 <tbody>
                                                 <tr th:each="review:${recentReviews}">
                                                     <td th:text="${review.itemName}" th:onclick="'javascript:getMovie(\''+${review.itemKey}+'\')'">
-                                                        Rate
+                                                        movie
                                                     </td>
                                                     <!--<td th:onclick="'javascript:getTv(\''+${item.key}+'\')'">-->
-                                                    <td th:text="${review.score}">
+                                                    <td th:text="${review.score}">score
 
                                                     </td>
-                                                    <td th:text="${review.content}">
+                                                    <td th:text="${review.date}">date
                                                     </td>
-                                                    <td th:text="${review.date}">
+                                                    <td th:text="${review.content}">content
                                                     </td>
+
 
                                                 </tr>
                                                 </tbody>

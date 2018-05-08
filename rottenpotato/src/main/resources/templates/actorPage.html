@@ -101,7 +101,7 @@
                                     <div class="col-md-3 text-center">
                                         <div class="avatar">
                                             <img th:src="@{'~/Images/actorImages/'+${actorKey}+'.jpg'}"
-                                                 onerror="errorImg(this)"
+                                                 th:onerror="'this.src=\'' + @{~/assets/img/default.jpg} + '\';'"
                                                  alt="Circle Image"
                                                  class="img-raised rounded img-fluid img-thumbnail"
                                             >
@@ -120,29 +120,27 @@
                                                 <div class="card" >
                                                     <div class="card-body overflow" >
                                                         <ul class="list-unstyled infolist-height">
-                                                            <li>Highest Rated: </li>
-                                                            <li>Lowest Rated: </li>
                                                             <li th:text="'Birthday: '+${birthday}">Birthday:</li>
                                                             <li th:text="'Birthplace: '+${birthplace}">Birthplace</li>
                                                         </ul>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="text-left">
-                                                <!--movieIntroduction-->
-                                                <div class="row">
-                                                    <h3 class="title text-center">Biography</h3>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="card" >
-                                                        <div class="card-body overflow" >
-                                                            <p th:text="${info}">An artist of considerable range, Chet Faker &#x2014; the name taken by Melbourne-raised</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
                                         </div>
                                 </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-left">
+                        <!--movieIntroduction-->
+
+                        <h3 class="title text-left">Biography</h3>
+
+                        <div class="row">
+                            <div class="card" >
+                                <div class="card-body overflow" >
+                                    <p th:text="${info}">An artist of considerable range, Chet Faker &#x2014; the name taken by Melbourne-raised</p>
                                 </div>
                             </div>
                         </div>
@@ -168,111 +166,90 @@
 
                     <!--highest rated movies-->
                     <div id="higest-rated-movies">
-                        <h3 class="title float-left">Higest rated movies</h3>
+                        <h3 class="title float-left">Filmography</h3>
                         <div class="float-right mt-3">
                             <button type="button" class="btn btn-sm btn-primary">view all</button>
                         </div>
                         <div class="card m-1">
                             <!--new filmography-->
                             <div class="card-body">
-                                <div class="card-columns">
-                                    <table class="search-result-table-item">
-                                        <tbody>
-                                            <tr th:each="movie:${movies}">
-                                                <td>
-                                                    <div class = "card">
-                                                        <div class="card-body">
-                                                            <!--movie image-->
-                                                            <div>
-                                                                <img th:src="@{'~/Images/movieImages/'+${movie.movieKey}+'.jpg'}"
-                                                                     th:width="150"
-                                                                     th:height="150"
-                                                                     th:onerror="'this.src=\'' + @{~/assets/img/defaultMovie.jpg} + '\';'"
-                                                                >
-                                                            </div>
-                                                            <!--movie name-->
-                                                            <div>
-                                                                <a  th:text="${movie.movieName}"
-                                                                    th:href="'javascript:getMovie(\''+${movie.movieKey}+'\')'">
-                                                                    Empty Movie Name
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                            <!--old filmography-->
-                            <div class="card-body" id="filmography">
-                                <h3 class="title">Filmography</h3>
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div id="film-table">
-                                            <nav>
-                                                <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                                                    <a class="nav-item nav-link active text-center title" style="width: 290px" id="nav-movie-tab" data-toggle="tab"
-                                                       href="#nav-movie" role="tab" aria-controls="nav-home"
-                                                       aria-selected="true">Movies</a>
-                                                    <a class="nav-item nav-link text-center title" style="width: 350px"  id="nav-tv-tab" data-toggle="tab"
-                                                       href="#nav-tv" role="tab" aria-controls="nav-tv" aria-selected="false">TVs</a>
-                                                </div>
-                                            </nav>
-
-                                            <div class="tab-content" id="nav-tabContent">
-                                                <!--movie list-->
-                                                <div class="tab-pane fade show active" id="nav-movie" role="tabpanel"
-                                                     aria-labelledby="nav-home-tab">
-                                                    <div class="filmography-list">
-                                                        <table class="table table-striped" id="movielist-table">
-                                                            <thead>
-                                                                <tr>
-                                                                    <th>RATING</th>
-                                                                    <th>TITLE</th>
-                                                                    <th>Credit</th>
-                                                                    <th>BOX OFFICE</th>
-                                                                    <th>YEAR</th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tr>
-                                                                <td>55%</td>
-                                                                <td>XXX</td>
-                                                                <td>XXX</td>
-                                                                <td>-</td>
-                                                                <td>2018</td>
-                                                            </tr>
-                                                        </table>
-                                                    </div>
-                                                </div>
-                                                <!--tv list-->
-                                                <div class="tab-pane fade" id="nav-tv" role="tabpanel"
-                                                     aria-labelledby="nav-profile-tab">
-                                                    <div class="filmography-list">
-                                                        <table class="table table-striped" id="tvlist-table">
-                                                            <thead>
-                                                                <tr>
-                                                                    <th>RATING</th>
-                                                                    <th>TITLE</th>
-                                                                    <th>CREDIT</th>
-                                                                    <th>YEAR</th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tr>
-                                                                <td>55%</td>
-                                                                <td>XXX</td>
-                                                                <td>XXX</td>
-                                                                <td>2018</td>
-                                                            </tr>
-                                                        </table>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                <div th:each="row :${#numbers.sequence(0,movies.size(),4)}" class="row">
+                                    <div th:each="col :${#numbers.sequence(0,3)}" th:if="${row + col < movies.size()}" class="col-md-3 text-center">
+                                        <a th:onclick="'javascript:getMovie(\''+${movies.get(row+col).movieKey}+'\')'">
+                                            <img th:src="@{'~/Images/movieImages/'+${movies.get(row+col).movieKey}+'.jpg'}" th:width="150" th:height="200"
+                                                 th:onerror="'this.src=\'' + @{~/assets/img/defaultMovie.jpg} + '\';'"></a>
+                                        <h6 th:text="${movies.get(row+col).movieName}" th:onclick="'javascript:getMovie(\''+${movies.get(row+col).movieKey}+'\')'">name</h6>
                                     </div>
                                 </div>
                             </div>
+                            <!--&lt;!&ndash;old filmography&ndash;&gt;-->
+                            <!--<div class="card-body" id="filmography">-->
+                                <!--<h3 class="title">Filmography</h3>-->
+                                <!--<div class="card">-->
+                                    <!--<div class="card-body">-->
+                                        <!--<div id="film-table">-->
+                                            <!--<nav>-->
+                                                <!--<div class="nav nav-tabs" id="nav-tab" role="tablist">-->
+                                                    <!--<a class="nav-item nav-link active text-center title" style="width: 290px" id="nav-movie-tab" data-toggle="tab"-->
+                                                       <!--href="#nav-movie" role="tab" aria-controls="nav-home"-->
+                                                       <!--aria-selected="true">Movies</a>-->
+                                                    <!--<a class="nav-item nav-link text-center title" style="width: 350px"  id="nav-tv-tab" data-toggle="tab"-->
+                                                       <!--href="#nav-tv" role="tab" aria-controls="nav-tv" aria-selected="false">TVs</a>-->
+                                                <!--</div>-->
+                                            <!--</nav>-->
+
+                                            <!--<div class="tab-content" id="nav-tabContent">-->
+                                                <!--&lt;!&ndash;movie list&ndash;&gt;-->
+                                                <!--<div class="tab-pane fade show active" id="nav-movie" role="tabpanel"-->
+                                                     <!--aria-labelledby="nav-home-tab">-->
+                                                    <!--<div class="filmography-list">-->
+                                                        <!--<table class="table table-striped" id="movielist-table">-->
+                                                            <!--<thead>-->
+                                                                <!--<tr>-->
+                                                                    <!--<th>RATING</th>-->
+                                                                    <!--<th>TITLE</th>-->
+                                                                    <!--<th>Credit</th>-->
+                                                                    <!--<th>BOX OFFICE</th>-->
+                                                                    <!--<th>YEAR</th>-->
+                                                                <!--</tr>-->
+                                                            <!--</thead>-->
+                                                            <!--<tr>-->
+                                                                <!--<td>55%</td>-->
+                                                                <!--<td>XXX</td>-->
+                                                                <!--<td>XXX</td>-->
+                                                                <!--<td>-</td>-->
+                                                                <!--<td>2018</td>-->
+                                                            <!--</tr>-->
+                                                        <!--</table>-->
+                                                    <!--</div>-->
+                                                <!--</div>-->
+                                                <!--&lt;!&ndash;tv list&ndash;&gt;-->
+                                                <!--<div class="tab-pane fade" id="nav-tv" role="tabpanel"-->
+                                                     <!--aria-labelledby="nav-profile-tab">-->
+                                                    <!--<div class="filmography-list">-->
+                                                        <!--<table class="table table-striped" id="tvlist-table">-->
+                                                            <!--<thead>-->
+                                                                <!--<tr>-->
+                                                                    <!--<th>RATING</th>-->
+                                                                    <!--<th>TITLE</th>-->
+                                                                    <!--<th>CREDIT</th>-->
+                                                                    <!--<th>YEAR</th>-->
+                                                                <!--</tr>-->
+                                                            <!--</thead>-->
+                                                            <!--<tr>-->
+                                                                <!--<td>55%</td>-->
+                                                                <!--<td>XXX</td>-->
+                                                                <!--<td>XXX</td>-->
+                                                                <!--<td>2018</td>-->
+                                                            <!--</tr>-->
+                                                        <!--</table>-->
+                                                    <!--</div>-->
+                                                <!--</div>-->
+                                            <!--</div>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
                         </div>
                     </div>
                 </div>

@@ -71,7 +71,7 @@ public class CriticMvcController {
 //                map.put("content", cv.getReviewContent());
 //            }
         }
-
+        model.addAttribute("criticKey",criticKey);
         model.addAttribute("recentReviews", reviews);
         return "criticPage.html";
     }

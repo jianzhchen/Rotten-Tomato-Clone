@@ -316,10 +316,6 @@
                         </div>
                     </div>
                 </div>
-
-                <div class="text-right">
-                    <!--<button type="button" class="btn btn-default btn-sm">View All</button>-->
-                </div>
             </section>
             <!--photos-->
             <section id="photos">
@@ -364,45 +360,36 @@
                 <div class="card m-1">
                     <div class="card-body">
                         <div class="card-columns">
-                            <table class="search-result-table-item">
-                                <tbody>
-                                    <tr th:each="review:${reviews}">
-                                        <td>
-                                            <div class = "card">
-                                                <div class="card-body">
-                                                    <!--critic review score-->
-                                                    <div th:text="'Score = '+ ${review.score}">
-                                                        100.00%
-                                                    </div>
-                                                    <!--critic review content-->
-                                                    <div  th:text="${review.content}">
-                                                        Empty Content
-                                                    </div>
-                                                    <!--critic review date-->
-                                                    <div th:text="${review.date}">
-                                                        1-Jan-01
-                                                    </div>
-                                                    <!--critic name-->
-                                                    <div>
-                                                        <a  th:text="${review.criticName}"
-                                                            th:href="'javascript:getCritic(\''+${review.criticKey}+'\')'">
-                                                            Empty Key
-                                                        </a>
-                                                    </div>
-                                                    <!--critic image-->
-                                                    <div>
-                                                        <img th:src="@{'~/Images/criticImages/'+${review.criticKey}+'.jpg'}"
-                                                             th:width="50"
-                                                             th:height="50"
-                                                             th:onerror="'this.src=\'' + @{~/assets/img/default.jpg} + '\';'"
-                                                        >
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                            <div class = "card" th:each="review:${reviews}">
+                                <div class="card-body">
+                                    <!--critic review score-->
+                                    <div class="title" th:text="'Score : '+ ${review.score}">
+                                        100.00%
+                                    </div>
+                                    <!--critic review content-->
+                                    <div class="text-left" th:text="${review.content}">
+                                        Empty Content
+                                    </div>
+                                    <!--critic review date-->
+                                    <div class="text-right" th:text="${review.date}">
+                                        1-Jan-01
+                                    </div>
+                                    <!--critic name-->
+                                    <div class="text-center">
+                                        <a  th:text="${review.criticName}"
+                                            th:href="'javascript:getCritic(\''+${review.criticKey}+'\')'">
+                                            Empty Key
+                                        </a>
+                                    </div>
+                                    <!--critic image-->
+                                    <div  class="text-center">
+                                        <img th:src="@{'~/Images/criticImages/'+${review.criticKey}+'.jpg'}"
+                                             th:width="50"
+                                             th:height="50"
+                                             th:onerror="'this.src=\'' + @{~/assets/img/default.jpg} + '\';'">
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
