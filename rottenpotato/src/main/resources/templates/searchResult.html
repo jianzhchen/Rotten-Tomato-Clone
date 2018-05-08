@@ -37,10 +37,9 @@
                 <a class="nav-link" href="/critic_all/0">Critic</a>
             </li>
         </ul>
-
         <div class="collapse navbar-collapse">
             <!--search form-->
-            <form class="form-inline ml-auto mr-5" action="searchResult" method="get">
+            <form class="form-inline ml-auto mr-5" action="/searchResult" method="get">
                 <div class="form-group has-white">
                     <input name="term" type="text" class="form-control" style="width:300px" placeholder="Search">
                 </div>
@@ -68,8 +67,10 @@
                 </div>
             </div>
         </div>
+
     </div>
 </nav>
+
 
 
 <div class="page-header" data-parallax="false"
@@ -207,22 +208,43 @@
 
 <footer class="footer ">
     <div class="container">
-        <nav class="pull-left">
-            <ul>
-                <li>
-                    <a href="/about">
-                        About Us
-                    </a>
-                </li>
-            </ul>
-        </nav>
-        <div class="copyright pull-right">
-            &copy;
-            <script>
-                document.write(new Date().getFullYear())
-            </script>
-            , The Redwood Team
+        <div class="row">
+            <div class="col-md-3">
+                <div>
+                    <ul>
+                        <li>
+                            <a href="/about">
+                                About Us
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <ul>
+                    <li>
+                        <a >Follow us:</a>
+                    </li>
+                    <li>
+                        <img th:src="@{~/assets/img/kit/free/facebook.png}" width="16" height="16" onclick="window.open('https://www.facebook.com')">
+                    </li>
+                    <li>
+                        <img th:src="@{~/assets/img/kit/free/twitter.png}" width="16" height="16" onclick="window.open('https://twitter.com')">
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-3">
+                <div class="copyright pull-right">
+                    &copy;
+                    <script>
+                        document.write(new Date().getFullYear())
+                    </script>
+                    , The Redwood Team
+                </div>
+            </div>
         </div>
+
+
     </div>
 </footer>
 
