@@ -48,7 +48,7 @@ public class TVMvcController {
                 continue;
             }
             actorMap.put("name", actor.getActorName());
-            actorMap.put("key", actor.getActorName());
+            actorMap.put("key", actor.getActorKey());
             actors.add(actorMap);
         }
 
