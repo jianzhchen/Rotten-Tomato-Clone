@@ -2,12 +2,18 @@
 <html lang="en">
 <html xmlns:th="http://www.thymeleaf.org">
 
+<!--Header-->
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     <!-- Favicons -->
+    <link rel="apple-touch-icon" th:href="@{~/assets/img/kit/free/apple-icon.png}">
+    <link rel="apple-touch-icon" href="./assets/img/kit/free/apple-icon.png">
+
     <link rel="icon" href="./assets/img/kit/free/favicon.png">
+    <link rel="icon" th:href="@{~/assets/img/kit/free/favicon.png}">
+
     <title>
         Rotten Potato
     </title>
@@ -15,11 +21,15 @@
     <link rel="stylesheet" type="text/css"
           href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css"/>
+    <link rel="stylesheet" th:href="@{~/assets/css/material-kit.css?v=2.0.2}">
     <link rel="stylesheet" href="./assets/css/material-kit.css?v=2.0.2">
-    <link rel="stylesheet" href="./assets/css/custom.css">
-</head>
+    <!-- Documentation extras -->
+    <!-- CSS Just for demo purpose, don't include it in your project -->
+    <link th:href="@{~/assets/assets-for-demo/demo.css}" rel="stylesheet"/>
+    <link href="./assets/assets-for-demo/demo.css" rel="stylesheet"/>
 
-<body class="profile-page ">
+</head>
+<body class="profile-page">
 <nav class="navbar navbar-expand-lg fixed-top  bg-dark">
     <div class="container">
         <div class="navbar-translate">
@@ -69,44 +79,42 @@
 
     </div>
 </nav>
+<div class="page-header" data-parallax="false"
+     style="height: 18vh !important;">
+</div>
 
-<div class="page-header header-filter" data-parallax="true"
-     style="background-image: url('./assets/img/kit/city.jpg');"></div>
+<!--Body-->
 <div class="main main-raised">
     <div class="profile-content">
         <div class="container">
+            <!--User Info-->
             <div class="row">
-                <div class="col-sm-8">
+                <div class="col-sm-12">
                     <div class="row">
                         <!--personal info-->
                         <div class="card">
                             <div class="card-body" >
                                 <div class="row">
+                                    <!--User image-->
                                     <div class="col-md-6 text-center">
+
                                         <div class="avatar">
-                                            <img src="./assets/img/kit/faces/christian.jpg" alt="Circle Image"
-                                                 class="img-raised rounded img-fluid img-thumbnail">
+                                            <img th:src="@{'~/Images/userImages/'+${userId}+'.jpg'}" th:width="200" th:height="200"
+                                                 th:onerror="'this.src=\'' + @{~/assets/img/default.jpg} + '\';'">
                                         </div>
                                     </div>
+                                    <!--User Info-->
                                     <div class="col-md-6 text-left">
-                                        <h3 class="title" th:text="${firstname} ${lastname}">Full Name</h3>
+                                        <!--User first name and last name-->
+                                        <h3 class="title" th:text="${firstName}+' '+${lastName}">FirstName LastName</h3>
+
+                                        <!--User details-->
                                         <div id="info-section">
+                                            <!--email and follower-->
                                             <ul class="list-unstyled infolist-height">
-                                                <li>Account:</li>
-                                                <li th:text="@{email}">Email:</li>
+                                                <li th:text="${email}">Empty Email</li>
                                                 <li>Follower count:</li>
                                             </ul>
-                                            <div class="description text-left" style="height: 110px;overflow: hidden;">
-                                                <p>An artist of considerable range, Chet Faker &#x2014; the name taken by
-                                                    Melbourne-raised,
-                                                    Brooklyn-based Nick Murphy &#x2014; writes, performs and records all of his own
-                                                    music,
-                                                    Brooklyn-based Nick Murphy &#x2014; writes, performs and records all of his own
-                                                    music,
-                                                    Brooklyn-based Nick Murphy &#x2014; writes, performs and records all of his own
-                                                    music,
-                                                    giving it a warm, intimate feel with a solid groove structure. </p>
-                                            </div>
                                             <div class="float-right">
                                                 <button type="button" class="btn btn-sm btn-primary">Manage Account</button>
                                             </div>
@@ -115,15 +123,29 @@
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
-                <div class="col-md-4 mt-3">
-                    <!--friend list-->
-                    <h3 class="title mx-4 float-left">Friends</h3>
-                    <div class="float-right mt-3">
-                        <button type="button" class="btn btn-sm btn-primary">View All</button>
+            </div>
+            <!-Follow Area-->
+            <div class="row">
+                <!--following list-->
+                <div class="col-md-6 mt-3">
+                    <h3 class="title mx-4 float-left">Following</h3>
+                    <div class="card mx-4">
+                        <div class="card-body" style="height: 300px;overflow: hidden;">
+                            <ul>
+                                <li>
+                                    <a href="#">friend</a>
+                                </li>
+
+                            </ul>
+
+                        </div>
                     </div>
+                </div>
+                <!--follower list-->
+                <div class="col-md-6 mt-3">
+                    <h3 class="title mx-4 float-left">Followers</h3>
                     <div class="card mx-4">
                         <div class="card-body" style="height: 300px;overflow: hidden;">
                             <ul>
@@ -138,7 +160,7 @@
                 </div>
             </div>
             <!--want to see movie-->
-            <div id="higest-rated-movies">
+            <div class="row" id="want-to-see-movies">
                 <h3 class="title float-left">Want to see movies</h3>
                 <div class="float-right mt-3">
                     <button type="button" class="btn btn-sm btn-primary">View All</button>
@@ -154,7 +176,7 @@
                 </div>
             </div>
             <!--want to see TVs-->
-            <div id="higest-rated-tvs">
+            <div class="row" id="want-to-see-tvs">
                 <h3 class="title float-left">Want to see TVs</h3>
                 <div class="float-right mt-3">
                     <button type="button" class="btn btn-sm btn-primary">View All</button>
@@ -170,7 +192,7 @@
                 </div>
             </div>
             <!--rating history-->
-            <div id="filmography">
+            <div class="row" id="filmography">
                     <h3 class="title">Rating History</h3>
                     <div class="card">
                         <div class="card-body">
@@ -255,12 +277,11 @@
                         </div>
                     </div>
                 </div>
-
-
-            </div>
         </div>
     </div>
 </div>
+
+<!--Footer-->
 <footer class="footer ">
     <div class="container">
         <div class="row">
@@ -298,11 +319,26 @@
                 </div>
             </div>
         </div>
-
-
     </div>
 </footer>
 <!--   Core JS Files   -->
+<script th:src="@{~/assets/js/core/jquery.min.js}"></script>
+<script th:src="@{~/assets/js/core/popper.min.js}"></script>
+<script th:src="@{~/assets/js/bootstrap-material-design.js}"></script>
+<!--  Plugin for Date Time Picker and Full Calendar Plugin  -->
+<script th:src="@{~/assets/js/plugins/moment.min.js}"></script>
+<!--	Plugin for the Datepicker, full documentation here: https://github.com/Eonasdan/bootstrap-datetimepicker -->
+<script th:src="@{~/assets/js/plugins/bootstrap-datetimepicker.min.js}"></script>
+<!--	Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
+<script th:src="@{~/assets/js/plugins/nouislider.min.js}"></script>
+<!-- Material Kit Core initialisations of plugins and Bootstrap Material Design Library -->
+<script th:src="@{~/assets/js/material-kit.js?v=2.0.2}"></script>
+<!-- Fixed Sidebar Nav - js With initialisations For Demo Purpose, Don't Include it in your project -->
+<script th:src="@{~/assets/assets-for-demo/js/material-kit-demo.js}"></script>
+<script type="text/javascript" th:src="@{~/js/index.js}"></script>
+
+
+<!--test-->
 <script src="./assets/js/core/jquery.min.js"></script>
 <script src="./assets/js/core/popper.min.js"></script>
 <script src="./assets/js/bootstrap-material-design.js"></script>
