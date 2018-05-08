@@ -47,6 +47,24 @@ public class ActorMvcController {
             model.addAttribute("birthday", birthday);
             String info = actor.getActorInfo();
             model.addAttribute("info", info);
+
+            //filmogrpahy
+            //1. get movies contains actor as a part of cast
+            List<Movie> movies = this.movieRepository.searchByActorKey(actor.getActorKey());
+
+            //2. create hashmaps of movies, and put all hashmaps into a list
+            List<HashMap> mvs = new ArrayList<>();
+            for (Movie mv : movies)
+            {
+                //one review
+                HashMap<String, String> aMovie = new HashMap<>();
+
+                aMovie.put("movieKey", mv.getMovieKey());
+                aMovie.put("movieName", mv.getName());
+
+                mvs.add(aMovie);
+            }
+            model.addAttribute("movies", mvs);
         }
 
         return "actorPage.html";

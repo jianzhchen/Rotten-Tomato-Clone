@@ -67,14 +67,19 @@ public class MovieMvcController {
         String cast = movie.getCast();
         List<String> actorKeys = Arrays.asList(cast.split("\\s*,\\s*"));
         List<HashMap> actors = new ArrayList<>();
-        for (String actorKey : actorKeys)
-        {
+        for (String actorKey : actorKeys) {
             HashMap<String, String> actorMap = new HashMap<>();
             Actor actor = actorRepository.findByActorKey(actorKey);
+            if(actor==null){
+                continue;
+            }
+            actorMap.put("name", actor.getActorName());
+            actorMap.put("key", actor.getActorKey());
             actors.add(actorMap);
         }
+        model.addAttribute("casts", actors);
 
-        model.addAttribute("casts",this.getActorNamesAndNamesByKeys(castsTransfer(movie.getCast())));
+//        model.addAttribute("casts",this.getActorNamesAndNamesByKeys(castsTransfer(movie.getCast())));
 
 
         List<CriticReview> crs = criticReviewRepository.findByItemKey(movieKey);
@@ -137,7 +142,7 @@ public class MovieMvcController {
             reviews.add(aReview);
         }
         model.addAttribute("reviews", reviews);
-
+        model.addAttribute("movieKey",movieKey);
 
         return "movieInfo.html";
 

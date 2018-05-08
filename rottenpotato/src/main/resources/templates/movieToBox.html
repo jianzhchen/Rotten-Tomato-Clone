@@ -138,7 +138,8 @@
                                 <div th:each="row :${#numbers.sequence(0,movies.size(),4)}" class="row">
                                     <div th:each="col :${#numbers.sequence(0,3)}" th:if="${row + col < movies.size()}" class="col-md-3 text-center">
                                         <a th:onclick="'javascript:getMovie(\''+${movies.get(row+col).key}+'\')'">
-                                            <img th:src="@{'~/Images/movieImages/'+${movies.get(row+col).key}+'.jpg'}" th:width="150" th:height="200" onerror="errorImg(this)"></a>
+                                            <img th:src="@{'~/Images/movieImages/'+${movies.get(row+col).key}+'.jpg'}" th:width="150" th:height="200"
+                                                 th:onerror="'this.src=\'' + @{~/assets/img/defaultMovie.jpg} + '\';'"></a>
                                         <h6 th:text="${movies.get(row+col).name}" th:onclick="'javascript:getMovie(\''+${movies.get(row+col).key}+'\')'">some text</h6>
                                         <p th:text="${movies.get(row+col).boxOffice}">some text</p>
                                     </div>

@@ -17,5 +17,4 @@ public interface ActorRepository extends JpaRepository<Actor, Long> {
 
     @Query("SELECT a FROM Actor a WHERE a.actorName LIKE %:searchTerm%")
     public List<Actor> searchByName(@Param("searchTerm") String searchTerm,Pageable pageable);
-
 }
