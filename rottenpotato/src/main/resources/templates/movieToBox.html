@@ -265,53 +265,74 @@
 <!--  End Modal -->
     <footer class="footer ">
         <div class="container">
-            <nav class="pull-left">
-                <ul>
-                    <li>
-                        <a href="/about">
-                            About Us
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-            <div class="copyright pull-right">
-                &copy;
-                <script>
-                    document.write(new Date().getFullYear())
-                </script>
-                , The Redwood Team
+            <div class="row">
+                <div class="col-md-3">
+                    <div>
+                        <ul>
+                            <li>
+                                <a href="/about">
+                                    About Us
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <ul>
+                        <li>
+                            <a >Follow us:</a>
+                        </li>
+                        <li>
+                            <img th:src="@{~/assets/img/kit/free/facebook.png}" width="16" height="16" onclick="window.open('https://www.facebook.com')">
+                        </li>
+                        <li>
+                            <img th:src="@{~/assets/img/kit/free/twitter.png}" width="16" height="16" onclick="window.open('https://twitter.com')">
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <div class="copyright pull-right">
+                        &copy;
+                        <script>
+                            document.write(new Date().getFullYear())
+                        </script>
+                        , The Redwood Team
+                    </div>
+                </div>
             </div>
+
+
         </div>
     </footer>
-    <!--   Core JS Files   -->
-    <script th:src="@{~/assets/js/core/jquery.min.js}"></script>
-    <script th:src="@{~/assets/js/core/popper.min.js}"></script>
-    <script th:src="@{~/assets/js/bootstrap-material-design.js}"></script>
-    <!--  Plugin for Date Time Picker and Full Calendar Plugin  -->
-    <script th:src="@{~/assets/js/plugins/moment.min.js}"></script>
-    <!--	Plugin for the Datepicker, full documentation here: https://github.com/Eonasdan/bootstrap-datetimepicker -->
-    <script th:src="@{~/assets/js/plugins/bootstrap-datetimepicker.min.js}"></script>
-    <!--	Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
-    <script th:src="@{~/assets/js/plugins/nouislider.min.js}"></script>
-    <!-- Material Kit Core initialisations of plugins and Bootstrap Material Design Library -->
-    <script th:src="@{~/assets/js/material-kit.js?v=2.0.2}"></script>
-    <!-- Fixed Sidebar Nav - js With initialisations For Demo Purpose, Don't Include it in your project -->
-    <script th:src="@{~/assets/assets-for-demo/js/material-kit-demo.js}"></script>
-    <script type="text/javascript" th:src="@{~/js/movieToBox.js}"></script>
-    <!--for test-->
-    <script src="./assets/js/core/jquery.min.js"></script>
-    <script src="./assets/js/core/popper.min.js"></script>
-    <script src="./assets/js/bootstrap-material-design.js"></script>
-    <!--  Plugin for Date Time Picker and Full Calendar Plugin  -->
-    <script src="./assets/js/plugins/moment.min.js"></script>
-    <!--	Plugin for the Datepicker, full documentation here: https://github.com/Eonasdan/bootstrap-datetimepicker -->
-    <script src="./assets/js/plugins/bootstrap-datetimepicker.min.js"></script>
-    <!--	Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
-    <script src="./assets/js/plugins/nouislider.min.js"></script>
-    <!-- Material Kit Core initialisations of plugins and Bootstrap Material Design Library -->
-    <script src="./assets/js/material-kit.js?v=2.0.2}"></script>
-    <!-- Fixed Sidebar Nav - js With initialisations For Demo Purpose, Don't Include it in your project -->
-    <script src="./assets/assets-for-demo/js/material-kit-demo.js"></script>
+<!--   Core JS Files   -->
+<script th:src="@{~/assets/js/core/jquery.min.js}"></script>
+<script th:src="@{~/assets/js/core/popper.min.js}"></script>
+<script th:src="@{~/assets/js/bootstrap-material-design.js}"></script>
+<!--  Plugin for Date Time Picker and Full Calendar Plugin  -->
+<script th:src="@{~/assets/js/plugins/moment.min.js}"></script>
+<!--	Plugin for the Datepicker, full documentation here: https://github.com/Eonasdan/bootstrap-datetimepicker -->
+<script th:src="@{~/assets/js/plugins/bootstrap-datetimepicker.min.js}"></script>
+<!--	Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
+<script th:src="@{~/assets/js/plugins/nouislider.min.js}"></script>
+<!-- Material Kit Core initialisations of plugins and Bootstrap Material Design Library -->
+<script th:src="@{~/assets/js/material-kit.js?v=2.0.2}"></script>
+<!-- Fixed Sidebar Nav - js With initialisations For Demo Purpose, Don't Include it in your project -->
+<script th:src="@{~/assets/assets-for-demo/js/material-kit-demo.js}"></script>
+<script type="text/javascript" th:src="@{~/js/movieToBox.js}"></script>
+<!--for test-->
+<script src="./assets/js/core/jquery.min.js"></script>
+<script src="./assets/js/core/popper.min.js"></script>
+<script src="./assets/js/bootstrap-material-design.js"></script>
+<!--  Plugin for Date Time Picker and Full Calendar Plugin  -->
+<script src="./assets/js/plugins/moment.min.js"></script>
+<!--	Plugin for the Datepicker, full documentation here: https://github.com/Eonasdan/bootstrap-datetimepicker -->
+<script src="./assets/js/plugins/bootstrap-datetimepicker.min.js"></script>
+<!--	Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
+<script src="./assets/js/plugins/nouislider.min.js"></script>
+<!-- Material Kit Core initialisations of plugins and Bootstrap Material Design Library -->
+<script src="./assets/js/material-kit.js?v=2.0.2}"></script>
+<!-- Fixed Sidebar Nav - js With initialisations For Demo Purpose, Don't Include it in your project -->
+<script src="./assets/assets-for-demo/js/material-kit-demo.js"></script>
 
 
 
