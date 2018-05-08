@@ -39,8 +39,8 @@ public class ProfileMvcController {
         String userEmail = principal.getName();
         User user = userRepository.findByEmail(userEmail);
 
-        model.addAttribute("firstname", user.getFirstName());
-        model.addAttribute("lastname", user.getLastName());
+        model.addAttribute("firstName", user.getFirstName());
+        model.addAttribute("lastName", user.getLastName());
         model.addAttribute("email", user.getEmail());
         List<HashMap> reviews = new ArrayList<>();
         List<HashMap> ratings = new ArrayList<>();
@@ -140,6 +140,6 @@ public class ProfileMvcController {
         model.addAttribute("following", following);
         model.addAttribute("followers", followby);
 
-        return "profile.html";
+        return "profilePage.html";
     }
 }
