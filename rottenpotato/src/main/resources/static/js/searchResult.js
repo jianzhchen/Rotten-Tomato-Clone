@@ -3,10 +3,7 @@ function getMovie(movieId){
  }
 
 function getTv(tvId){
-    var index = tvId.indexOf("-");
-    var name = tvId.substring(0,index);
-    var season = tvId.substring(index+1);
-    window.location.href="/t/"+name+"/"+season;
+    window.location.href="/t/"+tvId;
 
 }
 
