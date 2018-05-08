@@ -2,8 +2,11 @@ function getMovie(movieId){
      window.location.href="/m/"+movieId;
  }
 
-function getTv(TvId){
-    window.location.href="/t/"+TvId;
+function getTv(tvId){
+    var index = tvId.indexOf("-");
+    var name = tvId.substring(0,index);
+    var season = tvId.substring(index+1);
+    window.location.href="/t/"+name+"/"+season;
 
 }
 
