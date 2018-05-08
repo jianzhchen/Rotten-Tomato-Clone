@@ -171,7 +171,7 @@
                             </div>
                             <form role="form">
                                 <div class="form-group" >
-                                    <textarea class="form-control text-muted" rows="5" placeholder="Enter your review here"></textarea>
+                                    <textarea class="form-control text-muted" rows="5" id="reviewContent" placeholder="Enter your review here"></textarea>
                                 </div>
                             </form>
                             <div class="float-left">
@@ -179,7 +179,12 @@
                                 <button type="button" class="btn btn-danger btn-sm">Not interested</button>
                             </div>
                             <div class="float-right">
-                                <button type="button" class="btn btn-sm" th:onclick="'javascript:postReview(\''+${movieKey}+'\')'">Post</button>
+                                <button type="button" class="btn btn-sm"
+                                        th:if="${isLogin}"
+                                        th:onclick="'javascript:postReview(\''+${movieKey}+'\')'">Post</button>
+                                <button type="button" class="btn btn-sm"
+                                        th:unless="${isLogin}"
+                                        th:onclick="'javascript:loginMessage()'">Post</button>
                             </div>
                         </div>
                     </div>
@@ -533,6 +538,7 @@
 <script src="./assets/assets-for-demo/js/material-kit-demo.js"></script>
 <script type="text/javascript" th:src="@{~/js/movieInfo.js}"></script>
 
+
 <script src="@{~/assets/js/core/jquery.min.js}"></script>
 <script src="@{~/assets/js/core/popper.min.js}"></script>
 <script src="@{~/assets/js/bootstrap-material-design.js}"></script>
@@ -548,6 +554,7 @@
 <script src="@{~/assets/assets-for-demo/js/material-kit-demo.js}"></script>
 <script type="text/javascript" src="../static/js/movieInfo.js"></script>
 <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+
 </body>
 
 </html>
