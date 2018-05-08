@@ -2,18 +2,12 @@
 <html lang="en">
 <html xmlns:th="http://www.thymeleaf.org">
 
-<!--Header-->
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     <!-- Favicons -->
-    <link rel="apple-touch-icon" th:href="@{~/assets/img/kit/free/apple-icon.png}">
-    <link rel="apple-touch-icon" href="./assets/img/kit/free/apple-icon.png">
-
     <link rel="icon" href="./assets/img/kit/free/favicon.png">
-    <link rel="icon" th:href="@{~/assets/img/kit/free/favicon.png}">
-
     <title>
         Rotten Potato
     </title>
@@ -21,15 +15,11 @@
     <link rel="stylesheet" type="text/css"
           href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css"/>
-    <link rel="stylesheet" th:href="@{~/assets/css/material-kit.css?v=2.0.2}">
     <link rel="stylesheet" href="./assets/css/material-kit.css?v=2.0.2">
-    <!-- Documentation extras -->
-    <!-- CSS Just for demo purpose, don't include it in your project -->
-    <link th:href="@{~/assets/assets-for-demo/demo.css}" rel="stylesheet"/>
-    <link href="./assets/assets-for-demo/demo.css" rel="stylesheet"/>
-
+    <link rel="stylesheet" href="./assets/css/custom.css">
 </head>
-<body class="profile-page">
+
+<body class="profile-page ">
 <nav class="navbar navbar-expand-lg fixed-top  bg-dark">
     <div class="container">
         <div class="navbar-translate">
@@ -79,42 +69,44 @@
 
     </div>
 </nav>
-<div class="page-header" data-parallax="false"
-     style="height: 18vh !important;">
-</div>
 
-<!--Body-->
+<div class="page-header header-filter" data-parallax="true"
+     style="background-image: url('./assets/img/kit/city.jpg');"></div>
 <div class="main main-raised">
     <div class="profile-content">
         <div class="container">
-            <!--User Info-->
             <div class="row">
-                <div class="col-sm-12">
+                <div class="col-sm-8">
                     <div class="row">
                         <!--personal info-->
                         <div class="card">
                             <div class="card-body" >
                                 <div class="row">
-                                    <!--User image-->
                                     <div class="col-md-6 text-center">
-
                                         <div class="avatar">
-                                            <img th:src="@{'~/Images/userImages/'+${userId}+'.jpg'}" th:width="200" th:height="200"
-                                                 th:onerror="'this.src=\'' + @{~/assets/img/default.jpg} + '\';'">
+                                            <img src="./assets/img/kit/faces/christian.jpg" alt="Circle Image"
+                                                 class="img-raised rounded img-fluid img-thumbnail">
                                         </div>
                                     </div>
-                                    <!--User Info-->
                                     <div class="col-md-6 text-left">
-                                        <!--User first name and last name-->
-                                        <h3 class="title" th:text="${firstName}+' '+${lastName}">FirstName LastName</h3>
-
-                                        <!--User details-->
+                                        <h3 class="title" th:text="${firstname} ${lastname}">Full Name</h3>
                                         <div id="info-section">
-                                            <!--email and follower-->
                                             <ul class="list-unstyled infolist-height">
-                                                <li th:text="${email}">Empty Email</li>
+                                                <li>Account:</li>
+                                                <li th:text="@{email}">Email:</li>
                                                 <li>Follower count:</li>
                                             </ul>
+                                            <div class="description text-left" style="height: 110px;overflow: hidden;">
+                                                <p>An artist of considerable range, Chet Faker &#x2014; the name taken by
+                                                    Melbourne-raised,
+                                                    Brooklyn-based Nick Murphy &#x2014; writes, performs and records all of his own
+                                                    music,
+                                                    Brooklyn-based Nick Murphy &#x2014; writes, performs and records all of his own
+                                                    music,
+                                                    Brooklyn-based Nick Murphy &#x2014; writes, performs and records all of his own
+                                                    music,
+                                                    giving it a warm, intimate feel with a solid groove structure. </p>
+                                            </div>
                                             <div class="float-right">
                                                 <button type="button" class="btn btn-sm btn-primary">Manage Account</button>
                                             </div>
@@ -123,29 +115,15 @@
                                 </div>
                             </div>
                         </div>
+
                     </div>
                 </div>
-            </div>
-            <!-Follow Area-->
-            <div class="row">
-                <!--following list-->
-                <div class="col-md-6 mt-3">
-                    <h3 class="title mx-4 float-left">Following</h3>
-                    <div class="card mx-4">
-                        <div class="card-body" style="height: 300px;overflow: hidden;">
-                            <ul>
-                                <li>
-                                    <a href="#">friend</a>
-                                </li>
-
-                            </ul>
-
-                        </div>
+                <div class="col-md-4 mt-3">
+                    <!--friend list-->
+                    <h3 class="title mx-4 float-left">Friends</h3>
+                    <div class="float-right mt-3">
+                        <button type="button" class="btn btn-sm btn-primary">View All</button>
                     </div>
-                </div>
-                <!--follower list-->
-                <div class="col-md-6 mt-3">
-                    <h3 class="title mx-4 float-left">Followers</h3>
                     <div class="card mx-4">
                         <div class="card-body" style="height: 300px;overflow: hidden;">
                             <ul>
@@ -159,8 +137,13 @@
                     </div>
                 </div>
             </div>
+<<<<<<< HEAD
             <!--want to see movies-->
             <div class="row" id="want-to-see-movies">
+=======
+            <!--want to see movie-->
+            <div id="higest-rated-movies">
+>>>>>>> 3047d63506ebb651163d0d7cf9dddb6c8d4e5167
                 <h3 class="title float-left">Want to see movies</h3>
                 <div class="card">
                     <div class="card-body">
@@ -173,7 +156,7 @@
                 </div>
             </div>
             <!--want to see TVs-->
-            <div class="row" id="want-to-see-tvs">
+            <div id="higest-rated-tvs">
                 <h3 class="title float-left">Want to see TVs</h3>
                 <div class="card">
                     <div class="card-body">
@@ -185,98 +168,105 @@
                     </div>
                 </div>
             </div>
+
             <!--review + rating-->
             <div class="row" id="review-and-rating">
                     <h3 class="title">Review History</h3>
                 
-                    <!--<div class="card">-->
-                        <!--<div class="card-body">-->
-                            <!--<div id="film-table">-->
-                                <!--<nav>-->
-                                    <!--<div class="nav nav-tabs" id="nav-tab" role="tablist">-->
-                                        <!--<a class="nav-item nav-link active text-center" style="width: 500px" id="nav-movie-tab" data-toggle="tab"-->
-                                           <!--href="#nav-movie" role="tab" aria-controls="nav-home"-->
-                                           <!--aria-selected="true">Movies</a>-->
-                                        <!--<a class="nav-item nav-link text-center" style="width: 500px"  id="nav-tv-tab" data-toggle="tab"-->
-                                           <!--href="#nav-tv" role="tab" aria-controls="nav-profile" aria-selected="false">TVs</a>-->
-                                    <!--</div>-->
-                                <!--</nav>-->
-                                <!--<div class="tab-content" id="nav-tabContent">-->
-                                    <!--<div class="tab-pane fade show active" id="nav-movie" role="tabpanel"-->
-                                         <!--aria-labelledby="nav-home-tab">-->
-                                        <!--<div class="filmography-list">-->
-                                            <!--<table class="table table-striped rating-history-table">-->
-                                                <!--<thead>-->
-                                                    <!--<tr>-->
-                                                        <!--<th>RATING</th>-->
-                                                        <!--<th>TITLE</th>-->
-                                                        <!--<th>REVIEWS</th>-->
-                                                        <!--<th>Edit</th>-->
-                                                        <!--<th>Delete</th>-->
-                                                    <!--</tr>-->
-                                                <!--</thead>-->
-                                                <!--<tbody>-->
-                                                    <!--<tr>-->
-                                                        <!--<td>55%</td>-->
-                                                        <!--<td>XXX</td>-->
-                                                        <!--<td>XXX</td>-->
-                                                        <!--<td>edit</td>-->
-                                                        <!--<td>delete</td>-->
-                                                    <!--</tr>-->
-                                                    <!--<tr>-->
-                                                        <!--<td>55%</td>-->
-                                                        <!--<td>XXX</td>-->
-                                                        <!--<td>XXX</td>-->
-                                                        <!--<td>edit</td>-->
-                                                        <!--<td>delete</td>-->
-                                                    <!--</tr>-->
-                                                <!--</tbody>-->
-                                            <!--</table>-->
-                                        <!--</div>-->
-                                    <!--</div>-->
-                                    <!--<div class="tab-pane fade" id="nav-tv" role="tabpanel"-->
-                                         <!--aria-labelledby="nav-profile-tab">-->
-                                        <!--<div class="filmography-list">-->
-                                            <!--<table class="table table-striped rating-history-table">-->
-                                                <!--<thead>-->
-                                                <!--<tr>-->
-                                                    <!--<th>RATING</th>-->
-                                                    <!--<th>TITLE</th>-->
-                                                    <!--<th>REVIEWS</th>-->
-                                                    <!--<th>Edit</th>-->
-                                                    <!--<th>Delete</th>-->
-                                                <!--</tr>-->
-                                                <!--</thead>-->
-                                                <!--<tbody>-->
-                                                <!--<tr>-->
-                                                    <!--<td>55%</td>-->
-                                                    <!--<td>XXX</td>-->
-                                                    <!--<td>XXX</td>-->
-                                                    <!--<td>edit</td>-->
-                                                    <!--<td>delete</td>-->
-                                                <!--</tr>-->
-                                                <!--<tr>-->
-                                                    <!--<td>55%</td>-->
-                                                    <!--<td>XXX</td>-->
-                                                    <!--<td>XXX</td>-->
-                                                    <!--<td>edit</td>-->
-                                                    <!--<td>delete</td>-->
-                                                <!--</tr>-->
-                                                <!--</tbody>-->
-                                            <!--</table>-->
 
-                                        <!--</div>-->
-                                    <!--</div>-->
-                                <!--</div>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                    <!--</div>-->
+            <!--rating history-->
+            <div id="filmography">
+                    <h3 class="title">Rating History</h3>
+                    <div class="card">
+                        <div class="card-body">
+                            <div id="film-table">
+                                <nav>
+                                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                        <a class="nav-item nav-link active text-center" style="width: 500px" id="nav-movie-tab" data-toggle="tab"
+                                           href="#nav-movie" role="tab" aria-controls="nav-home"
+                                           aria-selected="true">Movies</a>
+                                        <a class="nav-item nav-link text-center" style="width: 500px"  id="nav-tv-tab" data-toggle="tab"
+                                           href="#nav-tv" role="tab" aria-controls="nav-profile" aria-selected="false">TVs</a>
+                                    </div>
+                                </nav>
+                                <div class="tab-content" id="nav-tabContent">
+                                    <div class="tab-pane fade show active" id="nav-movie" role="tabpanel"
+                                         aria-labelledby="nav-home-tab">
+                                        <div class="filmography-list">
+                                            <table class="table table-striped rating-history-table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>RATING</th>
+                                                        <th>TITLE</th>
+                                                        <th>REVIEWS</th>
+                                                        <th>Edit</th>
+                                                        <th>Delete</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>55%</td>
+                                                        <td>XXX</td>
+                                                        <td>XXX</td>
+                                                        <td>edit</td>
+                                                        <td>delete</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>55%</td>
+                                                        <td>XXX</td>
+                                                        <td>XXX</td>
+                                                        <td>edit</td>
+                                                        <td>delete</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="nav-tv" role="tabpanel"
+                                         aria-labelledby="nav-profile-tab">
+                                        <div class="filmography-list">
+                                            <table class="table table-striped rating-history-table">
+                                                <thead>
+                                                <tr>
+                                                    <th>RATING</th>
+                                                    <th>TITLE</th>
+                                                    <th>REVIEWS</th>
+                                                    <th>Edit</th>
+                                                    <th>Delete</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr>
+                                                    <td>55%</td>
+                                                    <td>XXX</td>
+                                                    <td>XXX</td>
+                                                    <td>edit</td>
+                                                    <td>delete</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>55%</td>
+                                                    <td>XXX</td>
+                                                    <td>XXX</td>
+                                                    <td>edit</td>
+                                                    <td>delete</td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+
+
+            </div>
         </div>
     </div>
 </div>
-
-<!--Footer-->
 <footer class="footer ">
     <div class="container">
         <div class="row">
@@ -314,26 +304,11 @@
                 </div>
             </div>
         </div>
+
+
     </div>
 </footer>
 <!--   Core JS Files   -->
-<script th:src="@{~/assets/js/core/jquery.min.js}"></script>
-<script th:src="@{~/assets/js/core/popper.min.js}"></script>
-<script th:src="@{~/assets/js/bootstrap-material-design.js}"></script>
-<!--  Plugin for Date Time Picker and Full Calendar Plugin  -->
-<script th:src="@{~/assets/js/plugins/moment.min.js}"></script>
-<!--	Plugin for the Datepicker, full documentation here: https://github.com/Eonasdan/bootstrap-datetimepicker -->
-<script th:src="@{~/assets/js/plugins/bootstrap-datetimepicker.min.js}"></script>
-<!--	Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
-<script th:src="@{~/assets/js/plugins/nouislider.min.js}"></script>
-<!-- Material Kit Core initialisations of plugins and Bootstrap Material Design Library -->
-<script th:src="@{~/assets/js/material-kit.js?v=2.0.2}"></script>
-<!-- Fixed Sidebar Nav - js With initialisations For Demo Purpose, Don't Include it in your project -->
-<script th:src="@{~/assets/assets-for-demo/js/material-kit-demo.js}"></script>
-<script type="text/javascript" th:src="@{~/js/index.js}"></script>
-
-
-<!--test-->
 <script src="./assets/js/core/jquery.min.js"></script>
 <script src="./assets/js/core/popper.min.js"></script>
 <script src="./assets/js/bootstrap-material-design.js"></script>
