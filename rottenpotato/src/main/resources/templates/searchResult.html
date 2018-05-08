@@ -109,7 +109,7 @@
                     <h3 class="title"  th:text="'Search Result for: \''+${term} +'\' in '+${type}" >search result</h3>
                     <!--found-->
                     <div th:if="${result.size()} != 0">
-                        <table class="search-result-table-item">
+                        <table class="search-result-table-item table-striped">
                             <tbody>
                             <tr th:each="item:${result}" >
                                 <td th:onclick="'javascript:getMovie(\''+${item.key}+'\')'">
@@ -137,7 +137,7 @@
                     <h3 class="title"  th:text="'Search Result for: \''+${term} +'\' in '+${type}" >search result</h3>
                     <!--found-->
                     <div th:if="${result.size()} != 0">
-                        <table class="search-result-table-item">
+                        <table class="search-result-table-item table-striped">
                             <tbody>
                             <tr th:each="item:${result}">
                                 <td th:onclick="'javascript:getTv(\''+${item.key}+'\')'">
@@ -166,7 +166,7 @@
                     <h3 class="title"  th:text="'Search Result for: \''+${term} +'\' in '+${type}" >search result</h3>
                     <!--found-->
                     <div th:if="${result.size()} != 0">
-                        <table class="search-result-table-item">
+                        <table class="search-result-table-item table-striped">
                             <tbody>
                             <tr th:each="item:${result}">
                                 <td th:onclick="'javascript:getActor(\''+${item.key}+'\')'">

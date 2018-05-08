@@ -35,11 +35,18 @@ public class MovieMvcController {
 
 
     @GetMapping(value = "m/{movieKey}")
-    public String movieDetail(@PathVariable("movieKey") String movieKey, Model model) {
+    public String movieDetail(@PathVariable("movieKey") String movieKey, Model model,Principal principal) {
         Movie movie = movieRepository.findByMovieKey(movieKey);
         if (movie == null) {
             model.addAttribute("exist", false);
         }
+        if (principal == null) {
+            model.addAttribute("isLogin", false);
+        } else {
+            model.addAttribute("isLogin", true);
+            model.addAttribute("username", principal.getName());
+        }
+
         model.addAttribute("movieKey", movie.getMovieKey());
         model.addAttribute("name", movie.getName());
         model.addAttribute("info", movie.getInfo());
