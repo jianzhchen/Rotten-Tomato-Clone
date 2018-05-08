@@ -102,9 +102,14 @@
                         <h2 class="card-title">MOVIES OPENING THIS WEEK</h2>
                             <table class="table table-striped">
                                 <tbody>
-                                <tr th:each="movie:${movieOpeningThisWeek}" th:onclick="'javascript:getMovie(\''+${movie.key}+'\')'">
+                                <tr th:each="movie:${movieOpeningThisWeek}">
                                     <!--<td th:text="${movie.rate}">N/A</td>-->
-                                    <td th:text="${movie.movieName}">Bangalore</td>
+                                    <td>
+                                        <a th:text="${movie.movieName}"
+                                           th:href="'javascript:getMovie(\''+${movie.key}+'\')'">
+                                        </a>
+                                    </td>
+                                    <!--<td th:text="${movie.movieName}">Bangalore</td>-->
                                     <!--<td th:text="${movie.movieDate}">MAR 2</td>-->
                                 </tr>
                                 </tbody>
@@ -117,9 +122,13 @@
                         <h2 class="card-title">TOP BOX OFFICE</h2>
                         <table class="table table-striped">
                             <tbody>
-                            <tr th:each="movie:${topBoxOffice}" th:onclick="'javascript:getMovie(\''+${movie.key}+'\')'">
+                            <tr th:each="movie:${topBoxOffice}">
                                 <!--<td th:text="${movie.rate}">N/A</td>-->
-                                <td th:text="${movie.movieName}">Bangalore</td>
+                                <td>
+                                    <a th:text="${movie.movieName}"
+                                       th:href="'javascript:getMovie(\''+${movie.key}+'\')'">
+                                    </a>
+                                </td>
                                 <td th:text="${movie.boxOffice}">MAR 2</td>
                             </tr>
                             </tbody>
