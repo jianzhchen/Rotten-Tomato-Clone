@@ -16,7 +16,7 @@ public interface TVRepository extends JpaRepository<TV, Long> {
     public List<TV> searchByName(@Param("searchTerm") String searchTerm,Pageable pageable);
 
     @Query("select t from TV t where t.TVKey=:TVKey")
-    public TV findByTVKey(String TVKey);
+    public TV findByTVKey(@Param("TVKey") String TVKey);
 
     @Query("delete from TV t where t.TVKey=:TVKey")
     long removeByTVKey(@Param("TVKey") String TVKey);

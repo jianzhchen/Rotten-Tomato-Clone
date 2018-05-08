@@ -5,6 +5,8 @@ import com.redwood.rottenpotato.main.repositories.ActorRepository;
 import com.redwood.rottenpotato.main.repositories.CriticReviewRepository;
 import com.redwood.rottenpotato.main.repositories.TVRepository;
 import com.redwood.rottenpotato.main.repositories.UserRatingRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,10 +28,10 @@ public class TVMvcController {
     public CriticReviewRepository criticReviewRepository;
     @Autowired
     public UserRatingRepository userRatingRepository;
-
-    @GetMapping(value = "t/{TVKey}/{season}")
-    public String tvDetail(@PathVariable("TVKey") String tVKey, @PathVariable("season") String seasonKey, Model model) {
-        TV tv = tVRepository.findByTVKey(tVKey + "/" + seasonKey);
+    private final Logger log = LoggerFactory.getLogger(this.getClass());
+    @GetMapping(value = "t/{TVKey}")
+    public String tvDetail(@PathVariable("TVKey") String tVKey, Model model) {
+        TV tv = tVRepository.findByTVKey(tVKey);
         if (tv == null) {
             model.addAttribute("exist", false);
         }
@@ -45,6 +47,9 @@ public class TVMvcController {
         for (String actorKey : actorKeys) {
             HashMap<String, String> actorMap = new HashMap<>();
             Actor actor = actorRepository.findByActorKey(actorKey);
+            if(actor==null){
+                continue;
+            }
             actorMap.put("name", actor.getActorName());
             actorMap.put("key", actor.getActorName());
             actors.add(actorMap);
