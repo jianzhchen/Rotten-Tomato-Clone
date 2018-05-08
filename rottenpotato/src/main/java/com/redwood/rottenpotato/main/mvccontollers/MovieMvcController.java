@@ -142,7 +142,7 @@ public class MovieMvcController {
             reviews.add(aReview);
         }
         model.addAttribute("reviews", reviews);
-
+        model.addAttribute("movieKey",movieKey);
 
         return "movieInfo.html";
 

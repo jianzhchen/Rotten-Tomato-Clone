@@ -93,7 +93,8 @@
                     <div class="row">
                         <!--poster-->
                         <div class="col-md-4 mx-5">
-                            <img th:src="@{'~/Images/movieImages/'+${movieKey}+'.jpg'}" th:width="200" onerror="errorImg(this)">
+                            <img th:src="@{'~/Images/movieImages/'+${movieKey}+'.jpg'}" th:width="200" th:height="300"
+                                 th:onerror="'this.src=\'' + @{~/assets/img/defaultMovie.jpg} + '\';'">
                         </div>
                         <!--rate-->
                         <div class="col-md-6">
@@ -158,7 +159,8 @@
                                     <h5 class="title">Add your rate</h5>
                                 </div>
                                 <div class="text-right">
-                                    <select class="custom-select custom-select-sm" style="width: 50px">
+                                    <select class="custom-select custom-select" id="score" style="width: 50px">
+                                        <option value="0" selected>NULL</option>
                                         <option value="1">1</option>
                                         <option value="2">2</option>
                                         <option value="3">3</option>
@@ -177,7 +179,7 @@
                                 <button type="button" class="btn btn-danger btn-sm">Not interested</button>
                             </div>
                             <div class="float-right">
-                                <button type="button" class="btn btn-sm">Post</button>
+                                <button type="button" class="btn btn-sm" th:onclick="'javascript:postReview(\''+${movieKey}+'\')'">Post</button>
                             </div>
                         </div>
                     </div>
@@ -325,7 +327,8 @@
                             <div class="row">
                                 <div class="col-md-2 ">
                                     <div class="text-center">
-                                        <img th:src="@{'~/Images/movieImages/'+${movieKey}+'.jpg'}"  onerror="errorImg(this)">
+                                        <img th:src="@{'~/Images/movieImages/'+${movieKey}+'.jpg'}" th:width="200" th:height="300"
+                                             th:onerror="'this.src=\'' + @{~/assets/img/defaultMovie.jpg} + '\';'">
                                     </div>
                                 </div>
                             </div>
@@ -473,113 +476,6 @@
     </div>
 </div>
 
-
-<!-- Classic Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Modal title</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <i class="material-icons">clear</i>
-                </button>
-            </div>
-            <div class="modal-body">
-                <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live
-                    the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large
-                    language ocean. A small river named Duden flows by their place and supplies it with the necessary
-                    regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.
-                    Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic
-                    life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the
-                    far World of Grammar.
-                </p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-link">Nice Button</button>
-                <button type="button" class="btn btn-danger btn-link" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="signupModalLabel"
-     aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="signupModalLabel">Sign Up</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form>
-                    <div class="form-group">
-                        <input type="email" class="form-control" id="signupInputEmail" aria-describedby="emailHelp"
-                               placeholder="Enter email">
-                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
-                            else.
-                        </small>
-                    </div>
-                    <div class="form-group">
-                        <input type="password" class="form-control" placeholder="Password">
-                    </div>
-                    <div class="form-group">
-                        <input type="password" class="form-control" placeholder="Retype Password">
-                    </div>
-                    <div class="form-group">
-                        <input type="email" class="form-control" aria-describedby="emailHelp"
-                               placeholder="Enter First Name">
-                    </div>
-                    <div class="form-group">
-                        <input type="email" class="form-control" aria-describedby="emailHelp"
-                               placeholder="Enter Last Name">
-                    </div>
-                    <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                        <label class="form-check-label">Check if you are applying as a
-                            critic</label>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer mb-1">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" data-dismiss="modal">Submit</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel"
-     aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Sign In</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form>
-                    <div class="form-group">
-                        <input type="email" class="form-control" aria-describedby="emailHelp"
-                               placeholder="Enter email">
-                    </div>
-                    <div class="form-group">
-                        <input type="password" class="form-control" placeholder="Password">
-                    </div>
-                    <div class="text-danger" th:text="${errorMessage}">error</div>
-                </form>
-            </div>
-
-            <div class="modal-footer mb-1">
-                <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-sm btn-primary">Sign In</button>
-            </div>
-        </div>
-    </div>
-</div>
-<!--  End Modal -->
 <footer class="footer ">
     <div class="container">
         <div class="row">
@@ -650,7 +546,8 @@
 <script src="@{~/assets/js/material-kit.js?v=2.0.2}"></script>
 <!-- Fixed Sidebar Nav - js With initialisations For Demo Purpose, Don't Include it in your project -->
 <script src="@{~/assets/assets-for-demo/js/material-kit-demo.js}"></script>
-
+<script type="text/javascript" src="../static/js/movieInfo.js"></script>
+<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
 </body>
 
 </html>
