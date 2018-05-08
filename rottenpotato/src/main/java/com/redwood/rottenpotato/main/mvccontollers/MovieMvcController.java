@@ -90,6 +90,7 @@ public class MovieMvcController {
                 userScoreCount++;
             }
         }
+        model.addAttribute("userScoreCount",userScoreCount);
         if (userScoreCount == 0) {
             model.addAttribute("userRating", "N/A");
         } else {
