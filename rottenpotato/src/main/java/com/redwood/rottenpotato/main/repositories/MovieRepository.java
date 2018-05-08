@@ -24,4 +24,8 @@ public interface MovieRepository extends JpaRepository<Movie, Long> {
     public Movie findByMovieKey(String movieKey);
 
     long removeByMovieKey(String movieKey);
+
+    @Query("SELECT m FROM Movie m WHERE m.cast LIKE %:actorKey%")
+    public List<Movie> searchByActorKey(@Param("actorKey") String actorKey);
+
 }

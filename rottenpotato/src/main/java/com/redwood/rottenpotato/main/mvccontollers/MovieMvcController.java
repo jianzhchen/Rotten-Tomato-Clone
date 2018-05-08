@@ -5,6 +5,7 @@ import com.redwood.rottenpotato.main.models.CriticReview;
 import com.redwood.rottenpotato.main.models.Movie;
 import com.redwood.rottenpotato.main.models.UserRating;
 import com.redwood.rottenpotato.main.repositories.ActorRepository;
+import com.redwood.rottenpotato.main.repositories.CriticRepository;
 import com.redwood.rottenpotato.main.repositories.CriticReviewRepository;
 import com.redwood.rottenpotato.main.repositories.MovieRepository;
 import com.redwood.rottenpotato.main.repositories.UserRatingRepository;
@@ -31,13 +32,17 @@ public class MovieMvcController {
     @Autowired
     private CriticReviewRepository criticReviewRepository;
     @Autowired
+    private CriticRepository criticRepository;
+    @Autowired
     private UserRatingRepository userRatingRepository;
 
 
     @GetMapping(value = "m/{movieKey}")
-    public String movieDetail(@PathVariable("movieKey") String movieKey, Model model) {
+    public String movieDetail(@PathVariable("movieKey") String movieKey, Model model)
+    {
         Movie movie = movieRepository.findByMovieKey(movieKey);
-        if (movie == null) {
+        if (movie == null)
+        {
             model.addAttribute("exist", false);
         }
         model.addAttribute("movieKey", movie.getMovieKey());
@@ -55,14 +60,14 @@ public class MovieMvcController {
         String cast = movie.getCast();
         List<String> actorKeys = Arrays.asList(cast.split("\\s*,\\s*"));
         List<HashMap> actors = new ArrayList<>();
-        for (String actorKey : actorKeys) {
+        for (String actorKey : actorKeys)
+        {
             HashMap<String, String> actorMap = new HashMap<>();
             Actor actor = actorRepository.findByActorKey(actorKey);
             actors.add(actorMap);
         }
-//        model.addAttribute("actors", actors);
-        model.addAttribute("casts",castNamesAndKeys(castsTransfer(movie.getCast())));
-        System.out.println(movie.getCast());
+
+        model.addAttribute("casts",this.getActorNamesAndNamesByKeys(castsTransfer(movie.getCast())));
 
 
         List<CriticReview> crs = criticReviewRepository.findByItemKey(movieKey);
@@ -95,7 +100,37 @@ public class MovieMvcController {
         } else {
             model.addAttribute("userRating", String.format("%.2f", (double)userScore / userScoreCount));
         }
-        //TODO poster
+
+        //CriticReviews
+        //1. get criticReview based on movieKey(itemKey)
+        List<CriticReview> criticReviews = criticReviewRepository.findByItemKey(movie.getMovieKey());
+
+        //2. For the criticReview, create a hashmap of reviews, and put all hashmaps into a list
+        List<HashMap> reviews = new ArrayList<>();
+        for (CriticReview cr : criticReviews)
+        {
+            //one review
+            HashMap<String, String> aReview = new HashMap<>();
+
+            if(cr.getReviewRating()==0)
+            {
+                aReview.put("score", "No Score");
+            }
+            else
+            {
+                aReview.put("score", Integer.toString(cr.getReviewRating()));
+            }
+            aReview.put("date", cr.getReviewTime());
+            aReview.put("content", cr.getReviewContent());
+            aReview.put("criticKey", cr.getCriticKey());
+
+            String criticName = this.criticRepository.findByCriticKey(cr.getCriticKey()).getCriticName();
+            aReview.put("criticName", criticName);
+            reviews.add(aReview);
+        }
+        model.addAttribute("reviews", reviews);
+
+
         return "movieInfo.html";
 
     }
@@ -176,6 +211,20 @@ public class MovieMvcController {
             Map<String, String> map = new HashMap<>();
             map.put("actorKey", castsArr[i]);
             map.put("actorName",toCastName(castsArr[i]));
+            tempList.add(map);
+        }
+        return tempList;
+    }
+
+    //6 actors in maximum
+    public List<Map>getActorNamesAndNamesByKeys(String[] castsArr)
+    {
+        List<Map> tempList = new ArrayList<>();
+        for(int i =  0; i <= castsArr.length - 1 && i < 6; i++)
+        {
+            Map<String, String> map = new HashMap<>();
+            map.put("actorKey", castsArr[i]);
+            map.put("actorName", this.actorRepository.findByActorKey(castsArr[i]).getActorName());
             tempList.add(map);
         }
         return tempList;

@@ -240,29 +240,47 @@
             <!--cast-->
             <section id="cast">
                 <h3 class="title text-left">Cast</h3>
+
                 <div class="card m-1">
                     <div class="card-body">
-                        <table class="table table-striped">
-                            <tbody>
-                            <tr th:each="cast:${casts}">
-                                <td th:text="${cast.actorName}" th:onclick="'javascript:getActor(\''+${cast.actorKey}+'\')'">
-                                    MAR 2
-                                </td>
-                                <td>
-                                    <img th:src="@{'~/Images/actorImages/'+${cast.actorKey}+'.jpg'}" th:width="150" th:height="150"
-                                        >
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
+                        <div class="card-columns">
+                            <table class="search-result-table-item">
+                                <tbody>
+                                    <tr th:each="cast:${casts}">
+                                        <td>
+                                            <div class = "card">
+                                                <div class="card-body">
+                                                    <!--actor name-->
+                                                    <div>
+                                                        <a  th:text="${cast.actorName}"
+                                                            th:href="'javascript:getActor(\''+${cast.actorKey}+'\')'">
+                                                            Empty Actor Name
+                                                        </a>
+                                                    </div>
+                                                    <!--actor image-->
+                                                    <div>
+                                                        <img th:src="@{'~/Images/actorImages/'+${cast.actorKey}+'.jpg'}"
+                                                             th:width="150"
+                                                             th:height="150"
+                                                             th:onerror="'this.src=\'' + @{~/assets/img/default.jpg} + '\';'"
+                                                        >
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
+
                 <div class="text-right">
                     <button type="button" class="btn btn-default btn-sm">View All</button>
                 </div>
             </section>
-            <!--photo-->
-            <section id="photo">
+            <!--photos-->
+            <section id="photos">
                     <h3 class="title text-left">Photos</h3>
                     <div class="card m-1">
                         <div class="card-body">
@@ -279,8 +297,8 @@
                         <button type="button" class="btn btn-default btn-sm">View All</button>
                     </div>
             </section>
-            <!--video-->
-            <section id="video">
+            <!--videos-->
+            <section id="videos">
                     <h3 class="title text-left">Videos</h3>
                 <div class="card m-1">
                     <div class="card-body">
@@ -304,43 +322,46 @@
                 <div class="card m-1">
                     <div class="card-body">
                         <div class="card-columns">
-                                <div class="card card-block">
-                                    <div class="m-3">
-                                        <p>This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                    </div>
-
-                                </div>
-                                <div class=" card card-block">
-                                    <div class="m-3">
-                                        <p>This card has supporting text below as a natural lead-in to additional content.</p>
-                                        <p class="text-right"><small class="text-muted">Last updated 3 mins ago</small></p>
-                                    </div>
-                                </div>
-                                <div class=" card card-block">
-                                    <div class="m-3">
-                                        <p>This card has supporting text below as a natural lead-in to additional content.</p>
-                                        <p class="text-right"><small class="text-muted">Last updated 3 mins ago</small></p>
-                                    </div>
-                                </div>
-                                <div class=" card card-block">
-                                    <div class="m-3">
-                                        <p>This card has supporting text below as a natural lead-in to additional content.</p>
-                                        <p class="text-right"><small class="text-muted">Last updated 3 mins ago</small></p>
-                                    </div>
-                                </div>
-                                <div class=" card card-block">
-                                    <div class="m-3">
-                                        <p>This card has supporting text below as a natural lead-in to additional content.</p>
-                                        <p class="text-right"><small class="text-muted">Last updated 3 mins ago</small></p>
-                                    </div>
-                                </div>
-                                <div class=" card card-block">
-                                    <div class="m-3">
-                                        <p>This card has supporting text below as a natural lead-in to additional content.</p>
-                                        <p class="text-right"><small class="text-muted">Last updated 3 mins ago</small></p>
-                                    </div>
-                                </div>
-                            </div>
+                            <table class="search-result-table-item">
+                                <tbody>
+                                    <tr th:each="review:${reviews}">
+                                        <td>
+                                            <div class = "card">
+                                                <div class="card-body">
+                                                    <!--critic review score-->
+                                                    <div th:text="'Score = '+ ${review.score}">
+                                                        100.00%
+                                                    </div>
+                                                    <!--critic review content-->
+                                                    <div  th:text="${review.content}">
+                                                        Empty Content
+                                                    </div>
+                                                    <!--critic review date-->
+                                                    <div th:text="${review.date}">
+                                                        1-Jan-01
+                                                    </div>
+                                                    <!--critic name-->
+                                                    <div>
+                                                        <a  th:text="${review.criticName}"
+                                                            th:href="'javascript:getCritic(\''+${review.criticKey}+'\')'">
+                                                            Empty Key
+                                                        </a>
+                                                    </div>
+                                                    <!--critic image-->
+                                                    <div>
+                                                        <img th:src="@{'~/Images/criticImages/'+${review.criticKey}+'.jpg'}"
+                                                             th:width="50"
+                                                             th:height="50"
+                                                             th:onerror="'this.src=\'' + @{~/assets/img/default.jpg} + '\';'"
+                                                        >
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
                 <div class="text-right">
@@ -349,46 +370,13 @@
             </section>
             <!--audience review-->
             <section id="audience_review">
+
+
                 <h3 class="title text-left">Audience Reviews</h3>
                 <div class="card m-1">
                     <div class="card-body">
                         <div class="card-columns">
-                            <div class="card card-block">
-                                <div class="m-3">
-                                    <p>This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                </div>
 
-                            </div>
-                            <div class=" card card-block">
-                                <div class="m-3">
-                                    <p>This card has supporting text below as a natural lead-in to additional content.</p>
-                                    <p class="text-right"><small class="text-muted">Last updated 3 mins ago</small></p>
-                                </div>
-                            </div>
-                            <div class=" card card-block">
-                                <div class="m-3">
-                                    <p>This card has supporting text below as a natural lead-in to additional content.</p>
-                                    <p class="text-right"><small class="text-muted">Last updated 3 mins ago</small></p>
-                                </div>
-                            </div>
-                            <div class=" card card-block">
-                                <div class="m-3">
-                                    <p>This card has supporting text below as a natural lead-in to additional content.</p>
-                                    <p class="text-right"><small class="text-muted">Last updated 3 mins ago</small></p>
-                                </div>
-                            </div>
-                            <div class=" card card-block">
-                                <div class="m-3">
-                                    <p>This card has supporting text below as a natural lead-in to additional content.</p>
-                                    <p class="text-right"><small class="text-muted">Last updated 3 mins ago</small></p>
-                                </div>
-                            </div>
-                            <div class=" card card-block">
-                                <div class="m-3">
-                                    <p>This card has supporting text below as a natural lead-in to additional content.</p>
-                                    <p class="text-right"><small class="text-muted">Last updated 3 mins ago</small></p>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -407,7 +395,7 @@
                                 <div class="row">
                                     <div class="col-md-4 mx-5">
                                         <div class="text-center">
-                                            <a href="https://placeholder.com">
+                                            <a href="https://screenrant.com/movie-news/">
                                                 <img class="" src="http://via.placeholder.com/200x150"></a>
                                             <p class="font-weight-bold text-md-center my-0" >title</p>
                                         </div>
@@ -619,6 +607,7 @@
 <!-- Fixed Sidebar Nav - js With initialisations For Demo Purpose, Don't Include it in your project -->
 <script src="../assets/assets-for-demo/js/material-kit-demo.js"></script>
 <script type="text/javascript" th:src="@{~/js/movieInfo.js}"></script>
+<script type="text/javascript" th:src="@{~/js/critic.js}"></script>
 </body>
 
 </html>
