@@ -13,10 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 @Controller
 public class TVMvcController {
@@ -56,6 +53,7 @@ public class TVMvcController {
         }
 
         model.addAttribute("actors", actors);
+
         List<CriticReview> crs = criticReviewRepository.findByItemKey(tv.getTVKey());
         int criticScore = 0;
         int criticScoreCount = 0;
@@ -88,4 +86,6 @@ public class TVMvcController {
         //TODO poster
         return "tvInfo.html";
     }
+
+
 }

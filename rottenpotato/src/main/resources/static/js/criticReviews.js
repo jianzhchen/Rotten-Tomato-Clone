@@ -13,6 +13,6 @@ function getPrevPage(page) {
 }
 
 function errorImg(img){
-    img.src="http://via.placeholder.com/150x150";
+    img.src="http://via.placeholder.com/100x100";
     img.onerror = null;
 }

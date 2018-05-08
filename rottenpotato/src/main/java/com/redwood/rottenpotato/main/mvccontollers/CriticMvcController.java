@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -77,7 +78,13 @@ public class CriticMvcController {
 
 
     @RequestMapping("/critic_t/{page}")
-    public String criticReviewLatest(@PathVariable("page") int page, Model model) {
+    public String criticReviewLatest(@PathVariable("page") int page, Model model,Principal principal) {
+        if (principal == null) {
+            model.addAttribute("isLogin", false);
+        } else {
+            model.addAttribute("isLogin", true);
+            model.addAttribute("username", principal.getName());
+        }
         List<CriticReview> criticReviews = criticReviewRepository.findTop10ByOrderByReviewTimeDateDesc(PageRequest.of(page, 10));
         List<HashMap> reviews = new ArrayList<>();
         for (CriticReview criticReview : criticReviews) {
@@ -87,21 +94,30 @@ public class CriticMvcController {
             TV tv = tVRepository.findByTVKey(itemKey);
             if (movie != null) {
                 map.put("itemName", movie.getName());
-            } else {
+            } else if(tv != null){
                 map.put("itemName", tv.getTVName());
+            }else {
+                continue;
             }
             map.put("criticKey", criticReview.getCriticKey());
             Critic critic = criticRepository.findByCriticKey(criticReview.getCriticKey());
             map.put("name", critic.getCriticName());
             map.put("score", Integer.toString(criticReview.getReviewRating()));
             map.put("content", criticReview.getReviewContent());
+            reviews.add(map);
         }
         model.addAttribute("reviews", reviews);
         return "criticReviews.html";
     }
 
     @RequestMapping("/critic_all/{page}")
-    public String criticAll(@PathVariable("page") int page, Model model) {
+    public String criticAll(@PathVariable("page") int page, Model model, Principal principal) {
+        if (principal == null) {
+            model.addAttribute("isLogin", false);
+        } else {
+            model.addAttribute("isLogin", true);
+            model.addAttribute("username", principal.getName());
+        }
         List<Critic> critics = criticRepository.findTop10ByOrderByCriticNameDesc(PageRequest.of(page, 10));
         model.addAttribute("critics", critics);
         model.addAttribute("page", page);
@@ -110,7 +126,13 @@ public class CriticMvcController {
 
 
     @GetMapping(value = "/critics")
-    public String getCriticPage(Model model) {
+    public String getCriticPage(Model model, Principal principal) {
+        if (principal == null) {
+            model.addAttribute("isLogin", false);
+        } else {
+            model.addAttribute("isLogin", true);
+            model.addAttribute("username", principal.getName());
+        }
         model.addAttribute("critics", criticService.getAllCriticNamesKeys(model, 0));
         return "critic.html";
     }

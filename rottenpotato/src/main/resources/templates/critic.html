@@ -111,27 +111,14 @@
 
                                 <div class="col-md-12 px-0">
                                     <h2 class="title">TOP CRITIC</h2>
-
-
-
-                                    <!--<table class="table table-striped">-->
-                                    <!--<tbody>-->
-                                    <!--&lt;!&ndash;<tr th:each="critic:${critics}" th:onclick="'javascript:getMovie(\''+${movie.key}+'\')'">&ndash;&gt;-->
-                                    <!--<tr th:each="critic:${critics}" >-->
-                                    <!--&lt;!&ndash;<td th:text="${movie.rate}">N/A</td>&ndash;&gt;-->
-                                    <!--<td th:text="${critic.criticName}" th:onclick="'javascript:getCritic(\''+${critic.criticKey}+'\')'">Bangalore</td>-->
-                                    <!--<td th:text="${critic.criticKey}">MAR 2</td>-->
-                                    <!--</tr>-->
-                                    <!--</tbody>-->
-                                    <!--</table>-->
-
+                                    <a href="/critic_t/0">Want to see lastest reviews?</a>
                                     <div>
-                                        <table class="search-result-table-cele">
+                                        <table class="critic-list table-striped">
                                             <!--<p th:text="${critics.size()}"></p>-->
                                             <tbody>
                                             <tr th:each="critic:${critics}">
                                                 <td th:onclick="'javascript:getCritic(\''+${critic.criticKey}+'\')'">
-                                                    <img src="http://via.placeholder.com/240x135" width="240" height="135">
+                                                    <img th:src="@{'~/Images/criticImages/'+${critic.criticKey}+'.jpg'}" th:width="150" th:height="150" onerror="errorImg(this)">
                                                 </td>
                                                 <td>
                                                     <ul class="list-unstyled">
@@ -144,13 +131,11 @@
                                         </table>
                                     </div>
                                     <div class="pull-right">
-                                        <button type="button" class="btn btn-primary btn-sm" th:if="${page} != 1" th:onclick="'javascript:getPrevPage(\''+${page}+'\')'" >Prev</button>
-                                        <p style="display: inline" th:text="${page}">Page</p>
+                                        <button type="button" class="btn btn-primary btn-sm" th:if="${page} != 0" th:onclick="'javascript:getPrevPage(\''+${page}+'\')'" >Prev</button>
+                                        <p style="display: inline" th:text="${page}+1">Page</p>
                                         <button type="button" class="btn btn-primary btn-sm" th:onclick="'javascript:getNextPage(\''+${page}+'\')'">Next</button>
                                     </div>
                                 </div>
-
-
                             </div>
                         </div>
                     </div>
@@ -167,121 +152,6 @@
 </div>
 
 
-
-
-
-
-
-
-
-<!-- Classic Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Modal title</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <i class="material-icons">clear</i>
-                </button>
-            </div>
-            <div class="modal-body">
-                <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live
-                    the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large
-                    language ocean. A small river named Duden flows by their place and supplies it with the necessary
-                    regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.
-                    Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic
-                    life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the
-                    far World of Grammar.
-                </p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-link">Nice Button</button>
-                <button type="button" class="btn btn-danger btn-link" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="signupModalLabel"
-     aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="signupModalLabel">Sign Up</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form>
-                    <div class="form-group">
-                        <input type="email" class="form-control" id="signupInputEmail" aria-describedby="emailHelp"
-                               placeholder="Enter email">
-                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
-                            else.
-                        </small>
-                    </div>
-                    <div class="form-group">
-                        <input type="password" class="form-control" placeholder="Password">
-                    </div>
-                    <div class="form-group">
-                        <input type="password" class="form-control" placeholder="Retype Password">
-                    </div>
-                    <div class="form-group">
-                        <input type="email" class="form-control" aria-describedby="emailHelp"
-                               placeholder="Enter First Name">
-                    </div>
-                    <div class="form-group">
-                        <input type="email" class="form-control" aria-describedby="emailHelp"
-                               placeholder="Enter Last Name">
-                    </div>
-                    <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                        <label class="form-check-label">Check if you are applying as a
-                            critic</label>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer mb-1">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" data-dismiss="modal">Submit</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel"
-     aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Sign In</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form>
-                    <div class="form-group">
-                        <input type="email" class="form-control" aria-describedby="emailHelp"
-                               placeholder="Enter email">
-                    </div>
-                    <div class="form-group">
-                        <input type="password" class="form-control" placeholder="Password">
-                    </div>
-                    <div class="text-danger" th:text="${errorMessage}">error</div>
-                </form>
-            </div>
-
-            <div class="modal-footer mb-1">
-                <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-sm btn-primary">Sign In</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!--  End Modal -->
 <footer class="footer ">
     <div class="container">
         <div class="row">
