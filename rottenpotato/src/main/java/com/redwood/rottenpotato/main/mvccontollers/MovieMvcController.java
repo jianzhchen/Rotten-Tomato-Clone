@@ -38,12 +38,8 @@ public class MovieMvcController {
 
 
     @GetMapping(value = "m/{movieKey}")
-<<<<<<< HEAD
-    public String movieDetail(@PathVariable("movieKey") String movieKey, Model model)
-    {
-=======
+
     public String movieDetail(@PathVariable("movieKey") String movieKey, Model model,Principal principal) {
->>>>>>> fb722c9e45442f2ab88866e89aef1b4438ab1cac
         Movie movie = movieRepository.findByMovieKey(movieKey);
         if (movie == null)
         {
@@ -232,12 +228,18 @@ public class MovieMvcController {
     public List<Map>getActorNamesAndNamesByKeys(String[] castsArr)
     {
         List<Map> tempList = new ArrayList<>();
-        for(int i =  0; i <= castsArr.length - 1 && i < 6; i++)
+        for(int i =  0; i <= castsArr.length - 1 && i < 7; i++)
         {
             Map<String, String> map = new HashMap<>();
-            map.put("actorKey", castsArr[i]);
-            map.put("actorName", this.actorRepository.findByActorKey(castsArr[i]).getActorName());
-            tempList.add(map);
+
+            //if this actor key is not empty
+            if(this.actorRepository.findByActorKey(castsArr[i]) != null)
+            {
+                map.put("actorKey", castsArr[i]);
+                map.put("actorName", this.actorRepository.findByActorKey(castsArr[i]).getActorName());
+                tempList.add(map);
+            }
+
         }
         return tempList;
     }
