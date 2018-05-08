@@ -118,7 +118,11 @@
                                             <tbody>
                                             <tr th:each="critic:${critics}">
                                                 <td th:onclick="'javascript:getCritic(\''+${critic.criticKey}+'\')'">
-                                                    <img th:src="@{'~/Images/criticImages/'+${critic.criticKey}+'.jpg'}" th:width="150" th:height="150" onerror="errorImg(this)">
+                                                    <img th:src="@{'~/Images/criticImages/'+${critic.criticKey}+'.jpg'}"
+                                                         th:width="150"
+                                                         th:height="150"
+                                                         th:onerror="'this.src=\'' + @{~/assets/img/default.jpg} + '\';'"
+                                                    >
                                                 </td>
                                                 <td>
                                                     <ul class="list-unstyled">
