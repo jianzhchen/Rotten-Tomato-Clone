@@ -159,12 +159,9 @@
                     </div>
                 </div>
             </div>
-            <!--want to see movie-->
+            <!--want to see movies-->
             <div class="row" id="want-to-see-movies">
                 <h3 class="title float-left">Want to see movies</h3>
-                <div class="float-right mt-3">
-                    <button type="button" class="btn btn-sm btn-primary">View All</button>
-                </div>
                 <div class="card">
                     <div class="card-body">
                         <div class="col-md-3 text-center">
@@ -178,9 +175,6 @@
             <!--want to see TVs-->
             <div class="row" id="want-to-see-tvs">
                 <h3 class="title float-left">Want to see TVs</h3>
-                <div class="float-right mt-3">
-                    <button type="button" class="btn btn-sm btn-primary">View All</button>
-                </div>
                 <div class="card">
                     <div class="card-body">
                         <div class="col-md-3 text-center">
@@ -191,91 +185,92 @@
                     </div>
                 </div>
             </div>
-            <!--rating history-->
-            <div class="row" id="filmography">
-                    <h3 class="title">Rating History</h3>
-                    <div class="card">
-                        <div class="card-body">
-                            <div id="film-table">
-                                <nav>
-                                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                                        <a class="nav-item nav-link active text-center" style="width: 500px" id="nav-movie-tab" data-toggle="tab"
-                                           href="#nav-movie" role="tab" aria-controls="nav-home"
-                                           aria-selected="true">Movies</a>
-                                        <a class="nav-item nav-link text-center" style="width: 500px"  id="nav-tv-tab" data-toggle="tab"
-                                           href="#nav-tv" role="tab" aria-controls="nav-profile" aria-selected="false">TVs</a>
-                                    </div>
-                                </nav>
-                                <div class="tab-content" id="nav-tabContent">
-                                    <div class="tab-pane fade show active" id="nav-movie" role="tabpanel"
-                                         aria-labelledby="nav-home-tab">
-                                        <div class="filmography-list">
-                                            <table class="table table-striped rating-history-table">
-                                                <thead>
-                                                    <tr>
-                                                        <th>RATING</th>
-                                                        <th>TITLE</th>
-                                                        <th>REVIEWS</th>
-                                                        <th>Edit</th>
-                                                        <th>Delete</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td>55%</td>
-                                                        <td>XXX</td>
-                                                        <td>XXX</td>
-                                                        <td>edit</td>
-                                                        <td>delete</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>55%</td>
-                                                        <td>XXX</td>
-                                                        <td>XXX</td>
-                                                        <td>edit</td>
-                                                        <td>delete</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                    <div class="tab-pane fade" id="nav-tv" role="tabpanel"
-                                         aria-labelledby="nav-profile-tab">
-                                        <div class="filmography-list">
-                                            <table class="table table-striped rating-history-table">
-                                                <thead>
-                                                <tr>
-                                                    <th>RATING</th>
-                                                    <th>TITLE</th>
-                                                    <th>REVIEWS</th>
-                                                    <th>Edit</th>
-                                                    <th>Delete</th>
-                                                </tr>
-                                                </thead>
-                                                <tbody>
-                                                <tr>
-                                                    <td>55%</td>
-                                                    <td>XXX</td>
-                                                    <td>XXX</td>
-                                                    <td>edit</td>
-                                                    <td>delete</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>55%</td>
-                                                    <td>XXX</td>
-                                                    <td>XXX</td>
-                                                    <td>edit</td>
-                                                    <td>delete</td>
-                                                </tr>
-                                                </tbody>
-                                            </table>
+            <!--review + rating-->
+            <div class="row" id="review-and-rating">
+                    <h3 class="title">Review History</h3>
+                
+                    <!--<div class="card">-->
+                        <!--<div class="card-body">-->
+                            <!--<div id="film-table">-->
+                                <!--<nav>-->
+                                    <!--<div class="nav nav-tabs" id="nav-tab" role="tablist">-->
+                                        <!--<a class="nav-item nav-link active text-center" style="width: 500px" id="nav-movie-tab" data-toggle="tab"-->
+                                           <!--href="#nav-movie" role="tab" aria-controls="nav-home"-->
+                                           <!--aria-selected="true">Movies</a>-->
+                                        <!--<a class="nav-item nav-link text-center" style="width: 500px"  id="nav-tv-tab" data-toggle="tab"-->
+                                           <!--href="#nav-tv" role="tab" aria-controls="nav-profile" aria-selected="false">TVs</a>-->
+                                    <!--</div>-->
+                                <!--</nav>-->
+                                <!--<div class="tab-content" id="nav-tabContent">-->
+                                    <!--<div class="tab-pane fade show active" id="nav-movie" role="tabpanel"-->
+                                         <!--aria-labelledby="nav-home-tab">-->
+                                        <!--<div class="filmography-list">-->
+                                            <!--<table class="table table-striped rating-history-table">-->
+                                                <!--<thead>-->
+                                                    <!--<tr>-->
+                                                        <!--<th>RATING</th>-->
+                                                        <!--<th>TITLE</th>-->
+                                                        <!--<th>REVIEWS</th>-->
+                                                        <!--<th>Edit</th>-->
+                                                        <!--<th>Delete</th>-->
+                                                    <!--</tr>-->
+                                                <!--</thead>-->
+                                                <!--<tbody>-->
+                                                    <!--<tr>-->
+                                                        <!--<td>55%</td>-->
+                                                        <!--<td>XXX</td>-->
+                                                        <!--<td>XXX</td>-->
+                                                        <!--<td>edit</td>-->
+                                                        <!--<td>delete</td>-->
+                                                    <!--</tr>-->
+                                                    <!--<tr>-->
+                                                        <!--<td>55%</td>-->
+                                                        <!--<td>XXX</td>-->
+                                                        <!--<td>XXX</td>-->
+                                                        <!--<td>edit</td>-->
+                                                        <!--<td>delete</td>-->
+                                                    <!--</tr>-->
+                                                <!--</tbody>-->
+                                            <!--</table>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                    <!--<div class="tab-pane fade" id="nav-tv" role="tabpanel"-->
+                                         <!--aria-labelledby="nav-profile-tab">-->
+                                        <!--<div class="filmography-list">-->
+                                            <!--<table class="table table-striped rating-history-table">-->
+                                                <!--<thead>-->
+                                                <!--<tr>-->
+                                                    <!--<th>RATING</th>-->
+                                                    <!--<th>TITLE</th>-->
+                                                    <!--<th>REVIEWS</th>-->
+                                                    <!--<th>Edit</th>-->
+                                                    <!--<th>Delete</th>-->
+                                                <!--</tr>-->
+                                                <!--</thead>-->
+                                                <!--<tbody>-->
+                                                <!--<tr>-->
+                                                    <!--<td>55%</td>-->
+                                                    <!--<td>XXX</td>-->
+                                                    <!--<td>XXX</td>-->
+                                                    <!--<td>edit</td>-->
+                                                    <!--<td>delete</td>-->
+                                                <!--</tr>-->
+                                                <!--<tr>-->
+                                                    <!--<td>55%</td>-->
+                                                    <!--<td>XXX</td>-->
+                                                    <!--<td>XXX</td>-->
+                                                    <!--<td>edit</td>-->
+                                                    <!--<td>delete</td>-->
+                                                <!--</tr>-->
+                                                <!--</tbody>-->
+                                            <!--</table>-->
 
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
                 </div>
         </div>
     </div>
