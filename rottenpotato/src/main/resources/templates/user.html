@@ -139,7 +139,7 @@
                                         <!--user review name-->
                                         <div class="text-center">
                                             <a  th:text="${following.name}"
-                                                th:href="'javascript:getUser(\''+${following.key}+'\')">
+                                                th:href="'javascript:getUser(\''+${following.key}+'\')'">
                                                 Empty Name
                                             </a>
                                         </div>
@@ -160,7 +160,7 @@
                                         <!--user review name-->
                                         <div class="text-center">
                                             <a  th:text="${follower.name}"
-                                                th:href="'javascript:getUser(\''+${follower.key}+'\')">
+                                                th:href="'javascript:getUser(\''+${follower.key}+'\')'">
                                                 Empty Name
                                             </a>
                                         </div>
@@ -321,7 +321,7 @@
 <!-- Fixed Sidebar Nav - js With initialisations For Demo Purpose, Don't Include it in your project -->
 <script th:src="@{~/assets/assets-for-demo/js/material-kit-demo.js}"></script>
 <script type="text/javascript" th:src="@{~/js/index.js}"></script>
-<script type="text/javascript" th:src="@{~/js/movieInfo.js}"></script>
+<script type="text/javascript" th:src="@{~/js/profilePage.js}"></script>
 
 
 <!--test-->
