@@ -126,6 +126,7 @@ public class ProfileMvcController {
             HashMap<String, String> map = new HashMap<>();
             long uid = follow.getUserIdTo();
             User u = userRepository.findById(uid);
+            map.put("key",u.getId()+"");
             map.put("name",u.getFirstName()+" "+u.getLastName());
             following.add(map);
         }
@@ -136,6 +137,7 @@ public class ProfileMvcController {
             HashMap<String, String> map = new HashMap<>();
             long uid = follow.getUserIdFrom();
             User u = userRepository.findById(uid);
+            map.put("key",u.getId()+"");
             map.put("name",u.getFirstName()+" "+u.getLastName());
             followby.add(map);
         }

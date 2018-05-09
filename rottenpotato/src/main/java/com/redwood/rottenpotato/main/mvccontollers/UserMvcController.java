@@ -161,6 +161,7 @@ public class UserMvcController {
                 HashMap<String, String> map = new HashMap<>();
                 long uid = follow.getUserIdTo();
                 User u = userRepository.findById(uid);
+                map.put("key",uid+"");
                 map.put("name",u.getFirstName()+" "+u.getLastName());
                 following.add(map);
             }
@@ -171,6 +172,7 @@ public class UserMvcController {
                 HashMap<String, String> map = new HashMap<>();
                 long uid = follow.getUserIdFrom();
                 User u = userRepository.findById(uid);
+                map.put("key",uid+"");
                 map.put("name",u.getFirstName()+" "+u.getLastName());
                 followby.add(map);
             }
@@ -183,6 +185,8 @@ public class UserMvcController {
             model.addAttribute("followers", followby);
             model.addAttribute("numberOfFollowers", followby.size());
         }
+
+
         String sqlQuery = "SELECT\n" +
                 "  FIND_IN_SET(follower_count, (\n" +
                 "    SELECT GROUP_CONCAT(follower_count ORDER BY follower_count DESC)\n" +
