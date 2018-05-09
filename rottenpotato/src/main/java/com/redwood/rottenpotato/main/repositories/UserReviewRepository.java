@@ -10,6 +10,7 @@ import java.util.List;
 public interface UserReviewRepository extends JpaRepository<UserReview, Long> {
     UserReview findById(long id);
     List<UserReview> findByUserId(long userId);
+    List<UserReview> findByItemKey(String itemKey);
     long removeById(long id);
     long removeByUserId(long userId);
 }
