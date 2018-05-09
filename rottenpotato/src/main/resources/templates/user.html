@@ -86,181 +86,181 @@
 <!--Body-->
 <div class="main main-raised">
     <div class="profile-content">
-        <!--<div class="container">-->
-            <!--&lt;!&ndash;User Info&ndash;&gt;-->
-            <!--<div class="row">-->
-                <!--<div class="col-sm-12">-->
-                    <!--<div class="row">-->
-                        <!--&lt;!&ndash;personal info&ndash;&gt;-->
-                        <!--<div class="card">-->
-                            <!--<div class="card-body" >-->
-                                <!--<div class="row">-->
-                                    <!--&lt;!&ndash;User image&ndash;&gt;-->
-                                    <!--<div class="col-md-6 text-center">-->
+        <div class="container">
+            <!--User Info-->
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="row">
+                        <!--personal info-->
+                        <div class="card">
+                            <div class="card-body" >
+                                <div class="row">
+                                    <!--User image-->
+                                    <div class="col-md-6 text-center">
 
-                                        <!--<div class="avatar">-->
-                                            <!--<img th:src="@{'~/Images/userImages/'+${userId}+'.jpg'}" th:width="200" th:height="200"-->
-                                                 <!--th:onerror="'this.src=\'' + @{~/assets/img/default.jpg} + '\';'">-->
-                                        <!--</div>-->
-                                    <!--</div>-->
-                                    <!--&lt;!&ndash;User Info&ndash;&gt;-->
-                                    <!--<div class="col-md-6 text-left">-->
-                                        <!--&lt;!&ndash;User first name and last name&ndash;&gt;-->
-                                        <!--<h3 class="title" th:text="${firstName}+' '+${lastName}">FirstName LastName</h3>-->
+                                        <div class="avatar">
+                                            <img th:src="@{'~/Images/userImages/'+${userId}+'.jpg'}" th:width="200" th:height="200"
+                                                 th:onerror="'this.src=\'' + @{~/assets/img/default.jpg} + '\';'">
+                                        </div>
+                                    </div>
+                                    <!--User Info-->
+                                    <div class="col-md-6 text-left">
+                                        <!--User first name and last name-->
+                                        <h3 class="title" th:text="${firstName}+' '+${lastName}">FirstName LastName</h3>
 
-                                        <!--&lt;!&ndash;User details&ndash;&gt;-->
-                                        <!--<div id="info-section">-->
-                                            <!--&lt;!&ndash;email and follower&ndash;&gt;-->
-                                            <!--<ul class="list-unstyled infolist-height">-->
-                                                <!--<li th:text="${email}">Empty Email</li>-->
-                                                <!--<li th:text="${numberOfFollowers}+' users following you'">No User Is Following You</li>-->
-                                            <!--</ul>-->
-                                            <!--<div class="float-right">-->
-                                                <!--<button type="button" class="btn btn-sm btn-primary">Manage Account</button>-->
-                                            <!--</div>-->
-                                        <!--</div>-->
-                                    <!--</div>-->
-                                <!--</div>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
-            <!--&lt;!&ndash;Follow Area&ndash;&gt;-->
-            <!--<div class="row">-->
-                <!--&lt;!&ndash;following list&ndash;&gt;-->
-                <!--<div class="col-md-6 mt-3">-->
-                    <!--<h3 class="title mx-4 float-left">Following</h3>-->
-                    <!--<div class="card m-1">-->
-                        <!--<div class="card-body">-->
-                            <!--<div class="card-columns">-->
-                                <!--<div class = "card" th:each="following:${followings}">-->
-                                    <!--<div class="card-body">-->
-                                        <!--&lt;!&ndash;user review name&ndash;&gt;-->
-                                        <!--<div class="text-center">-->
-                                            <!--<a  th:text="${following.name}">-->
-                                                <!--Empty Name-->
-                                            <!--</a>-->
-                                        <!--</div>-->
-                                    <!--</div>-->
-                                <!--</div>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</div>-->
-                <!--&lt;!&ndash;follower list&ndash;&gt;-->
-                <!--<div class="col-md-6 mt-3">-->
-                    <!--<h3 class="title mx-4 float-left">Followers</h3>-->
-                    <!--<div class="card m-1">-->
-                        <!--<div class="card-body">-->
-                            <!--<div class="card-columns">-->
-                                <!--<div class = "card" th:each="follower:${followers}">-->
-                                    <!--<div class="card-body">-->
-                                        <!--&lt;!&ndash;user review name&ndash;&gt;-->
-                                        <!--<div class="text-center">-->
-                                            <!--<a  th:text="${follower.name}">-->
-                                                <!--Empty Name-->
-                                            <!--</a>-->
-                                        <!--</div>-->
-                                    <!--</div>-->
-                                <!--</div>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
-            <!--&lt;!&ndash;want to see &ndash;&gt;-->
-            <!--<div class="row" id="want-to-see">-->
-                <!--<h3 class="title float-left">Want To See</h3>-->
-                <!--<div class="card m-1">-->
-                    <!--<div class="card-body">-->
-                        <!--<div class="card-columns">-->
-                            <!--<div class = "card" th:each="wantToSee:${wantToSees}">-->
-                                <!--<div class="card-body">-->
-                                    <!--&lt;!&ndash;user review name&ndash;&gt;-->
-                                    <!--<div class="text-center">-->
-                                        <!--<a  th:text="${wantToSee.name}"-->
-                                            <!--th:href="'javascript:getMovie(\''+${wantToSee.key}+'\')'">-->
-                                            <!--Empty Name-->
-                                        <!--</a>-->
-                                    <!--</div>-->
-                                    <!--&lt;!&ndash;movie image&ndash;&gt;-->
-                                    <!--<div class="text-center">-->
-                                        <!--<img th:src="@{'~/Images/movieImages/'+${wantToSee.key}+'.jpg'}"-->
-                                             <!--th:width="50"-->
-                                             <!--th:height="50"-->
-                                             <!--th:onerror="'this.src=\'' + @{~/assets/img/defaultMovie.jpg} + '\';'"-->
-                                        <!--&gt;-->
-                                    <!--</div>-->
-                                <!--</div>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
-            <!--&lt;!&ndash;not interested&ndash;&gt;-->
-            <!--<div class="row" id="not-interested">-->
-                <!--<h3 class="title float-left">Not Interested</h3>-->
-                <!--<div class="card m-1">-->
-                    <!--<div class="card-body">-->
-                        <!--<div class="card-columns">-->
-                            <!--<div class = "card" th:each="notInterested:${notInteresteds}">-->
-                                <!--<div class="card-body">-->
-                                    <!--&lt;!&ndash;user review name&ndash;&gt;-->
-                                    <!--<div class="text-center">-->
-                                        <!--<a  th:text="${notInterested.name}"-->
-                                            <!--th:href="'javascript:getMovie(\''+${notInterested.key}+'\')'">-->
-                                            <!--Empty Name-->
-                                        <!--</a>-->
-                                    <!--</div>-->
-                                    <!--&lt;!&ndash;movie image&ndash;&gt;-->
-                                    <!--<div class="text-center">-->
-                                        <!--<img th:src="@{'~/Images/movieImages/'+${notInterested.key}+'.jpg'}"-->
-                                             <!--th:width="50"-->
-                                             <!--th:height="50"-->
-                                             <!--th:onerror="'this.src=\'' + @{~/assets/img/defaultMovie.jpg} + '\';'"-->
-                                        <!--&gt;-->
-                                    <!--</div>-->
-                                <!--</div>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
-            <!--&lt;!&ndash;review + rating&ndash;&gt;-->
-            <!--<div class="row" id="review-and-rating">-->
-                <!--<h3 class="title">Review History</h3>-->
-                <!--<div class="card m-1">-->
-                    <!--<div class="card-body">-->
-                        <!--<div class="card-columns">-->
-                            <!--<div class = "card" th:each="review:${reviews}">-->
-                                <!--<div class="card-body">-->
-                                    <!--&lt;!&ndash;user review name&ndash;&gt;-->
-                                    <!--<div class="text-center">-->
-                                        <!--<a  th:text="${review.name}"-->
-                                            <!--th:href="'javascript:getMovie(\''+${review.key}+'\')'">-->
-                                            <!--Empty Name-->
-                                        <!--</a>-->
-                                    <!--</div>-->
-                                    <!--&lt;!&ndash;user review content&ndash;&gt;-->
-                                    <!--<div class="text-center" th:text="${review.content}">-->
-                                        <!--Empty Content-->
-                                    <!--</div>-->
-                                    <!--&lt;!&ndash;movie image&ndash;&gt;-->
-                                    <!--<div class="text-center">-->
-                                        <!--<img th:src="@{'~/Images/movieImages/'+${review.key}+'.jpg'}"-->
-                                             <!--th:width="50"-->
-                                             <!--th:height="50"-->
-                                             <!--th:onerror="'this.src=\'' + @{~/assets/img/defaultMovie.jpg} + '\';'"-->
-                                        <!--&gt;-->
-                                    <!--</div>-->
-                                <!--</div>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
-        <!--</div>-->
+                                        <!--User details-->
+                                        <div id="info-section">
+                                            <!--email and follower-->
+                                            <ul class="list-unstyled infolist-height">
+                                                <li th:text="${email}">Empty Email</li>
+                                                <li th:text="${numberOfFollowers}+' users following you'">No User Is Following You</li>
+                                            </ul>
+                                            <div class="float-right">
+                                                <button type="button" class="btn btn-sm btn-primary">Manage Account</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--Follow Area-->
+            <div class="row">
+                <!--following list-->
+                <div class="col-md-6 mt-3">
+                    <h3 class="title mx-4 float-left">Following</h3>
+                    <div class="card m-1">
+                        <div class="card-body">
+                            <div class="card-columns">
+                                <div class = "card" th:each="following:${followings}">
+                                    <div class="card-body">
+                                        <!--user review name-->
+                                        <div class="text-center">
+                                            <a  th:text="${following.name}">
+                                                Empty Name
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--follower list-->
+                <div class="col-md-6 mt-3">
+                    <h3 class="title mx-4 float-left">Followers</h3>
+                    <div class="card m-1">
+                        <div class="card-body">
+                            <div class="card-columns">
+                                <div class = "card" th:each="follower:${followers}">
+                                    <div class="card-body">
+                                        <!--user review name-->
+                                        <div class="text-center">
+                                            <a  th:text="${follower.name}">
+                                                Empty Name
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--want to see -->
+            <div class="row" id="want-to-see">
+                <h3 class="title float-left">Want To See</h3>
+                <div class="card m-1">
+                    <div class="card-body">
+                        <div class="card-columns">
+                            <div class = "card" th:each="wantToSee:${wantToSees}">
+                                <div class="card-body">
+                                    <!--user review name-->
+                                    <div class="text-center">
+                                        <a  th:text="${wantToSee.name}"
+                                            th:href="'javascript:getMovie(\''+${wantToSee.key}+'\')'">
+                                            Empty Name
+                                        </a>
+                                    </div>
+                                    <!--movie image-->
+                                    <div class="text-center">
+                                        <img th:src="@{'~/Images/movieImages/'+${wantToSee.key}+'.jpg'}"
+                                             th:width="50"
+                                             th:height="50"
+                                             th:onerror="'this.src=\'' + @{~/assets/img/defaultMovie.jpg} + '\';'"
+                                        >
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--not interested-->
+            <div class="row" id="not-interested">
+                <h3 class="title float-left">Not Interested</h3>
+                <div class="card m-1">
+                    <div class="card-body">
+                        <div class="card-columns">
+                            <div class = "card" th:each="notInterested:${notInteresteds}">
+                                <div class="card-body">
+                                    <!--user review name-->
+                                    <div class="text-center">
+                                        <a  th:text="${notInterested.name}"
+                                            th:href="'javascript:getMovie(\''+${notInterested.key}+'\')'">
+                                            Empty Name
+                                        </a>
+                                    </div>
+                                    <!--movie image-->
+                                    <div class="text-center">
+                                        <img th:src="@{'~/Images/movieImages/'+${notInterested.key}+'.jpg'}"
+                                             th:width="50"
+                                             th:height="50"
+                                             th:onerror="'this.src=\'' + @{~/assets/img/defaultMovie.jpg} + '\';'"
+                                        >
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--review + rating-->
+            <div class="row" id="review-and-rating">
+                <h3 class="title">Review History</h3>
+                <div class="card m-1">
+                    <div class="card-body">
+                        <div class="card-columns">
+                            <div class = "card" th:each="review:${reviews}">
+                                <div class="card-body">
+                                    <!--user review name-->
+                                    <div class="text-center">
+                                        <a  th:text="${review.name}"
+                                            th:href="'javascript:getMovie(\''+${review.key}+'\')'">
+                                            Empty Name
+                                        </a>
+                                    </div>
+                                    <!--user review content-->
+                                    <div class="text-center" th:text="${review.content}">
+                                        Empty Content
+                                    </div>
+                                    <!--movie image-->
+                                    <div class="text-center">
+                                        <img th:src="@{'~/Images/movieImages/'+${review.key}+'.jpg'}"
+                                             th:width="50"
+                                             th:height="50"
+                                             th:onerror="'this.src=\'' + @{~/assets/img/defaultMovie.jpg} + '\';'"
+                                        >
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 

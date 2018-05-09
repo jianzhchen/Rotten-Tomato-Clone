@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -29,6 +30,13 @@ public class UserMvcController {
     @Autowired
     private WantToSeeRepository wantToSeeRepository;
     @Autowired
+    private UserReviewRepository userReviewRepository;
+    @Autowired
+    private UserRatingRepository userRatingRepository;
+    @Autowired
+    private NotInterestedRepository notInterestedRepository;
+
+    @Autowired
     private MovieRepository movieRepository;
     @Autowired
     private TVRepository tVRepository;
@@ -39,9 +47,12 @@ public class UserMvcController {
     public String userPage(@PathVariable("userId") long userId, Model model)
     {
         User user = userRepository.findById(userId);
-        if (user == null) {
+        if (user == null)
+        {
             model.addAttribute("error", "user not found");
-        } else {
+        }
+        else
+        {
             List<Follow> followBy = followRepository.findByUserIdTo(user.getId());
             model.addAttribute("followerCount", followBy.size());
             List<WantToSee> wantToSeeList = wantToSeeRepository.findByUserId(user.getId());
@@ -61,6 +72,116 @@ public class UserMvcController {
             }
             model.addAttribute("WantToSeeListMovie", movieMap);
             model.addAttribute("WantToSeeListTV", tVMap);
+
+
+            model.addAttribute("firstName", user.getFirstName());
+            model.addAttribute("lastName", user.getLastName());
+            model.addAttribute("email", user.getEmail());
+            List<HashMap> reviews = new ArrayList<>();
+            List<HashMap> ratings = new ArrayList<>();
+            List<HashMap> notinteresteds = new ArrayList<>();
+            List<HashMap> wanttosees = new ArrayList<>();
+            List<HashMap> following = new ArrayList<>();
+            List<HashMap> followby = new ArrayList<>();
+
+            //1. reviews
+            for (UserReview review : userReviewRepository.findByUserId(user.getId())) {
+                HashMap<String, String> map = new HashMap<>();
+                String itemKey = review.getItemKey();
+                Movie movie = movieRepository.findByMovieKey(itemKey);
+                TV tv = tVRepository.findByTVKey(itemKey);
+                if (movie != null) {
+                    map.put("url", "/m/" + movie.getMovieKey());
+                    map.put("key", movie.getMovieKey());
+                    map.put("name", movie.getName());
+                } else {
+                    map.put("url", "/t/" + tv.getTVKey());
+                    map.put("key", tv.getTVKey());
+                    map.put("name", tv.getTVName());
+                }
+                map.put("content", review.getContent());
+                reviews.add(map);
+            }
+
+            //2. ratings
+            for (UserRating userRating : userRatingRepository.findByUserId(user.getId())) {
+                HashMap<String, String> map = new HashMap<>();
+                String itemKey = userRating.getItemKey();
+                Movie movie = movieRepository.findByMovieKey(itemKey);
+                TV tv = tVRepository.findByTVKey(itemKey);
+                if (movie != null) {
+                    map.put("url", "/m/" + movie.getMovieKey());
+                    map.put("name", movie.getName());
+                } else {
+                    map.put("url", "/t/" + tv.getTVKey());
+                    map.put("name", tv.getTVName());
+                }
+                map.put("score", Integer.toString(userRating.getRating()));
+                ratings.add(map);
+            }
+
+            //3. wantToSees
+            for (WantToSee wantToSee : wantToSeeRepository.findByUserId(user.getId())) {
+                HashMap<String, String> map = new HashMap<>();
+                String itemKey = wantToSee.getItemKey();
+                Movie movie = movieRepository.findByMovieKey(itemKey);
+                TV tv = tVRepository.findByTVKey(itemKey);
+                if (movie != null) {
+                    map.put("url", "/m/" + movie.getMovieKey());
+                    map.put("key", movie.getMovieKey());
+                    map.put("name", movie.getName());
+                } else {
+                    map.put("url", "/t/" + tv.getTVKey());
+                    map.put("key", tv.getTVKey());
+                    map.put("name", tv.getTVName());
+                }
+                wanttosees.add(map);
+            }
+
+            //4. notInteresteds
+            for (NotInterested notInterested : notInterestedRepository.findByUserId(user.getId())) {
+                HashMap<String, String> map = new HashMap<>();
+                String itemKey = notInterested.getItemKey();
+                Movie movie = movieRepository.findByMovieKey(itemKey);
+                TV tv = tVRepository.findByTVKey(itemKey);
+                if (movie != null) {
+                    map.put("url", "/m/" + movie.getMovieKey());
+                    map.put("key", movie.getMovieKey());
+                    map.put("name", movie.getName());
+                } else {
+                    map.put("url", "/t/" + tv.getTVKey());
+                    map.put("key", tv.getTVKey());
+                    map.put("name", tv.getTVName());
+                }
+                notinteresteds.add(map);
+            }
+
+            //5. Following
+            for (Follow follow : followRepository.findByUserIdFrom(user.getId())) {
+                HashMap<String, String> map = new HashMap<>();
+                long uid = follow.getUserIdTo();
+                User u = userRepository.findById(uid);
+                map.put("name",u.getFirstName()+" "+u.getLastName());
+                following.add(map);
+            }
+
+            //6. Followers
+
+            for (Follow follow : followRepository.findByUserIdTo(user.getId())) {
+                HashMap<String, String> map = new HashMap<>();
+                long uid = follow.getUserIdFrom();
+                User u = userRepository.findById(uid);
+                map.put("name",u.getFirstName()+" "+u.getLastName());
+                followby.add(map);
+            }
+
+            model.addAttribute("reviews", reviews);
+            model.addAttribute("ratings", ratings);
+            model.addAttribute("notInteresteds", notinteresteds);
+            model.addAttribute("wantToSees", wanttosees);
+            model.addAttribute("followings", following);
+            model.addAttribute("followers", followby);
+            model.addAttribute("numberOfFollowers", followby.size());
         }
         String sqlQuery = "SELECT\n" +
                 "  FIND_IN_SET(follower_count, (\n" +
