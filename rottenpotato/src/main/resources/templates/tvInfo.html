@@ -16,7 +16,10 @@
     <link rel="stylesheet" type="text/css"
           href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css"/>
-    <link rel="stylesheet" href="./assets/css/material-kit.css?v=2.0.2">
+    <!--<link rel="stylesheet" href="./assets/css/material-kit.css?v=2.0.2">-->
+
+    <link rel="stylesheet" th:href="@{~/assets/css/material-kit.css?v=2.0.2}">
+    <link rel="stylesheet" th:href="@{~/assets/css/custom.css}">
     <link rel="stylesheet" href="./assets/css/custom.css">
 </head>
 
@@ -76,74 +79,97 @@
      style="height: 18vh !important;">
 
 </div>
-
+<!--///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
 <div class="main main-raised">
     <div class="section section-basic mx-2">
         <div class="container">
-
             <div class="row">
-                <!--video-->
-                <div class="col-md-8">
-                    <p>
-                        Put a TV photo here
-                    </p>
-                    <!--<div>-->
-                        <!--<img th:src="${tvPhotoModel}" alt="Mountain View">-->
-
-                    <!--</div>-->
-                    <!--<div class="embed-responsive embed-responsive-16by9 mt-4">-->
-                        <!--<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/DCIL7WbyIKM"-->
-                                <!--allowfullscreen></iframe>-->
-                    <!--</div>-->
-                </div>
-                <!--Plot-->
-                <div class="col-md-4">
-                    <h3 class="title text-center" th:text="${name}">TV Name</h3>
-                    <div class="card"style="height: 340px;" >
-                        <div class="card-body" >
-                            <!--Import the TV Name here-->
-                            <p th:text="${info}">Plot:Everyone's favorite law enforcement team is back by popular demand with the long anticipated follow up to the cult comedy classic... SUPER TROOPERS. When an international border dispute arises between the U.S. and Canada, the Super Troopers- Mac, Thorny, Foster, Rabbit and Farva, are called in to set up a new Highway Patrol station in the disputed area. Unconventional police work follows, and the result is...SUPER TROOPERS 2.</p>
-                        </div>
-
-                    </div>
-                </div>
+                <h2 class="title text-center" th:text="${name}">Movie Name</h2>
             </div>
 
-            <div class="row">
-                <!--rate-->
-                <div class="col-md-3">
-                    <div class="card" style="height: 16rem;">
-                        <div class="card-body">
-                            <ul class="list-unstyled">
-                                <li>
-                                    <h3 class="text-center">97%</h3>
-                                </li>
-                                <li>
-                                    <div class="progress">
-                                        <div class="progress-bar bg-danger" role="progressbar"
-                                             aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"
-                                             style="width: 97%;" th:width="96">
-                                        </div>
-                                    </div>
-                                </li>
-                                <div class="text-left">
-                                    <li >Reviews Counted: 334</li>
+            <div class = "row">
+                <div class="col-md-7">
+                    <div class="row">
+
+                        <!--poster-->
+                        <div class="col-md-4 mx-5">
+                            <img th:src="@{'~/Images/movieImages/'+${movieKey}+'.jpg'}" th:width="200" th:height="300"
+                                 th:onerror="'this.src=\'' + @{~/assets/img/defaultMovie.jpg} + '\';'">
+                        </div>
+
+
+                        <!--rate-->
+
+                        <div class="col-md-6">
+                            <div class="card" >
+                                <div class="card-body">
+                                    <!--critic rate-->
+                                    <ul class="list-unstyled">
+                                        <li>
+                                            <!--<h3 class="text-center" th:if="${criticScoreCount}!=0 " th:text="${criticRating}/5*100+'%'">100%</h3>-->
+                                            <h3 class="text-center" >100%</h3>
+                                            <!--no rating-->
+                                            <!--<h3 class="text-center" th:if="${criticScoreCount}==0 " th:text="'N/A'">0%</h3>-->
+                                            <h3 class="text-center">0%</h3>
+
+                                        </li>
+                                        <li>
+                                            <!--<div class="progress" th:if="${criticScoreCount}!=0">-->
+                                                <!--<div class="progress-bar bg-danger" role="progressbar"-->
+                                                     <!--aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"-->
+                                                     <!--th:style="'width:'+ ${criticRating}/5*100+'%;'">-->
+                                                <!--</div>-->
+                                            <!--</div>-->
+                                            <!--<div class="progress" th:if="${criticScoreCount}==0">-->
+                                                <!--<div class="progress-bar bg-danger" role="progressbar"-->
+                                                     <!--aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"-->
+                                                     <!--th:style="'width:0%;'">-->
+                                                <!--</div>-->
+                                            <!--</div>-->
+                                        </li>
+                                        <!--<li th:text="'Critic Reviews Counted: '+${criticScoreCount}">Reviews counted: </li>-->
+                                    </ul>
+                                    <!--user score-->
+                                    <ul class="list-unstyled">
+                                        <li>
+                                            <!--<h3 class="text-center" th:if="${userScoreCount}!=0" th:text="${userRating}/5*100+'%'">100%</h3>-->
+                                            <h3 class="text-center">100%</h3>
+                                            <!--<h3 class="text-center" th:if="${userScoreCount}==0" th:text="'N/A'">100%</h3>-->
+                                            <h3 class="text-center" >100%</h3>
+                                        </li>
+                                        <li>
+                                            <!--<div class="progress" th:if="${userScoreCount}!=0">-->
+                                                <!--<div class="progress-bar bg-danger" role="progressbar"-->
+                                                     <!--aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"-->
+                                                     <!--th:style="'width:'+ ${userRating}/5*100+'%;'">-->
+                                                <!--</div>-->
+                                            <!--</div>-->
+                                            <!--<div class="progress" th:if="${userScoreCount}==0">-->
+                                                <!--<div class="progress-bar bg-danger" role="progressbar"-->
+                                                     <!--aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"-->
+                                                     <!--th:style="'width:0%;'">-->
+                                                <!--</div>-->
+                                            <!--</div>-->
+                                        </li>
+                                        <!--<li  th:text="'Audience Reviews Counted: '+${userScoreCount}">Reviews counted: </li>-->
+                                    </ul>
                                 </div>
-                            </ul>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <!--give your rate and review-->
-                <div class="col-md-5">
-                    <div class="card" style="height: 16rem">
 
+
+                    <!--user rate and review-->
+
+                    <div class="card" style="height: 16rem">
                         <div class="card-body">
                             <div>
                                 <div class="float-left">
                                     <h5 class="title">Add your rate</h5>
                                 </div>
-                                <div class="float-right">
-                                    <select class="custom-select custom-select-sm" style="width: 50px">
+                                <div class="text-right">
+                                    <select class="custom-select custom-select" id="score" style="width: 50px">
+                                        <option value="0" selected>NULL</option>
                                         <option value="1">1</option>
                                         <option value="2">2</option>
                                         <option value="3">3</option>
@@ -151,128 +177,242 @@
                                         <option value="5">5</option>
                                     </select>
                                 </div>
-
-
                             </div>
                             <form role="form">
                                 <div class="form-group" >
-                                    <textarea class="form-control text-muted" rows="5" placeholder="Enter your review here"></textarea>
+                                    <textarea class="form-control text-muted" rows="5" id="reviewContent" placeholder="Enter your review here"></textarea>
                                 </div>
                             </form>
                             <div class="float-left">
-                                <button type="button" class="btn btn-sm">Want to see</button>
+                                <button type="button" class="btn btn-primary btn-sm">Want to see</button>
                                 <button type="button" class="btn btn-danger btn-sm">Not interested</button>
                             </div>
                             <div class="float-right">
-                                <button type="button" class="btn btn-sm">Post</button>
+                                <button type="button" class="btn btn-sm"
+                                        th:if="${isLogin}"
+                                        th:onclick="'javascript:postReview(\''+${movieKey}+'\')'">Post</button>
+                                <button type="button" class="btn btn-sm"
+                                        th:unless="${isLogin}"
+                                        th:onclick="'javascript:loginMessage()'">Post</button>
+                                <button type="button" class="btn btn-success btn-sm" th:onclick="'javascript:postReview(\''+${movieKey}+'\')'">Post</button>
+
                             </div>
                         </div>
                     </div>
-
                 </div>
 
+                <div class="col-md-5">
+                    <!--TV info -->
+                    <div class="row">
+                        <h3 class="title text-center">TV Information</h3>
+                    </div>
+                    <div class="row">
+                        <div class="card" >
+                            <div class="card-body overflow" >
+                                <p th:text="${info}">Plot:...SUPER TROOPERS 2.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
+
+
+
+
+<!--//////////////////////////////////////////////////////////////////////////////////////-->
+
+            <!--<div class="row">-->
+                <!--&lt;!&ndash;video&ndash;&gt;-->
+                <!--<div class="col-md-8">-->
+                    <!--<p>-->
+                       <!--asdasd-->
+                    <!--</p>-->
+                    <!--&lt;!&ndash;<div>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<img th:src="${tvPhotoModel}" alt="Mountain View">&ndash;&gt;-->
+
+                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<div class="embed-responsive embed-responsive-16by9 mt-4">&ndash;&gt;-->
+                        <!--&lt;!&ndash;<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/DCIL7WbyIKM"&ndash;&gt;-->
+                                <!--&lt;!&ndash;allowfullscreen></iframe>&ndash;&gt;-->
+                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                <!--</div>-->
+                <!--&lt;!&ndash;Plot&ndash;&gt;-->
+                <!--<div class="col-md-4">-->
+                    <!--<h3 class="title text-center" th:text="${name}">TV Name</h3>-->
+                    <!--<div class="card"style="height: 340px;" >-->
+                        <!--<div class="card-body" >-->
+                            <!--&lt;!&ndash;Import the TV Name here&ndash;&gt;-->
+                            <!--<p th:text="${info}">Plot:Everyone's favorite law enforcement team is back by popular demand with the long anticipated follow up to the cult comedy classic... SUPER TROOPERS. When an international border dispute arises between the U.S. and Canada, the Super Troopers- Mac, Thorny, Foster, Rabbit and Farva, are called in to set up a new Highway Patrol station in the disputed area. Unconventional police work follows, and the result is...SUPER TROOPERS 2.</p>-->
+                        <!--</div>-->
+
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+
+            <!--<div class="row">-->
+                <!--&lt;!&ndash;rate&ndash;&gt;-->
+                <!--<div class="col-md-3">-->
+                    <!--<div class="card" style="height: 16rem;">-->
+                        <!--<div class="card-body">-->
+                            <!--<ul class="list-unstyled">-->
+                                <!--<li>-->
+                                    <!--<h3 class="text-center">97%</h3>-->
+                                <!--</li>-->
+                                <!--<li>-->
+                                    <!--<div class="progress">-->
+                                        <!--<div class="progress-bar bg-danger" role="progressbar"-->
+                                             <!--aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"-->
+                                             <!--style="width: 97%;" th:width="96">-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                <!--</li>-->
+                                <!--<div class="text-left">-->
+                                    <!--<li >Reviews Counted: 334</li>-->
+                                <!--</div>-->
+                            <!--</ul>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--&lt;!&ndash;give your rate and review&ndash;&gt;-->
+                <!--<div class="col-md-5">-->
+                    <!--<div class="card" style="height: 16rem">-->
+
+                        <!--<div class="card-body">-->
+                            <!--<div>-->
+                                <!--<div class="float-left">-->
+                                    <!--<h5 class="title">Add your rate</h5>-->
+                                <!--</div>-->
+                                <!--<div class="float-right">-->
+                                    <!--<select class="custom-select custom-select-sm" style="width: 50px">-->
+                                        <!--<option value="1">1</option>-->
+                                        <!--<option value="2">2</option>-->
+                                        <!--<option value="3">3</option>-->
+                                        <!--<option value="4">4</option>-->
+                                        <!--<option value="5">5</option>-->
+                                    <!--</select>-->
+                                <!--</div>-->
+
+
+                            <!--</div>-->
+                            <!--<form role="form">-->
+                                <!--<div class="form-group" >-->
+                                    <!--<textarea class="form-control text-muted" rows="5" placeholder="Enter your review here"></textarea>-->
+                                <!--</div>-->
+                            <!--</form>-->
+                            <!--<div class="float-left">-->
+                                <!--<button type="button" class="btn btn-sm">Want to see</button>-->
+                                <!--<button type="button" class="btn btn-danger btn-sm">Not interested</button>-->
+                            <!--</div>-->
+                            <!--<div class="float-right">-->
+                                <!--<button type="button" class="btn btn-sm">Post</button>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+
+                <!--</div>-->
+
+            <!--</div>-->
             <!--moreInfo-->
-            <sction id="moreInfo">
-                <h3 class="title text-left">TV Information</h3>
-                <div class="card">
-                    <div class="card-body">
+            <!--<sction id="moreInfo">-->
+                <!--<h3 class="title text-left">TV Information</h3>-->
+                <!--<div class="card">-->
+                    <!--<div class="card-body">-->
 
 
-                        <table>
-                            <tr>
-                                <td class="text-right" width="150px">
-                                    Genre:
-                                </td>
-                                <td class="text-left px-3"width="800px" th:text="${genre}">
-                                    Comedy
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-right" width="150px">
-                                    Network:
-                                </td>
-                                <td class="text-left px-3"width="800px" th:text="${network}">
-                                    network
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-right" width="150px">
-                                    Air Date:
-                                </td>
-                                <td class="text-left px-3"width="800px" th:text="${date}">
-                                    air date
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-            </sction>
+                        <!--<table>-->
+                            <!--<tr>-->
+                                <!--<td class="text-right" width="150px">-->
+                                    <!--Genre:-->
+                                <!--</td>-->
+                                <!--<td class="text-left px-3"width="800px" th:text="${genre}">-->
+                                    <!--Comedy-->
+                                <!--</td>-->
+                            <!--</tr>-->
+                            <!--<tr>-->
+                                <!--<td class="text-right" width="150px">-->
+                                    <!--Network:-->
+                                <!--</td>-->
+                                <!--<td class="text-left px-3"width="800px" th:text="${network}">-->
+                                    <!--network-->
+                                <!--</td>-->
+                            <!--</tr>-->
+                            <!--<tr>-->
+                                <!--<td class="text-right" width="150px">-->
+                                    <!--Air Date:-->
+                                <!--</td>-->
+                                <!--<td class="text-left px-3"width="800px" th:text="${date}">-->
+                                    <!--air date-->
+                                <!--</td>-->
+                            <!--</tr>-->
+                        <!--</table>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</sction>-->
             <!--cast-->
-            <section id="cast">
-                <h3 class="title text-left">Cast</h3>
-                <div class="card m-1">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-2 ">
-                                <div class="text-center">
-                                    <a href="https://placeholder.com">
-                                        <img class="" src="http://via.placeholder.com/100x100"></a>
-                                    <p class="font-weight-bold text-md-center my-0" >NAME</p>
-                                </div>
-                            </div>
-                            <div class="col-md-2 ">
-                                <div class="text-center">
-                                    <a href="https://placeholder.com">
-                                        <img class="" src="http://via.placeholder.com/100x100"></a>
-                                    <p class="font-weight-bold text-md-center my-0">NAME</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="text-right">
-                    <button type="button" class="btn btn-default btn-sm">View All</button>
-                </div>
-            </section>
+            <!--<section id="cast">-->
+                <!--<h3 class="title text-left">Cast</h3>-->
+                <!--<div class="card m-1">-->
+                    <!--<div class="card-body">-->
+                        <!--<div class="row">-->
+                            <!--<div class="col-md-2 ">-->
+                                <!--<div class="text-center">-->
+                                    <!--<a href="https://placeholder.com">-->
+                                        <!--<img class="" src="http://via.placeholder.com/100x100"></a>-->
+                                    <!--<p class="font-weight-bold text-md-center my-0" >NAME</p>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <!--<div class="col-md-2 ">-->
+                                <!--<div class="text-center">-->
+                                    <!--<a href="https://placeholder.com">-->
+                                        <!--<img class="" src="http://via.placeholder.com/100x100"></a>-->
+                                    <!--<p class="font-weight-bold text-md-center my-0">NAME</p>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<div class="text-right">-->
+                    <!--<button type="button" class="btn btn-default btn-sm">View All</button>-->
+                <!--</div>-->
+            <!--</section>-->
             <!--photo-->
-            <section id="photo">
-                <h3 class="title text-left">Photo</h3>
-                <div class="card m-1">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-2 ">
-                                <div class="text-center">
-                                    <a href="https://placeholder.com">
-                                        <img class="" src="http://via.placeholder.com/100x100"></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="text-right">
-                    <button type="button" class="btn btn-default btn-sm">View All</button>
-                </div>
-            </section>
+            <!--<section id="photo">-->
+                <!--<h3 class="title text-left">Photo</h3>-->
+                <!--<div class="card m-1">-->
+                    <!--<div class="card-body">-->
+                        <!--<div class="row">-->
+                            <!--<div class="col-md-2 ">-->
+                                <!--<div class="text-center">-->
+                                    <!--<a href="https://placeholder.com">-->
+                                        <!--<img class="" src="http://via.placeholder.com/100x100"></a>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<div class="text-right">-->
+                    <!--<button type="button" class="btn btn-default btn-sm">View All</button>-->
+                <!--</div>-->
+            <!--</section>-->
             <!--video-->
-            <section id="video">
-                <h3 class="title text-left">Video</h3>
-                <div class="card m-1">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-2 ">
-                                <div class="text-center">
-                                    <div class="embed-responsive embed-responsive-16by9 mt-4">
-                                        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/DCIL7WbyIKM"
-                                                allowfullscreen></iframe>
-                                    </div>
-                                </div>
-                            </div>
+            <!--<section id="video">-->
+                <!--<h3 class="title text-left">Video</h3>-->
+                <!--<div class="card m-1">-->
+                    <!--<div class="card-body">-->
+                        <!--<div class="row">-->
+                            <!--<div class="col-md-2 ">-->
+                                <!--<div class="text-center">-->
+                                    <!--<div class="embed-responsive embed-responsive-16by9 mt-4">-->
+                                        <!--<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/DCIL7WbyIKM"-->
+                                                <!--allowfullscreen></iframe>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
 
-                        </div>
-                    </div>
-                </div>
-            </section>
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</section>-->
             <!--critic review-->
             <!--<section id="critic_review">-->
                 <!--<h3 class="title text-left">Critic Reviews</h3>-->
@@ -372,6 +512,198 @@
                 <!--</div>-->
             <!--</section>-->
             <!--news-->
+            <!--<section id="news">-->
+                <!--<h3 class="title text-left">News & Feature</h3>-->
+                <!--<div class="card m-1">-->
+                    <!--<div class="card-body">-->
+                        <!--<div class="row">-->
+                            <!--&lt;!&ndash;news with picture&ndash;&gt;-->
+                            <!--<div class="col-md-7">-->
+                                <!--<div class="row">-->
+                                    <!--<div class="col-md-4 mx-5">-->
+                                        <!--<div class="text-center">-->
+                                            <!--<a href="https://placeholder.com">-->
+                                                <!--<img class="" src="http://via.placeholder.com/200x150"></a>-->
+                                            <!--<p class="font-weight-bold text-md-center my-0" >title</p>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                    <!--<div class="col-md-4 mx-5">-->
+                                        <!--<div class="text-center">-->
+                                            <!--<a href="https://placeholder.com">-->
+                                                <!--<img class="" src="http://via.placeholder.com/200x150"></a>-->
+                                            <!--<p class="font-weight-bold text-md-center my-0" >title</p>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                                <!--<div class="row">-->
+                                    <!--<div class="col-md-4 mx-5">-->
+                                        <!--<div class="text-center">-->
+                                            <!--<a href="https://placeholder.com">-->
+                                                <!--<img class="" src="http://via.placeholder.com/200x150"></a>-->
+                                            <!--<p class="font-weight-bold text-md-center my-0" >title</p>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                    <!--<div class="col-md-4 mx-5">-->
+                                        <!--<div class="text-center">-->
+                                            <!--<a href="https://placeholder.com">-->
+                                                <!--<img class="" src="http://via.placeholder.com/200x150"></a>-->
+                                            <!--<p class="font-weight-bold text-md-center my-0">title</p>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <!--&lt;!&ndash;headline&ndash;&gt;-->
+                            <!--<div class="col-md-4">-->
+                                <!--<ul>-->
+                                    <!--<li>-->
+                                        <!--<a href="#">headline</a>-->
+                                    <!--</li>-->
+                                <!--</ul>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<div class="text-right">-->
+                    <!--<button type="button" class="btn btn-default btn-sm">View All</button>-->
+                <!--</div>-->
+            <!--</section>-->
+        </div>
+        <div class="container">
+             <!--TV Info-->
+            <sction id="moreInfo">
+                <h3 class="title text-left">More Information</h3>
+                <div class="card">
+                    <div class="card-body">
+                        <table>
+
+                            <tr>
+                                <td class="text-right" width="150px">
+                                    Genre:
+                                </td>
+                                <td class="text-left px-3"width="800px" th:text="${genre}">
+                                    Comedy
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-right" width="150px">
+                                    Genre:
+                                </td>
+                                <td class="text-left px-3"width="800px" th:text="${network}">
+                                    Comedy
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-right" width="150px">
+                                    Genre:
+                                </td>
+                                <td class="text-left px-3"width="800px" th:text="${date}">
+                                    Comedy
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </sction>
+
+            <!--cast-->
+            <section id="cast">
+                <h3 class="title text-left">Cast</h3>
+                <div class="card m-1">
+                    <div class="card-body">
+                        <div th:each="row :${#numbers.sequence(0,actors.size(),4)}" class="row">
+                            <div th:each="col :${#numbers.sequence(0,3)}" th:if="${row + col < actors.size()}" class="col-md-3 text-center">
+                                <a th:onclick="'javascript:getActor(\''+${actors.get(row+col).key}+'\')'">
+                                    <img th:src="@{'~/Images/actorImages/'+${actors.get(row+col).key}+'.jpg'}" th:width="150" th:height="150"
+                                         th:onerror="'this.src=\'' + @{~/assets/img/default.jpg} + '\';'"></a>
+                                <h6 th:text="${actors.get(row+col).name}" th:onclick="'javascript:getActor(\''+${actors.get(row+col).key}+'\')'">name</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!--videos-->
+            <section id="videos">
+                <h3 class="title text-left">Videos</h3>
+                <div class="card m-1">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-2 ">
+                                <div class="text-center">
+                                    <div class="embed-responsive embed-responsive-16by9 mt-4">
+                                        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/DCIL7WbyIKM"
+                                                allowfullscreen></iframe>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!--critic review-->
+            <section id="critic_review">
+                <h3 class="title text-left">Critic Reviews</h3>
+                <div class="card m-1">
+                    <div class="card-body">
+                        <div class="card-columns">
+                            <div class = "card" th:each="review:${reviews}">
+                                <div class="card-body">
+                                    <!--critic review score-->
+                                    <div class="title" th:text="'Score : '+ ${review.score}">
+                                        100.00%
+                                    </div>
+                                    <!--critic review content-->
+                                    <div class="text-left" th:text="${review.content}">
+                                        Empty Content
+                                    </div>
+                                    <!--critic review date-->
+                                    <div class="text-right" th:text="${review.date}">
+                                        1-Jan-01
+                                    </div>
+                                    <!--critic name-->
+                                    <div class="text-center">
+                                        <a  th:text="${review.criticName}"
+                                            th:href="'javascript:getCritic(\''+${review.criticKey}+'\')'">
+                                            Empty Key
+                                        </a>
+                                    </div>
+                                    <!--critic image-->
+                                    <div  class="text-center">
+                                        <img th:src="@{'~/Images/criticImages/'+${review.criticKey}+'.jpg'}"
+                                             th:width="50"
+                                             th:height="50"
+                                             th:onerror="'this.src=\'' + @{~/assets/img/default.jpg} + '\';'">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--<div class="text-right">-->
+                    <!--<button type="button" class="btn btn-default btn-sm">View All</button>-->
+                <!--</div>-->
+            </section>
+
+            <!--audience review-->
+            <section id="audience_review">
+
+
+                <h3 class="title text-left">Audience Reviews</h3>
+                <div class="card m-1">
+                    <div class="card-body">
+                        <div class="card-columns">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="text-right">
+                    <button type="button" class="btn btn-default btn-sm">View All</button>
+                </div>
+            </section>
+
+            <!--news-->
             <section id="news">
                 <h3 class="title text-left">News & Feature</h3>
                 <div class="card m-1">
@@ -382,7 +714,7 @@
                                 <div class="row">
                                     <div class="col-md-4 mx-5">
                                         <div class="text-center">
-                                            <a href="https://placeholder.com">
+                                            <a href="https://screenrant.com/movie-news/">
                                                 <img class="" src="http://via.placeholder.com/200x150"></a>
                                             <p class="font-weight-bold text-md-center my-0" >title</p>
                                         </div>

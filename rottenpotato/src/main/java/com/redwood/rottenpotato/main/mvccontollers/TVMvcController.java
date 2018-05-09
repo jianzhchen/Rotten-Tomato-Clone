@@ -1,10 +1,7 @@
 package com.redwood.rottenpotato.main.mvccontollers;
 
 import com.redwood.rottenpotato.main.models.*;
-import com.redwood.rottenpotato.main.repositories.ActorRepository;
-import com.redwood.rottenpotato.main.repositories.CriticReviewRepository;
-import com.redwood.rottenpotato.main.repositories.TVRepository;
-import com.redwood.rottenpotato.main.repositories.UserRatingRepository;
+import com.redwood.rottenpotato.main.repositories.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +22,8 @@ public class TVMvcController {
     public CriticReviewRepository criticReviewRepository;
     @Autowired
     public UserRatingRepository userRatingRepository;
+    @Autowired
+    private CriticRepository criticRepository;
     private final Logger log = LoggerFactory.getLogger(this.getClass());
     @GetMapping(value = "t/{TVKey}")
     public String tvDetail(@PathVariable("TVKey") String tVKey, Model model) {
@@ -83,6 +82,35 @@ public class TVMvcController {
             model.addAttribute("userRating", String.format("%.2f", (double)userScore / userScoreCount));
         }
 
+
+        //CriticReviews from MovieMvcController
+        //1. get criticReview based on movieKey(itemKey)
+        List<CriticReview> criticReviews1 = criticReviewRepository.findByItemKey(tv.getTVKey());
+
+        //2. For the criticReview, create a hashmap of reviews, and put all hashmaps into a list
+        List<HashMap> reviews = new ArrayList<>();
+        for (CriticReview cr : criticReviews1)
+        {
+            //one review
+            HashMap<String, String> aReview = new HashMap<>();
+
+            if(cr.getReviewRating()==0)
+            {
+                aReview.put("score", "No Score");
+            }
+            else
+            {
+                aReview.put("score", Integer.toString(cr.getReviewRating()));
+            }
+            aReview.put("date", cr.getReviewTime());
+            aReview.put("content", cr.getReviewContent());
+            aReview.put("criticKey", cr.getCriticKey());
+
+            String criticName = this.criticRepository.findByCriticKey(cr.getCriticKey()).getCriticName();
+            aReview.put("criticName", criticName);
+            reviews.add(aReview);
+        }
+        model.addAttribute("reviews", reviews);
         //TODO poster
         return "tvInfo.html";
     }
