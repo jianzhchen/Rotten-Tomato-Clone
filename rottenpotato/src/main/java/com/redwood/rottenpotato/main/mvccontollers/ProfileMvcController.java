@@ -39,8 +39,8 @@ public class ProfileMvcController {
         String userEmail = principal.getName();
         User user = userRepository.findByEmail(userEmail);
 
-        model.addAttribute("firstname", user.getFirstName());
-        model.addAttribute("lastname", user.getLastName());
+        model.addAttribute("firstName", user.getFirstName());
+        model.addAttribute("lastName", user.getLastName());
         model.addAttribute("email", user.getEmail());
         List<HashMap> reviews = new ArrayList<>();
         List<HashMap> ratings = new ArrayList<>();
@@ -48,6 +48,8 @@ public class ProfileMvcController {
         List<HashMap> wanttosees = new ArrayList<>();
         List<HashMap> following = new ArrayList<>();
         List<HashMap> followby = new ArrayList<>();
+
+        //1. reviews
         for (UserReview review : userReviewRepository.findByUserId(user.getId())) {
             HashMap<String, String> map = new HashMap<>();
             String itemKey = review.getItemKey();
@@ -64,6 +66,7 @@ public class ProfileMvcController {
             reviews.add(map);
         }
 
+        //2. ratings
         for (UserRating userRating : userRatingRepository.findByUserId(user.getId())) {
             HashMap<String, String> map = new HashMap<>();
             String itemKey = userRating.getItemKey();
@@ -79,6 +82,8 @@ public class ProfileMvcController {
             map.put("score", Integer.toString(userRating.getRating()));
             ratings.add(map);
         }
+
+        //3. wantToSees
         for (WantToSee wantToSee : wantToSeeRepository.findByUserId(user.getId())) {
             HashMap<String, String> map = new HashMap<>();
             String itemKey = wantToSee.getItemKey();
@@ -93,6 +98,8 @@ public class ProfileMvcController {
             }
             wanttosees.add(map);
         }
+
+        //4. notInteresteds
         for (NotInterested notInterested : notInterestedRepository.findByUserId(user.getId())) {
             HashMap<String, String> map = new HashMap<>();
             String itemKey = notInterested.getItemKey();
@@ -108,6 +115,7 @@ public class ProfileMvcController {
             notinteresteds.add(map);
         }
 
+        //5. Following
         for (Follow follow : followRepository.findByUserIdFrom(user.getId())) {
             HashMap<String, String> map = new HashMap<>();
             long uid = follow.getUserIdTo();
@@ -116,6 +124,7 @@ public class ProfileMvcController {
             following.add(map);
         }
 
+        //6. Followers
         for (Follow follow : followRepository.findByUserIdTo(user.getId())) {
             HashMap<String, String> map = new HashMap<>();
             long uid = follow.getUserIdFrom();
@@ -126,11 +135,11 @@ public class ProfileMvcController {
 
         model.addAttribute("reviews", reviews);
         model.addAttribute("ratings", ratings);
-        model.addAttribute("notinteresteds", notinteresteds);
-        model.addAttribute("wanttosees", wanttosees);
+        model.addAttribute("notInteresteds", notinteresteds);
+        model.addAttribute("wantToSees", wanttosees);
         model.addAttribute("following", following);
-        model.addAttribute("followby", followby);
+        model.addAttribute("followers", followby);
 
-        return "profile.html";
+        return "profilePage.html";
     }
 }
