@@ -153,7 +153,17 @@ public class ProfileMvcController {
         return "profilePage.html";
     }
     @RequestMapping("/accountInfo")
-    public String profile() {
+    public String accountInfo(Model model, Principal principal) {
+        String userEmail = principal.getName();
+        User user = userRepository.findByEmail(userEmail);
+
+        model.addAttribute("firstName", user.getFirstName());
+        model.addAttribute("lastName", user.getLastName());
+        model.addAttribute("email", user.getEmail());
+        model.addAttribute("id",user.getId());
+        model.addAttribute("isCritic",user.isCritic());
+        model.addAttribute("isAdmin",user.isAdmin());
+        model.addAttribute("privacy",user.isOpenProfile());
         return "accountInfo.html";
     }
 }

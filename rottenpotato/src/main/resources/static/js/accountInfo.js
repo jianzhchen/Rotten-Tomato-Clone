@@ -5,7 +5,8 @@ function changeEmail() {
         {"newEmail" : newEmail, "password" : ps},
         function (message) {
             console.log(message);
-            if(message.status === "OK"){
+            if(message.status === "ok"){
+                alert("Change email successfully! Logout now...")
                 window.location.href="/login";
             }else{
                 alert(message.message);
@@ -22,9 +23,12 @@ function changePassword() {
     $.post("/1/changePassword",
         {"newPassword" : newPs, "password" : oldPs},
         function (message) {
-            alert(message.message);
             console.log(message);
-
+            if(message.status === "ok"){
+                alert("Change password successfully")
+            }else {
+                alert(message.message);
+            }
         },
         "json")
 }
