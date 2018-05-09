@@ -152,4 +152,8 @@ public class ProfileMvcController {
 
         return "profilePage.html";
     }
+    @RequestMapping("/accountInfo")
+    public String profile() {
+        return "accountInfo.html";
+    }
 }
