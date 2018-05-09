@@ -113,7 +113,7 @@
                                             <!--email and follower-->
                                             <ul class="list-unstyled infolist-height">
                                                 <li th:text="${email}">Empty Email</li>
-                                                <li>Follower count:</li>
+                                                <li th:text="${numberOfFollowers}+' users following you'">No User Is Following You</li>
                                             </ul>
                                             <div class="float-right">
                                                 <button type="button" class="btn btn-sm btn-primary">Manage Account</button>
@@ -158,8 +158,7 @@
                                     <div class="card-body">
                                         <!--user review name-->
                                         <div class="text-center">
-                                            <a  th:text="${follower.name}"
-                                            >
+                                            <a  th:text="${follower.name}">
                                                 Empty Name
                                             </a>
                                         </div>
@@ -217,7 +216,7 @@
                                     </div>
                                     <!--movie image-->
                                     <div class="text-center">
-                                        <img th:src="@{'~/Images/movieImages/'+${review.url}+'.jpg'}"
+                                        <img th:src="@{'~/Images/movieImages/'+${review.key}+'.jpg'}"
                                              th:width="50"
                                              th:height="50"
                                              th:onerror="'this.src=\'' + @{~/assets/img/defaultMovie.jpg} + '\';'"

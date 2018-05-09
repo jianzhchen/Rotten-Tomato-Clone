@@ -57,9 +57,11 @@ public class ProfileMvcController {
             TV tv = tVRepository.findByTVKey(itemKey);
             if (movie != null) {
                 map.put("url", "/m/" + movie.getMovieKey());
+                map.put("key", movie.getMovieKey());
                 map.put("name", movie.getName());
             } else {
                 map.put("url", "/t/" + tv.getTVKey());
+                map.put("key", tv.getTVKey());
                 map.put("name", tv.getTVName());
             }
             map.put("content", review.getContent());
@@ -125,6 +127,7 @@ public class ProfileMvcController {
         }
 
         //6. Followers
+
         for (Follow follow : followRepository.findByUserIdTo(user.getId())) {
             HashMap<String, String> map = new HashMap<>();
             long uid = follow.getUserIdFrom();
@@ -137,8 +140,9 @@ public class ProfileMvcController {
         model.addAttribute("ratings", ratings);
         model.addAttribute("notInteresteds", notinteresteds);
         model.addAttribute("wantToSees", wanttosees);
-        model.addAttribute("following", following);
+        model.addAttribute("followings", following);
         model.addAttribute("followers", followby);
+        model.addAttribute("numberOfFollowers", followby.size());
 
         return "profilePage.html";
     }
