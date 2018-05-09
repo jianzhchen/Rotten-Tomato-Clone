@@ -4,8 +4,13 @@ function changeEmail() {
     $.post("/1/changeEmail",
         {"newEmail" : newEmail, "password" : ps},
         function (message) {
-            alert(message.message);
             console.log(message);
+            if(message.status === "OK"){
+                window.location.href="/login";
+            }else{
+                alert(message.message);
+            }
+
 
         },
         "json")
