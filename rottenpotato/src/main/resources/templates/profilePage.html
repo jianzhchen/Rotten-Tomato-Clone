@@ -169,28 +169,60 @@
                     </div>
                 </div>
             </div>
-            <!--want to see movies-->
-            <div class="row" id="want-to-see-movies">
-                <h3 class="title float-left">Want to see movies</h3>
-                <div class="card">
+            <!--want to see -->
+            <div class="row" id="want-to-see">
+                <h3 class="title float-left">Want To See</h3>
+                <div class="card m-1">
                     <div class="card-body">
-                        <div class="col-md-3 text-center">
-                            <a href="https://placeholder.com">
-                                <img class="img-center" src="http://via.placeholder.com/130x193"></a>
-                            <p class="font-weight-bold my-0">NAME</p>
+                        <div class="card-columns">
+                            <div class = "card" th:each="wantToSee:${wantToSees}">
+                                <div class="card-body">
+                                    <!--user review name-->
+                                    <div class="text-center">
+                                        <a  th:text="${wantToSee.name}"
+                                            th:href="'javascript:getMovie(\''+${wantToSee.key}+'\')'">
+                                            Empty Name
+                                        </a>
+                                    </div>
+                                    <!--movie image-->
+                                    <div class="text-center">
+                                        <img th:src="@{'~/Images/movieImages/'+${wantToSee.key}+'.jpg'}"
+                                             th:width="50"
+                                             th:height="50"
+                                             th:onerror="'this.src=\'' + @{~/assets/img/defaultMovie.jpg} + '\';'"
+                                        >
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <!--want to see TVs-->
-            <div class="row" id="want-to-see-tvs">
-                <h3 class="title float-left">Want to see TVs</h3>
-                <div class="card">
+            <!--not interested-->
+            <div class="row" id="not-interested">
+                <h3 class="title float-left">Not Interested</h3>
+                <div class="card m-1">
                     <div class="card-body">
-                        <div class="col-md-3 text-center">
-                            <a href="https://placeholder.com">
-                                <img class="img-center" src="http://via.placeholder.com/130x193"></a>
-                            <p class="font-weight-bold my-0">NAME</p>
+                        <div class="card-columns">
+                            <div class = "card" th:each="notInterested:${notInteresteds}">
+                                <div class="card-body">
+                                    <!--user review name-->
+                                    <div class="text-center">
+                                        <a  th:text="${notInterested.name}"
+                                            th:href="'javascript:getMovie(\''+${notInterested.key}+'\')'">
+                                            Empty Name
+                                        </a>
+                                    </div>
+                                    <!--movie image-->
+                                    <div class="text-center">
+                                        <img th:src="@{'~/Images/movieImages/'+${notInterested.key}+'.jpg'}"
+                                             th:width="50"
+                                             th:height="50"
+                                             th:onerror="'this.src=\'' + @{~/assets/img/defaultMovie.jpg} + '\';'"
+                                        >
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -206,7 +238,7 @@
                                     <!--user review name-->
                                     <div class="text-center">
                                         <a  th:text="${review.name}"
-                                            th:href="'javascript:getMovie(\''+${review.url}+'\')'">
+                                            th:href="'javascript:getMovie(\''+${review.key}+'\')'">
                                             Empty Name
                                         </a>
                                     </div>

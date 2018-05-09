@@ -93,9 +93,11 @@ public class ProfileMvcController {
             TV tv = tVRepository.findByTVKey(itemKey);
             if (movie != null) {
                 map.put("url", "/m/" + movie.getMovieKey());
+                map.put("key", movie.getMovieKey());
                 map.put("name", movie.getName());
             } else {
                 map.put("url", "/t/" + tv.getTVKey());
+                map.put("key", tv.getTVKey());
                 map.put("name", tv.getTVName());
             }
             wanttosees.add(map);
@@ -109,9 +111,11 @@ public class ProfileMvcController {
             TV tv = tVRepository.findByTVKey(itemKey);
             if (movie != null) {
                 map.put("url", "/m/" + movie.getMovieKey());
+                map.put("key", movie.getMovieKey());
                 map.put("name", movie.getName());
             } else {
                 map.put("url", "/t/" + tv.getTVKey());
+                map.put("key", tv.getTVKey());
                 map.put("name", tv.getTVName());
             }
             notinteresteds.add(map);
