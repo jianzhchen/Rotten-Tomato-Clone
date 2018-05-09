@@ -26,8 +26,9 @@ function unFollow(userId){
 
 function toggleFollowUnFollow(userId)
 {
+
     var change = document.getElementById("toggleFollowUnFollow");
-    if (change.innerHTML == "Follow")
+    if (change.innerText === "FOLLOW")
     {
         $.post("/1/follow",
             {"userId":userId},
@@ -37,13 +38,13 @@ function toggleFollowUnFollow(userId)
                     alert(message.status);
                 },
                 "json");
-        change.innerHTML = "UnFollow";
+        change.innerText = "UNFOLLOW";
         change.classList.remove("btn-success")
         change.classList.add("btn-danger");
     }
     else
     {
-        if (confirm("You Really Want To UnFollow?"))
+        if (confirm("You Really Want To UNFOLLOW?"))
         {
             $.post("/1/unFollow",
                 {"userId":userId},
@@ -53,7 +54,7 @@ function toggleFollowUnFollow(userId)
                         alert(message.status);
                     },
                     "json");
-            change.innerHTML = "Follow";
+            change.innerText = "FOLLOW";
             change.classList.remove("btn-danger")
             change.classList.add("btn-success");
         }
