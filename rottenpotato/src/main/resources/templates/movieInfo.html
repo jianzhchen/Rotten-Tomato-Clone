@@ -174,19 +174,30 @@
                                     <textarea class="form-control text-muted" rows="5" id="reviewContent" placeholder="Enter your review here"></textarea>
                                 </div>
                             </form>
-                            <div class="float-left">
-                                <button type="button" class="btn btn-primary btn-sm">Want to see</button>
-                                <button type="button" class="btn btn-danger btn-sm">Not interested</button>
-                            </div>
-                            <div class="float-right">
-                                <button type="button" class="btn btn-sm"
-                                        th:if="${isLogin}"
-                                        th:onclick="'javascript:postReview(\''+${movieKey}+'\')'">Post</button>
-                                <button type="button" class="btn btn-sm"
-                                        th:unless="${isLogin}"
-                                        th:onclick="'javascript:loginMessage()'">Post</button>
-                                <button type="button" class="btn btn-success btn-sm" th:onclick="'javascript:postReview(\''+${movieKey}+'\')'">Post</button>
+                            <div th:if="${isLogin}">
+                                <div class="float-left">
+                                    <button type="button" class="btn btn-primary btn-sm"
+                                            th:onclick="'javascript:addWantToSee(\''+${movieKey}+'\')'">Want to see</button>
+                                    <button type="button" class="btn btn-danger btn-sm"
+                                            th:onclick="'javascript:addNotInterested(\''+${movieKey}+'\')'">Not interested</button>
+                                </div>
+                                <div class="float-right">
+                                    <button type="button" class="btn btn-sm btn-success"
+                                            th:onclick="'javascript:postReview(\''+${movieKey}+'\')'">Post</button>
 
+                                </div>
+                            </div>
+                            <div th:unless="${isLogin}">
+                                <div class="float-left">
+                                    <button type="button" class="btn btn-primary btn-sm"
+                                            th:onclick="'javascript:loginMessage()'" >Want to see</button>
+                                    <button type="button" class="btn btn-danger btn-sm"
+                                            th:onclick="'javascript:loginMessage()'" >Not interested</button>
+                                </div>
+                                <div class="float-right">
+                                    <button type="button" class="btn btn-sm"
+                                            th:onclick="'javascript:loginMessage()'">Post</button>
+                                </div>
                             </div>
                         </div>
                     </div>
