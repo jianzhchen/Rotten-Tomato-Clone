@@ -50,6 +50,7 @@ public class ProfileMvcController {
         List<HashMap> followby = new ArrayList<>();
 
         //1. reviews
+        List<UserRating> userRatings = userRatingRepository.findByUserId(user.getId());
         for (UserReview review : userReviewRepository.findByUserId(user.getId())) {
             HashMap<String, String> map = new HashMap<>();
             String itemKey = review.getItemKey();
@@ -63,6 +64,12 @@ public class ProfileMvcController {
                 map.put("url", "/t/" + tv.getTVKey());
                 map.put("key", tv.getTVKey());
                 map.put("name", tv.getTVName());
+            }
+            for(UserRating rate: userRatings){
+                if (review.getUserId() == rate.getUserId()){
+                    map.put("rate",rate.getRating()+"");
+                    break;
+                }
             }
             map.put("content", review.getContent());
             reviews.add(map);
