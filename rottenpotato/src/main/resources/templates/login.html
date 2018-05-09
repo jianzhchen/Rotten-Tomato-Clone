@@ -8,16 +8,21 @@
     <!-- Favicons -->
     <link rel="apple-touch-icon" href="./assets/img/kit/free/apple-icon.png">
     <link rel="icon" href="./assets/img/kit/free/favicon.png">
+    <link rel="apple-touch-icon" th:href="@{~/assets/img/kit/free/apple-icon.png}">
+    <link rel="icon" th:href="@{~/assets/img/kit/free/favicon.png}">
     <title>
-        Signup &#45; Material Kit by Creative Tim
+        Login &#45; Rotten Potato
     </title>
     <!--     Fonts and icons     -->
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
     <link rel="stylesheet" href="./assets/css/material-kit.css?v=2.0.2">
+    <link rel="stylesheet" th:href="@{~/assets/css/material-kit.css?v=2.0.2}">
+
     <!-- Documentation extras -->
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link href="./assets/assets-for-demo/demo.css" rel="stylesheet" />
+    <link th:href="@{~/assets/assets-for-demo/demo.css}" rel="stylesheet" />
     <!-- iframe removal -->
 </head>
 
@@ -108,6 +113,9 @@
                                                    class="form-control"/>
                                         </div>
                                         <div class="form-group">
+                                            <span>Forget password? <a href="/" data-toggle="modal" data-target="#forgotPassword">Click here</a></span>
+                                        </div>
+                                        <div class="form-group">
                                                 <button type="submit" name="login-submit" id="login-submit" class=" btn btn-primary">Login</button>
                                                 <span>New user? <a href="/" th:href="@{/registration}">Register here</a></span>
                                         </div>
@@ -118,6 +126,30 @@
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+        <!--modal-->
+        <div class="modal fade" id="forgotPassword">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h4 class="modal-title">Forgot Password</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="fp_email">Email</label>
+                            <input type="text" id="fp_email" class="form-control" autofocus="autofocus"/>
+                        </div>
+                        <div class="form-group">
+                            <button type="button" class=" btn btn-primary" data-dismiss="modal" onclick="forgotPassword()" >Comfirm</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -164,19 +196,34 @@
         </footer>
     </div>
     <!--   Core JS Files   -->
-    <script src="./assets/js/core/jquery.min.js"></script>
-    <script src="./assets/js/core/popper.min.js"></script>
-    <script src="./assets/js/bootstrap-material-design.js"></script>
+    <script th:src="@{~/assets/js/core/jquery.min.js}"></script>
+    <script th:src="@{~/assets/js/core/popper.min.js}"></script>
+    <script th:src="@{~/assets/js/bootstrap-material-design.js}"></script>
     <!--  Plugin for Date Time Picker and Full Calendar Plugin  -->
-    <script src="./assets/js/plugins/moment.min.js"></script>
+    <script th:src="@{~/assets/js/plugins/moment.min.js}"></script>
     <!--	Plugin for the Datepicker, full documentation here: https://github.com/Eonasdan/bootstrap-datetimepicker -->
-    <script src="./assets/js/plugins/bootstrap-datetimepicker.min.js"></script>
+    <script th:src="@{~/assets/js/plugins/bootstrap-datetimepicker.min.js}"></script>
     <!--	Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
-    <script src="./assets/js/plugins/nouislider.min.js"></script>
+    <script th:src="@{~/assets/js/plugins/nouislider.min.js}"></script>
     <!-- Material Kit Core initialisations of plugins and Bootstrap Material Design Library -->
-    <script src="./assets/js/material-kit.js?v=2.0.2"></script>
+    <script th:src="@{~/assets/js/material-kit.js?v=2.0.2}"></script>
     <!-- Fixed Sidebar Nav - js With initialisations For Demo Purpose, Don't Include it in your project -->
-    <script src="./assets/assets-for-demo/js/material-kit-demo.js"></script>
+    <script th:src="@{~/assets/assets-for-demo/js/material-kit-demo.js}"></script>
+    <script type="text/javascript" th:src="@{~/js/login.js}"></script>
+<!--test-->
+<script src="./assets/js/core/jquery.min.js"></script>
+<script src="./assets/js/core/popper.min.js"></script>
+<script src="./assets/js/bootstrap-material-design.js"></script>
+<!--  Plugin for Date Time Picker and Full Calendar Plugin  -->
+<script src="./assets/js/plugins/moment.min.js"></script>
+<!--	Plugin for the Datepicker, full documentation here: https://github.com/Eonasdan/bootstrap-datetimepicker -->
+<script src="./assets/js/plugins/bootstrap-datetimepicker.min.js"></script>
+<!--	Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
+<script src="./assets/js/plugins/nouislider.min.js"></script>
+<!-- Material Kit Core initialisations of plugins and Bootstrap Material Design Library -->
+<script src="./assets/js/material-kit.js?v=2.0.2"></script>
+<!-- Fixed Sidebar Nav - js With initialisations For Demo Purpose, Don't Include it in your project -->
+<script src="./assets/assets-for-demo/js/material-kit-demo.js"></script>
 </body>
 
 </html>
