@@ -47,8 +47,7 @@ public class AccountService {
         if (user == null) {
             return jsonService.constructStatusMessage(AjaxCallStatus.ERROR, "Can't find user");
         }
-        currPassword = passwordEncoder.encode(currPassword);
-        if (!user.getPassword().equals(currPassword)) {
+        if (!passwordEncoder.matches(currPassword, user.getPassword())) {
             return jsonService.constructStatusMessage(AjaxCallStatus.ERROR, "wrong password");
         }
         if (!EmailValidator.getInstance().isValid(newEmail)) {
