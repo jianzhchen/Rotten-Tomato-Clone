@@ -225,7 +225,8 @@
                                     <img th:src="@{~/assets/img/kit/free/edit.png}">
                                 </td>
                                 <td>
-                                    <img th:src="@{~/assets/img/kit/free/delete.png}">
+                                    <img th:src="@{~/assets/img/kit/free/delete.png}"
+                                         th:onclick="'javascript:deleteReview(\''+${review.reviewId}+'\',\''+${review.key}+'\')'">
                                 </td>
                             </tr>
                             </tbody>
