@@ -134,9 +134,12 @@ public class MovieMvcController {
             aReview.put("content", cr.getReviewContent());
             aReview.put("criticKey", cr.getCriticKey());
 
-            String criticName = this.criticRepository.findByCriticKey(cr.getCriticKey()).getCriticName();
-            aReview.put("criticName", criticName);
-            reviews.add(aReview);
+            if(this.criticRepository.findByCriticKey(cr.getCriticKey()) != null)
+            {
+                String criticName = this.criticRepository.findByCriticKey(cr.getCriticKey()).getCriticName();
+                aReview.put("criticName", criticName);
+                reviews.add(aReview);
+            }
         }
         model.addAttribute("reviews", reviews);
 
