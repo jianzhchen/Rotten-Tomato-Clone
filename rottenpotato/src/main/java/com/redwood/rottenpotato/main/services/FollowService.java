@@ -51,7 +51,6 @@ public class FollowService {
             return jsonService.constructStatusMessage(AjaxCallStatus.ERROR, "Can't find user");
         }
         followRepository.removeByUserIdFromAndUserIdTo(user.getId(), userId);
-        System.out.println(user.getId()+" "+userId);
 //        FCount fCount = fCountRepository.findByUserId(userId);
 //        if(fCount==null){
 //            fCount=new FCount();

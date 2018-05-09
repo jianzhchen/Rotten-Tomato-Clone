@@ -178,21 +178,39 @@ public class UserMvcController {
                 map.put("key",uid+"");
                 map.put("name",u.getFirstName()+" "+u.getLastName());
                 followby.add(map);
+            }
 
-                //For follow unfollow button
-                String currentEmail = principal.getName();
-                User currentUser = this.userRepository.findByEmail(currentEmail);
-                if(uid == currentUser.getId())
+            //For follow/unfollow button
+            if(followby.isEmpty())
+            {
+                model.addAttribute("followStatus", "Follow");
+                model.addAttribute("followButtonClass", "btn btn-sm btn-success");
+            }
+            else
+            {
+                for (Follow follow : followRepository.findByUserIdTo(user.getId()))
                 {
-                    model.addAttribute("followStatus", "unFollow");
-                    model.addAttribute("followButtonClass", "btn btn-sm btn-danger");
-                }
-                else
-                {
-                    model.addAttribute("followStatus", "Follow");
-                    model.addAttribute("followButtonClass", "btn btn-sm btn-success");
+                    //uid = fromId
+                    long uid = follow.getUserIdFrom();
+
+                    String currentEmail = principal.getName();
+                    //toUser
+                    User currentUser = this.userRepository.findByEmail(currentEmail);
+                    if (uid == currentUser.getId())
+                    {
+                        model.addAttribute("followStatus", "unFollow");
+                        model.addAttribute("followButtonClass", "btn btn-sm btn-danger");
+                        //If current user follows this found, break
+                        break;
+                    }
+                    else
+                    {
+                        model.addAttribute("followStatus", "Follow");
+                        model.addAttribute("followButtonClass", "btn btn-sm btn-success");
+                    }
                 }
             }
+
 
             model.addAttribute("reviews", reviews);
             model.addAttribute("ratings", ratings);
