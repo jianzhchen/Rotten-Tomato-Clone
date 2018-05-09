@@ -36,7 +36,8 @@ public class UserMvcController {
     private EntityManager entityManager;
 
     @RequestMapping("/u/{userId}")
-    public String userPage(@PathVariable("userId") long userId, Model model) {
+    public String userPage(@PathVariable("userId") long userId, Model model)
+    {
         User user = userRepository.findById(userId);
         if (user == null) {
             model.addAttribute("error", "user not found");
