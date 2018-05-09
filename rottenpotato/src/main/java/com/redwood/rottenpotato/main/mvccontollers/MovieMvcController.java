@@ -3,6 +3,7 @@ package com.redwood.rottenpotato.main.mvccontollers;
 import com.redwood.rottenpotato.main.models.*;
 import com.redwood.rottenpotato.main.repositories.*;
 import com.redwood.rottenpotato.main.services.MovieService;
+import com.redwood.rottenpotato.security.model.User;
 import com.redwood.rottenpotato.security.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -31,6 +32,8 @@ public class MovieMvcController {
     private UserRatingRepository userRatingRepository;
     @Autowired
     private UserReviewRepository userReviewRepository;
+    @Autowired
+    private UserRepository userRepository;
 
 
     @GetMapping(value = "m/{movieKey}")
@@ -144,11 +147,13 @@ public class MovieMvcController {
             for(UserRating rate: userRatings){
                 if(rev.getUserId() == rate.getUserId()){
                     HashMap<String, String> uReview = new HashMap<>();
-                    uReview.put("name", rev.getUserId()+"");
+                    User user = userRepository.findById(rev.getUserId());
+                    uReview.put("name", user.getFirstName());
                     uReview.put("key",rev.getUserId()+"");
                     uReview.put("score",rate.getRating()+"");
                     uReview.put("content",rev.getContent());
                     audienceReviews.add(uReview);
+                    continue;
                 }
             }
         }
