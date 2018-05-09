@@ -47,3 +47,6 @@ function toggleFollowUnFollow(userId)
         }
     }
 }
+function getItem(url) {
+    window.location.href=url;
+}
