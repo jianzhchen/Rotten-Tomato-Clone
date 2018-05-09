@@ -1,6 +1,7 @@
 package com.redwood.rottenpotato.main.mvccontollers;
 
 import com.redwood.rottenpotato.main.services.MovieService;
+import com.redwood.rottenpotato.main.services.TVService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +18,9 @@ public class HomeMvcController {
 
     @Autowired
     private MovieService movieService;
+    @Autowired
+    private TVService TVService;
+
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
     @GetMapping(value = {"", "/", "index.html"})
@@ -30,6 +34,7 @@ public class HomeMvcController {
 
         model.addAttribute("topBoxOffice", movieService.top10BoxWithPage(model, 0));
         model.addAttribute("movieOpeningThisWeek", movieService.top10InTheatersDatePage(model, 0));
+        model.addAttribute("newTVShows", TVService.top10TVDatePage(model, 0));
 
         return "index.html";
     }

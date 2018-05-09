@@ -4,7 +4,6 @@ function getMovie(movieId){
 
 function getTv(tvId){
     window.location.href="/t/"+tvId;
-
 }
 
 function getActor(CeleId){
