@@ -120,6 +120,9 @@
                                                 <button type="button" class="btn btn-sm btn-primary" onclick="window.location.href='/1/accountInfo'">Manage Account</button>
                                             </div>
                                         </div>
+
+
+
                                     </div>
                                 </div>
                             </div>
@@ -167,12 +170,14 @@
                 <h3 class="title float-left">Want To See</h3>
                 <div class="card m-1">
                     <div class="card-body">
+
                         <div th:each="row :${#numbers.sequence(0,wantToSees.size(),4)}" class="row">
                             <div th:each="col :${#numbers.sequence(0,3)}" th:if="${row + col < wantToSees.size()}" class="col-md-3 text-center">
                                 <a th:onclick="'javascript:getItem(\''+${wantToSees.get(row+col).url}+'\')'">
                                     <img src="../static/Images/movieImages/early_man.jpg" th:src="@{'~/Images/movieImages/'+${wantToSees.get(row+col).key}+'.jpg'}" th:width="150" th:height="200"
                                          th:onerror="'this.src=\'' + @{~/assets/img/defaultMovie.jpg} + '\';'"></a>
                                 <h6 th:text="${wantToSees.get(row+col).name}" th:onclick="'javascript:getItem(\''+${wantToSees.get(row+col).url}+'\')'">name</h6>
+
                             </div>
                         </div>
                     </div>
