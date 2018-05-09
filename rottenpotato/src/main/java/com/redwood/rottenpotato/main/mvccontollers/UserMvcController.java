@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import java.math.BigDecimal;
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -44,7 +45,7 @@ public class UserMvcController {
     private EntityManager entityManager;
 
     @RequestMapping("/u/{userId}")
-    public String userPage(@PathVariable("userId") long userId, Model model)
+    public String userPage(@PathVariable("userId") long userId, Model model,Principal principal)
     {
         User user = userRepository.findById(userId);
         if (user == null)
@@ -77,6 +78,8 @@ public class UserMvcController {
             model.addAttribute("firstName", user.getFirstName());
             model.addAttribute("lastName", user.getLastName());
             model.addAttribute("email", user.getEmail());
+            model.addAttribute("userId", user.getId());
+
             List<HashMap> reviews = new ArrayList<>();
             List<HashMap> ratings = new ArrayList<>();
             List<HashMap> notinteresteds = new ArrayList<>();
@@ -167,14 +170,28 @@ public class UserMvcController {
             }
 
             //6. Followers
-
-            for (Follow follow : followRepository.findByUserIdTo(user.getId())) {
+            for (Follow follow : followRepository.findByUserIdTo(user.getId()))
+            {
                 HashMap<String, String> map = new HashMap<>();
                 long uid = follow.getUserIdFrom();
                 User u = userRepository.findById(uid);
                 map.put("key",uid+"");
                 map.put("name",u.getFirstName()+" "+u.getLastName());
                 followby.add(map);
+
+                //For follow unfollow button
+                String currentEmail = principal.getName();
+                User currentUser = this.userRepository.findByEmail(currentEmail);
+                if(uid == currentUser.getId())
+                {
+                    model.addAttribute("followStatus", "unFollow");
+                    model.addAttribute("followButtonClass", "btn btn-sm btn-danger");
+                }
+                else
+                {
+                    model.addAttribute("followStatus", "Follow");
+                    model.addAttribute("followButtonClass", "btn btn-sm btn-success");
+                }
             }
 
             model.addAttribute("reviews", reviews);
@@ -187,22 +204,22 @@ public class UserMvcController {
         }
 
 
-        String sqlQuery = "SELECT\n" +
-                "  FIND_IN_SET(follower_count, (\n" +
-                "    SELECT GROUP_CONCAT(follower_count ORDER BY follower_count DESC)\n" +
-                "    FROM fcount)\n" +
-                "  ) AS rank\n" +
-                "FROM fcount\n" +
-                "WHERE user_id = :userId";
-        Query query = entityManager.createNativeQuery(sqlQuery);
-        query.setParameter("userId", user.getId());
-        List<BigDecimal> resultList = query.getResultList();
-        if (resultList.size() > 0) {
-            BigDecimal result = resultList.get(0);
-            model.addAttribute("followerRank", result.intValue());
-        } else {
-            model.addAttribute("followerRank", "n/s");
-        }
+//        String sqlQuery = "SELECT\n" +
+//                "  FIND_IN_SET(follower_count, (\n" +
+//                "    SELECT GROUP_CONCAT(follower_count ORDER BY follower_count DESC)\n" +
+//                "    FROM fcount)\n" +
+//                "  ) AS rank\n" +
+//                "FROM fcount\n" +
+//                "WHERE user_id = :userId";
+//        Query query = entityManager.createNativeQuery(sqlQuery);
+//        query.setParameter("userId", user.getId());
+//        List<BigDecimal> resultList = query.getResultList();
+//        if (resultList.size() > 0) {
+//            BigDecimal result = resultList.get(0);
+//            model.addAttribute("followerRank", result.intValue());
+//        } else {
+//            model.addAttribute("followerRank", "n/s");
+//        }
         return "user.html";
     }
 }

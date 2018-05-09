@@ -116,7 +116,13 @@
                                                 <li th:text="${numberOfFollowers}+' Users Following'">No User Following</li>
                                             </ul>
                                             <div class="float-right">
-                                                <button type="button" class="btn btn-sm btn-primary">Manage Account</button>
+                                                <button id = "toggleFollowUnFollow"
+                                                        type="button"
+                                                        th:class="${followButtonClass}"
+                                                        th:text="${followStatus}"
+                                                        th:onclick="'javascript:toggleFollowUnFollow(\''+${userId}+'\')'">
+                                                    Follow
+                                                </button>
                                             </div>
                                         </div>
                                     </div>

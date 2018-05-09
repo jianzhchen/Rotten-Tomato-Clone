@@ -31,17 +31,17 @@ public class FollowService {
         followEntity.setUserIdFrom(user.getId());
         followEntity.setUserIdTo(userId);
         followRepository.save(followEntity);
-        FCount fCount = fCountRepository.findByUserId(userId);
-        if(fCount==null){
-            fCount=new FCount();
-            fCount.setUserId(userId);
-            fCount.setFollowerCount(1);
-            fCountRepository.save(fCount);
-        }
-        else{
-            fCount.incFollowerCount();
-            fCountRepository.save(fCount);
-        }
+//        FCount fCount = fCountRepository.findByUserId(userId);
+//        if(fCount==null){
+//            fCount=new FCount();
+//            fCount.setUserId(userId);
+//            fCount.setFollowerCount(1);
+//            fCountRepository.save(fCount);
+//        }
+//        else{
+//            fCount.incFollowerCount();
+//            fCountRepository.save(fCount);
+//        }
         return jsonService.constructStatusMessage(AjaxCallStatus.OK);
     }
 
@@ -51,17 +51,18 @@ public class FollowService {
             return jsonService.constructStatusMessage(AjaxCallStatus.ERROR, "Can't find user");
         }
         followRepository.removeByUserIdFromAndUserIdTo(user.getId(), userId);
-        FCount fCount = fCountRepository.findByUserId(userId);
-        if(fCount==null){
-            fCount=new FCount();
-            fCount.setUserId(userId);
-            fCount.setFollowerCount(0);
-            fCountRepository.save(fCount);
-        }
-        else{
-            fCount.decFollowerCount();
-            fCountRepository.save(fCount);
-        }
+        System.out.println(user.getId()+" "+userId);
+//        FCount fCount = fCountRepository.findByUserId(userId);
+//        if(fCount==null){
+//            fCount=new FCount();
+//            fCount.setUserId(userId);
+//            fCount.setFollowerCount(0);
+//            fCountRepository.save(fCount);
+//        }
+//        else{
+//            fCount.decFollowerCount();
+//            fCountRepository.save(fCount);
+//        }
         return jsonService.constructStatusMessage(AjaxCallStatus.OK);
     }
 
