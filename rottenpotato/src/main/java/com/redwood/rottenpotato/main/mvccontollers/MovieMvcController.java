@@ -1,15 +1,9 @@
 package com.redwood.rottenpotato.main.mvccontollers;
 
-import com.redwood.rottenpotato.main.models.Actor;
-import com.redwood.rottenpotato.main.models.CriticReview;
-import com.redwood.rottenpotato.main.models.Movie;
-import com.redwood.rottenpotato.main.models.UserRating;
-import com.redwood.rottenpotato.main.repositories.ActorRepository;
-import com.redwood.rottenpotato.main.repositories.CriticRepository;
-import com.redwood.rottenpotato.main.repositories.CriticReviewRepository;
-import com.redwood.rottenpotato.main.repositories.MovieRepository;
-import com.redwood.rottenpotato.main.repositories.UserRatingRepository;
+import com.redwood.rottenpotato.main.models.*;
+import com.redwood.rottenpotato.main.repositories.*;
 import com.redwood.rottenpotato.main.services.MovieService;
+import com.redwood.rottenpotato.security.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -35,6 +29,8 @@ public class MovieMvcController {
     private CriticRepository criticRepository;
     @Autowired
     private UserRatingRepository userRatingRepository;
+    @Autowired
+    private UserReviewRepository userReviewRepository;
 
 
     @GetMapping(value = "m/{movieKey}")
@@ -120,11 +116,9 @@ public class MovieMvcController {
 
         //2. For the criticReview, create a hashmap of reviews, and put all hashmaps into a list
         List<HashMap> reviews = new ArrayList<>();
-        for (CriticReview cr : criticReviews)
-        {
+        for (CriticReview cr : criticReviews) {
             //one review
             HashMap<String, String> aReview = new HashMap<>();
-
             if(cr.getReviewRating()==0)
             {
                 aReview.put("score", "No Score");
@@ -142,6 +136,25 @@ public class MovieMvcController {
             reviews.add(aReview);
         }
         model.addAttribute("reviews", reviews);
+
+        //user review
+        List<UserReview> userReviews = userReviewRepository.findByItemKey(movie.getMovieKey());
+        List<HashMap> audienceReviews = new ArrayList<>();
+        for(UserReview rev: userReviews){
+            for(UserRating rate: userRatings){
+                if(rev.getUserId() == rate.getUserId()){
+                    HashMap<String, String> uReview = new HashMap<>();
+                    uReview.put("name", rev.getUserId()+"");
+                    uReview.put("key",rev.getUserId()+"");
+                    uReview.put("score",rate.getRating()+"");
+                    uReview.put("content",rev.getContent());
+                    audienceReviews.add(uReview);
+                }
+            }
+        }
+        model.addAttribute("audienceReviews",audienceReviews);
+
+
         model.addAttribute("movieKey",movieKey);
 
         return "movieInfo.html";

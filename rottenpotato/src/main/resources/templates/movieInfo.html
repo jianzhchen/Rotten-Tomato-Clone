@@ -420,13 +420,40 @@
             </section>
             <!--audience review-->
             <section id="audience_review">
-
-
                 <h3 class="title text-left">Audience Reviews</h3>
                 <div class="card m-1">
                     <div class="card-body">
                         <div class="card-columns">
-
+                            <div class = "card" th:each="review:${audienceReviews}">
+                                <div class="card-body">
+                                    <!--user review score-->
+                                    <div class="title" th:text="'Score : '+ ${review.score}">
+                                        100.00%
+                                    </div>
+                                    <!--user review content-->
+                                    <div class="text-left" th:text="${review.content}">
+                                        Empty Content
+                                    </div>
+                                    <!--&lt;!&ndash;user review date&ndash;&gt;-->
+                                    <!--<div class="text-right" th:text="${review.date}">-->
+                                        <!--1-Jan-01-->
+                                    <!--</div>-->
+                                    <!--user name-->
+                                    <div class="text-center">
+                                        <a  th:text="${review.name}"
+                                            th:href="'javascript:getUser(\''+${review.key}+'\')'">
+                                            Empty Key
+                                        </a>
+                                    </div>
+                                    <!--critic image-->
+                                    <div  class="text-center">
+                                        <img th:src="@{'~/Images/criticImages/'+${review.key}+'.jpg'}"
+                                             th:width="50"
+                                             th:height="50"
+                                             th:onerror="'this.src=\'' + @{~/assets/img/default.jpg} + '\';'">
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

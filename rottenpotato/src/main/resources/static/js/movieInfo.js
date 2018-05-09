@@ -53,3 +53,7 @@ function addNotInterested(itemKey) {
         },
         "json");
 }
+
+function getUser(key) {
+    window.location.href="/u/"+key;
+}
