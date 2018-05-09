@@ -119,6 +119,9 @@
                                                 <button type="button" class="btn btn-sm btn-primary" onclick="window.location.href='/1/accountInfo'">Manage Account</button>
                                             </div>
                                         </div>
+
+
+
                                     </div>
                                 </div>
                             </div>
@@ -179,6 +182,7 @@
                         <div class="card-columns">
                             <div class = "card" th:each="wantToSee:${wantToSees}">
                                 <div class="card-body">
+
                                     <!--user review name-->
                                     <div class="text-center">
                                         <a  th:text="${wantToSee.name}"
@@ -320,7 +324,6 @@
 <script th:src="@{~/assets/js/material-kit.js?v=2.0.2}"></script>
 <!-- Fixed Sidebar Nav - js With initialisations For Demo Purpose, Don't Include it in your project -->
 <script th:src="@{~/assets/assets-for-demo/js/material-kit-demo.js}"></script>
-<script type="text/javascript" th:src="@{~/js/index.js}"></script>
 <script type="text/javascript" th:src="@{~/js/profilePage.js}"></script>
 
 

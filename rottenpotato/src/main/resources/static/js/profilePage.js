@@ -2,26 +2,13 @@ function getUser(key) {
     window.location.href="/u/"+key;
 }
 
-function follow(userId){
-    $.post("/1/follow",
-    {"userId":userId},
-        function (message)
-        {
-            console.log(message);
-            alert(message.status);
-        },
-        "json");
-}
+function getMovie(movieId){
+     window.location.href="/m/"+movieId;
+ }
 
-function unFollow(userId){
-    $.post("/1/unFollow",
-    {"userId":userId},
-        function (message)
-        {
-            console.log(message);
-            alert(message.status);
-        },
-        "json");
+function deleteFromWantToSee(wantToSeeKey,e)
+{
+    e.parentNode.parentNode.removeChild(e.parentNode);
 }
 
 function toggleFollowUnFollow(userId)
