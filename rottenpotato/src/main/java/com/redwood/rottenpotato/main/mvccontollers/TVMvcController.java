@@ -31,6 +31,7 @@ public class TVMvcController {
         if (tv == null) {
             model.addAttribute("exist", false);
         }
+        model.addAttribute("tvKey", tv.getTVKey());
         model.addAttribute("name", tv.getTVName());
         model.addAttribute("info", tv.getTVInfo());
         model.addAttribute("genre", tv.getTVGenre());

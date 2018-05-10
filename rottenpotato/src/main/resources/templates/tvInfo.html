@@ -93,7 +93,7 @@
 
                         <!--poster-->
                         <div class="col-md-4 mx-5">
-                            <img th:src="@{'~/Images/movieImages/'+${movieKey}+'.jpg'}" th:width="200" th:height="300"
+                            <img th:src="@{'~/Images/tvImages/'+${tvKey}+'.jpg'}" th:width="200" th:height="300"
                                  th:onerror="'this.src=\'' + @{~/assets/img/defaultMovie.jpg} + '\';'">
                         </div>
 
@@ -106,10 +106,9 @@
                                     <!--critic rate-->
                                     <ul class="list-unstyled">
                                         <li>
-                                            <!--<h3 class="text-center" th:if="${criticScoreCount}!=0 " th:text="${criticRating}/5*100+'%'">100%</h3>-->
+
                                             <h3 class="text-center" >100%</h3>
-                                            <!--no rating-->
-                                            <!--<h3 class="text-center" th:if="${criticScoreCount}==0 " th:text="'N/A'">0%</h3>-->
+
                                             <h3 class="text-center">0%</h3>
 
                                         </li>

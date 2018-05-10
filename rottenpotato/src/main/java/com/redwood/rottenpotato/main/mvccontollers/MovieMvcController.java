@@ -184,7 +184,7 @@ public class MovieMvcController {
         currentDirectory = file.getAbsolutePath();
         currentDirectory += "\\src\\main\\resources\\static\\Trailers";
 
-        System.out.println("Current working directory : "+currentDirectory);
+//        System.out.println("Current working directory : "+currentDirectory);
 
 
         File folder = new File(currentDirectory.toString());
