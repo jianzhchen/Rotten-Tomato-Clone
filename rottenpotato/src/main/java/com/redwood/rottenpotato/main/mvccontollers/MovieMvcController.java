@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.security.Principal;
 import java.util.*;
 
@@ -161,6 +164,45 @@ public class MovieMvcController {
 
 
         model.addAttribute("movieKey",movieKey);
+
+        Path currentRelativePath = Paths.get("");
+        String s = currentRelativePath.toAbsolutePath().toString();
+        System.out.println("Current relative path is: " + s);
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println();
+
+        String currentDirectory;
+        File file = new File("");
+        currentDirectory = file.getAbsolutePath();
+        currentDirectory += "\\src\\main\\resources\\static";
+
+        System.out.println("Current working directory : "+currentDirectory);
+
+
+        File folder = new File(currentDirectory.toString());
+
+        File[] listOfFiles = folder.listFiles();
+
+        for(int i = 0; i <= listOfFiles.length - 1; i++){
+            System.out.println(listOfFiles[i].getName());
+        }
+//
+//        for (int i = 0; i < listOfFiles.length; i++) {
+//            if (listOfFiles[i].isFile()) {
+//                System.out.println("File " + listOfFiles[i].getName());
+//            } else if (listOfFiles[i].isDirectory()) {
+//                System.out.println("Directory " + listOfFiles[i].getName());
+//            }
+//        }
+
+
+
+
 
         return "movieInfo.html";
 
