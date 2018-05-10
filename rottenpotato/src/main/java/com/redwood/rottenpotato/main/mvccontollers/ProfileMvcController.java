@@ -7,7 +7,9 @@ import com.redwood.rottenpotato.security.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.security.Principal;
 import java.util.ArrayList;
@@ -68,6 +70,7 @@ public class ProfileMvcController {
             for(UserRating rate: userRatings){
                 if (review.getUserId() == rate.getUserId()){
                     map.put("rate",rate.getRating()+"");
+                    map.put("ratingId",rate.getId()+"");
                     break;
                 }
             }
@@ -173,5 +176,30 @@ public class ProfileMvcController {
         model.addAttribute("isAdmin",user.isAdmin());
         model.addAttribute("privacy",user.isOpenProfile());
         return "accountInfo.html";
+    }
+
+    @GetMapping("/editReviewPage")
+    public String editReviewPage(@RequestParam("reviewId") long reviewId,
+                                 @RequestParam("ratingId") long ratingId,Model model){
+        UserReview userReview = userReviewRepository.findById(reviewId);
+        UserRating userRating = userRatingRepository.findById(ratingId);
+        Movie movie = movieRepository.findByMovieKey(userReview.getItemKey());
+        TV tv = tVRepository.findByTVKey(userReview.getItemKey());
+        String itemName;
+        if (movie != null){
+            itemName = movie.getName();
+        }else {
+            itemName = tv.getTVName();
+        }
+
+        String review = userReview.getContent();
+        int rating = userRating.getRating();
+        model.addAttribute("content",review);
+        model.addAttribute("rate",rating);
+        model.addAttribute("itemName",itemName);
+        model.addAttribute("reviewId",reviewId);
+        model.addAttribute("itemKey",userReview.getItemKey());
+
+        return "editReview.html";
     }
 }

@@ -82,3 +82,6 @@ function deleteReview(reviewId , itemKey){
     }
 
 }
+function editReview(reviewId,ratingId) {
+    window.location.href="/1/editReviewPage?reviewId="+reviewId+"&ratingId="+ratingId;
+}

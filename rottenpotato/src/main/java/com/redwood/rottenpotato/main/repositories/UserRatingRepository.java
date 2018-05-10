@@ -9,7 +9,7 @@ import java.util.List;
 @Repository
 public interface UserRatingRepository extends JpaRepository<UserRating, Long> {
     UserRating findByItemKeyAndUserId(String itemKey, long userId);
-
+    UserRating findById(long Id);
     List<UserRating> findByItemKey(String itemKey);
     List<UserRating> findByUserId(long userId);
 
