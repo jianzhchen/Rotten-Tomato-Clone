@@ -343,22 +343,7 @@
                                 </video>
 
                             </div>
-                            <!--<div th:if="${hasTrailer} == true">-->
-                                <!--<video width="400"  controls>-->
-                                    <!--<source th:src="@{'~/Trailers/'+${trailer}}"  type="video/mp4">-->
-                                <!--</video>-->
-                            <!--</div>-->
                         </div>
-
-
-                        <!--<video id="videoarea" controls="controls" poster="" src=""></video>-->
-
-                        <!--<ul id="playlist">-->
-                            <!--<li th:each="test : ${testSample}" th:movieurl="${test}">user name</li>-->
-                        <!--</ul>-->
-
-
-
                     </div>
                 </div>
             </section>
@@ -421,10 +406,6 @@
                                     <div class="text-left" th:text="${review.content}">
                                         Empty Content
                                     </div>
-                                    <!--&lt;!&ndash;user review date&ndash;&gt;-->
-                                    <!--<div class="text-right" th:text="${review.date}">-->
-                                        <!--1-Jan-01-->
-                                    <!--</div>-->
                                     <!--user name-->
                                     <div class="text-center">
                                         <a  th:text="${review.name}"
@@ -582,28 +563,6 @@
 <script type="text/javascript" src="../static/js/movieInfo.js"></script>
 <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
 
-<!--<script>$(function() {-->
-    <!--$("#playlist li").on("click", function() {-->
-        <!--$("#videoarea").attr({-->
-            <!--"src": $(this).attr("movieurl"),-->
-            <!--"poster": "",-->
-            <!--"autoplay": "autoplay"-->
-        <!--})-->
-    <!--})-->
-     <!--&lt;!&ndash;$("#abc123").on("click", function() {&ndash;&gt;-->
-        <!--&lt;!&ndash;$("#videoarea").attr({&ndash;&gt;-->
-            <!--&lt;!&ndash;"src": $(this).next().attr("movieurl"),&ndash;&gt;-->
-            <!--&lt;!&ndash;"poster": "",&ndash;&gt;-->
-            <!--&lt;!&ndash;"autoplay": "autoplay"&ndash;&gt;-->
-        <!--&lt;!&ndash;})&ndash;&gt;-->
-        <!--&lt;!&ndash;console.log("asda")&ndash;&gt;-->
-    <!--&lt;!&ndash;})&ndash;&gt;-->
-    <!--$("#videoarea").attr({-->
-        <!--"src": $("#playlist li").eq(0).attr("movieurl"),-->
-        <!--"poster": $("#playlist li").eq(0).attr("moviesposter")-->
-    <!--})-->
-<!--})-->
-<!--</script>-->
 
 
 </body>

@@ -2,6 +2,8 @@ package com.redwood.rottenpotato.main.mvccontollers;
 
 import com.redwood.rottenpotato.main.models.*;
 import com.redwood.rottenpotato.main.repositories.*;
+import com.redwood.rottenpotato.security.model.User;
+import com.redwood.rottenpotato.security.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +26,11 @@ public class TVMvcController {
     public UserRatingRepository userRatingRepository;
     @Autowired
     private CriticRepository criticRepository;
+    @Autowired
+    private UserReviewRepository userReviewRepository;
+    @Autowired
+    private UserRepository userRepository;
+
     private final Logger log = LoggerFactory.getLogger(this.getClass());
     @GetMapping(value = "t/{TVKey}")
     public String tvDetail(@PathVariable("TVKey") String tVKey, Model model) {
@@ -77,6 +84,7 @@ public class TVMvcController {
                 userScoreCount++;
             }
         }
+        model.addAttribute("userScoreCount", userScoreCount);
         if (userScoreCount == 0) {
             model.addAttribute("userRating", "N/A");
         } else {
@@ -112,9 +120,28 @@ public class TVMvcController {
             reviews.add(aReview);
         }
         model.addAttribute("reviews", reviews);
+
+
+
+        // Audience Reviews
+        List<UserReview> userReviews = userReviewRepository.findByItemKey(tv.getTVKey());
+        List<HashMap> audienceReviews = new ArrayList<>();
+        for (UserReview rev : userReviews) {
+            for (UserRating rate : userRatings) {
+                if (rev.getUserId() == rate.getUserId()) {
+                    HashMap<String, String> uReview = new HashMap<>();
+                    User user = userRepository.findById(rev.getUserId());
+                    uReview.put("name", user.getFirstName());
+                    uReview.put("key", rev.getUserId() + "");
+                    uReview.put("score", rate.getRating() + "");
+                    uReview.put("content", rev.getContent());
+                    audienceReviews.add(uReview);
+                    break;
+                }
+            }
+        }
+        model.addAttribute("audienceReviews", audienceReviews);
         //TODO poster
         return "tvInfo.html";
     }
-
-
 }
