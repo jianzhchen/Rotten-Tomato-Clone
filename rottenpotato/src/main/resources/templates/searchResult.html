@@ -113,7 +113,8 @@
                             <tbody>
                             <tr th:each="item:${result}" >
                                 <td th:onclick="'javascript:getMovie(\''+${item.key}+'\')'">
-                                    <img th:src="@{'~/Images/movieImages/'+${item.key}+'.jpg'}" th:width="240" th:height="135" onerror="errorImg(this)">
+                                    <img th:src="@{'~/Images/movieImages/'+${item.key}+'.jpg'}" th:width="100" th:height="150"
+                                         th:onerror="'this.src=\'' + @{~/assets/img/defaultMovie.jpg} + '\';'">
                                 </td>
                                 <td>
                                     <ul class="list-unstyled">
@@ -141,7 +142,9 @@
                             <tbody>
                             <tr th:each="item:${result}">
                                 <td th:onclick="'javascript:getTv(\''+${item.key}+'\')'">
-                                    <img th:src="@{'~/Images/tvImages/'+${item.key}+'.jpg'}" th:width="240" th:height="135" onerror="errorImg(this)">
+                                    <img th:src="@{'~/Images/tvImages/'+${item.key}+'.jpg'}" th:width="100" th:height="150"
+                                         th:onerror="'this.src=\'' + @{~/assets/img/defaultMovie.jpg} + '\';'">
+
                                 </td>
                                 <td>
                                     <ul class="list-unstyled">
@@ -170,7 +173,9 @@
                             <tbody>
                             <tr th:each="item:${result}">
                                 <td th:onclick="'javascript:getActor(\''+${item.key}+'\')'">
-                                    <img th:src="@{'~/Images/actorImages/'+${item.key}+'.jpg'}" th:width="240" th:height="135" onerror="errorImg(this)">
+                                    <img th:src="@{'~/Images/actorImages/'+${item.key}+'.jpg'}" th:width="150" th:height="150"
+                                         th:onerror="'this.src=\'' + @{~/assets/img/default.jpg} + '\';'">
+
                                 </td>
                                 <td>
                                     <ul class="list-unstyled">
