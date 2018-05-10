@@ -188,12 +188,15 @@ public class MovieMvcController {
         List<String> trailerLists = new ArrayList<String>();
         int temp = 0;
 
-        for(File fileName: listOfFiles){
-            if(fileName.getName().contains(movieKey)){
-                temp = 1;
-                trailerLists.add(fileName.getName());
+        if(listOfFiles != null){
+            for(File fileName: listOfFiles){
+                if(fileName.getName().contains(movieKey)){
+                    temp = 1;
+                    trailerLists.add(fileName.getName());
+                }
             }
         }
+
 
         if(temp == 1){
             model.addAttribute("hasTrailer", true);
