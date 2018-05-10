@@ -49,6 +49,10 @@ public class HomeMvcController {
         return "login.html";
     }
 
+    @GetMapping("/service")
+    public String servicePage(){
+        return "termOfUse.html";
+    }
 
 
 

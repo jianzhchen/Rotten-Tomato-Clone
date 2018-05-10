@@ -99,7 +99,7 @@
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-body">
-                        <h2 class="card-title">MOVIES OPENING THIS WEEK</h2>
+                        <h2 class="card-title">COMING SOON TO THEATERS</h2>
                             <table class="table table-striped">
                                 <tbody>
                                 <tr th:each="movie:${movieOpeningThisWeek}">
@@ -133,53 +133,9 @@
                         <a class="pull-right" href="/m/b/0">View All</a>
                     </div>
                 </div>
-                <div class="card">
-                    <div class="card-body">
-                        <h2 class="card-title">COMING SOON TO THEATERS</h2>
-                        <table class="table table-striped">
-                            <tbody>
-                            <!--<tr th:each="movie:${comingSoonToTheaters}" th:onclick="'javascript:getMovie(\''+${movie.key}+'\')'"-->
-                                <!--<td th:text="${movie.rate}">N/A</td>-->
-                                <!--<td th:text="${movie.movieName}">Bangalore</td>-->
-                                <!--<td th:text="${movie.movieDate}">MAR 2</td>-->
-                            <!--</tr>-->
-                            </tbody>
-                        </table>
-                        <a class="pull-right" href="movie.html">View All</a>
-                    </div>
-                </div>
             </div>
             <!--tv list-->
             <div class="col-md-6">
-                <div class="card">
-                    <div class="card-body">
-                        <h2 class="card-title">NEW TV TONIGHT</h2>
-                        <table class="table table-striped">
-                            <tbody>
-                            <!--<tr th:each="tv:${newTvTonight}" th:onclick="'javascript:getTv(\''+${tv.Id}+'\')'">-->
-                            <!--<td th:text="${tv.rate}">N/A</td>-->
-                            <!--<td th:text="${tv.name}">Bangalore</td>-->
-                            <!--</tr>-->
-                            </tbody>
-                        </table>
-                        <a class="pull-right" href="/tv.html">View All</a>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-body">
-                        <h2 class="card-title">MOST POPULAR TV ON RT</h2>
-                        <table class="table table-striped">
-                            <tbody>
-                            <!--<tr th:each="tv:${mostPopularTvOnRt}" th:onclick="'javascript:getTv(\''+${tv.Id}+'\')'">-->
-                            <!--<td th:text="${tv.rate}">N/A</td>-->
-                            <!--<td th:text="${tv.name}">Bangalore</td>-->
-                            <!--</tr>-->
-                            </tbody>
-                        </table>
-                        <a class="pull-right" href="/tv.html">View All</a>
-                    </div>
-                </div>
-
                 <div class="card">
                     <div class="card-body">
                         <h2 class="card-title">NEWEST TV SHOWS</h2>
