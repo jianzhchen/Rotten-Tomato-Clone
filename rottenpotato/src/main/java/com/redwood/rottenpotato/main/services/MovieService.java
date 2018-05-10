@@ -38,6 +38,7 @@ public class MovieService {
 
             map.put("movieName", temp.getName());
             map.put("key",temp.getMovieKey());
+            map.put("date",temp.getInTheaters());
             DateFormat formatter = new SimpleDateFormat("MMM-dd");
             templist.add(map);
         }
