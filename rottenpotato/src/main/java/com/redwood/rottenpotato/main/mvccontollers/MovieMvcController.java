@@ -41,10 +41,9 @@ public class MovieMvcController {
 
     @GetMapping(value = "m/{movieKey}")
 
-    public String movieDetail(@PathVariable("movieKey") String movieKey, Model model,Principal principal) {
+    public String movieDetail(@PathVariable("movieKey") String movieKey, Model model, Principal principal) {
         Movie movie = movieRepository.findByMovieKey(movieKey);
-        if (movie == null)
-        {
+        if (movie == null) {
             model.addAttribute("exist", false);
         }
         if (principal == null) {
@@ -72,7 +71,7 @@ public class MovieMvcController {
         for (String actorKey : actorKeys) {
             HashMap<String, String> actorMap = new HashMap<>();
             Actor actor = actorRepository.findByActorKey(actorKey);
-            if(actor==null){
+            if (actor == null) {
                 continue;
             }
             actorMap.put("name", actor.getActorName());
@@ -97,7 +96,7 @@ public class MovieMvcController {
         if (criticScoreCount == 0) {
             model.addAttribute("criticRating", "N/A");
         } else {
-            model.addAttribute("criticRating", String.format("%.2f", (double)criticScore / criticScoreCount));
+            model.addAttribute("criticRating", String.format("%.2f", (double) criticScore / criticScoreCount));
         }
 
         List<UserRating> userRatings = userRatingRepository.findByItemKey(movieKey);
@@ -109,11 +108,11 @@ public class MovieMvcController {
                 userScoreCount++;
             }
         }
-        model.addAttribute("userScoreCount",userScoreCount);
+        model.addAttribute("userScoreCount", userScoreCount);
         if (userScoreCount == 0) {
             model.addAttribute("userRating", "N/A");
         } else {
-            model.addAttribute("userRating", String.format("%.2f", (double)userScore / userScoreCount));
+            model.addAttribute("userRating", String.format("%.2f", (double) userScore / userScoreCount));
         }
 
         //CriticReviews
@@ -125,20 +124,16 @@ public class MovieMvcController {
         for (CriticReview cr : criticReviews) {
             //one review
             HashMap<String, String> aReview = new HashMap<>();
-            if(cr.getReviewRating()==0)
-            {
+            if (cr.getReviewRating() == 0) {
                 aReview.put("score", "No Score");
-            }
-            else
-            {
+            } else {
                 aReview.put("score", Integer.toString(cr.getReviewRating()));
             }
             aReview.put("date", cr.getReviewTime());
             aReview.put("content", cr.getReviewContent());
             aReview.put("criticKey", cr.getCriticKey());
 
-            if(this.criticRepository.findByCriticKey(cr.getCriticKey()) != null)
-            {
+            if (this.criticRepository.findByCriticKey(cr.getCriticKey()) != null) {
                 String criticName = this.criticRepository.findByCriticKey(cr.getCriticKey()).getCriticName();
                 aReview.put("criticName", criticName);
                 reviews.add(aReview);
@@ -149,24 +144,24 @@ public class MovieMvcController {
         //user review
         List<UserReview> userReviews = userReviewRepository.findByItemKey(movie.getMovieKey());
         List<HashMap> audienceReviews = new ArrayList<>();
-        for(UserReview rev: userReviews){
-            for(UserRating rate: userRatings){
-                if(rev.getUserId() == rate.getUserId()){
+        for (UserReview rev : userReviews) {
+            for (UserRating rate : userRatings) {
+                if (rev.getUserId() == rate.getUserId()) {
                     HashMap<String, String> uReview = new HashMap<>();
                     User user = userRepository.findById(rev.getUserId());
                     uReview.put("name", user.getFirstName());
-                    uReview.put("key",rev.getUserId()+"");
-                    uReview.put("score",rate.getRating()+"");
-                    uReview.put("content",rev.getContent());
+                    uReview.put("key", rev.getUserId() + "");
+                    uReview.put("score", rate.getRating() + "");
+                    uReview.put("content", rev.getContent());
                     audienceReviews.add(uReview);
                     break;
                 }
             }
         }
-        model.addAttribute("audienceReviews",audienceReviews);
+        model.addAttribute("audienceReviews", audienceReviews);
 
 
-        model.addAttribute("movieKey",movieKey);
+        model.addAttribute("movieKey", movieKey);
 
         Path currentRelativePath = Paths.get("");
         String s = currentRelativePath.toAbsolutePath().toString();
@@ -184,24 +179,27 @@ public class MovieMvcController {
         currentDirectory = file.getAbsolutePath();
         currentDirectory += "\\src\\main\\resources\\static\\Trailers";
 
-        System.out.println("Current working directory : "+currentDirectory);
+        System.out.println("Current working directory : " + currentDirectory);
 
 
         File folder = new File(currentDirectory.toString());
 
         File[] listOfFiles = folder.listFiles();
 
-        System.out.println(movieKey);
+        if (listOfFiles == null) {
+            model.addAttribute("hasTrailer", false);
+        } else {
+            System.out.println(movieKey);
 
-        for(int i = 0; i <= listOfFiles.length - 1; i++){
-            if(listOfFiles[i].getName().contains(movieKey)){
-                model.addAttribute("hasTrailer", true);
-                model.addAttribute("trailer",listOfFiles[i].getName());
-            }else{
-                model.addAttribute("hasTrailer", false);
+            for (int i = 0; i <= listOfFiles.length - 1; i++) {
+                if (listOfFiles[i].getName().contains(movieKey)) {
+                    model.addAttribute("hasTrailer", true);
+                    model.addAttribute("trailer", listOfFiles[i].getName());
+                } else {
+                    model.addAttribute("hasTrailer", false);
+                }
             }
         }
-
         return "movieInfo.html";
 
     }
@@ -270,34 +268,31 @@ public class MovieMvcController {
     }
 
 
-    public String[] castsTransfer(String casts){
+    public String[] castsTransfer(String casts) {
         String castsArray[] = casts.split(",");
         return castsArray;
     }
 
-    public List<Map>castNamesAndKeys(String[] castsArr){
+    public List<Map> castNamesAndKeys(String[] castsArr) {
         List<Map> tempList = new ArrayList<>();
-        for(int i =  0; i <= castsArr.length - 1 && i < 5; i++){
+        for (int i = 0; i <= castsArr.length - 1 && i < 5; i++) {
 
             Map<String, String> map = new HashMap<>();
             map.put("actorKey", castsArr[i]);
-            map.put("actorName",toCastName(castsArr[i]));
+            map.put("actorName", toCastName(castsArr[i]));
             tempList.add(map);
         }
         return tempList;
     }
 
     //6 actors in maximum
-    public List<Map>getActorNamesAndNamesByKeys(String[] castsArr)
-    {
+    public List<Map> getActorNamesAndNamesByKeys(String[] castsArr) {
         List<Map> tempList = new ArrayList<>();
-        for(int i =  0; i <= castsArr.length - 1 && i < 7; i++)
-        {
+        for (int i = 0; i <= castsArr.length - 1 && i < 7; i++) {
             Map<String, String> map = new HashMap<>();
 
             //if this actor key is not empty
-            if(this.actorRepository.findByActorKey(castsArr[i]) != null)
-            {
+            if (this.actorRepository.findByActorKey(castsArr[i]) != null) {
                 map.put("actorKey", castsArr[i]);
                 map.put("actorName", this.actorRepository.findByActorKey(castsArr[i]).getActorName());
                 tempList.add(map);
@@ -307,7 +302,7 @@ public class MovieMvcController {
         return tempList;
     }
 
-    public String toCastName(String cast){
+    public String toCastName(String cast) {
         String temp = cast.replace("_", " ");
         temp = temp.replace("-", " ");
         return temp;
