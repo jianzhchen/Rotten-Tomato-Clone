@@ -104,7 +104,7 @@ public class UserMvcController {
                     map.put("name", tv.getTVName());
                 }
                 for(UserRating rate: userRatings){
-                    if (review.getUserId() == rate.getUserId()){
+                    if (review.getUserId() == rate.getUserId() ){
                         map.put("rate",rate.getRating()+"");
                         map.put("ratingId",rate.getId()+"");
                         break;
