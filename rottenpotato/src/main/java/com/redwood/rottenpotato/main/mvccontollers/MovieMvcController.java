@@ -185,21 +185,34 @@ public class MovieMvcController {
         File folder = new File(currentDirectory.toString());
 
         File[] listOfFiles = folder.listFiles();
+        List<String> trailerLists = new ArrayList<String>();
+        int temp = 0;
 
-        if (listOfFiles == null) {
-            model.addAttribute("hasTrailer", false);
-        } else {
-            System.out.println(movieKey);
-
-            for (int i = 0; i <= listOfFiles.length - 1; i++) {
-                if (listOfFiles[i].getName().contains(movieKey)) {
-                    model.addAttribute("hasTrailer", true);
-                    model.addAttribute("trailer", listOfFiles[i].getName());
-                } else {
-                    model.addAttribute("hasTrailer", false);
-                }
+        for(File fileName: listOfFiles){
+            if(fileName.getName().contains(movieKey)){
+                temp = 1;
+                trailerLists.add(fileName.getName());
             }
         }
+
+        if(temp == 1){
+            model.addAttribute("hasTrailer", true);
+        }
+//        System.out.println(trailerLists);
+        model.addAttribute("testSamples", trailerLists);
+
+
+
+//
+//
+//        for (int i = 0; i <= listOfFiles.length - 1; i++) {
+//            if (listOfFiles[i].getName().contains(movieKey)) {
+//                model.addAttribute("hasTrailer", true);
+//                model.addAttribute("trailer", listOfFiles[i].getName());
+//                System.out.println(listOfFiles[i].getName());
+//             }
+//        }
+
         return "movieInfo.html";
 
     }
