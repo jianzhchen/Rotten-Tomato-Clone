@@ -54,6 +54,10 @@ public class HomeMvcController {
         return "termOfUse.html";
     }
 
+    @GetMapping("/criticApplication")
+    public String apply(){
+        return "criticApplication.html";
+    }
 
 
 }
