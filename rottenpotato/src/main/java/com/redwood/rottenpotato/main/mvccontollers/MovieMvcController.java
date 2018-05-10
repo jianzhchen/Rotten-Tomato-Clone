@@ -197,11 +197,9 @@ public class MovieMvcController {
             }
         }
 
-
         if(temp == 1){
             model.addAttribute("hasTrailer", true);
         }
-//        System.out.println(trailerLists);
         model.addAttribute("testSamples", trailerLists);
 
 
