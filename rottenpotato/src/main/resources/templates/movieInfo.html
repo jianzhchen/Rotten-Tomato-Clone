@@ -360,17 +360,16 @@
                     </div>
             </section>
             <!--videos-->
-            <section id="videos">
+            <section id="videos" th:if="${hasTrailer} == true">
                     <h3 class="title text-left">Videos</h3>
                 <div class="card m-1">
                     <div class="card-body">
                         <div class="row">
-
-                            <!--<video controls>-->
-                                <!--<source th:src="@{~/testSample.mp4}" type="video/mp4">-->
-                                <!--&lt;!&ndash;th:href="@{~/assets/img/kit/free/favicon.png}">&ndash;&gt;-->
-                            <!--</video>-->
-
+                            <div>
+                                <video width="800"  controls>
+                                    <source th:src="@{'~/Trailers/'+${trailer}}"  type="video/mp4">
+                                </video>
+                            </div>
                         </div>
                     </div>
                 </div>

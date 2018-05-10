@@ -182,7 +182,7 @@ public class MovieMvcController {
         String currentDirectory;
         File file = new File("");
         currentDirectory = file.getAbsolutePath();
-        currentDirectory += "\\src\\main\\resources\\static";
+        currentDirectory += "\\src\\main\\resources\\static\\Trailers";
 
         System.out.println("Current working directory : "+currentDirectory);
 
@@ -191,21 +191,16 @@ public class MovieMvcController {
 
         File[] listOfFiles = folder.listFiles();
 
+        System.out.println(movieKey);
+
         for(int i = 0; i <= listOfFiles.length - 1; i++){
-            System.out.println(listOfFiles[i].getName());
+            if(listOfFiles[i].getName().contains(movieKey)){
+                model.addAttribute("hasTrailer", true);
+                model.addAttribute("trailer",listOfFiles[i].getName());
+            }else{
+                model.addAttribute("hasTrailer", false);
+            }
         }
-//
-//        for (int i = 0; i < listOfFiles.length; i++) {
-//            if (listOfFiles[i].isFile()) {
-//                System.out.println("File " + listOfFiles[i].getName());
-//            } else if (listOfFiles[i].isDirectory()) {
-//                System.out.println("Directory " + listOfFiles[i].getName());
-//            }
-//        }
-
-
-
-
 
         return "movieInfo.html";
 
