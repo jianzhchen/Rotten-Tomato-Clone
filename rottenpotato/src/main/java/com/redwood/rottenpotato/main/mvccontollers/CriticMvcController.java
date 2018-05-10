@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import java.security.Principal;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -118,7 +117,7 @@ public class CriticMvcController {
             model.addAttribute("isLogin", true);
             model.addAttribute("username", principal.getName());
         }
-        List<Critic> critics = criticRepository.findTop10ByOrderByCriticNameDesc(PageRequest.of(page, 10));
+        List<Critic> critics = criticRepository.findTop10ByOrderByCriticNameAsc(PageRequest.of(page, 10));
         model.addAttribute("critics", critics);
         model.addAttribute("page", page);
         return "critic.html";
