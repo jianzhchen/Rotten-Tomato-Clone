@@ -10,6 +10,8 @@ import com.redwood.rottenpotato.security.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
+
 @Service
 public class RatingService {
     @Autowired
@@ -55,6 +57,7 @@ public class RatingService {
         return jsonService.constructStatusMessage(AjaxCallStatus.OK);
     }
 
+    @Transactional
     public String deleteRating(String itemKey, String userEmail) {
         User user = userRepository.findByEmail(userEmail);
         if (user == null) {

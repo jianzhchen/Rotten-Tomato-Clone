@@ -14,5 +14,5 @@ public interface CriticRepository extends JpaRepository<Critic, Long> {
 
     List<Critic> findAll();
 
-    List<Critic> findTop10ByOrderByCriticNameDesc(Pageable pageable);
+    List<Critic> findTop10ByOrderByCriticNameAsc(Pageable pageable);
 }
