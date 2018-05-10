@@ -68,7 +68,7 @@ public class ProfileMvcController {
                 map.put("name", tv.getTVName());
             }
             for(UserRating rate: userRatings){
-                if ((review.getUserId() == rate.getUserId()) || review.getItemKey().equals(rate.getItemKey())){
+                if ((review.getUserId() == rate.getUserId()) && review.getItemKey().equals(rate.getItemKey())){
                     map.put("rate",rate.getRating()+"");
                     map.put("ratingId",rate.getId()+"");
                     break;
