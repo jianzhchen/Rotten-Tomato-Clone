@@ -8,6 +8,8 @@ import com.redwood.rottenpotato.security.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
+
 @Service
 public class TwoListService {
     @Autowired
@@ -33,6 +35,7 @@ public class TwoListService {
         return jsonService.constructStatusMessage(AjaxCallStatus.OK);
     }
 
+    @Transactional
     public String removeWantToSee(String itemKey, String userEmail) {
         User user = userRepository.findByEmail(userEmail);
         if (user == null) {
@@ -54,6 +57,7 @@ public class TwoListService {
         return jsonService.constructStatusMessage(AjaxCallStatus.OK);
     }
 
+    @Transactional
     public String removeNotInterested(String itemKey, String userEmail) {
         User user = userRepository.findByEmail(userEmail);
         if (user == null) {

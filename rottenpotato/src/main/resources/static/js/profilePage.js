@@ -6,10 +6,41 @@ function getMovie(movieId){
      window.location.href="/m/"+movieId;
  }
 
-function deleteFromWantToSee(wantToSeeKey,e)
+function deleteFromWantToSee(itemKey)
 {
-    e.parentNode.parentNode.removeChild(e.parentNode);
+    $.post("/1/removeWantToSee",
+        {"itemKey":itemKey},
+        function (message)
+        {
+            var x = document.getElementById("wantToSeeAlert");
+            if (x.style.display === "none") {
+                x.style.display = "block";
+            } else {
+                x.style.display = "none";
+            }
+            setTimeout(function(){ location.reload(); }, 1000);
+        },
+        "json");
 }
+
+function deleteFromNotInterested(itemKey)
+{
+    $.post("/1/removeNotInterested",
+        {"itemKey":itemKey},
+        function (message)
+        {
+            var x = document.getElementById("notInterestedAlert");
+            if (x.style.display === "none") {
+                x.style.display = "block";
+            } else {
+                x.style.display = "none";
+            }
+            setTimeout(function(){ location.reload(); }, 1000);
+
+        },
+        "json");
+}
+
 
 function toggleFollowUnFollow(userId)
 {
@@ -21,8 +52,7 @@ function toggleFollowUnFollow(userId)
             {"userId":userId},
                 function (message)
                 {
-                    console.log(message);
-                    alert(message.status);
+                    location.reload();
                 },
                 "json");
         change.innerText = "UNFOLLOW";
@@ -37,8 +67,7 @@ function toggleFollowUnFollow(userId)
                 {"userId":userId},
                     function (message)
                     {
-                        console.log(message);
-                        alert(message.status);
+                        location.reload();
                     },
                     "json");
             change.innerText = "FOLLOW";
