@@ -88,6 +88,7 @@ public class UserMvcController {
             List<HashMap> followby = new ArrayList<>();
 
             //1. reviews
+            List<UserRating> userRatings = userRatingRepository.findByUserId(user.getId());
             for (UserReview review : userReviewRepository.findByUserId(user.getId())) {
                 HashMap<String, String> map = new HashMap<>();
                 String itemKey = review.getItemKey();
@@ -102,26 +103,34 @@ public class UserMvcController {
                     map.put("key", tv.getTVKey());
                     map.put("name", tv.getTVName());
                 }
+                for(UserRating rate: userRatings){
+                    if (review.getUserId() == rate.getUserId()){
+                        map.put("rate",rate.getRating()+"");
+                        map.put("ratingId",rate.getId()+"");
+                        break;
+                    }
+                }
                 map.put("content", review.getContent());
+                map.put("reviewId",review.getId()+"");
                 reviews.add(map);
             }
 
             //2. ratings
-            for (UserRating userRating : userRatingRepository.findByUserId(user.getId())) {
-                HashMap<String, String> map = new HashMap<>();
-                String itemKey = userRating.getItemKey();
-                Movie movie = movieRepository.findByMovieKey(itemKey);
-                TV tv = tVRepository.findByTVKey(itemKey);
-                if (movie != null) {
-                    map.put("url", "/m/" + movie.getMovieKey());
-                    map.put("name", movie.getName());
-                } else {
-                    map.put("url", "/t/" + tv.getTVKey());
-                    map.put("name", tv.getTVName());
-                }
-                map.put("score", Integer.toString(userRating.getRating()));
-                ratings.add(map);
-            }
+//            for (UserRating userRating : userRatingRepository.findByUserId(user.getId())) {
+//                HashMap<String, String> map = new HashMap<>();
+//                String itemKey = userRating.getItemKey();
+//                Movie movie = movieRepository.findByMovieKey(itemKey);
+//                TV tv = tVRepository.findByTVKey(itemKey);
+//                if (movie != null) {
+//                    map.put("url", "/m/" + movie.getMovieKey());
+//                    map.put("name", movie.getName());
+//                } else {
+//                    map.put("url", "/t/" + tv.getTVKey());
+//                    map.put("name", tv.getTVName());
+//                }
+//                map.put("score", Integer.toString(userRating.getRating()));
+//                ratings.add(map);
+//            }
 
             //3. wantToSees
             for (WantToSee wantToSee : wantToSeeRepository.findByUserId(user.getId())) {
