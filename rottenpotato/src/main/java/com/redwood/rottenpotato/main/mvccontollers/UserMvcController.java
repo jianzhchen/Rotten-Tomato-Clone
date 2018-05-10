@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import java.math.BigDecimal;
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -44,7 +45,7 @@ public class UserMvcController {
     private EntityManager entityManager;
 
     @RequestMapping("/u/{userId}")
-    public String userPage(@PathVariable("userId") long userId, Model model)
+    public String userPage(@PathVariable("userId") long userId, Model model,Principal principal)
     {
         User user = userRepository.findById(userId);
         if (user == null)
@@ -77,6 +78,8 @@ public class UserMvcController {
             model.addAttribute("firstName", user.getFirstName());
             model.addAttribute("lastName", user.getLastName());
             model.addAttribute("email", user.getEmail());
+            model.addAttribute("userId", user.getId());
+
             List<HashMap> reviews = new ArrayList<>();
             List<HashMap> ratings = new ArrayList<>();
             List<HashMap> notinteresteds = new ArrayList<>();
@@ -85,6 +88,7 @@ public class UserMvcController {
             List<HashMap> followby = new ArrayList<>();
 
             //1. reviews
+            List<UserRating> userRatings = userRatingRepository.findByUserId(user.getId());
             for (UserReview review : userReviewRepository.findByUserId(user.getId())) {
                 HashMap<String, String> map = new HashMap<>();
                 String itemKey = review.getItemKey();
@@ -99,26 +103,34 @@ public class UserMvcController {
                     map.put("key", tv.getTVKey());
                     map.put("name", tv.getTVName());
                 }
+                for(UserRating rate: userRatings){
+                    if (review.getUserId() == rate.getUserId()){
+                        map.put("rate",rate.getRating()+"");
+                        map.put("ratingId",rate.getId()+"");
+                        break;
+                    }
+                }
                 map.put("content", review.getContent());
+                map.put("reviewId",review.getId()+"");
                 reviews.add(map);
             }
 
             //2. ratings
-            for (UserRating userRating : userRatingRepository.findByUserId(user.getId())) {
-                HashMap<String, String> map = new HashMap<>();
-                String itemKey = userRating.getItemKey();
-                Movie movie = movieRepository.findByMovieKey(itemKey);
-                TV tv = tVRepository.findByTVKey(itemKey);
-                if (movie != null) {
-                    map.put("url", "/m/" + movie.getMovieKey());
-                    map.put("name", movie.getName());
-                } else {
-                    map.put("url", "/t/" + tv.getTVKey());
-                    map.put("name", tv.getTVName());
-                }
-                map.put("score", Integer.toString(userRating.getRating()));
-                ratings.add(map);
-            }
+//            for (UserRating userRating : userRatingRepository.findByUserId(user.getId())) {
+//                HashMap<String, String> map = new HashMap<>();
+//                String itemKey = userRating.getItemKey();
+//                Movie movie = movieRepository.findByMovieKey(itemKey);
+//                TV tv = tVRepository.findByTVKey(itemKey);
+//                if (movie != null) {
+//                    map.put("url", "/m/" + movie.getMovieKey());
+//                    map.put("name", movie.getName());
+//                } else {
+//                    map.put("url", "/t/" + tv.getTVKey());
+//                    map.put("name", tv.getTVName());
+//                }
+//                map.put("score", Integer.toString(userRating.getRating()));
+//                ratings.add(map);
+//            }
 
             //3. wantToSees
             for (WantToSee wantToSee : wantToSeeRepository.findByUserId(user.getId())) {
@@ -167,8 +179,8 @@ public class UserMvcController {
             }
 
             //6. Followers
-
-            for (Follow follow : followRepository.findByUserIdTo(user.getId())) {
+            for (Follow follow : followRepository.findByUserIdTo(user.getId()))
+            {
                 HashMap<String, String> map = new HashMap<>();
                 long uid = follow.getUserIdFrom();
                 User u = userRepository.findById(uid);
@@ -176,6 +188,38 @@ public class UserMvcController {
                 map.put("name",u.getFirstName()+" "+u.getLastName());
                 followby.add(map);
             }
+
+            //For follow/unfollow button
+            if(followby.isEmpty())
+            {
+                model.addAttribute("followStatus", "Follow");
+                model.addAttribute("followButtonClass", "btn btn-sm btn-success");
+            }
+            else
+            {
+                for (Follow follow : followRepository.findByUserIdTo(user.getId()))
+                {
+                    //uid = fromId
+                    long uid = follow.getUserIdFrom();
+
+                    String currentEmail = principal.getName();
+                    //toUser
+                    User currentUser = this.userRepository.findByEmail(currentEmail);
+                    if (uid == currentUser.getId())
+                    {
+                        model.addAttribute("followStatus", "unFollow");
+                        model.addAttribute("followButtonClass", "btn btn-sm btn-danger");
+                        //If current user follows this found, break
+                        break;
+                    }
+                    else
+                    {
+                        model.addAttribute("followStatus", "Follow");
+                        model.addAttribute("followButtonClass", "btn btn-sm btn-success");
+                    }
+                }
+            }
+
 
             model.addAttribute("reviews", reviews);
             model.addAttribute("ratings", ratings);
@@ -187,22 +231,22 @@ public class UserMvcController {
         }
 
 
-        String sqlQuery = "SELECT\n" +
-                "  FIND_IN_SET(follower_count, (\n" +
-                "    SELECT GROUP_CONCAT(follower_count ORDER BY follower_count DESC)\n" +
-                "    FROM fcount)\n" +
-                "  ) AS rank\n" +
-                "FROM fcount\n" +
-                "WHERE user_id = :userId";
-        Query query = entityManager.createNativeQuery(sqlQuery);
-        query.setParameter("userId", user.getId());
-        List<BigDecimal> resultList = query.getResultList();
-        if (resultList.size() > 0) {
-            BigDecimal result = resultList.get(0);
-            model.addAttribute("followerRank", result.intValue());
-        } else {
-            model.addAttribute("followerRank", "n/s");
-        }
+//        String sqlQuery = "SELECT\n" +
+//                "  FIND_IN_SET(follower_count, (\n" +
+//                "    SELECT GROUP_CONCAT(follower_count ORDER BY follower_count DESC)\n" +
+//                "    FROM fcount)\n" +
+//                "  ) AS rank\n" +
+//                "FROM fcount\n" +
+//                "WHERE user_id = :userId";
+//        Query query = entityManager.createNativeQuery(sqlQuery);
+//        query.setParameter("userId", user.getId());
+//        List<BigDecimal> resultList = query.getResultList();
+//        if (resultList.size() > 0) {
+//            BigDecimal result = resultList.get(0);
+//            model.addAttribute("followerRank", result.intValue());
+//        } else {
+//            model.addAttribute("followerRank", "n/s");
+//        }
         return "user.html";
     }
 }

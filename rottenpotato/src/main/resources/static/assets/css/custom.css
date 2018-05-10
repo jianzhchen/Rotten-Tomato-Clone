@@ -208,7 +208,7 @@
 .last-review-list td:nth-child(4){
     padding: 10px;
     width: 650px;
-    text-align: center;
+    text-align: left;
 }
 
 .last-review-list th:first-child{
@@ -232,5 +232,101 @@
 .last-review-list th:nth-child(4){
     padding: 10px;
     width: 650px;
+    text-align: center;
+}
+
+/*review history*/
+.review-history td:first-child{
+    padding: 10px;
+    width: 200px;
+    text-align: center;
+}
+
+.review-history td:nth-child(2){
+    padding: 10px;
+    width: 50px;
+    text-align: center;
+}
+
+.review-history td:nth-child(3){
+    padding: 10px;
+    width: 700px;
+    text-align: left;
+}
+
+.review-history td:nth-child(4){
+    padding: 10px;
+    width: 50px;
+    text-align: center;
+}
+.review-history td:nth-child(5){
+    padding: 10px;
+    width: 50px;
+    text-align: center;
+}
+
+.review-history th:first-child{
+    padding: 10px;
+    width: 200px;
+    text-align: center;
+}
+
+.review-history th:nth-child(2){
+    padding: 10px;
+    width: 50px;
+    text-align: center;
+}
+
+.review-history th:nth-child(3){
+    padding: 10px;
+    width: 700px;
+    text-align: center;
+}
+
+.review-history th:nth-child(4){
+    padding: 10px;
+    width: 50px;
+    text-align: center;
+}
+.review-history th:nth-child(5){
+    padding: 10px;
+    width: 50px;
+    text-align: center;
+}
+/*user review history*/
+.user-review-history td:first-child{
+    padding: 10px;
+    width: 200px;
+    text-align: center;
+}
+
+.user-review-history td:nth-child(2){
+    padding: 10px;
+    width: 50px;
+    text-align: center;
+}
+
+.user-review-history td:nth-child(3){
+    padding: 10px;
+    width: 800px;
+    text-align: left;
+}
+
+
+.user-review-history th:first-child{
+    padding: 10px;
+    width: 200px;
+    text-align: center;
+}
+
+.user-review-history th:nth-child(2){
+    padding: 10px;
+    width: 50px;
+    text-align: center;
+}
+
+.user-review-history th:nth-child(3){
+    padding: 10px;
+    width: 800px;
     text-align: center;
 }

@@ -8,6 +8,8 @@
     <!-- Favicons -->
     <link rel="apple-touch-icon" href="./assets/img/kit/free/apple-icon.png">
     <link rel="icon" href="./assets/img/kit/free/favicon.png">
+    <link rel="apple-touch-icon" th:href="@{~/assets/img/kit/free/apple-icon.png}">
+    <link rel="icon" th:href="@{~/assets/img/kit/free/favicon.png}">
     <title>
         Rotten Potato
     </title>
@@ -17,6 +19,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css"/>
     <link rel="stylesheet" href="./assets/css/material-kit.css?v=2.0.2">
     <link rel="stylesheet" href="./assets/css/custom.css">
+    <link rel="stylesheet" th:href="@{~/assets/css/material-kit.css?v=2.0.2}">
+    <link rel="stylesheet" th:href="@{~/assets/css/custom.css}">
 </head>
 
 <body class="index-page ">
@@ -89,35 +93,19 @@
                                 <div class="row">
                                     <div class="col-md-4 text-center">
                                         <div class="avatar">
-                                            <img src="./assets/img/kit/faces/christian.jpg" alt="Circle Image"
+                                            <img src="./assets/img/kit/faces/christian.jpg" width="150px" height="150px" alt="Circle Image"
                                                  class="img-raised rounded img-fluid img-thumbnail">
                                         </div>
                                         <button type="button" class="btn btn-primary btn-sm mt-3">Modify Photo</button>
                                     </div>
                                     <div class="col-md-8 text-left">
                                         <h3 class="title">Basic Information</h3>
+                                        <button type="button" class="btn btn-primary btn-sm float-right" data-toggle="modal" data-target="#editName">edit</button>
                                         <div id="info-section">
                                             <ul class="list-unstyled infolist-height">
-                                                <li>Display Name:</li>
-                                                <li>Gender:</li>
-                                                <li>Birthday:</li>
-                                                <li>Country:</li>
+                                                <li th:text="'First Name : '+${firstName}">First Name</li>
+                                                <li th:text="'Last Name : '+ ${lastName}">Last Name</li>
                                             </ul>
-                                            <p class="title">About:</p>
-                                            <div class="description text-left" style="height: 110px;overflow: hidden;">
-                                                <p>An artist of considerable range, Chet Faker &#x2014; the name taken by
-                                                    Melbourne-raised,
-                                                    Brooklyn-based Nick Murphy &#x2014; writes, performs and records all of his own
-                                                    music,
-                                                    Brooklyn-based Nick Murphy &#x2014; writes, performs and records all of his own
-                                                    music,
-                                                    Brooklyn-based Nick Murphy &#x2014; writes, performs and records all of his own
-                                                    music,
-                                                    giving it a warm, intimate feel with a solid groove structure. </p>
-                                            </div>
-                                            <div class="float-right">
-                                                <button type="button" class="btn btn-sm btn-primary">Edit</button>
-                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -130,30 +118,52 @@
 
                                     <div class="row">
                                         <div class="col-sm-6">
-                                            <div>
+                                            <div th:text="'Account ID: '+${id}">
                                                 Account ID:
                                             </div>
                                         </div>
 
                                         <div class="col-sm-4">
-                                            <button type="button" class="btn btn-primary btn-sm" style="width: 200px;">Change Password</button>
+                                            <button type="button" class="btn btn-primary btn-sm" style="width: 200px;" data-toggle="modal" data-target="#changePassword">Change Password</button>
                                         </div>
 
                                     </div>
 
                                     <div class="row">
                                         <div class="col-sm-6">
-                                            <div>
+                                            <div th:text="'Email : '+ ${email}">
                                                 Email:
                                             </div>
                                         </div>
 
                                         <div class="col-sm-4">
-                                            <button type="button" class="btn btn-primary btn-sm" style="width: 200px;">Change Email</button>
+                                            <button type="button" class="btn btn-primary btn-sm" style="width: 200px;" data-toggle="modal" data-target="#changeEmail">Change Email</button>
+
                                         </div>
 
                                     </div>
-                                    <div class="row">
+                                    <!--admin-->
+                                    <div class="row" th:if="${isAdmin}">
+                                        <div class="col-sm-6">
+                                            <div>
+                                                Identity: Administrator
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-4">
+                                            <button type="button" class="btn btn-primary btn-sm" style="width: 200px;">Apply Now</button>
+                                        </div>
+                                    </div>
+                                    <!--critic-->
+                                    <div class="row" th:if="${isCritic}">
+                                        <div class="col-sm-6">
+                                            <div>
+                                                Identity: Critic
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--common-->
+                                    <div class="row" th:unless="${isAdmin} or ${isCritic}">
                                         <div class="col-sm-6">
                                             <div>
                                                 Identity: Common
@@ -177,6 +187,9 @@
                                     </select>
                                 </div>
                             </div>
+                        <div class="text-center">
+                        <button class="btn btn-primary " onclick="window.location.href='/1/me'">Back</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -186,32 +199,61 @@
 
 
 <!-- Classic Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
+<div class="modal fade" id="changeEmail">
+    <div class="modal-dialog modal-sm">
         <div class="modal-content">
+
             <div class="modal-header">
-                <h5 class="modal-title">Modal title</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <i class="material-icons">clear</i>
-                </button>
+                <h4 class="modal-title">Change Email</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
+
             <div class="modal-body">
-                <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live
-                    the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large
-                    language ocean. A small river named Duden flows by their place and supplies it with the necessary
-                    regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.
-                    Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic
-                    life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the
-                    far World of Grammar.
-                </p>
+                    <div class="form-group">
+                        <label for="ce_new_email">New Email</label>
+                        <input type="text" id="ce_new_email" class="form-control" autofocus="autofocus"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="ce_password">Password</label>
+                        <input type="password" id="ce_password" class="form-control"/>
+                    </div>
+                    <div class="form-group">
+                        <button type="button" class=" btn btn-primary" data-dismiss="modal" onclick="changeEmail()" >Update</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-link">Nice Button</button>
-                <button type="button" class="btn btn-danger btn-link" data-dismiss="modal">Close</button>
-            </div>
+
         </div>
     </div>
 </div>
+<div class="modal fade" id="changePassword">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h4 class="modal-title">Change Password</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="ce_new_email">New Password</label>
+                    <input type="password" id="cp_new_password" class="form-control" autofocus="autofocus"/>
+                </div>
+                <div class="form-group">
+                    <label for="ce_password">Old Password</label>
+                    <input type="password" id="cp_old_password" class="form-control"/>
+                </div>
+                <div class="form-group">
+                    <button type="button" class=" btn btn-primary" data-dismiss="modal" onclick="changePassword()" >Update</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
 <!--  End Modal -->
 <footer class="footer ">
     <div class="container">
@@ -255,6 +297,17 @@
     </div>
 </footer>
 <!--   Core JS Files   -->
+<script th:src="@{~/assets/js/core/jquery.min.js}"></script>
+<script th:src="@{~/assets/js/core/popper.min.js}"></script>
+<script th:src="@{~/assets/js/bootstrap-material-design.js}"></script>
+<script th:src="@{~/assets/js/plugins/moment.min.js}"></script>
+<script th:src="@{~/assets/js/plugins/bootstrap-datetimepicker.min.js}"></script>
+<script th:src="@{~/assets/js/plugins/nouislider.min.js}"></script>
+<script th:src="@{~/assets/js/material-kit.js?v=2.0.2}"></script>
+<script th:src="@{~/assets/assets-for-demo/js/material-kit-demo.js}"></script>
+<script type="text/javascript" th:src="@{~/js/accountInfo.js}"></script>
+
+<!--local-->
 <script src="./assets/js/core/jquery.min.js"></script>
 <script src="./assets/js/core/popper.min.js"></script>
 <script src="./assets/js/bootstrap-material-design.js"></script>
@@ -268,7 +321,6 @@
 <script src="./assets/js/material-kit.js?v=2.0.2"></script>
 <!-- Fixed Sidebar Nav - js With initialisations For Demo Purpose, Don't Include it in your project -->
 <script src="./assets/assets-for-demo/js/material-kit-demo.js"></script>
-
 </body>
 
 </html>
