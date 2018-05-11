@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import java.security.Principal;
 import java.util.*;
 
 @Controller
@@ -33,8 +34,18 @@ public class TVMvcController {
 
     private final Logger log = LoggerFactory.getLogger(this.getClass());
     @GetMapping(value = "t/{TVKey}")
-    public String tvDetail(@PathVariable("TVKey") String tVKey, Model model) {
+    public String tvDetail(@PathVariable("TVKey") String tVKey, Model model,  Principal principal) {
+
+
         TV tv = tVRepository.findByTVKey(tVKey);
+
+
+        if (principal == null) {
+            model.addAttribute("isLogin", false);
+        } else {
+            model.addAttribute("isLogin", true);
+            model.addAttribute("username", principal.getName());
+        }
         if (tv == null) {
             model.addAttribute("exist", false);
         }

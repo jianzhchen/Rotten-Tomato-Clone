@@ -11,3 +11,6 @@ function getMovie(movieId){
      window.location.href="/me";
  }
 
+function getVideos(){
+     window.location.href="/v/all";
+ }

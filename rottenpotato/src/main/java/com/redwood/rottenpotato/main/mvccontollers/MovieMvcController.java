@@ -40,7 +40,6 @@ public class MovieMvcController {
 
 
     @GetMapping(value = "m/{movieKey}")
-
     public String movieDetail(@PathVariable("movieKey") String movieKey, Model model, Principal principal) {
         Movie movie = movieRepository.findByMovieKey(movieKey);
         if (movie == null) {
@@ -163,16 +162,6 @@ public class MovieMvcController {
 
         model.addAttribute("movieKey", movieKey);
 
-        Path currentRelativePath = Paths.get("");
-        String s = currentRelativePath.toAbsolutePath().toString();
-        System.out.println("Current relative path is: " + s);
-        System.out.println();
-        System.out.println();
-        System.out.println();
-        System.out.println();
-        System.out.println();
-        System.out.println();
-        System.out.println();
 
         String currentDirectory;
         File file = new File("");
@@ -201,18 +190,6 @@ public class MovieMvcController {
             model.addAttribute("hasTrailer", true);
         }
         model.addAttribute("testSamples", trailerLists);
-
-
-
-//
-//
-//        for (int i = 0; i <= listOfFiles.length - 1; i++) {
-//            if (listOfFiles[i].getName().contains(movieKey)) {
-//                model.addAttribute("hasTrailer", true);
-//                model.addAttribute("trailer", listOfFiles[i].getName());
-//                System.out.println(listOfFiles[i].getName());
-//             }
-//        }
 
         return "movieInfo.html";
 

@@ -313,26 +313,26 @@
             </section>
             <!--photos-->
             <section id="photos">
-                    <h3 class="title text-left">Photos</h3>
-                    <div class="card m-1">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-2 ">
-                                    <div class="text-center">
-                                        <img th:src="@{'~/Images/movieImages/'+${movieKey}+'.jpg'}" th:width="200" th:height="300"
-                                             th:onerror="'this.src=\'' + @{~/assets/img/defaultMovie.jpg} + '\';'">
-                                    </div>
+                <h3 class="title text-left">Photos</h3>
+                <div class="card m-1">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-2 ">
+                                <div class="text-center">
+                                    <img th:src="@{'~/Images/movieImages/'+${movieKey}+'.jpg'}" th:width="200" th:height="300"
+                                         th:onerror="'this.src=\'' + @{~/assets/img/defaultMovie.jpg} + '\';'">
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="text-right">
-                        <button type="button" class="btn btn-default btn-sm">View All</button>
-                    </div>
+                </div>
+                <div class="text-right">
+                    <button type="button" class="btn btn-default btn-sm">View All</button>
+                </div>
             </section>
             <!--videos-->
             <section id="videos">
-                    <h3 class="title text-left">Videos</h3>
+                <h3 class="title text-left">Videos</h3>
                 <div class="card m-1">
                     <div class="card-body">
                         <div class="row">
@@ -346,6 +346,9 @@
                         </div>
                     </div>
                 </div>
+                <!--<div class="text-right">-->
+                    <!--<button type="button" class="btn btn-default btn-sm"  th:onclick="'javascript:getTrailers(\''+${movieKey}+'\')'">View All</button>-->
+                <!--</div>-->
             </section>
             <!--critic review-->
             <section id="critic_review">
