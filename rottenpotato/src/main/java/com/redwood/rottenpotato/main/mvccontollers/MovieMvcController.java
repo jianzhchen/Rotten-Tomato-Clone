@@ -79,9 +79,6 @@ public class MovieMvcController {
         }
         model.addAttribute("casts", actors);
 
-//        model.addAttribute("casts",this.getActorNamesAndNamesByKeys(castsTransfer(movie.getCast())));
-
-
         List<CriticReview> crs = criticReviewRepository.findByItemKey(movieKey);
         int criticScore = 0;
         int criticScoreCount = 0;
@@ -160,17 +157,12 @@ public class MovieMvcController {
         }
         model.addAttribute("audienceReviews", audienceReviews);
 
-
         model.addAttribute("movieKey", movieKey);
-
 
         String currentDirectory;
         File file = new File("");
         currentDirectory = file.getAbsolutePath();
         currentDirectory += "\\src\\main\\resources\\static\\Trailers";
-
-        System.out.println("Current working directory : " + currentDirectory);
-
 
         File folder = new File(currentDirectory.toString());
 
@@ -186,7 +178,6 @@ public class MovieMvcController {
                 }
             }
         }
-
         if(temp == 1){
             model.addAttribute("hasTrailer", true);
         }
