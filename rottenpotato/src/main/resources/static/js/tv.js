@@ -1,6 +1,3 @@
-function getMovie(movieId){
-    window.location.href="/m/"+movieId;
-}
 function getNextPage(page) {
     var next= Number(page) + 1;
     window.location.href=next;
@@ -9,6 +6,10 @@ function getNextPage(page) {
 function getPrevPage(page) {
     var prev= Number(page) - 1;
     window.location.href=prev;
+}
+
+function getTV(tvId){
+    window.location.href="/t/"+tvId;
 }
 
 function errorImg(img){

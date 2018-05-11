@@ -7,6 +7,7 @@ import com.redwood.rottenpotato.security.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -102,7 +103,6 @@ public class TVMvcController {
             model.addAttribute("userRating", String.format("%.2f", (double)userScore / userScoreCount));
         }
 
-
         //CriticReviews from MovieMvcController
         //1. get criticReview based on movieKey(itemKey)
         List<CriticReview> criticReviews1 = criticReviewRepository.findByItemKey(tv.getTVKey());
@@ -132,8 +132,6 @@ public class TVMvcController {
         }
         model.addAttribute("reviews", reviews);
 
-
-
         // Audience Reviews
         List<UserReview> userReviews = userReviewRepository.findByItemKey(tv.getTVKey());
         List<HashMap> audienceReviews = new ArrayList<>();
@@ -155,5 +153,28 @@ public class TVMvcController {
         model.addAttribute("audienceReviews", audienceReviews);
         //TODO poster
         return "tvInfo.html";
+    }
+
+    @GetMapping(value = "t/l/{page}")
+    public String movieByDate(@PathVariable("page") int page, Model model, Principal principal) {
+        if (principal == null) {
+            model.addAttribute("isLogin", false);
+        } else {
+            model.addAttribute("isLogin", true);
+            model.addAttribute("username", principal.getName());
+        }
+        List<TV> tvs = tVRepository.findTop10ByOrderByTVDateDesc(PageRequest.of(page, 8));
+        List<HashMap> tvList = new ArrayList<>();
+        for (TV tv : tvs) {
+            HashMap<String, String> movieDetail = new HashMap<>();
+            movieDetail.put("name", tv.getTVName());
+            movieDetail.put("key", tv.getTVKey());
+            movieDetail.put("date", tv.getTVDate());
+            //TODO
+            tvList.add(movieDetail);
+        }
+        model.addAttribute("TVs", tvList);
+        model.addAttribute("page", page);
+        return "tv.html";
     }
 }

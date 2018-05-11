@@ -7,23 +7,32 @@
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     <!-- Favicons -->
-    <link rel="apple-touch-icon" href="./assets/img/kit/free/apple-icon.png">
-    <link rel="icon" href="./assets/img/kit/free/favicon.png">
+    <link rel="apple-touch-icon" th:href="@{~/assets/img/kit/free/apple-icon.png}">
+    <link rel="icon" th:href="@{~/assets/img/kit/free/favicon.png}">
     <title>
         Rotten Potato
     </title>
     <!--     Fonts and icons     -->
+
+    <link rel="stylesheet" type="text/css"
+          th:href="@{https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons}"/>
     <link rel="stylesheet" type="text/css"
           href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons"/>
+    <link rel="stylesheet" th:href="@{https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css}"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css"/>
+
+    <link rel="stylesheet" th:href="@{~/assets/css/material-kit.css?v=2.0.2}">
     <link rel="stylesheet" href="./assets/css/material-kit.css?v=2.0.2">
+    <link rel="stylesheet" th:href="@{~/assets/css/custom.css}">
+    <link rel="stylesheet" href="./assets/css/custom.css">
     <!-- Documentation extras -->
     <!-- CSS Just for demo purpose, don't include it in your project -->
+    <link th:href="@{~/assets/assets-for-demo/demo.css}" rel="stylesheet"/>
     <link href="./assets/assets-for-demo/demo.css" rel="stylesheet"/>
     <!-- iframe removal -->
 </head>
 
-<body class="index-page ">
+<body class="index-page">
 <nav class="navbar navbar-expand-lg fixed-top  bg-dark">
     <div class="container">
         <div class="navbar-translate">
@@ -74,276 +83,76 @@
     </div>
 </nav>
 
-<div class="page-header header-filter clear-filter purple-filter" data-parallax="true"
-     style="background-image: url('./assets/img/Moonlight.jpg'); background-size: 34% auto;">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8 ml-auto mr-auto">
-                <div class="brand">
-                    <h1>Movie on Promo</h1>
-                    <h3>Here is a 2017 Oscar Best Picture Movie</h3>
-                </div>
-            </div>
-        </div>
-    </div>
+
+<div class="page-header" data-parallax="false"
+     style="height: 18vh !important;">
+
 </div>
 
 <div class="main main-raised">
     <div class="section section-basic mx-2">
-        <div class="row">
-            <div class="col-md-4">
-                <!--NEW TV TONIGHT-->
-                <div class="card">
-                    <div class="card-body">
-                        <h4 class="card-title">NEW TV TONIGHT</h4>
-                            <table class="table table-striped">
-                                <tbody>
-                                <tr th:each="tv:${newTvTonight}">
-                                    <td th:text="${tv.rate}">N/A</td>
-                                    <td th:text="${tv.name}">Bangalore</td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        <div class="text-right">
-                            <button type="button" class="btn btn-default">View All</button>
-                        </div>
-                        </div>
-                </div>
-                <!--MOST POPULAR TV ON RT-->
-                <div class="card">
-                    <div class="card-body">
-                        <h4 class="card-title">MOST POPULAR TV ON RT</h4>
-                        <table class="table table-striped">
-                            <tbody>
-                            <tr th:each="tv:${mostPopularTvOnRt}">
-                                <td th:text="${tv.rate}">N/A</td>
-                                <td th:text="${tv.name}">Bangalore</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                        <div class="text-right">
-                            <button type="button" class="btn btn-default">View All</button>
+        <div class="container">
 
-                        </div>
-                    </div>
-                </div>
-                <!--TOP TV DRAMAS-->
-                <div class="card">
-                    <div class="card-body">
-                        <h4 class="card-title">TOP TV DRAMAS</h4>
-                        <table class="table table-striped">
-                            <tbody>
-                            <tr th:each="tv:${topTvDramas}">
-                                <td th:text="${tv.rate}">N/A</td>
-                                <td th:text="${tv.name}">Bangalore</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                        <div class="text-right">
-                            <button type="button" class="btn btn-default">View All</button>
-
-                        </div>
-                    </div>
-                </div>
-                <!--TOP SCI-FI/HORROR/FANTASY-->
-                <div class="card">
-                    <div class="card-body">
-                        <h4 class="card-title">TOP SCI-FI/HORROR/FANTASY</h4>
-                        <table class="table table-striped">
-                            <tbody>
-                            <tr th:each="tv:${topSciFi}">
-                                <td th:text="${tv.rate}">N/A</td>
-                                <td th:text="${tv.name}">Bangalore</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                        <div class="text-right">
-                            <button type="button" class="btn btn-default">View All</button>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <!--CERTIFIED FRESH TV - CURRENTLY AIRING-->
-                <div class="card">
-                    <div class="card-body">
-                        <h4 class="card-title">CERTIFIED FRESH TV - CURRENTLY AIRING</h4>
-                        <table class="table table-striped">
-                            <tbody>
-                                <tr>
-                                    <td style="width: 100px;">
-                                        <img src="./assets/img/Spotlight.jpg" style="width:100%">
-                                    </td>
-                                    <td>
-                                        <ul class="list-unstyled">
-                                            <li>Name</li>
-                                            <li>99%</li>
-                                            <li class="description">Critic Consensus:</li>
-                                        </ul>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style="width: 100px;">
-                                        <img src="./assets/img/Spotlight.jpg" style="width:100%">
-                                    </td>
-                                    <td>
-                                        <ul class="list-unstyled">
-                                            <li>Name</li>
-                                            <li>99%</li>
-                                            <li class="description">Critic Consensus:</li>
-                                        </ul>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <div class="text-right">
-                            <button type="button" class="btn btn-default">View All</button>
-
-                        </div>
-                    </div>
-                </div>
-                <!--TV SERIES AWARD WINNERS-->
-                <div class="card">
-                    <div class="card-body">
-                        <h4 class="card-title">TV SERIES AWARD WINNERS</h4>
-                        <h6>TV AWARDS WINNERS 2015</h6>
-                        <table class="table">
-                            <tbody>
-                                <tr>
-                                    <td style="width: 100px;">
-                                        <img src="./assets/img/Spotlight.jpg" style="width:100%">
-                                    </td>
-                                    <td>
-                                        <ul class="list-unstyled">
-                                            <li><a href="#">Director Guild Awards</a></li>
-                                            <li><a href="#">Emmy Awards </a></li>
-                                            <li><a href="#">Golden Globe Awards </a></li>
-                                            <li><a href="#">People's Choice Awards</a></li>
-                                            <li><a href="#">Producers Guild Awards</a></li>
-                                            <li><a href="#">Screen Actors Guild Awards </a></li>
-                                            <li><a href="#">Writers Guild of America Awards</a></li>
-                                        </ul>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <h6>GOLDEN TOMATO AWARDS 2015</h6>
-                        <table class="table">
-                            <tbody>
-                            <tr>
-                                <td style="width: 100px;">
-                                    <img src="./assets/img/Spotlight.jpg" style="width:100%">
-                                </td>
-                                <td>
-                                    <ul class="list-unstyled">
-                                        <li><a href="#">Director Guild Awards</a></li>
-                                        <li><a href="#">Emmy Awards </a></li>
-                                        <li><a href="#">Golden Globe Awards </a></li>
-                                        <li><a href="#">People's Choice Awards</a></li>
-                                        <li><a href="#">Producers Guild Awards</a></li>
-                                        <li><a href="#">Screen Actors Guild Awards </a></li>
-                                        <li><a href="#">Writers Guild of America Awards</a></li>
+            <div class = "row">
+                <div class="col-sm-9">
+                    <div class="sort bar">
+                        <table>
+                            <td>Genre: </td>
+                            <td width="200">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-sm btn-primary dropdown-toggle" data-toggle="dropdown">
+                                        <span class="caret">All</span>
+                                    </button>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li> <input type="checkbox">Active</li>
+                                        <li> <input type="checkbox">Animation</li>
+                                        <li> <input type="checkbox">Art & Foreign</li>
+                                        <li> <input type="checkbox">Classics</li>
+                                        <li> <input type="checkbox">Comedy</li>
                                     </ul>
-                                </td>
-                            </tr>
-                            </tbody>
+                                </div>
+                            </td>
+                            <td>Sort By: </td>
+                            <td>
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-sm btn-primary dropdown-toggle" data-toggle="dropdown">
+                                        <span class="caret">Popularity</span>
+                                    </button>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><a href="#">Release Date</a></li>
+                                        <li><a href="#">Popularity</a></li>
+                                    </ul>
+                                </div>
+                            </td>
                         </table>
-                    </div>
-                </div>
 
-            </div>
-            <div class="col-md-4">
-                <!--TOP 10 TV SHOWS 2017-->
-                <div class="card">
-                    <div class="card-body">
-                        <h4 class="card-title">TOP 10 TV SHOWS 2017</h4>
-                        <table class="table table-striped">
-                            <tbody>
-                                <tr th:each="tv:${top10TvShows2017}">
-                                    <td th:text="${tv.rate}">N/A</td>
-                                    <td th:text="${tv.name}">Bangalore</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <div th:each="row :${#numbers.sequence(0,TVs.size(),4)}" class="row">
+                                <div th:each="col :${#numbers.sequence(0,3)}" th:if="${row + col < TVs.size()}" class="col-md-3 text-center">
+                                    <a th:onclick="'javascript:getTV(\''+${TVs.get(row+col).key}+'\')'">
+                                        <img th:src="@{'~/Images/tvImages/'+${TVs.get(row+col).key}+'.jpg'}" th:width="150" th:height="200"
+                                             th:onerror="'this.src=\'' + @{~/assets/img/defaultMovie.jpg} + '\';'"></a>
+                                    <h6 th:text="${TVs.get(row+col).name}" th:onclick="'javascript:getTV(\''+${TVs.get(row+col).key}+'\')'">some text</h6>
+                                    <p th:text="${TVs.get(row+col).date}">some text</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pull-right">
+                        <button type="button" class="btn btn-primary btn-sm" th:if="${page} != 0" th:onclick="'javascript:getPrevPage(\''+${page}+'\')'" >Prev</button>
+                        <p style="display: inline" th:text="${page}+1">Page</p>
+                        <button type="button" class="btn btn-primary btn-sm" th:onclick="'javascript:getNextPage(\''+${page}+'\')'">Next</button>
                     </div>
                 </div>
-                <!--TOP 10 TV SHOWS 2016-->
-                <div class="card">
-                    <div class="card-body">
-                        <h4 class="card-title">TOP 10 TV SHOWS 2016</h4>
-                        <table class="table table-striped">
-                            <tbody>
-                            <tr th:each="tv:${top10TvShows2016}">
-                                <td th:text="${tv.rate}">N/A</td>
-                                <td th:text="${tv.name}">Bangalore</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <!--TOP 10 TV SHOWS 2015-->
-                <div class="card">
-                    <div class="card-body">
-                        <h4 class="card-title">TOP 10 TV SHOWS 2015</h4>
-                        <table class="table table-striped">
-                            <tbody>
-                            <tr th:each="tv:${top10TvShows2015}">
-                                <td th:text="${tv.rate}">N/A</td>
-                                <td th:text="${tv.name}">Bangalore</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <!--TOP 10 TV SHOWS 2014-->
-                <div class="card">
-                    <div class="card-body">
-                        <h4 class="card-title">TOP 10 TV SHOWS 2014</h4>
-                        <table class="table table-striped">
-                            <tbody>
-                            <tr th:each="tv:${top10TvShows2014}">
-                                <td th:text="${tv.rate}">N/A</td>
-                                <td th:text="${tv.name}">Bangalore</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
             </div>
         </div>
-
     </div>
 </div>
+
+
 <!-- Classic Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Modal title</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <i class="material-icons">clear</i>
-                </button>
-            </div>
-            <div class="modal-body">
-                <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live
-                    the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large
-                    language ocean. A small river named Duden flows by their place and supplies it with the necessary
-                    regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.
-                    Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic
-                    life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the
-                    far World of Grammar.
-                </p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-link">Nice Button</button>
-                <button type="button" class="btn btn-danger btn-link" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
-
 <div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="signupModalLabel"
      aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -422,7 +231,6 @@
         </div>
     </div>
 </div>
-
 <!--  End Modal -->
 <footer class="footer ">
     <div class="container">
@@ -466,6 +274,21 @@
     </div>
 </footer>
 <!--   Core JS Files   -->
+<script th:src="@{~/assets/js/core/jquery.min.js}"></script>
+<script th:src="@{~/assets/js/core/popper.min.js}"></script>
+<script th:src="@{~/assets/js/bootstrap-material-design.js}"></script>
+<!--  Plugin for Date Time Picker and Full Calendar Plugin  -->
+<script th:src="@{~/assets/js/plugins/moment.min.js}"></script>
+<!--	Plugin for the Datepicker, full documentation here: https://github.com/Eonasdan/bootstrap-datetimepicker -->
+<script th:src="@{~/assets/js/plugins/bootstrap-datetimepicker.min.js}"></script>
+<!--	Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
+<script th:src="@{~/assets/js/plugins/nouislider.min.js}"></script>
+<!-- Material Kit Core initialisations of plugins and Bootstrap Material Design Library -->
+<script th:src="@{~/assets/js/material-kit.js?v=2.0.2}"></script>
+<!-- Fixed Sidebar Nav - js With initialisations For Demo Purpose, Don't Include it in your project -->
+<script th:src="@{~/assets/assets-for-demo/js/material-kit-demo.js}"></script>
+<script type="text/javascript" th:src="@{~/js/tv.js}"></script>
+<!--for test-->
 <script src="./assets/js/core/jquery.min.js"></script>
 <script src="./assets/js/core/popper.min.js"></script>
 <script src="./assets/js/bootstrap-material-design.js"></script>
@@ -476,9 +299,11 @@
 <!--	Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
 <script src="./assets/js/plugins/nouislider.min.js"></script>
 <!-- Material Kit Core initialisations of plugins and Bootstrap Material Design Library -->
-<script src="./assets/js/material-kit.js?v=2.0.2"></script>
+<script src="./assets/js/material-kit.js?v=2.0.2}"></script>
 <!-- Fixed Sidebar Nav - js With initialisations For Demo Purpose, Don't Include it in your project -->
 <script src="./assets/assets-for-demo/js/material-kit-demo.js"></script>
+
+
 
 </body>
 

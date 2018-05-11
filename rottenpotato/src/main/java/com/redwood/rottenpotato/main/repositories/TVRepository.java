@@ -23,4 +23,6 @@ public interface TVRepository extends JpaRepository<TV, Long> {
 
     @Query("SELECT t FROM TV t order by t.TVDate DESC")
     public List<TV> findTop10ByOrderByTVDateDesc(Pageable pageable);
+
+
 }
