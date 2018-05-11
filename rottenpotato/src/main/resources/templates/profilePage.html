@@ -120,9 +120,6 @@
                                                 <button type="button" class="btn btn-sm btn-primary" onclick="window.location.href='/1/accountInfo'">Manage Account</button>
                                             </div>
                                         </div>
-
-
-
                                     </div>
                                 </div>
                             </div>
@@ -166,34 +163,81 @@
                 </div>
             </div>
             <!--want to see -->
+
+            <!--want to see alert-->
+            <div class="alert alert-success" id="wantToSeeAlert"  style="display:none">
+                <div class="container">
+                    <div class="alert-icon">
+                        <i class="material-icons">check</i>
+                    </div>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true"><i class="material-icons">clear</i></span>
+                    </button>
+                    <b>Success Alert:</b> Yuhuuu! You've got your $11.99 album from The Weeknd
+                </div>
+            </div>
+
+
             <div class="row" id="want-to-see">
                 <h3 class="title float-left">Want To See</h3>
                 <div class="card m-1">
                     <div class="card-body">
 
                         <div th:each="row :${#numbers.sequence(0,wantToSees.size(),4)}" class="row">
-                            <div th:each="col :${#numbers.sequence(0,3)}" th:if="${row + col < wantToSees.size()}" class="col-md-3 text-center">
+                            <div th:each="col :${#numbers.sequence(0,3)}"
+                                 th:if="${row + col < wantToSees.size()}" class="col-md-3 text-center">
                                 <a th:onclick="'javascript:getItem(\''+${wantToSees.get(row+col).url}+'\')'">
-                                    <img src="../static/Images/movieImages/early_man.jpg" th:src="@{'~/Images/movieImages/'+${wantToSees.get(row+col).key}+'.jpg'}" th:width="150" th:height="200"
-                                         th:onerror="'this.src=\'' + @{~/assets/img/defaultMovie.jpg} + '\';'"></a>
-                                <h6 th:text="${wantToSees.get(row+col).name}" th:onclick="'javascript:getItem(\''+${wantToSees.get(row+col).url}+'\')'">name</h6>
+                                    <img src="../static/Images/movieImages/early_man.jpg"
+                                         th:src="@{'~/Images/movieImages/'+${wantToSees.get(row+col).key}+'.jpg'}"
+                                         th:width="150" th:height="200"
+                                         th:onerror="'this.src=\'' + @{~/assets/img/defaultMovie.jpg} + '\';'">
+                                </a>
+                                <h6 th:text="${wantToSees.get(row+col).name}"
+                                    th:onclick="'javascript:getItem(\''+${wantToSees.get(row+col).url}+'\')'">
+                                    name
+                                </h6>
+                                <img th:src="@{~/assets/img/kit/free/delete.png}"
+                                     th:onclick="'javascript:deleteFromWantToSee(\''+${wantToSees.get(row+col).key}+'\')'">
 
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <!--not interested alert-->
+            <div class="alert alert-success" id="notInterestedAlert"  style="display:none">
+                <div class="container">
+                    <div class="alert-icon">
+                        <i class="material-icons">check</i>
+                    </div>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true"><i class="material-icons">clear</i></span>
+                    </button>
+                    <b>Success Alert:</b> Yuhuuu! You've got your $11.99 album from The Weeknd
+                </div>
+            </div>
+
             <!--not interested-->
             <div class="row" id="not-interested">
                 <h3 class="title float-left">Not Interested</h3>
                 <div class="card m-1">
                     <div class="card-body">
                         <div th:each="row :${#numbers.sequence(0,notInteresteds.size(),4)}" class="row">
-                            <div th:each="col :${#numbers.sequence(0,3)}" th:if="${row + col < notInteresteds.size()}" class="col-md-3 text-center">
+                            <div th:each="col :${#numbers.sequence(0,3)}"
+                                 th:if="${row + col < notInteresteds.size()}" class="col-md-3 text-center">
                                 <a th:onclick="'javascript:getItem(\''+${notInteresteds.get(row+col).url}+'\')'">
-                                    <img src="../static/Images/movieImages/early_man.jpg" th:src="@{'~/Images/movieImages/'+${notInteresteds.get(row+col).key}+'.jpg'}" th:width="150" th:height="200"
-                                         th:onerror="'this.src=\'' + @{~/assets/img/defaultMovie.jpg} + '\';'"></a>
-                                <h6 th:text="${notInteresteds.get(row+col).name}" th:onclick="'javascript:getItem(\''+${notInteresteds.get(row+col).url}+'\')'">name</h6>
+                                    <img src="../static/Images/movieImages/early_man.jpg"
+                                         th:src="@{'~/Images/movieImages/'+${notInteresteds.get(row+col).key}+'.jpg'}"
+                                         th:width="150" th:height="200"
+                                         th:onerror="'this.src=\'' + @{~/assets/img/defaultMovie.jpg} + '\';'">
+                                </a>
+                                <h6 th:text="${notInteresteds.get(row+col).name}"
+                                    th:onclick="'javascript:getItem(\''+${notInteresteds.get(row+col).url}+'\')'">
+                                    name
+                                </h6>
+                                <img th:src="@{~/assets/img/kit/free/delete.png}"
+                                     th:onclick="'javascript:deleteFromNotInterested(\''+${notInteresteds.get(row+col).key}+'\')'">
                             </div>
                         </div>
                     </div>

@@ -78,7 +78,15 @@ public class HomeMvcController {
         return "login.html";
     }
 
+    @GetMapping("/service")
+    public String servicePage(){
+        return "termOfUse.html";
+    }
 
+    @GetMapping("/criticApplication")
+    public String apply(){
+        return "criticApplication.html";
+    }
 
 
 }

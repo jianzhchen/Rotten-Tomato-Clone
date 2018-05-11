@@ -111,6 +111,7 @@ public class ProfileMvcController {
                 map.put("key", tv.getTVKey());
                 map.put("name", tv.getTVName());
             }
+            map.put("wantToSeeId",wantToSee.getId()+"");
             wanttosees.add(map);
         }
 
@@ -129,6 +130,7 @@ public class ProfileMvcController {
                 map.put("key", tv.getTVKey());
                 map.put("name", tv.getTVName());
             }
+            map.put("notInterestedId",notInterested.getId()+"");
             notinteresteds.add(map);
         }
 

@@ -99,7 +99,7 @@
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-body">
-                        <h2 class="card-title">MOVIES OPENING THIS WEEK</h2>
+                        <h2 class="card-title">COMING SOON TO THEATERS</h2>
                             <table class="table table-striped">
                                 <tbody>
                                 <tr th:each="movie:${movieOpeningThisWeek}">
@@ -108,6 +108,7 @@
                                            th:href="'javascript:getMovie(\''+${movie.key}+'\')'">
                                         </a>
                                     </td>
+                                    <td class="pull-right" th:text="${movie.date}">MAR 2</td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -133,53 +134,9 @@
                         <a class="pull-right" href="/m/b/0">View All</a>
                     </div>
                 </div>
-                <div class="card">
-                    <div class="card-body">
-                        <h2 class="card-title">COMING SOON TO THEATERS</h2>
-                        <table class="table table-striped">
-                            <tbody>
-                            <!--<tr th:each="movie:${comingSoonToTheaters}" th:onclick="'javascript:getMovie(\''+${movie.key}+'\')'"-->
-                                <!--<td th:text="${movie.rate}">N/A</td>-->
-                                <!--<td th:text="${movie.movieName}">Bangalore</td>-->
-                                <!--<td th:text="${movie.movieDate}">MAR 2</td>-->
-                            <!--</tr>-->
-                            </tbody>
-                        </table>
-                        <a class="pull-right" href="movie.html">View All</a>
-                    </div>
-                </div>
             </div>
             <!--tv list-->
             <div class="col-md-6">
-                <div class="card">
-                    <div class="card-body">
-                        <h2 class="card-title">NEW TV TONIGHT</h2>
-                        <table class="table table-striped">
-                            <tbody>
-                            <!--<tr th:each="tv:${newTvTonight}" th:onclick="'javascript:getTv(\''+${tv.Id}+'\')'">-->
-                            <!--<td th:text="${tv.rate}">N/A</td>-->
-                            <!--<td th:text="${tv.name}">Bangalore</td>-->
-                            <!--</tr>-->
-                            </tbody>
-                        </table>
-                        <a class="pull-right" href="/tv.html">View All</a>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-body">
-                        <h2 class="card-title">MOST POPULAR TV ON RT</h2>
-                        <table class="table table-striped">
-                            <tbody>
-                            <!--<tr th:each="tv:${mostPopularTvOnRt}" th:onclick="'javascript:getTv(\''+${tv.Id}+'\')'">-->
-                            <!--<td th:text="${tv.rate}">N/A</td>-->
-                            <!--<td th:text="${tv.name}">Bangalore</td>-->
-                            <!--</tr>-->
-                            </tbody>
-                        </table>
-                        <a class="pull-right" href="/tv.html">View All</a>
-                    </div>
-                </div>
-
                 <div class="card">
                     <div class="card-body">
                         <h2 class="card-title">NEWEST TV SHOWS</h2>
@@ -250,24 +207,32 @@
         <div class="row">
             <div class="col-md-3">
                 <div class="row">
-                    <a href="/about">About Us</a>
+                    <a href="/about"><strong>About Us</strong></a>
                 </div>
                 <div class="row">
-                    <a href="/service">Terms of Service</a>
+                    <a href="/service"><strong>Terms of Service</strong></a>
+                </div>
+                <div class="row">
+                    <a href="/criticApplication"><strong>Become to a critic?</strong></a>
                 </div>
             </div>
-            <div class="col-md-6">
-                <ul>
-                    <li>
-                        Follow us:
-                    </li>
-                    <li>
-                        <img th:src="@{~/assets/img/kit/free/facebook.png}" width="16" height="16" onclick="window.open('www.facebook.com/Rotten-Potato-1736246306467236')">
-                    </li>
-                    <li>
-                        <img th:src="@{~/assets/img/kit/free/twitter.png}" width="16" height="16" onclick="window.open('https://twitter.com/Redwood05618547')">
-                    </li>
-                </ul>
+            <div class="col-md-6 ">
+                <div class="row text-center">
+                    <ul>
+                        <li>
+                           <strong>Follow us:</strong>
+                        </li>
+                        <li>
+                            <img th:src="@{~/assets/img/kit/free/facebook.png}" width="16" height="16" onclick="window.open('www.facebook.com/Rotten-Potato-1736246306467236')">
+                        </li>
+                        <li>
+                            <img th:src="@{~/assets/img/kit/free/twitter.png}" width="16" height="16" onclick="window.open('https://twitter.com/Redwood05618547')">
+                        </li>
+                    </ul>
+                </div>
+                <div class="row">
+                    <strong>Contact us: <a href="/">cse308redwood@gmail.com</a></strong>
+                </div>
             </div>
             <div class="col-md-3">
                 <div class="copyright pull-right">
