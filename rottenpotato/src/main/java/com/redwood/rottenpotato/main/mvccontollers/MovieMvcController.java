@@ -153,6 +153,7 @@ public class MovieMvcController {
                     uReview.put("key", rev.getUserId() + "");
                     uReview.put("score", rate.getRating() + "");
                     uReview.put("content", rev.getContent());
+                    uReview.put("reviewId",rev.getId()+"");
                     audienceReviews.add(uReview);
                     break;
                 }
