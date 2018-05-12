@@ -32,9 +32,24 @@ function toggleFollowUnFollow(userId)
             change.classList.remove("btn-danger");
             change.classList.add("btn-success");
         });
-
-
-
-
     }
+}
+
+function getUser(key) {
+    window.location.href="/u/"+key;
+}
+
+function reportReview(reviewId) {
+    $('#reportModal').modal('show');
+    $('#reportModalConfirmButton').click(function () {
+        var reason = $('#reportReason').val();
+        $.post("/1/reportReview",
+            {"reviewId":reviewId, "content": reason},
+            function (message) {
+                $('#generalModalHeader').html('Success');
+                $('#generalModalBody').html('You have send the report successfully!');
+                $('#generalModal').modal('show');
+            },
+            "json");
+    });
 }

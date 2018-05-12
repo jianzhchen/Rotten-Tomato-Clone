@@ -156,8 +156,8 @@
                                                 </thead>
                                                 <tbody>
                                                 <tr th:each="review:${recentReviews}">
-                                                    <td th:text="${review.itemName}" th:onclick="'javascript:getMovie(\''+${review.itemKey}+'\')'">
-                                                        movie
+                                                    <td>
+                                                        <a th:href="${review.url}" th:text="${review.itemName}">movie</a>
                                                     </td>
                                                     <td th:if="${review.score} != 0" th:text="${review.score}+'/5'">score
                                                     <td th:if="${review.score} ==0" th:text="'N/A'">score

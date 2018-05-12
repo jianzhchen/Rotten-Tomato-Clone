@@ -1,5 +1,6 @@
 package com.redwood.rottenpotato.main.mvccontollers;
 
+import com.redwood.rottenpotato.main.DTO.TopCriticDTO;
 import com.redwood.rottenpotato.main.models.*;
 import com.redwood.rottenpotato.main.repositories.*;
 import com.redwood.rottenpotato.main.services.CriticService;
@@ -15,6 +16,7 @@ import java.security.Principal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class CriticMvcController {
@@ -31,7 +33,7 @@ public class CriticMvcController {
     private CriticService criticService;
 
     @RequestMapping("/critic/{criticKey}")
-    public String criticPage(@PathVariable("criticKey") String criticKey, Model model,Principal principal) {
+    public String criticPage(@PathVariable("criticKey") String criticKey, Model model, Principal principal) {
         if (principal == null) {
             model.addAttribute("isLogin", false);
         } else {
@@ -42,48 +44,37 @@ public class CriticMvcController {
         model.addAttribute("name", critic.getCriticName());
         model.addAttribute("info", critic.getCriticInfo());
         List<CriticReview> criticReviews = criticReviewRepository.findTop10ByCriticKeyOrderByReviewTimeDateDesc(criticKey, PageRequest.of(0, 10));
-//        System.out.println(criticReviews.get(0).getReviewTime());
-//        System.out.println();
-//        System.out.println();
-//        System.out.println();
-//        System.out.println();
-//        System.out.println();
-//        System.out.println();
-//        System.out.println();
-//        System.out.println();
 
         List<HashMap> reviews = new ArrayList<>();
         for (CriticReview cv : criticReviews) {
             HashMap<String, String> map = new HashMap<>();
             String itemKey = cv.getItemKey();
             Movie movie = movieRepository.findByMovieKey(itemKey);
-
-//            TV tv = tVRepository.findByTVKey(itemKey);
+            TV tv = tVRepository.findByTVKey(itemKey);
             if (movie != null) {
                 map.put("url", "/m/" + itemKey);
-                map.put("itemKey", itemKey);
                 map.put("itemName", movie.getName());
                 map.put("score", Integer.toString(cv.getReviewRating()));
                 map.put("date", cv.getReviewTime());
                 map.put("content", cv.getReviewContent());
                 reviews.add(map);
             }
-//            else if (tv != null) {
-//                map.put("url", "/t/" + itemKey);
-//                map.put("itemName", tv.getTVName());
-//                map.put("score", Integer.toString(cv.getReviewRating()));
-//                map.put("date", cv.getReviewTime());
-//                map.put("content", cv.getReviewContent());
-//            }
+            else if (tv != null) {
+                map.put("url", "/t/" + itemKey);
+                map.put("itemName", tv.getTVName());
+                map.put("score", Integer.toString(cv.getReviewRating()));
+                map.put("date", cv.getReviewTime());
+                map.put("content", cv.getReviewContent());
+            }
         }
-        model.addAttribute("criticKey",criticKey);
+        model.addAttribute("criticKey", criticKey);
         model.addAttribute("recentReviews", reviews);
         return "criticPage.html";
     }
 
 
     @RequestMapping("/critic_t/{page}")
-    public String criticReviewLatest(@PathVariable("page") int page, Model model,Principal principal) {
+    public String criticReviewLatest(@PathVariable("page") int page, Model model, Principal principal) {
         if (principal == null) {
             model.addAttribute("isLogin", false);
         } else {
@@ -99,9 +90,9 @@ public class CriticMvcController {
             TV tv = tVRepository.findByTVKey(itemKey);
             if (movie != null) {
                 map.put("itemName", movie.getName());
-            } else if(tv != null){
+            } else if (tv != null) {
                 map.put("itemName", tv.getTVName());
-            }else {
+            } else {
                 continue;
             }
             map.put("criticKey", criticReview.getCriticKey());
@@ -126,6 +117,15 @@ public class CriticMvcController {
         List<Critic> critics = criticRepository.findTop10ByOrderByCriticNameAsc(PageRequest.of(page, 10));
         model.addAttribute("critics", critics);
         model.addAttribute("page", page);
+        List<Object[]> criticReviews = criticReviewRepository.findTop10ByReviewCount();
+        List<Critic> topCritics = new ArrayList<>();
+        for (Object[] criticReview : criticReviews) {
+            topCritics.add(criticRepository.findByCriticKey((String)criticReview[0]));
+            if (topCritics.size() >= 8) {
+                break;
+            }
+        }
+        model.addAttribute("topCritics", topCritics);
         return "critic.html";
     }
 

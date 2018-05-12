@@ -48,12 +48,13 @@ public class UserMvcController {
     @RequestMapping("/u/{userId}")
     public String userPage(@PathVariable("userId") long userId, Model model,Principal principal)
     {
-
+        boolean isLogin = false;
         if (principal == null) {
             model.addAttribute("isLogin", false);
         } else {
             model.addAttribute("isLogin", true);
             model.addAttribute("username", principal.getName());
+            isLogin=true;
         }
 //
         User user = userRepository.findById(userId);
@@ -198,37 +199,31 @@ public class UserMvcController {
                 followby.add(map);
             }
 
-            //For follow/unfollow button
-            if(followby.isEmpty())
-            {
-                model.addAttribute("followStatus", "Follow");
-                model.addAttribute("followButtonClass", "btn btn-sm btn-success");
-            }
-            else
-            {
-                for (Follow follow : followRepository.findByUserIdTo(user.getId()))
-                {
-                    //uid = fromId
-                    long uid = follow.getUserIdFrom();
+            if(isLogin) {
+                //For follow/unfollow button
+                if (followby.isEmpty()) {
+                    model.addAttribute("followStatus", "Follow");
+                    model.addAttribute("followButtonClass", "btn btn-sm btn-success");
+                } else {
+                    for (Follow follow : followRepository.findByUserIdTo(user.getId())) {
+                        //uid = fromId
+                        long uid = follow.getUserIdFrom();
+                        String currentEmail = principal.getName();
+                        //toUser
+                        User currentUser = this.userRepository.findByEmail(currentEmail);
+                        if (uid == currentUser.getId()) {
+                            model.addAttribute("followStatus", "unFollow");
+                            model.addAttribute("followButtonClass", "btn btn-sm btn-danger");
+                            //If current user follows this found, break
+                            break;
+                        } else {
+                            model.addAttribute("followStatus", "Follow");
+                            model.addAttribute("followButtonClass", "btn btn-sm btn-success");
+                        }
 
-                    String currentEmail = principal.getName();
-                    //toUser
-                    User currentUser = this.userRepository.findByEmail(currentEmail);
-                    if (uid == currentUser.getId())
-                    {
-                        model.addAttribute("followStatus", "unFollow");
-                        model.addAttribute("followButtonClass", "btn btn-sm btn-danger");
-                        //If current user follows this found, break
-                        break;
-                    }
-                    else
-                    {
-                        model.addAttribute("followStatus", "Follow");
-                        model.addAttribute("followButtonClass", "btn btn-sm btn-success");
                     }
                 }
             }
-
 
             model.addAttribute("reviews", reviews);
             model.addAttribute("ratings", ratings);

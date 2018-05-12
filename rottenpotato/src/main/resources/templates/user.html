@@ -117,7 +117,8 @@
                                                 <li th:text="${numberOfFollowers}+' Followers Now'">No Follower</li>
                                                 <li th:text="'Rank: '+${followerRank}">No Rank</li>
                                             </ul>
-                                            <div class="float-right">
+                                            <!-- only login user can see it-->
+                                            <div class="float-right" th:if="${isLogin} == true">
                                                 <button id = "toggleFollowUnFollow"
                                                         type="button"
                                                         th:class="${followButtonClass}"
@@ -219,8 +220,8 @@
                                 </thead>
                                 <tbody>
                                 <tr th:each="review:${reviews}">
-                                    <td th:text="${review.name}" th:onclick="'javascript:getItem(\''+${review.url}+'\')'">
-                                        movie
+                                    <td>
+                                        <a th:text="${review.name}" th:href="${review.url}">movie</a>
                                     </td>
                                     <!--<td th:onclick="'javascript:getTv(\''+${item.key}+'\')'">-->
                                     <td th:text="${review.rate}+'/5'">score
@@ -229,11 +230,9 @@
                                     <td th:text="${review.content}">content
                                     </td>
                                     <td>
-                                        <button type="button"
-                                                class="btn btn-default btn-sm"
-                                                th:onclick="'javascript:reportReview(\''+${review.reviewId}+'\')'">
-                                            Report
-                                        </button>
+                                        <img class="pull-right"
+                                             th:src="@{~/assets/img/kit/free/report.png}"
+                                             th:onclick="'javascript:reportReview(\''+${review.reviewId}+'\')'">
                                     </td>
                                 </tr>
                                 </tbody>
@@ -260,6 +259,51 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary btn-sm pull-left" data-dismiss="modal" id="confirmModalConfirmButton">Confirm</button>
                 <button type="button" class="btn btn-primary btn-sm pull-right" data-dismiss="modal" id="confirmModalCancelButton">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="generalModal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h4 class="modal-title" id="generalModalHeader">Success</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+
+            <div class="modal-body">
+                <p id="generalModalBody">message</p>
+            </div>
+
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal" id="generalModalCloseButton">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="reportModal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h4 class="modal-title" id="reportModalHeader">Report Reason</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+
+            <div class="modal-body">
+                <textarea class="form-control text-muted" rows="5" id="reportReason" placeholder="Enter your reason here"></textarea>
+            </div>
+
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal" id="reportModalConfirmButton">Confirm</button>
+                <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal" id="reportModalCancelButton">Cancel</button>
+
             </div>
         </div>
     </div>
@@ -320,7 +364,6 @@
 <!-- Fixed Sidebar Nav - js With initialisations For Demo Purpose, Don't Include it in your project -->
 <script th:src="@{~/assets/assets-for-demo/js/material-kit-demo.js}"></script>
 <script type="text/javascript" th:src="@{~/js/user.js}"></script>
-<script type="text/javascript" th:src="@{~/js/reportReview.js}"></script>
 
 
 <!--test-->
