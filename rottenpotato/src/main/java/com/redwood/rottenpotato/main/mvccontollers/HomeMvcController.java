@@ -88,5 +88,10 @@ public class HomeMvcController {
         return "criticApplication.html";
     }
 
+    @GetMapping("/FAQ")
+    public String FAQ(){
+        return "FAQ.html";
+    }
+
 
 }
