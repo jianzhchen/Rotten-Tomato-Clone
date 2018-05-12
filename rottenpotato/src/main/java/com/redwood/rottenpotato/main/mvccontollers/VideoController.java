@@ -24,7 +24,7 @@ public class VideoController {
         String currentDirectory;
         File file = new File("");
         currentDirectory = file.getAbsolutePath();
-        currentDirectory += "\\src\\main\\resources\\static\\Trailers";
+        currentDirectory += "/src/main/resources/static/Trailers";
 
         File folder = new File(currentDirectory.toString());
 
@@ -32,10 +32,17 @@ public class VideoController {
 
         if(listOfFiles==null){
             currentDirectory = file.getAbsolutePath();
-            currentDirectory += "\\src\\main\\resources\\static\\Trailers";
+            currentDirectory += "/src/main/resources/static/Trailers";
             folder = new File(currentDirectory);
             listOfFiles = folder.listFiles();
         }
+//
+//        if(listOfFiles==null){
+//            currentDirectory = file.getAbsolutePath();
+//            currentDirectory += "/src/main/resources/static/Trailers";
+//            folder = new File(currentDirectory);
+//            listOfFiles = folder.listFiles();
+//        }
         List<String> trailerLists = new ArrayList<String>();
 
         if(listOfFiles != null){

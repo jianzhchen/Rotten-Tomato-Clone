@@ -163,14 +163,14 @@ public class MovieMvcController {
         File file = new File("");
         currentDirectory = file.getAbsolutePath();
 
-        currentDirectory += "\\src\\main\\resources\\static\\Trailers";
+        currentDirectory += "/src/main/resources/static/Trailers";
 
         File folder = new File(currentDirectory.toString());
 
         File[] listOfFiles = folder.listFiles();
         if(listOfFiles==null){
             currentDirectory = file.getAbsolutePath();
-            currentDirectory += "\\src\\main\\resources\\static\\Trailers";
+            currentDirectory += "/src/main/resources/static/Trailers";
             folder = new File(currentDirectory);
             listOfFiles = folder.listFiles();
         }
