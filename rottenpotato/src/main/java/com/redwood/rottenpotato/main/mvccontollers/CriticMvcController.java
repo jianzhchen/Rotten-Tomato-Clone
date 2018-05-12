@@ -4,6 +4,8 @@ import com.redwood.rottenpotato.main.DTO.TopCriticDTO;
 import com.redwood.rottenpotato.main.models.*;
 import com.redwood.rottenpotato.main.repositories.*;
 import com.redwood.rottenpotato.main.services.CriticService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
@@ -11,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.security.Principal;
 import java.util.ArrayList;
@@ -31,9 +34,10 @@ public class CriticMvcController {
     private MovieRepository movieRepository;
     @Autowired
     private CriticService criticService;
+    private final Logger log = LoggerFactory.getLogger(this.getClass());
 
     @RequestMapping("/critic/{criticKey}")
-    public String criticPage(@PathVariable("criticKey") String criticKey, Model model, Principal principal) {
+    public String criticPage(@PathVariable("criticKey") String criticKey, Model model, Principal principal, @RequestParam(value = "page",defaultValue = "0") int page) {
         if (principal == null) {
             model.addAttribute("isLogin", false);
         } else {
@@ -43,7 +47,11 @@ public class CriticMvcController {
         Critic critic = criticRepository.findByCriticKey(criticKey);
         model.addAttribute("name", critic.getCriticName());
         model.addAttribute("info", critic.getCriticInfo());
-        List<CriticReview> criticReviews = criticReviewRepository.findTop10ByCriticKeyOrderByReviewTimeDateDesc(criticKey, PageRequest.of(0, 10));
+        List<CriticReview> criticReviews = criticReviewRepository.findTop10ByCriticKeyOrderByReviewTimeDateDesc(criticKey, PageRequest.of(page, 10));
+        boolean hasNext = true;
+        if (criticReviewRepository.findTop10ByCriticKeyOrderByReviewTimeDateDesc(criticKey, PageRequest.of(page + 1, 10)).size() <= 0) {
+            hasNext = false;
+        }
 
         List<HashMap> reviews = new ArrayList<>();
         for (CriticReview cv : criticReviews) {
@@ -58,15 +66,16 @@ public class CriticMvcController {
                 map.put("date", cv.getReviewTime());
                 map.put("content", cv.getReviewContent());
                 reviews.add(map);
-            }
-            else if (tv != null) {
+            } else if (tv != null) {
                 map.put("url", "/t/" + itemKey);
                 map.put("itemName", tv.getTVName());
                 map.put("score", Integer.toString(cv.getReviewRating()));
                 map.put("date", cv.getReviewTime());
                 map.put("content", cv.getReviewContent());
+                reviews.add(map);
             }
         }
+        model.addAttribute("hasNext", hasNext);
         model.addAttribute("criticKey", criticKey);
         model.addAttribute("recentReviews", reviews);
         return "criticPage.html";
@@ -120,7 +129,7 @@ public class CriticMvcController {
         List<Object[]> criticReviews = criticReviewRepository.findTop10ByReviewCount();
         List<Critic> topCritics = new ArrayList<>();
         for (Object[] criticReview : criticReviews) {
-            topCritics.add(criticRepository.findByCriticKey((String)criticReview[0]));
+            topCritics.add(criticRepository.findByCriticKey((String) criticReview[0]));
             if (topCritics.size() >= 8) {
                 break;
             }
