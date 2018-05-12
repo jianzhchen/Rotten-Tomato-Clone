@@ -32,3 +32,19 @@ function changePassword() {
         },
         "json")
 }
+
+function editNames() {
+    var newFirstName = $("#ce_new_first_name").val();
+    var newLastName = $("#ce_new_last_name").val();
+    $.post("/1/editNames",
+        {"newFirstName" : newFirstName, "newLastName" : newLastName},
+        function (message) {
+            console.log(message);
+            if(message.status === "ok"){
+                alert("Change password successfully")
+            }else {
+                alert(message.message);
+            }
+        },
+        "json")
+}

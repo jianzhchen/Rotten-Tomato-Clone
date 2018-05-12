@@ -94,14 +94,17 @@
                                 <div class="row">
                                     <div class="col-md-4 text-center">
                                         <div class="avatar">
-                                            <img src="./assets/img/kit/faces/christian.jpg" width="150px" height="150px" alt="Circle Image"
-                                                 class="img-raised rounded img-fluid img-thumbnail">
+                                            <img th:src="@{'~/Images/userImages/'+${userId}+'.jpg'}" th:width="200" th:height="200"
+                                                 th:onerror="'this.src=\'' + @{~/assets/img/default.jpg} + '\';'">
                                         </div>
                                         <button type="button" class="btn btn-primary btn-sm mt-3">Modify Photo</button>
+
+
                                     </div>
                                     <div class="col-md-8 text-left">
                                         <h3 class="title">Basic Information</h3>
-                                        <button type="button" class="btn btn-primary btn-sm float-right" data-toggle="modal" data-target="#editName">edit</button>
+                                        <button type="button" class="btn btn-primary btn-sm float-right" data-toggle="modal" data-target="#editNames">edit</button>
+
                                         <div id="info-section">
                                             <ul class="list-unstyled infolist-height">
                                                 <li th:text="'First Name : '+${firstName}">First Name</li>
@@ -210,23 +213,24 @@
             </div>
 
             <div class="modal-body">
-                    <div class="form-group">
-                        <label for="ce_new_email">New Email</label>
-                        <input type="text" id="ce_new_email" class="form-control" autofocus="autofocus"/>
-                    </div>
-                    <div class="form-group">
-                        <label for="ce_password">Password</label>
-                        <input type="password" id="ce_password" class="form-control"/>
-                    </div>
-                    <div class="form-group">
-                        <button type="button" class=" btn btn-primary" data-dismiss="modal" onclick="changeEmail()" >Update</button>
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                    </div>
+                <div class="form-group">
+                    <label for="ce_new_email">New Email</label>
+                    <input type="text" id="ce_new_email" class="form-control" autofocus="autofocus"/>
+                </div>
+                <div class="form-group">
+                    <label for="ce_password">Password</label>
+                    <input type="password" id="ce_password" class="form-control"/>
+                </div>
+                <div class="form-group">
+                    <button type="button" class=" btn btn-primary" data-dismiss="modal" onclick="changeEmail()" >Update</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                </div>
             </div>
-
         </div>
     </div>
 </div>
+
+
 <div class="modal fade" id="changePassword">
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
@@ -247,6 +251,36 @@
                 </div>
                 <div class="form-group">
                     <button type="button" class=" btn btn-primary" data-dismiss="modal" onclick="changePassword()" >Update</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+<div class="modal fade" id="editNames">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h4 class="modal-title">Change First Name</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="ce_new_first_name">New First Name</label>
+                    <input type="text" id="ce_new_first_name" class="form-control" autofocus="autofocus"/>
+                </div>
+                <div class="form-group">
+                    <label for="ce_new_last_name">New Last Name</label>
+                    <input type="text" id="ce_new_last_name" class="form-control"/>
+                </div>
+                <div class="form-group">
+                    <button type="button" class=" btn btn-primary" data-dismiss="modal" onclick="editNames()" >Update</button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                 </div>
             </div>

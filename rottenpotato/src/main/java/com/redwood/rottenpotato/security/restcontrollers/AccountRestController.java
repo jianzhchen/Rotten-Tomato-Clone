@@ -30,6 +30,14 @@ public class AccountRestController {
         return accountService.changePassword(userEmail, currPassword, newPassword);
     }
 
+    @PostMapping("editNames")
+    public String editNames(@RequestParam("newFirstName") String newFirstName, Principal principal,
+                                 @RequestParam("newLastName") String newLastName) {
+        String userEmail = principal.getName();
+        return accountService.editNames(userEmail, newFirstName, newLastName);
+    }
+
+
     @PostMapping("deleteAccount")
     public String deleteAccount(Principal principal, @RequestParam("password") String currPassword) {
         String userEmail = principal.getName();

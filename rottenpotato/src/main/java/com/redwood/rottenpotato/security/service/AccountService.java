@@ -71,6 +71,19 @@ public class AccountService {
         return jsonService.constructStatusMessage(AjaxCallStatus.OK);
     }
 
+    public String editNames(String userEmail, String newFirstName, String newLastName){
+        User user = userRepository.findByEmail(userEmail);
+        if (user == null) {
+            return jsonService.constructStatusMessage(AjaxCallStatus.ERROR, "Can't find user");
+        }
+        user.setFirstName(newFirstName);
+        user.setLastName(newLastName);
+        userRepository.save(user);
+        return jsonService.constructStatusMessage(AjaxCallStatus.OK);
+    }
+
+
+
     public String forgotPassword(String email, String appUrl) {
         User user = userRepository.findByEmail(email);
         if (user == null) {
