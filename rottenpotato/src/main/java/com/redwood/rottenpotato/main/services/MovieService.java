@@ -83,14 +83,6 @@ public class MovieService {
 
         Date dateLast = cal.getTime();
 
-        System.out.println(dateFirst);
-        System.out.println(dateLast);
-
-
-
-
-
-
         for (Movie movie : MovieRepository.findTop100ByOrderByInTheatersTimeDesc(PageRequest.of(page, 1))) {
             if(movie.getInTheatersTime() != null){
 //                if(movie.getInTheatersTime().getYear() == date.getYear()  & movie.getInTheatersTime().getMonth() == date.getMonth() & movie.getInTheatersTime().getDate() / 7 == date.getDate() / 7){
