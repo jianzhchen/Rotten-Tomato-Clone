@@ -133,7 +133,8 @@
                                     </td>
                                     <td th:if="${rev.score} != 0" th:text="${rev.score}+'/5'">score</td>
                                     <td th:if="${rev.score} == 0" th:text="'N/A'">score</td>
-                                    <td th:text="${rev.itemName}">itemname</td>
+                                    <td>
+                                        <a th:text="${rev.itemName}" th:href="${rev.url}">itemname</a></td>
                                     <td th:text="${rev.content}">content</td>
                                 </tr>
                                 </tbody>

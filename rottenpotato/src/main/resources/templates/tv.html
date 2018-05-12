@@ -133,7 +133,7 @@
                                 <div th:each="col :${#numbers.sequence(0,3)}" th:if="${row + col < TVs.size()}" class="col-md-3 text-center">
                                     <a th:onclick="'javascript:getTV(\''+${TVs.get(row+col).key}+'\')'">
                                         <img th:src="@{'~/Images/tvImages/'+${TVs.get(row+col).key}+'.jpg'}" th:width="150" th:height="200"
-                                             th:onerror="'this.src=\'' + @{~/assets/img/defaultMovie.jpg} + '\';'"></a>
+                                             th:onerror="'this.src=\'' + @{~/assets/img/defaultTV.jpg} + '\';'"></a>
                                     <h6 th:text="${TVs.get(row+col).name}" th:onclick="'javascript:getTV(\''+${TVs.get(row+col).key}+'\')'">some text</h6>
                                     <p th:text="${TVs.get(row+col).date}">some text</p>
                                 </div>
