@@ -230,11 +230,9 @@
                                     <td th:text="${review.content}">content
                                     </td>
                                     <td>
-                                        <button type="button"
-                                                class="btn btn-default btn-sm"
-                                                th:onclick="'javascript:reportReview(\''+${review.reviewId}+'\')'">
-                                            Report
-                                        </button>
+                                        <img class="pull-right" data-toggle="tooltip" title="report this review"
+                                             th:src="@{~/assets/img/kit/free/report.png}"
+                                             th:onclick="'javascript:reportReview(\''+${review.reviewId}+'\')'">
                                     </td>
                                 </tr>
                                 </tbody>
@@ -261,6 +259,51 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary btn-sm pull-left" data-dismiss="modal" id="confirmModalConfirmButton">Confirm</button>
                 <button type="button" class="btn btn-primary btn-sm pull-right" data-dismiss="modal" id="confirmModalCancelButton">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="generalModal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h4 class="modal-title" id="generalModalHeader">Success</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+
+            <div class="modal-body">
+                <p id="generalModalBody">message</p>
+            </div>
+
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal" id="generalModalCloseButton">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="reportModal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h4 class="modal-title" id="reportModalHeader">Report Reason</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+
+            <div class="modal-body">
+                <textarea class="form-control text-muted" rows="5" id="reportReason" placeholder="Enter your reason here"></textarea>
+            </div>
+
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal" id="reportModalConfirmButton">Confirm</button>
+                <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal" id="reportModalCancelButton">Cancel</button>
+
             </div>
         </div>
     </div>
