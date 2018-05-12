@@ -122,7 +122,8 @@
                                                         type="button"
                                                         th:class="${followButtonClass}"
                                                         th:text="${followStatus}"
-                                                        th:onclick="'javascript:toggleFollowUnFollow(\''+${userId}+'\')'">
+                                                        th:onclick="'javascript:toggleFollowUnFollow(\''+${userId}+'\')'"
+                                                >
                                                     Follow
                                                 </button>
                                             </div>
@@ -244,6 +245,25 @@
         </div>
     </div>
 </div>
+<!--modal-->
+<div class="modal fade" id="confirmModal" role="dialog">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h4 class="modal-title" id="confirmModalHeader">Success</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body" >
+                <p id="confirmModalBody">message</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-sm pull-left" data-dismiss="modal" id="confirmModalConfirmButton">Confirm</button>
+                <button type="button" class="btn btn-primary btn-sm pull-right" data-dismiss="modal" id="confirmModalCancelButton">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!--Footer-->
 <footer class="footer ">
@@ -299,8 +319,7 @@
 <script th:src="@{~/assets/js/material-kit.js?v=2.0.2}"></script>
 <!-- Fixed Sidebar Nav - js With initialisations For Demo Purpose, Don't Include it in your project -->
 <script th:src="@{~/assets/assets-for-demo/js/material-kit-demo.js}"></script>
-<script type="text/javascript" th:src="@{~/js/index.js}"></script>
-<script type="text/javascript" th:src="@{~/js/profilePage.js}"></script>
+<script type="text/javascript" th:src="@{~/js/user.js}"></script>
 <script type="text/javascript" th:src="@{~/js/reportReview.js}"></script>
 
 
