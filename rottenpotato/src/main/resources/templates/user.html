@@ -117,7 +117,8 @@
                                                 <li th:text="${numberOfFollowers}+' Followers Now'">No Follower</li>
                                                 <li th:text="'Rank: '+${followerRank}">No Rank</li>
                                             </ul>
-                                            <div class="float-right">
+                                            <!-- only login user can see it-->
+                                            <div class="float-right" th:if="${isLogin} == true">
                                                 <button id = "toggleFollowUnFollow"
                                                         type="button"
                                                         th:class="${followButtonClass}"
