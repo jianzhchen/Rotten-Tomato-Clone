@@ -82,6 +82,7 @@ public class TVMvcController {
                 criticScoreCount++;
             }
         }
+        model.addAttribute("criticScoreCount", criticScoreCount);
         if (criticScoreCount == 0) {
             model.addAttribute("criticRating", "N/A");
         } else {

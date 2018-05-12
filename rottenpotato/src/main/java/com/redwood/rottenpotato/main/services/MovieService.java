@@ -61,28 +61,32 @@ public class MovieService {
         return boxOfficeStr;
     }
 
-    public List<Map> openingThisWeek(Model model){
-        List<Map> templist = new ArrayList<>();
-
-        Calendar cal = Calendar.getInstance();
-        cal.set(Calendar.HOUR_OF_DAY, 0); // ! clear would not reset the hour of day !
-        cal.clear(Calendar.MINUTE);
-        cal.clear(Calendar.SECOND);
-        cal.clear(Calendar.MILLISECOND);
-        cal.set(Calendar.DAY_OF_WEEK, cal.getFirstDayOfWeek());
-        System.out.println(cal.getFirstDayOfWeek());
-        cal.add(Calendar.DATE, -1);
-
-        Date dateHeader = cal.getTime();
-        for (int i = 0; i < 8; i++) {
-            cal.add(Calendar.DATE, 1);
-        }
-        Date dateFooter = cal.getTime();
-
-
-        System.out.println(dateFooter);
-        for (Movie temp : MovieRepository.findAll()) {
-            System.out.println(temp.getInTheatersTime());
+//    public List<Map> openingThisWeek(Model model){
+//        List<Map> templist = new ArrayList<>();
+//
+//        Calendar cal = Calendar.getInstance();
+//        cal.set(Calendar.HOUR_OF_DAY, 0); // ! clear would not reset the hour of day !
+//        cal.clear(Calendar.MINUTE);
+//        cal.clear(Calendar.SECOND);
+//        cal.clear(Calendar.MILLISECOND);
+//        cal.set(Calendar.DAY_OF_WEEK, cal.getFirstDayOfWeek());
+//        System.out.println(cal.getFirstDayOfWeek());
+//        cal.add(Calendar.DATE, -1);
+//        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S");
+//        Date dateHeader = cal.getTime();
+//
+//        for (int i = 0; i < 8; i++) {
+//            cal.add(Calendar.DATE, 1);
+//        }
+//        Date dateFooter = cal.getTime();
+//
+//
+//        System.out.println(dateFooter);
+//        for (Movie temp : MovieRepository.findAll()) {
+//            System.out.println(temp.getInTheatersTime());
+//            if(temp.getInTheatersTime() !=null | temp.getInTheatersTime().after(dateHeader)){
+//                System.out.println(temp.getInTheatersTime());
+//            }
 //            if(temp.getInTheatersTime() != null | temp.getInTheatersTime().after(dateHeader)){
 //                System.out.println(temp.getName());
 //                System.out.println(temp.getInTheatersTime());
@@ -96,11 +100,11 @@ public class MovieService {
 //                templist.add(map);
 //            }
 //            System.out.println(temp.getName());
-        }
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S");
-        System.out.println(sdf.format(dateHeader));
-        return templist;
-    }
+//        }
+//
+//        System.out.println(sdf.format(dateHeader));
+//        return templist;
+//    }
 
 
 }

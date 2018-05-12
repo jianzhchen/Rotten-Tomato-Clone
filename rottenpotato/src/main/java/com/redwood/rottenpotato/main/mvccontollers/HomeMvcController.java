@@ -65,7 +65,7 @@ public class HomeMvcController {
 
         model.addAttribute("testSamples", trailerLists);
 
-        movieService.openingThisWeek(model);
+//        movieService.openingThisWeek(model);
 
         return "index.html";
     }
