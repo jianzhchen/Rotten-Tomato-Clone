@@ -32,9 +32,9 @@ function toggleFollowUnFollow(userId)
             change.classList.remove("btn-danger");
             change.classList.add("btn-success");
         });
-
-
-
-
     }
+}
+
+function getUser(key) {
+    window.location.href="/u/"+key;
 }
