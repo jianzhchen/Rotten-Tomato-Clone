@@ -124,8 +124,9 @@
                                                     th:onerror="'this.src=\'' + @{~/assets/img/default.jpg} + '\';'">
                                             </div>
 
-                                            <div class="col-md-8 px-0" th:text="${info}">
-                                                INFO
+                                            <div class="col-md-8 px-0" >
+                                                <h3>Information</h3>
+                                                <p th:text="${info}">info</p>
                                             </div>
                                         </div>
                                     </div>
@@ -154,9 +155,8 @@
                                                     <td th:text="${review.itemName}" th:onclick="'javascript:getMovie(\''+${review.itemKey}+'\')'">
                                                         movie
                                                     </td>
-                                                    <!--<td th:onclick="'javascript:getTv(\''+${item.key}+'\')'">-->
-                                                    <td th:text="${review.score}">score
-
+                                                    <td th:if="${review.score} != 0" th:text="${review.score}+'/5'">score
+                                                    <td th:if="${review.score} ==0" th:text="'N/A'">score
                                                     </td>
                                                     <td th:text="${review.date}">date
                                                     </td>

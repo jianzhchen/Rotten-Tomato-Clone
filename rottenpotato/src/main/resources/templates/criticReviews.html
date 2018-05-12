@@ -123,14 +123,16 @@
                                         <ul class="list-unstyled">
                                             <li>
                                                 <img th:src="@{'~/Images/criticImages/'+${rev.criticKey}+'.jpg'}" th:width="100" th:height="100"
-                                                     th:onclick="'javascript:getCritic(\''+${rev.criticKey}+'\')'" onerror="errorImg(this)">
+                                                     th:onclick="'javascript:getCritic(\''+${rev.criticKey}+'\')'"
+                                                     th:onerror="'this.src=\'' + @{~/assets/img/default.jpg} + '\';'">
                                             </li>
                                             <li th:text="${rev.name}" th:onclick="'javascript:getCritic(\''+${rev.criticKey}+'\')'">
                                                 critic name
                                             </li>
                                         </ul>
                                     </td>
-                                    <td th:text="${rev.score}">score</td>
+                                    <td th:if="${rev.score} != 0" th:text="${rev.score}+'/5'">score</td>
+                                    <td th:if="${rev.score} == 0" th:text="'N/A'">score</td>
                                     <td th:text="${rev.itemName}">itemname</td>
                                     <td th:text="${rev.content}">content</td>
                                 </tr>
