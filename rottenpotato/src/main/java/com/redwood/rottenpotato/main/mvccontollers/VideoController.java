@@ -36,13 +36,7 @@ public class VideoController {
             folder = new File(currentDirectory);
             listOfFiles = folder.listFiles();
         }
-//
-//        if(listOfFiles==null){
-//            currentDirectory = file.getAbsolutePath();
-//            currentDirectory += "/src/main/resources/static/Trailers";
-//            folder = new File(currentDirectory);
-//            listOfFiles = folder.listFiles();
-//        }
+
         List<String> trailerLists = new ArrayList<String>();
 
         if(listOfFiles != null){
