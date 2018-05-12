@@ -5,14 +5,11 @@ function changeEmail() {
         {"newEmail" : newEmail, "password" : ps},
         function (message) {
             console.log(message);
-            if(message.status === "ok"){
-                alert("Change email successfully! Logout now...")
+            $('#generalModalBody').html('Change email successfully! Log out now...');
+            $('#generalModal').modal('show');
+            $('#generalModalCloseButton').click(function () {
                 window.location.href="/login";
-            }else{
-                alert(message.message);
-            }
-
-
+            });
         },
         "json")
 }
@@ -24,11 +21,8 @@ function changePassword() {
         {"newPassword" : newPs, "password" : oldPs},
         function (message) {
             console.log(message);
-            if(message.status === "ok"){
-                alert("Change password successfully")
-            }else {
-                alert(message.message);
-            }
+            $('#generalModalBody').html('Change password successfully!');
+            $('#generalModal').modal('show');
         },
         "json")
 }
@@ -40,11 +34,8 @@ function editNames() {
         {"newFirstName" : newFirstName, "newLastName" : newLastName},
         function (message) {
             console.log(message);
-            if(message.status === "ok"){
-                alert("Change password successfully")
-            }else {
-                alert(message.message);
-            }
+            $('#generalModalBody').html('Change name successfully!');
+            $('#generalModal').modal('show');
         },
         "json")
 }

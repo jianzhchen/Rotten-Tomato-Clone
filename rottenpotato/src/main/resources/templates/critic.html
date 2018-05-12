@@ -117,12 +117,12 @@
                                 </div>
                             </div>
 
-                                <div th:each="row :${#numbers.sequence(0,critics.size(),4)}" class="row">
-                                    <div th:each="col :${#numbers.sequence(0,3)}" th:if="${row + col < critics.size()}" class="col-md-3 text-center">
-                                        <a th:onclick="'javascript:getCritic(\''+${critics.get(row+col).criticKey}+'\')'">
-                                            <img th:src="@{'~/Images/criticImages/'+${critics.get(row+col).criticKey}+'.jpg'}" th:width="150" th:height="150"
+                                <div th:each="row :${#numbers.sequence(0,topCritics.size(),4)}" class="row">
+                                    <div th:each="col :${#numbers.sequence(0,3)}" th:if="${row + col < topCritics.size()}" class="col-md-3 text-center">
+                                        <a th:onclick="'javascript:getCritic(\''+${topCritics.get(row+col).criticKey}+'\')'">
+                                            <img th:src="@{'~/Images/criticImages/'+${topCritics.get(row+col).criticKey}+'.jpg'}" th:width="150" th:height="150"
                                                  th:onerror="'this.src=\'' + @{~/assets/img/default.jpg} + '\';'"></a>
-                                        <h6 th:text="${critics.get(row+col).criticName}" th:onclick="'javascript:getCritic(\''+${critics.get(row+col).criticKey}+'\')'">name</h6>
+                                        <h6 th:text="${topCritics.get(row+col).criticName}" th:onclick="'javascript:getCritic(\''+${topCritics.get(row+col).criticKey}+'\')'">name</h6>
                                     </div>
                                 </div>
 
