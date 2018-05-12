@@ -402,7 +402,9 @@
                                     <!--user review score-->
                                     <div >
                                         <p style="display: inline;" class="title" th:text="'Score : '+ ${review.score}">100%</p>
-                                        <img class="pull-right"  th:src="@{~/assets/img/kit/free/report.png}" data-toggle="tooltip" title="report!">
+                                        <img class="pull-right" data-toggle="tooltip" title="report this review"
+                                             th:src="@{~/assets/img/kit/free/report.png}"
+                                            th:onclick="'javascript:reportReview(\''+${review.reviewId}+'\')'">
                                     </div>
                                     <!--user review content-->
                                     <div class="text-left" th:text="${review.content}">
@@ -533,6 +535,29 @@
         </div>
     </div>
 </div>
+<div class="modal fade" id="reportModal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h4 class="modal-title" id="reportModalHeader">Report Reason</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+
+            <div class="modal-body">
+                <textarea class="form-control text-muted" rows="5" id="reportReason" placeholder="Enter your reason here"></textarea>
+            </div>
+
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal" id="reportModalConfirmButton">Confirm</button>
+                <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal" id="reportModalCancelButton">Cancel</button>
+
+            </div>
+        </div>
+    </div>
+</div>
 
 
 
@@ -592,8 +617,9 @@
 <script src="./assets/js/material-kit.js?v=2.0.2"></script>
 <!-- Fixed Sidebar Nav - js With initialisations For Demo Purpose, Don't Include it in your project -->
 <script src="./assets/assets-for-demo/js/material-kit-demo.js"></script>
-<script type="text/javascript" src="../static/js/movieInfo.js"></script>
 <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+<script type="text/javascript" src="../static/js/movieInfo.js"></script>
+
 
 
 <script th:src="@{~/assets/js/core/jquery.min.js}"></script>
