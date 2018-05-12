@@ -23,6 +23,7 @@ public class CriticReviewService {
         List<Map> templist = new ArrayList<>();
 
         List<CriticReview> crList = CriticReviewRepository.findAll();
+        System.out.println(crList);
 
         return templist;
     }
