@@ -36,6 +36,9 @@ function editNames() {
             console.log(message);
             $('#generalModalBody').html('Change name successfully!');
             $('#generalModal').modal('show');
+            $('#generalModalCloseButton').click(function () {
+                location.reload();
+            });
         },
         "json")
 }
