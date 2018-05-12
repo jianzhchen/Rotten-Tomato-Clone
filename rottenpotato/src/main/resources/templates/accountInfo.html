@@ -184,11 +184,21 @@
                         <div class="card">
                                 <div class="card-body">
                                     <h5 class="card-title">Privacy Setting</h5>
-                                    <select class="form-control">
-                                        <option>Hide</option>
-                                        <option>Restrict</option>
-                                        <option>Show to All</option>
-                                    </select>
+                                    <div class="row" th:if="{privacy}">
+                                    <div class="col-md-6">Hide</div>
+                                    <div class="col-md-4">
+                                        <button  type="button" class="btn btn-primary btn-sm" style="width: 200px;"
+                                                 th:onclick="'javascript:changeToOpen()'">Change to open</button>
+                                    </div>
+                                    </div>
+                                    <div class="row" th:unless="{privacy}">
+                                        <div class="col-md-6">Open</div>
+                                        <div class="col-md-4">
+                                            <button  type="button" class="btn btn-primary btn-sm" style="width: 200px;"
+                                                     th:onclick="'javascript:changeToHide()'">Change to hide</button>
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
                         <div class="text-center">
