@@ -50,20 +50,22 @@ public class HomeMvcController {
 
         File[] listOfFiles = folder.listFiles();
         List<String> trailerLists = new ArrayList<String>();
-        int temp = 0;
+//        int temp = 0;
 
         if(listOfFiles != null){
             for(File fileName: listOfFiles){
-                temp = 1;
+//                temp = 1;
                 trailerLists.add(fileName.getName());
             }
         }
 
-        if(temp == 1){
-            model.addAttribute("hasTrailer", true);
-        }
+//        if(temp == 1){
+//            model.addAttribute("hasTrailer", true);
+//        }
 
         model.addAttribute("testSamples", trailerLists);
+
+        movieService.openingThisWeek(model);
 
         return "index.html";
     }

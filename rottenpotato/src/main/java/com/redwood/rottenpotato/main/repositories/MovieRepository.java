@@ -28,4 +28,6 @@ public interface MovieRepository extends JpaRepository<Movie, Long> {
     @Query("SELECT m FROM Movie m WHERE m.cast LIKE %:actorKey%")
     public List<Movie> searchByActorKey(@Param("actorKey") String actorKey);
 
+    public List<Movie> findAll();
+
 }
