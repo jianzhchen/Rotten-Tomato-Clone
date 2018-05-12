@@ -114,6 +114,7 @@
                                     <th>Critic</th>
                                     <th>Score</th>
                                     <th>Movie/TV</th>
+                                    <th>Date</th>
                                     <th>Review</th>
                                 </tr>
                                 </thead>
@@ -134,7 +135,9 @@
                                     <td th:if="${rev.score} != 0" th:text="${rev.score}+'/5'">score</td>
                                     <td th:if="${rev.score} == 0" th:text="'N/A'">score</td>
                                     <td>
-                                        <a th:text="${rev.itemName}" th:href="${rev.url}">itemname</a></td>
+                                        <a th:text="${rev.itemName}" th:href="${rev.url}">itemname</a>
+                                    </td>
+                                    <td th:text="${rev.date}">date</td>
                                     <td th:text="${rev.content}">content</td>
                                 </tr>
                                 </tbody>
