@@ -48,6 +48,14 @@ public class UserMvcController {
     @RequestMapping("/u/{userId}")
     public String userPage(@PathVariable("userId") long userId, Model model,Principal principal)
     {
+
+        if (principal == null) {
+            model.addAttribute("isLogin", false);
+        } else {
+            model.addAttribute("isLogin", true);
+            model.addAttribute("username", principal.getName());
+        }
+//
         User user = userRepository.findById(userId);
         if (user == null)
         {

@@ -38,6 +38,12 @@ public class ProfileMvcController {
 
     @RequestMapping("/me")
     public String profile(Model model, Principal principal) {
+        if (principal == null) {
+            model.addAttribute("isLogin", false);
+        } else {
+            model.addAttribute("isLogin", true);
+            model.addAttribute("username", principal.getName());
+        }
         String userEmail = principal.getName();
         User user = userRepository.findByEmail(userEmail);
 
@@ -167,6 +173,14 @@ public class ProfileMvcController {
     }
     @RequestMapping("/accountInfo")
     public String accountInfo(Model model, Principal principal) {
+
+        if (principal == null) {
+            model.addAttribute("isLogin", false);
+        } else {
+            model.addAttribute("isLogin", true);
+            model.addAttribute("username", principal.getName());
+        }
+        
         String userEmail = principal.getName();
         User user = userRepository.findByEmail(userEmail);
 
@@ -183,6 +197,14 @@ public class ProfileMvcController {
     @GetMapping("/editReviewPage")
     public String editReviewPage(@RequestParam("reviewId") long reviewId,
                                  @RequestParam("ratingId") long ratingId,Model model){
+//        if (principal == null) {
+//            model.addAttribute("isLogin", false);
+//        } else {
+//            model.addAttribute("isLogin", true);
+//            model.addAttribute("username", principal.getName());
+//        }
+
+
         UserReview userReview = userReviewRepository.findById(reviewId);
         UserRating userRating = userRatingRepository.findById(ratingId);
         Movie movie = movieRepository.findByMovieKey(userReview.getItemKey());
