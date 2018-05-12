@@ -3,11 +3,20 @@ function forgotPassword() {
     $.post("/forgotPassword",
         {"email":email},
         function (message) {
-            if (message.status === "ok"){
-                alert("You can go to your email to restore your password")
-            }else {
-                alert(message.message);
-            }
+            $('#generalModalBody').html('Check your email to restore your password!');
+            $('#generalModal').modal('html');
+        },
+        "json");
+}
+
+function verifyResend() {
+    var email = $("#c_email").val();
+    $.post("/verifyResend",
+        {"email":email},
+        function (message) {
+        console.log(message);
+            $('#generalModalBody').html('Resend verify email successfully!');
+            $('#generalModal').modal('html');
         },
         "json");
 }
