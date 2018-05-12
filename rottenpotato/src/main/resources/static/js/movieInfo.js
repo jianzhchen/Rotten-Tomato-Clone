@@ -26,6 +26,9 @@ function postReview(itemKey) {
                     $('#generalModalHeader').html('Success')
                     $('#generalModalBody').html('You review post successfully!');
                     $('#generalModal').modal('show');
+                    $('#generalModalCloseButton').click(function () {
+                        location.reload();
+                    })
                 },
                 "json"),
             "json");
