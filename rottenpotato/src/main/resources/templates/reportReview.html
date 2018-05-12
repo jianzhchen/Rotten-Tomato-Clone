@@ -109,9 +109,9 @@
                                 <!--personal info-->
 
                                 <div class="col-md-12 px-0">
-                                    <h2 class="title">Edit Review</h2>
+                                    <h2 class="title">Report Review</h2>
                                     <h3 class="title text-center"
-                                        th:text="'Edit Review for ' + ${itemName}">Report Review for Movie/TV</h3>
+                                        th:text="'Report Review for ' + ${itemName}">Report Review for Movie/TV</h3>
                                     <div>
                                         <form role="form">
                                             <div class="form-group" >
@@ -125,8 +125,10 @@
                                         </form>
                                     </div>
                                     <div class="text-center">
-                                        <button class="btn btn-primary"
-                                                th:onclick="'javascript:report(\''+${reviewId}+'\')'">Report
+                                        <button class="btn btn-primary">
+                                                <!--th:onclick="'javascript:report(\''+${reviewId}+'\')'"-->
+
+                                            Report
                                         </button>
                                        <button class="btn btn-primary ">Back</button>
                                     </div>

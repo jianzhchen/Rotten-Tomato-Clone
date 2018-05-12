@@ -1,10 +1,9 @@
 function report(reviewId)
 {
-//    var content = $("#reportContent").val();
-    var content = document.getElementById("reportContent").value();
+    var content = $("#reportContent").val();
 
     $.post("/1/reportReview",
-        {"reviewId":reviewId,"content":"content for report"},
+        {"reviewId":reviewId,"content":content},
         function (message)
         {
             alert(message.message);
