@@ -1,5 +1,7 @@
 package com.redwood.rottenpotato.main.mvccontollers;
 
+import com.redwood.rottenpotato.main.models.CriticReview;
+import com.redwood.rottenpotato.main.services.CriticReviewService;
 import com.redwood.rottenpotato.main.services.MovieService;
 import com.redwood.rottenpotato.main.services.TVService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +26,8 @@ public class HomeMvcController {
     private MovieService movieService;
     @Autowired
     private TVService TVService;
+    @Autowired
+    private CriticReviewService CriticReviewService;
 
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
@@ -73,7 +77,7 @@ public class HomeMvcController {
 
         model.addAttribute("openingThisWeek", movieService.openingThisWeek(model, 0));
 
-
+        CriticReviewService.getHighestRatingMovies();
         return "index.html";
     }
 
