@@ -20,6 +20,7 @@ public interface MovieRepository extends JpaRepository<Movie, Long> {
     @Query("SELECT m FROM Movie m order by m.inTheatersTime DESC")
     public List<Movie> findTop10ByOrderByInTheatersTimeDesc(Pageable pageable);
     public List<Movie> findTop8ByOrderByInTheatersTimeDesc(Pageable pageable);
+    public List<Movie> findTop100ByOrderByInTheatersTimeDesc(Pageable pageable);
 
     public Movie findByMovieKey(String movieKey);
 
@@ -28,6 +29,6 @@ public interface MovieRepository extends JpaRepository<Movie, Long> {
     @Query("SELECT m FROM Movie m WHERE m.cast LIKE %:actorKey%")
     public List<Movie> searchByActorKey(@Param("actorKey") String actorKey);
 
-//    public List<Movie> findAll();
+    public List<Movie> findAll();
 
 }

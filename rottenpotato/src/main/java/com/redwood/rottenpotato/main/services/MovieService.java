@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
+import sun.util.resources.cldr.aa.CalendarData_aa_DJ;
 
 import java.text.DateFormat;
 import java.text.DecimalFormat;
@@ -61,50 +62,50 @@ public class MovieService {
         return boxOfficeStr;
     }
 
-//    public List<Map> openingThisWeek(Model model){
-//        List<Map> templist = new ArrayList<>();
-//
-//        Calendar cal = Calendar.getInstance();
-//        cal.set(Calendar.HOUR_OF_DAY, 0); // ! clear would not reset the hour of day !
-//        cal.clear(Calendar.MINUTE);
-//        cal.clear(Calendar.SECOND);
-//        cal.clear(Calendar.MILLISECOND);
-//        cal.set(Calendar.DAY_OF_WEEK, cal.getFirstDayOfWeek());
-//        System.out.println(cal.getFirstDayOfWeek());
-//        cal.add(Calendar.DATE, -1);
-//        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S");
-//        Date dateHeader = cal.getTime();
-//
-//        for (int i = 0; i < 8; i++) {
-//            cal.add(Calendar.DATE, 1);
-//        }
-//        Date dateFooter = cal.getTime();
-//
-//
-//        System.out.println(dateFooter);
-//        for (Movie temp : MovieRepository.findAll()) {
-//            System.out.println(temp.getInTheatersTime());
-//            if(temp.getInTheatersTime() !=null | temp.getInTheatersTime().after(dateHeader)){
-//                System.out.println(temp.getInTheatersTime());
-//            }
-//            if(temp.getInTheatersTime() != null | temp.getInTheatersTime().after(dateHeader)){
-//                System.out.println(temp.getName());
-//                System.out.println(temp.getInTheatersTime());
-//            }
-//            if(temp.getInTheatersTime().before(dateFooter) || temp.getInTheatersTime().after(dateHeader)){
-//                Map<String, String> map = new HashMap<>();
-//
-//                map.put("movieName", temp.getName());
-//                map.put("key",temp.getMovieKey());
-//                map.put("date",temp.getInTheaters());
-//                templist.add(map);
-//            }
-//            System.out.println(temp.getName());
-//        }
-//
-//        System.out.println(sdf.format(dateHeader));
-//        return templist;
-//    }
+    public List<Map> openingThisWeek(Model model, int page){
+        List<Map> templist = new ArrayList<>();
+
+        Date date = new Date();
+        Date firstDate1 = new Date(118, 4, 15);
+        Calendar cal = Calendar.getInstance();
+        cal.set(Calendar.HOUR_OF_DAY, 0); // ! clear would not reset the hour of day !
+        cal.clear(Calendar.MINUTE);
+        cal.clear(Calendar.SECOND);
+        cal.clear(Calendar.MILLISECOND);
+
+        cal.set(Calendar.DAY_OF_WEEK, cal.getFirstDayOfWeek());
+        Date dateFirst = cal.getTime();
+
+        for (int i = 0; i < 7; i++) {
+
+            cal.add(Calendar.DATE, 1);
+        }
+
+        Date dateLast = cal.getTime();
+
+        System.out.println(dateFirst);
+        System.out.println(dateLast);
+
+
+
+
+
+
+        for (Movie movie : MovieRepository.findTop100ByOrderByInTheatersTimeDesc(PageRequest.of(page, 1))) {
+            if(movie.getInTheatersTime() != null){
+//                if(movie.getInTheatersTime().getYear() == date.getYear()  & movie.getInTheatersTime().getMonth() == date.getMonth() & movie.getInTheatersTime().getDate() / 7 == date.getDate() / 7){
+                if(movie.getInTheatersTime().after(dateFirst) & movie.getInTheatersTime().before(dateLast)){
+                    Map<String, String> map = new HashMap<>();
+                    map.put("movieName", movie.getName());
+                    map.put("key",movie.getMovieKey());
+                    map.put("date",movie.getInTheaters());
+                    templist.add(map);
+                }
+            }
+        }
+
+        return templist;
+    }
 
 
 }
