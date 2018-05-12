@@ -115,14 +115,19 @@
                                     <div>
                                         <form role="form">
                                             <div class="form-group" >
-                                                <textarea class="form-control text-muted" rows="10" id="reportContent" placeholder="Enter your report statements here"
-                                                th:text="${content}"></textarea>
+                                                <textarea class="form-control text-muted"
+                                                          rows="10"
+                                                          id="reportContent"
+                                                          placeholder="Enter your report statements here">
+                                                    Type Your Report Statement Here.
+                                                </textarea>
                                             </div>
                                         </form>
                                     </div>
                                     <div class="text-center">
                                         <button class="btn btn-primary"
-                                                th:onclick="'javascript:report(\''+${reviewId}+'\',\''+${itemKey}+'\')'">Report</button>
+                                                th:onclick="'javascript:report(\''+${reviewId}+'\')'">Report
+                                        </button>
                                        <button class="btn btn-primary ">Back</button>
                                     </div>
                                 </div>

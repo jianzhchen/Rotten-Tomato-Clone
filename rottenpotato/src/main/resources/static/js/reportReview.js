@@ -1,12 +1,13 @@
-function report(reviewId,itemKey)
+function report(reviewId)
 {
-    var content = $("#reportContent").val();
+//    var content = $("#reportContent").val();
+    var content = document.getElementById("reportContent").value();
 
     $.post("/1/reportReview",
-        {"reviewId":reviewId,"content":content},
+        {"reviewId":reviewId,"content":"content for report"},
         function (message)
         {
-                alert(message.message);
+            alert(message.message);
         },
         "json");
 }
