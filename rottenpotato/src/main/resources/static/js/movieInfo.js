@@ -18,19 +18,14 @@ function postReview(itemKey) {
     }else{
         $.post("/1/postReview",
             {"itemKey":itemKey,"content":content},
-            function (message) {
-                console.log(message);
-                alert(message.status);
-            },
+            $.post("/1/postRating",
+                {"itemKey":itemKey,"rating":score},
+                function (message) {
+                    console.log(message);
+                    alert(message.status);
+                },
+                "json"),
             "json");
-        $.post("/1/postRating",
-            {"itemKey":itemKey,"rating":score},
-            function (message) {
-                console.log(message);
-                alert(message.status);
-            },
-            "json");
-
     }
 
 }

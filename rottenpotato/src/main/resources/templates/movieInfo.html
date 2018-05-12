@@ -9,8 +9,8 @@
     <!-- Favicons -->
     <link rel="apple-touch-icon" th:href="@{~/assets/img/kit/free/apple-icon.png}">
     <link rel="icon" th:href="@{~/assets/img/kit/free/favicon.png}">
-    <link rel="apple-touch-icon" href="./assets/img/kit/free/apple-icon.png">
-    <link rel="icon" href="./assets/img/kit/free/favicon.png">
+    <!--<link rel="apple-touch-icon" href="./assets/img/kit/free/apple-icon.png">-->
+    <!--<link rel="icon" href="./assets/img/kit/free/favicon.png">-->
     <title>
         Rotten Potato
     </title>
@@ -20,8 +20,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css"/>
     <link rel="stylesheet" th:href="@{~/assets/css/material-kit.css?v=2.0.2}">
     <link rel="stylesheet" th:href="@{~/assets/css/custom.css}">
-    <link rel="stylesheet" href="./assets/css/material-kit.css?v=2.0.2">
-    <link rel="stylesheet" href="./assets/css/custom.css">
+    <!--<link rel="stylesheet" href="./assets/css/material-kit.css?v=2.0.2">-->
+    <!--<link rel="stylesheet" href="./assets/css/custom.css">-->
 </head>
 
 <body class="index-page ">
@@ -189,13 +189,13 @@
                             <div th:unless="${isLogin}">
                                 <div class="float-left">
                                     <button type="button" class="btn btn-primary btn-sm"
-                                            th:onclick="'javascript:loginMessage()'" >Want to see</button>
+                                            data-toggle="modal" data-target="#loginError">Want to see</button>
                                     <button type="button" class="btn btn-danger btn-sm"
-                                            th:onclick="'javascript:loginMessage()'" >Not interested</button>
+                                            data-toggle="modal" data-target="#loginError" >Not interested</button>
                                 </div>
                                 <div class="float-right">
                                     <button type="button" class="btn btn-sm"
-                                            th:onclick="'javascript:loginMessage()'">Post</button>
+                                            data-toggle="modal" data-target="#loginError">Post</button>
                                 </div>
                             </div>
                         </div>
@@ -492,7 +492,29 @@
         </div>
     </div>
 </div>
+<!--modal-->
+<div class="modal fade" id="loginError" role="dialog">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
 
+            <div class="modal-header">
+                <h4 class="modal-title">Error</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+
+            <div class="modal-body">
+                <p class="title">Plase Login First</p>
+            </div>
+
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--modal end-->
 <footer class="footer ">
     <div class="container">
         <div class="row">
@@ -548,24 +570,25 @@
 <script src="./assets/js/material-kit.js?v=2.0.2"></script>
 <!-- Fixed Sidebar Nav - js With initialisations For Demo Purpose, Don't Include it in your project -->
 <script src="./assets/assets-for-demo/js/material-kit-demo.js"></script>
-<script type="text/javascript" th:src="@{~/js/movieInfo.js}"></script>
-
-
-<script src="@{~/assets/js/core/jquery.min.js}"></script>
-<script src="@{~/assets/js/core/popper.min.js}"></script>
-<script src="@{~/assets/js/bootstrap-material-design.js}"></script>
-<!--  Plugin for Date Time Picker and Full Calendar Plugin  -->
-<script src="@{~/assets/js/plugins/moment.min.js}"></script>
-<!--	Plugin for the Datepicker, full documentation here: https://github.com/Eonasdan/bootstrap-datetimepicker -->
-<script src="@{~/assets/js/plugins/bootstrap-datetimepicker.min.js}"></script>
-<!--	Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
-<script src="@{~/assets/js/plugins/nouislider.min.js}"></script>
-<!-- Material Kit Core initialisations of plugins and Bootstrap Material Design Library -->
-<script src="@{~/assets/js/material-kit.js?v=2.0.2}"></script>
-<!-- Fixed Sidebar Nav - js With initialisations For Demo Purpose, Don't Include it in your project -->
-<script src="@{~/assets/assets-for-demo/js/material-kit-demo.js}"></script>
 <script type="text/javascript" src="../static/js/movieInfo.js"></script>
 <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+
+
+<script th:src="@{~/assets/js/core/jquery.min.js}"></script>
+<script th:src="@{~/assets/js/core/popper.min.js}"></script>
+<script th:src="@{~/assets/js/bootstrap-material-design.js}"></script>
+<!--  Plugin for Date Time Picker and Full Calendar Plugin  -->
+<script th:src="@{~/assets/js/plugins/moment.min.js}"></script>
+<!--	Plugin for the Datepicker, full documentation here: https://github.com/Eonasdan/bootstrap-datetimepicker -->
+<script th:src="@{~/assets/js/plugins/bootstrap-datetimepicker.min.js}"></script>
+<!--	Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
+<script th:src="@{~/assets/js/plugins/nouislider.min.js}"></script>
+<!-- Material Kit Core initialisations of plugins and Bootstrap Material Design Library -->
+<script th:src="@{~/assets/js/material-kit.js?v=2.0.2}"></script>
+<!-- Fixed Sidebar Nav - js With initialisations For Demo Purpose, Don't Include it in your project -->
+<script th:src="@{~/assets/assets-for-demo/js/material-kit-demo.js}"></script>
+<script type="text/javascript" th:src="@{~/js/movieInfo.js}"></script>
+
 
 
 
