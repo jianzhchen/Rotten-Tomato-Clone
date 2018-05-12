@@ -180,7 +180,7 @@ public class ProfileMvcController {
             model.addAttribute("isLogin", true);
             model.addAttribute("username", principal.getName());
         }
-        
+
         String userEmail = principal.getName();
         User user = userRepository.findByEmail(userEmail);
 
