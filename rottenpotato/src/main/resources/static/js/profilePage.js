@@ -12,13 +12,12 @@ function deleteFromWantToSee(itemKey)
         {"itemKey":itemKey},
         function (message)
         {
-            var x = document.getElementById("wantToSeeAlert");
-            if (x.style.display === "none") {
-                x.style.display = "block";
-            } else {
-                x.style.display = "none";
-            }
-            setTimeout(function(){ location.reload(); }, 1000);
+            $('#generalModalHeader').html("Success");
+            $('#generalModalBody').html('You have deleted from Want to See list review successfully!');
+            $('#generalModalCloseButton').click(function () {
+                location.reload();
+            });
+            $('#generalModal').modal('show');
         },
         "json");
 }
@@ -29,13 +28,12 @@ function deleteFromNotInterested(itemKey)
         {"itemKey":itemKey},
         function (message)
         {
-            var x = document.getElementById("notInterestedAlert");
-            if (x.style.display === "none") {
-                x.style.display = "block";
-            } else {
-                x.style.display = "none";
-            }
-            setTimeout(function(){ location.reload(); }, 1000);
+            $('#generalModalHeader').html("Success");
+            $('#generalModalBody').html('You have deleted from Not Interested list successfully!');
+            $('#generalModalCloseButton').click(function () {
+                location.reload();
+            });
+            $('#generalModal').modal('show');
 
         },
         "json");
