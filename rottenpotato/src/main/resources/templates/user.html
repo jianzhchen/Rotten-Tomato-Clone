@@ -213,6 +213,7 @@
                                     <th>Movie/TV</th>
                                     <th>Score</th>
                                     <th>Review</th>
+                                    <th>Report</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -225,6 +226,13 @@
 
                                     </td>
                                     <td th:text="${review.content}">content
+                                    </td>
+                                    <td>
+                                        <button type="button"
+                                                class="btn btn-default btn-sm"
+                                                th:onclick="'javascript:reportReview(\''+${review.reviewId}+'\')'">
+                                            Report This Review
+                                        </button>
                                     </td>
                                 </tr>
                                 </tbody>
@@ -293,6 +301,7 @@
 <script th:src="@{~/assets/assets-for-demo/js/material-kit-demo.js}"></script>
 <script type="text/javascript" th:src="@{~/js/index.js}"></script>
 <script type="text/javascript" th:src="@{~/js/profilePage.js}"></script>
+<script type="text/javascript" th:src="@{~/js/reportReview.js}"></script>
 
 
 <!--test-->
