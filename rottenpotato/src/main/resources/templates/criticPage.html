@@ -166,13 +166,19 @@
                                                     </td>
                                                     <td th:text="${review.content}">content
                                                     </td>
-
-
                                                 </tr>
                                                 </tbody>
                                             </table>
                                         </div>
                                     </div>
+                                </div>
+                                <div class="float-right">
+                                    <button type="button" class="btn btn-primary"
+                                            th:if="${page} != 0" th:onclick="'javascript:getPrevPage(\''+${page}+'\')'">Prev</button>
+                                    <p style="display: inline"
+                                       th:text="${page}+1">Page</p>
+                                    <button type="button" class="btn btn-primary"
+                                            th:if="${hasNext}" th:onclick="'javascript:getNextPage(\''+${page}+'\')'">Next</button>
                                 </div>
                             </div>
                         </div>

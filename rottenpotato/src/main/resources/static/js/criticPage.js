@@ -1,3 +1,4 @@
+
 function getMovie(movieId){
      window.location.href="/m/"+movieId;
  }
@@ -9,16 +10,10 @@ function getMovie(movieId){
      }else{
          var index = url.lastIndexOf("=");
          besttUrl=url.substring(0,index+1);
-         besttUrl = nextUrl+'1';
+         besttUrl = besttUrl+'1';
 
      }
      window.location.href=besttUrl;
-     $('#sortBest').removeClass("btn-secondary")
-     $('#sortBest').addClass("btn-primary")
-     $('#sortWorst').removeClass("btn-primary")
-     $('#sortWorst').addClass("btn-secondary")
-
-
 
  }
 
@@ -31,12 +26,29 @@ function sortByWorst() {
     }else{
         var index = url.lastIndexOf("=");
         worstUrl=url.substring(0,index+1);
-        worstUrl = nextUrl+'2';
-
+        worstUrl = worstUrl+'2';
     }
     window.location.href=worstUrl;
-    $('#sortBest').removeClass("btn-primary")
-    $('#sortBest').addClass("btn-secondary")
-    $('#sortWorst').removeClass("btn-secondary")
-    $('#sortWorst').addClass("btn-primary")
+}
+function getPrevPage(page) {
+    var url = window.location.pathname + window.location.search;
+    var prev= Number(page) - 1;
+    var index = url.lastIndexOf("=");
+    var prevUrl=url.substring(0,index+1);
+    prevUrl = prevUrl+prev;
+    window.location.href=prevUrl;
+}
+function getNextPage(page) {
+    var url = window.location.pathname + window.location.search;
+    var nextUrl = "";
+    if (url.indexOf("page") === -1){
+        nextUrl = url+ "?page=1"
+    }else{
+        var next= Number(page)  + 1;
+        var index = url.lastIndexOf("=");
+        nextUrl=url.substring(0,index+1);
+        nextUrl = nextUrl+next;
+
+    }
+    window.location.href=nextUrl;
 }

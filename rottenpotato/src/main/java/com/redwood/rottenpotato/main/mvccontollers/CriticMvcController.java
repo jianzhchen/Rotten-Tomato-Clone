@@ -78,6 +78,7 @@ public class CriticMvcController {
         model.addAttribute("hasNext", hasNext);
         model.addAttribute("criticKey", criticKey);
         model.addAttribute("recentReviews", reviews);
+        model.addAttribute("page",page);
         return "criticPage.html";
     }
 
@@ -99,8 +100,10 @@ public class CriticMvcController {
             TV tv = tVRepository.findByTVKey(itemKey);
             if (movie != null) {
                 map.put("itemName", movie.getName());
+                map.put("url","/m/"+movie.getMovieKey());
             } else if (tv != null) {
                 map.put("itemName", tv.getTVName());
+                map.put("url","/t/"+tv.getTVKey());
             } else {
                 continue;
             }
@@ -108,6 +111,7 @@ public class CriticMvcController {
             Critic critic = criticRepository.findByCriticKey(criticReview.getCriticKey());
             map.put("name", critic.getCriticName());
             map.put("score", Integer.toString(criticReview.getReviewRating()));
+            map.put("date", criticReview.getReviewTime());
             map.put("content", criticReview.getReviewContent());
             reviews.add(map);
         }
