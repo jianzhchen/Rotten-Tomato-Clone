@@ -219,8 +219,8 @@
                                 </thead>
                                 <tbody>
                                 <tr th:each="review:${reviews}">
-                                    <td th:text="${review.name}" th:onclick="'javascript:getItem(\''+${review.url}+'\')'">
-                                        movie
+                                    <td>
+                                        <a th:text="${review.name}" th:href="${review.url}">movie</a>
                                     </td>
                                     <!--<td th:onclick="'javascript:getTv(\''+${item.key}+'\')'">-->
                                     <td th:text="${review.rate}+'/5'">score
@@ -320,7 +320,6 @@
 <!-- Fixed Sidebar Nav - js With initialisations For Demo Purpose, Don't Include it in your project -->
 <script th:src="@{~/assets/assets-for-demo/js/material-kit-demo.js}"></script>
 <script type="text/javascript" th:src="@{~/js/user.js}"></script>
-<script type="text/javascript" th:src="@{~/js/reportReview.js}"></script>
 
 
 <!--test-->
