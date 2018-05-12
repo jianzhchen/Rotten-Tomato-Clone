@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.security.Principal;
 import java.util.ArrayList;
@@ -35,8 +36,8 @@ public class CriticMvcController {
     private CriticService criticService;
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
-    @RequestMapping("/critic/{criticKey}/{page}")
-    public String criticPage(@PathVariable("criticKey") String criticKey, Model model, Principal principal, @PathVariable("page") int page) {
+    @RequestMapping("/critic/{criticKey}")
+    public String criticPage(@PathVariable("criticKey") String criticKey, Model model, Principal principal, @RequestParam(value = "page",defaultValue = "0") int page) {
         if (principal == null) {
             model.addAttribute("isLogin", false);
         } else {
