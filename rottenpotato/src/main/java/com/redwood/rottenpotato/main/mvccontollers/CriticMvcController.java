@@ -4,6 +4,8 @@ import com.redwood.rottenpotato.main.DTO.TopCriticDTO;
 import com.redwood.rottenpotato.main.models.*;
 import com.redwood.rottenpotato.main.repositories.*;
 import com.redwood.rottenpotato.main.services.CriticService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
@@ -31,7 +33,7 @@ public class CriticMvcController {
     private MovieRepository movieRepository;
     @Autowired
     private CriticService criticService;
-
+    private final Logger log = LoggerFactory.getLogger(this.getClass());
     @RequestMapping("/critic/{criticKey}")
     public String criticPage(@PathVariable("criticKey") String criticKey, Model model, Principal principal) {
         if (principal == null) {
@@ -65,8 +67,10 @@ public class CriticMvcController {
                 map.put("score", Integer.toString(cv.getReviewRating()));
                 map.put("date", cv.getReviewTime());
                 map.put("content", cv.getReviewContent());
+                reviews.add(map);
             }
         }
+
         model.addAttribute("criticKey", criticKey);
         model.addAttribute("recentReviews", reviews);
         return "criticPage.html";
