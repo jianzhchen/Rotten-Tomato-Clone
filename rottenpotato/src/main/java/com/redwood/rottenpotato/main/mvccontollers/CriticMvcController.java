@@ -34,8 +34,9 @@ public class CriticMvcController {
     @Autowired
     private CriticService criticService;
     private final Logger log = LoggerFactory.getLogger(this.getClass());
-    @RequestMapping("/critic/{criticKey}")
-    public String criticPage(@PathVariable("criticKey") String criticKey, Model model, Principal principal) {
+
+    @RequestMapping("/critic/{criticKey}/{page}")
+    public String criticPage(@PathVariable("criticKey") String criticKey, Model model, Principal principal, @PathVariable("page") int page) {
         if (principal == null) {
             model.addAttribute("isLogin", false);
         } else {
@@ -45,7 +46,11 @@ public class CriticMvcController {
         Critic critic = criticRepository.findByCriticKey(criticKey);
         model.addAttribute("name", critic.getCriticName());
         model.addAttribute("info", critic.getCriticInfo());
-        List<CriticReview> criticReviews = criticReviewRepository.findTop10ByCriticKeyOrderByReviewTimeDateDesc(criticKey, PageRequest.of(0, 10));
+        List<CriticReview> criticReviews = criticReviewRepository.findTop10ByCriticKeyOrderByReviewTimeDateDesc(criticKey, PageRequest.of(page, 10));
+        boolean hasNext = true;
+        if (criticReviewRepository.findTop10ByCriticKeyOrderByReviewTimeDateDesc(criticKey, PageRequest.of(page + 1, 10)).size() <= 0) {
+            hasNext = false;
+        }
 
         List<HashMap> reviews = new ArrayList<>();
         for (CriticReview cv : criticReviews) {
@@ -60,8 +65,7 @@ public class CriticMvcController {
                 map.put("date", cv.getReviewTime());
                 map.put("content", cv.getReviewContent());
                 reviews.add(map);
-            }
-            else if (tv != null) {
+            } else if (tv != null) {
                 map.put("url", "/t/" + itemKey);
                 map.put("itemName", tv.getTVName());
                 map.put("score", Integer.toString(cv.getReviewRating()));
@@ -70,7 +74,7 @@ public class CriticMvcController {
                 reviews.add(map);
             }
         }
-
+        model.addAttribute("hasNext", hasNext);
         model.addAttribute("criticKey", criticKey);
         model.addAttribute("recentReviews", reviews);
         return "criticPage.html";
@@ -124,7 +128,7 @@ public class CriticMvcController {
         List<Object[]> criticReviews = criticReviewRepository.findTop10ByReviewCount();
         List<Critic> topCritics = new ArrayList<>();
         for (Object[] criticReview : criticReviews) {
-            topCritics.add(criticRepository.findByCriticKey((String)criticReview[0]));
+            topCritics.add(criticRepository.findByCriticKey((String) criticReview[0]));
             if (topCritics.size() >= 8) {
                 break;
             }
