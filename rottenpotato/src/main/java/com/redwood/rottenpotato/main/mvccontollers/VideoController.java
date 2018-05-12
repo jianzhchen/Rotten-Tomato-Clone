@@ -24,7 +24,7 @@ public class VideoController {
         String currentDirectory;
         File file = new File("");
         currentDirectory = file.getAbsolutePath();
-        currentDirectory += "/src/main/resources/static/Trailers";
+        currentDirectory += "/rottenpotato/src/main/resources/static/Trailers";
 
         File folder = new File(currentDirectory.toString());
 
