@@ -85,30 +85,20 @@ function deleteReview(reviewId , itemKey){
     $.post("/1/deleteReview",
         {"reviewId":reviewId},
         function (message) {
-            if(message.status === "ok"){
-                successCount = successCount+1;
-            }else {
-                alert(message.message);
-            }
-
+            $.post("/1/deleteRating",
+                {"itemKey":itemKey},
+                function (message) {
+                    $('#generalModalHeader').html("Success");
+                    $('#generalModalBody').html('You have deleted the review successfully!');
+                    $('#generalModalCloseButton').click(function () {
+                        location.reload();
+                    });
+                    $('#generalModal').modal('show');
+                },
+                "json");
         },
         "json");
 
-    $.post("/1/deleteRating",
-        {"itemKey":itemKey},
-        function (message) {
-            if(message.status === "ok"){
-                successCount = successCount+1;
-
-            }else {
-                alert(message.message);
-            }
-        },
-        "json");
-    if(successCount === 2){
-        alert("Delete successfully!")
-        window.location.href="/1/me";
-    }
 
 }
 function editReview(reviewId,ratingId) {
