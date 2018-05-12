@@ -26,6 +26,9 @@
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link th:href="@{~/assets/assets-for-demo/demo.css}" rel="stylesheet"/>
     <link href="./assets/assets-for-demo/demo.css" rel="stylesheet"/>
+    <link th:href="@{~/assets/css/custom.css}" rel="stylesheet"/>
+    <link href="./assets/css/custom.css" rel="stylesheet"/>
+
 
 </head>
 
@@ -207,20 +210,20 @@
         <div class="row">
             <div class="col-md-3">
                 <div class="row">
-                    <a href="/about"><strong>About Us</strong></a>
+                    <a href="/about" class="text-black">About Us</a>
                 </div>
                 <div class="row">
-                    <a href="/service"><strong>Terms of Service</strong></a>
+                    <a href="/service" class="text-black">Terms of Service</a>
                 </div>
                 <div class="row">
-                    <a href="/criticApplication"><strong>Become to a critic?</strong></a>
+                    <a href="/criticApplication" class="text-black">Become to a critic?</a>
                 </div>
             </div>
             <div class="col-md-6 ">
                 <div class="row text-center">
                     <ul>
                         <li>
-                           <strong>Follow us:</strong>
+                          Follow us:
                         </li>
                         <li>
                             <img th:src="@{~/assets/img/kit/free/facebook.png}" width="16" height="16" onclick="window.open('https://www.facebook.com/Rotten-Potato-1736246306467236')">
@@ -231,7 +234,7 @@
                     </ul>
                 </div>
                 <div class="row">
-                    <strong>Contact us: <a href="/">cse308redwood@gmail.com</a></strong>
+                    Contact us: <a href="/">cse308redwood@gmail.com</a>
                 </div>
             </div>
             <div class="col-md-3">
