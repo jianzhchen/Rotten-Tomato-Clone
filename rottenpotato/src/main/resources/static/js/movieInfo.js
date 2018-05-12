@@ -1,3 +1,6 @@
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();
+});
 function getActor(actorKey){
     window.location.href="/c/"+actorKey;
 }

@@ -121,7 +121,7 @@ public class MovieMvcController {
             //one review
             HashMap<String, String> aReview = new HashMap<>();
             if (cr.getReviewRating() == 0) {
-                aReview.put("score", "No Score");
+                aReview.put("score", "N/A");
             } else {
                 aReview.put("score", Integer.toString(cr.getReviewRating()));
             }

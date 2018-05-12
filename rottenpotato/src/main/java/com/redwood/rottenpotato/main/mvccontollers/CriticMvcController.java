@@ -31,7 +31,13 @@ public class CriticMvcController {
     private CriticService criticService;
 
     @RequestMapping("/critic/{criticKey}")
-    public String criticPage(@PathVariable("criticKey") String criticKey, Model model) {
+    public String criticPage(@PathVariable("criticKey") String criticKey, Model model,Principal principal) {
+        if (principal == null) {
+            model.addAttribute("isLogin", false);
+        } else {
+            model.addAttribute("isLogin", true);
+            model.addAttribute("username", principal.getName());
+        }
         Critic critic = criticRepository.findByCriticKey(criticKey);
         model.addAttribute("name", critic.getCriticName());
         model.addAttribute("info", critic.getCriticInfo());
