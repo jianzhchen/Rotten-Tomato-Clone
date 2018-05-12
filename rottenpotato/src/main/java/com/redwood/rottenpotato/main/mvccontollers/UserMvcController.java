@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -231,22 +232,22 @@ public class UserMvcController {
         }
 
 
-//        String sqlQuery = "SELECT\n" +
-//                "  FIND_IN_SET(follower_count, (\n" +
-//                "    SELECT GROUP_CONCAT(follower_count ORDER BY follower_count DESC)\n" +
-//                "    FROM fcount)\n" +
-//                "  ) AS rank\n" +
-//                "FROM fcount\n" +
-//                "WHERE user_id = :userId";
-//        Query query = entityManager.createNativeQuery(sqlQuery);
-//        query.setParameter("userId", user.getId());
-//        List<BigDecimal> resultList = query.getResultList();
-//        if (resultList.size() > 0) {
-//            BigDecimal result = resultList.get(0);
-//            model.addAttribute("followerRank", result.intValue());
-//        } else {
-//            model.addAttribute("followerRank", "n/s");
-//        }
+        String sqlQuery = "SELECT\n" +
+                "  FIND_IN_SET(follower_count, (\n" +
+                "    SELECT GROUP_CONCAT(follower_count ORDER BY follower_count DESC)\n" +
+                "    FROM fcount)\n" +
+                "  ) AS rank\n" +
+                "FROM fcount\n" +
+                "WHERE user_id = :userId";
+        Query query = entityManager.createNativeQuery(sqlQuery);
+        query.setParameter("userId", user.getId());
+        List<BigInteger> resultList = query.getResultList();
+        if (resultList.size() > 0) {
+            BigInteger result = resultList.get(0);
+            model.addAttribute("followerRank", result.intValue());
+        } else {
+            model.addAttribute("followerRank", "n/s");
+        }
         return "user.html";
     }
 }

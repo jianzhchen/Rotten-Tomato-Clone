@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css"/>
     <link rel="stylesheet" th:href="@{~/assets/css/material-kit.css?v=2.0.2}">
     <link rel="stylesheet" href="./assets/css/material-kit.css?v=2.0.2">
+
     <!-- Documentation extras -->
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link th:href="@{~/assets/assets-for-demo/demo.css}" rel="stylesheet"/>
@@ -29,7 +30,7 @@
     <link th:href="@{~/assets/css/custom.css}" rel="stylesheet"/>
     <link href="./assets/css/custom.css" rel="stylesheet"/>
 
-
+    <!-- iframe removal -->
 </head>
 
 <body class="index-page ">
@@ -43,7 +44,7 @@
                 <a class="nav-link" href="/m/d/0">Movie</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/t/l/0">TV</a>
+                <a class="nav-link" href="/tv">TV</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/critic_all/0">Critic</a>
@@ -83,7 +84,7 @@
     </div>
 </nav>
 <div class="page-header header-filter clear-filter purple-filter" data-parallax="true"
-     style="background-image: url('./assets/img/Moonlight.jpg'); background-size: 34% auto;">
+     style="background-image: url('../assets/img/Moonlight.jpg'); background-size: 34% auto;">
     <div class="container">
         <div class="row">
             <div class="col-md-8 ml-auto mr-auto">
@@ -95,150 +96,85 @@
     </div>
 </div>
 
+
 <div class="main main-raised">
-    <div class="section section-basic mx-2">
-        <div class="row">
-            <!--movie list-->
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-body">
-                        <h2 class="card-title">COMING SOON TO THEATERS</h2>
-                            <table class="table table-striped">
-                                <tbody>
-                                <tr th:each="movie:${movieOpeningThisWeek}">
-                                    <td>
-                                        <a th:text="${movie.movieName}"
-                                           th:href="'javascript:getMovie(\''+${movie.key}+'\')'">
-                                        </a>
-                                    </td>
-                                    <td class="pull-right" th:text="${movie.date}">MAR 2</td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        <a class="pull-right" href="/m/d/0">View All</a>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-body">
-                        <h2 class="card-title">TOP BOX OFFICE</h2>
-                        <table class="table table-striped">
-                            <tbody>
-                            <tr th:each="movie:${topBoxOffice}">
-                                <!--<td th:text="${movie.rate}">N/A</td>-->
-                                <td>
-                                    <a th:text="${movie.movieName}"
-                                       th:href="'javascript:getMovie(\''+${movie.key}+'\')'">
-                                    </a>
-                                </td>
-                                <td th:text="${movie.boxOffice}">MAR 2</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                        <a class="pull-right" href="/m/b/0">View All</a>
-                    </div>
-                </div>
-            </div>
-            <!--tv list-->
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-body">
-                        <h2 class="card-title">NEWEST TV SHOWS</h2>
-                        <table class="table table-striped">
-                            <tbody>
-                            <tr th:each="tv:${newTVShows}">
-                                <td>
-                                    <a th:text="${tv.TVName}"
-                                       th:href="'javascript:getTv(\''+${tv.key}+'\')'">
-                                    </a>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                        <a class="pull-right" href="/m/d/0">View All</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--video-->
-        <div class="row m-2 px-2">
-            <div class="col-md-12 px-0">
-                <h2 class="title mb-4">Trailers & Videos</h2>
-                <div class="row" th:if="${hasTrailer} == true">
-                    <div class="col-md-4" align="center">
+    <div class="profile-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card">
+                        <div class="card-body">
 
-                        <video width="550"  controls>
-                            <source th:src="@{'~/Trailers/'+${testSamples[0]}}"  type="video/mp4">
-                        </video>
+                            <div class="row">
+                                <!--personal info-->
 
-                    </div>
-                    <div class="col-md-4" align="center">
-                        <video width="550"  controls>
-                            <source th:src="@{'~/Trailers/'+${testSamples[1]}}"  type="video/mp4">
-                        </video>
-                    </div>
-                    <div class="col-md-4" align="center">
-                        <video width="550"  controls>
-                            <source th:src="@{'~/Trailers/'+${testSamples[2]}}"  type="video/mp4">
-                        </video>
-                    </div>
-                </div>
-                <a class="pull-right" th:onclick="'javascript:getVideos()'">More Trailers & Videos</a>
-            </div>
-        </div>
-        <!--news-->
-        <div class="row m-2 px-2">
-            <div class="col-md-12 px-0">
-                <h2 class="title">News & features</h2>
-                <div class="row">
-                    <div class="col-md-3">
-                        <a href="https://placeholder.com">
-                            <img src="http://via.placeholder.com/240x135" width="100%"></a>
-                        <h6 class="mt-2">some text</h6>
-                    </div>
-                </div>
-                <a class="pull-right" href="news.html">More News & Features</a>
-            </div>
-        </div>
+                                <div class="col-md-12 px-0">
+                                    <h2 class="title">Report Review</h2>
+                                    <h3 class="title text-center"
+                                        th:text="'Report Review for ' + ${itemName}">Report Review for Movie/TV</h3>
+                                    <div>
+                                        <form role="form">
+                                            <div class="form-group" >
+                                                <textarea class="form-control text-muted"
+                                                          rows="10"
+                                                          id="reportContent"
+                                                          placeholder="Enter your report statements here">
+                                                    Type Your Report Statement Here.
+                                                </textarea>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="text-center">
+                                        <button class="btn btn-primary">
+                                                <!--th:onclick="'javascript:report(\''+${reviewId}+'\')'"-->
 
+                                            Report
+                                        </button>
+                                       <button class="btn btn-primary ">Back</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+
+            </div>
+
+        </div>
     </div>
 </div>
-<!-- Classic Modal -->
+</div>
 
-<!--  End Modal -->
+
 <footer class="footer ">
     <div class="container">
         <div class="row">
             <div class="col-md-3">
-                <div class="row">
-                    <a href="/about" class="text-black">About Us</a>
-                </div>
-                <div class="row">
-                    <a href="/service" class="text-black">Terms of Service</a>
-                </div>
-                <div class="row">
-                    <a href="/criticApplication" class="text-black">Become to a critic?</a>
-                </div>
-            </div>
-            <div class="col-md-6 ">
-                <div class="row">
-                    <a href="/FAQ" class="text-black">FAQ</a>
-                </div>
-                <div class="row text-center">
+                <div>
                     <ul>
                         <li>
-                          Follow us:
-                        </li>
-                        <li>
-                            <img th:src="@{~/assets/img/kit/free/facebook.png}" width="16" height="16" onclick="window.open('https://www.facebook.com/Rotten-Potato-1736246306467236')">
-                        </li>
-                        <li>
-                            <img th:src="@{~/assets/img/kit/free/twitter.png}" width="16" height="16" onclick="window.open('https://twitter.com/Redwood05618547')">
+                            <a href="/about">
+                                About Us
+                            </a>
                         </li>
                     </ul>
                 </div>
-                <div class="row">
-                    Contact us: <a href="/">cse308redwood@gmail.com</a>
-                </div>
+            </div>
+            <div class="col-md-6">
+                <ul>
+                    <li>
+                        <a >Follow us:</a>
+                    </li>
+                    <li>
+                        <img th:src="@{~/assets/img/kit/free/facebook.png}" width="16" height="16" onclick="window.open('https://www.facebook.com')">
+                    </li>
+                    <li>
+                        <img th:src="@{~/assets/img/kit/free/twitter.png}" width="16" height="16" onclick="window.open('https://twitter.com')">
+                    </li>
+                </ul>
             </div>
             <div class="col-md-3">
                 <div class="copyright pull-right">
@@ -268,7 +204,8 @@
 <script th:src="@{~/assets/js/material-kit.js?v=2.0.2}"></script>
 <!-- Fixed Sidebar Nav - js With initialisations For Demo Purpose, Don't Include it in your project -->
 <script th:src="@{~/assets/assets-for-demo/js/material-kit-demo.js}"></script>
-<script type="text/javascript" th:src="@{~/js/index.js}"></script>
+<script type="text/javascript" th:src="@{~/js/reportReview.js}"></script>
+
 
 <!--test-->
 <script src="./assets/js/core/jquery.min.js"></script>
@@ -284,7 +221,6 @@
 <script src="./assets/js/material-kit.js?v=2.0.2"></script>
 <!-- Fixed Sidebar Nav - js With initialisations For Demo Purpose, Don't Include it in your project -->
 <script src="./assets/assets-for-demo/js/material-kit-demo.js"></script>
-
 
 </body>
 

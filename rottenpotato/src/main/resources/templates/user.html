@@ -111,10 +111,11 @@
 
                                         <!--User details-->
                                         <div id="info-section">
-                                            <!--email and follower-->
+                                            <!--email and follower and rank-->
                                             <ul class="list-unstyled infolist-height">
                                                 <li th:text="${email}">Empty Email</li>
                                                 <li th:text="${numberOfFollowers}+' Followers Now'">No Follower</li>
+                                                <li th:text="'Rank: '+${followerRank}">No Rank</li>
                                             </ul>
                                             <div class="float-right">
                                                 <button id = "toggleFollowUnFollow"
@@ -212,6 +213,7 @@
                                     <th>Movie/TV</th>
                                     <th>Score</th>
                                     <th>Review</th>
+                                    <th>Report</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -224,6 +226,13 @@
 
                                     </td>
                                     <td th:text="${review.content}">content
+                                    </td>
+                                    <td>
+                                        <button type="button"
+                                                class="btn btn-default btn-sm"
+                                                th:onclick="'javascript:reportReview(\''+${review.reviewId}+'\')'">
+                                            Report
+                                        </button>
                                     </td>
                                 </tr>
                                 </tbody>
@@ -292,6 +301,7 @@
 <script th:src="@{~/assets/assets-for-demo/js/material-kit-demo.js}"></script>
 <script type="text/javascript" th:src="@{~/js/index.js}"></script>
 <script type="text/javascript" th:src="@{~/js/profilePage.js}"></script>
+<script type="text/javascript" th:src="@{~/js/reportReview.js}"></script>
 
 
 <!--test-->

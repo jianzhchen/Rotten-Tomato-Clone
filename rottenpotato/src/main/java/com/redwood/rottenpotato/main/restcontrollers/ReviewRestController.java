@@ -19,6 +19,7 @@ public class ReviewRestController {
         return reviewService.postReview(itemKey,userEmail,content);
     }
 
+    @GetMapping("reportReview")
     @PostMapping("reportReview")
     public String reportReview(@RequestParam("reviewId") long reviewId, Principal principal, @RequestParam("content") String content) {
         String userEmail = principal.getName();
