@@ -108,6 +108,7 @@ public class CriticMvcController {
             Critic critic = criticRepository.findByCriticKey(criticReview.getCriticKey());
             map.put("name", critic.getCriticName());
             map.put("score", Integer.toString(criticReview.getReviewRating()));
+            map.put("date", criticReview.getReviewTime());
             map.put("content", criticReview.getReviewContent());
             reviews.add(map);
         }
