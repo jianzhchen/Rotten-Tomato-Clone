@@ -4,7 +4,7 @@ function forgotPassword() {
         {"email":email},
         function (message) {
             $('#generalModalBody').html('Check your email to restore your password!');
-            $('#generalModal').modal('html');
+            $('#generalModal').modal('show');
         },
         "json");
 }
@@ -16,7 +16,7 @@ function verifyResend() {
         function (message) {
         console.log(message);
             $('#generalModalBody').html('Resend verify email successfully!');
-            $('#generalModal').modal('html');
+            $('#generalModal').modal('show');
         },
         "json");
 }
