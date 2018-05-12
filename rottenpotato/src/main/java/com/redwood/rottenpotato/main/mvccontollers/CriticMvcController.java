@@ -100,8 +100,10 @@ public class CriticMvcController {
             TV tv = tVRepository.findByTVKey(itemKey);
             if (movie != null) {
                 map.put("itemName", movie.getName());
+                map.put("url","/m/"+movie.getMovieKey());
             } else if (tv != null) {
                 map.put("itemName", tv.getTVName());
+                map.put("url","/t/"+tv.getTVKey());
             } else {
                 continue;
             }
