@@ -42,3 +42,27 @@ function editNames() {
         },
         "json")
 }
+function changeToOpen() {
+    $.post("/1/changePrivacy",
+        {"privacy":"1"},
+        function () {
+            $('#generalModalBody').html('Change privacy setting successfully!');
+            $('#generalModal').modal('show');
+            $('#generalModalCloseButton').click(function () {
+                location.reload();
+            });
+        },
+        "json");
+}
+function changeToHide() {
+    $.post("/1/changePrivacy",
+        {"privacy":"0"},
+        function () {
+            $('#generalModalBody').html('Change privacy setting successfully!');
+            $('#generalModal').modal('show');
+            $('#generalModalCloseButton').click(function () {
+                location.reload();
+            });
+        },
+        "json");
+}
