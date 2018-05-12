@@ -22,4 +22,7 @@ public interface CriticReviewRepository extends JpaRepository<CriticReview, Long
 
     @Query("select c.criticKey,count(c.criticKey) as num from CriticReview c group by c.criticKey order by num desc ")
     List<Object[]> findTop10ByReviewCount();
+
+    @Query("select c.itemKey,count(c.itemKey) as num from CriticReview c group by c.itemKey order by num desc ")
+    List<Object[]> findTop10ByitemKeyCount();
 }
