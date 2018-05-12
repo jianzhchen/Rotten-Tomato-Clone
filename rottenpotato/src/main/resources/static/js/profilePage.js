@@ -64,7 +64,35 @@ function deleteReview(reviewId , itemKey){
 
 
 }
-function editReview(reviewId,ratingId) {
-    window.location.href="/1/editReviewPage?reviewId="+reviewId+"&ratingId="+ratingId;
+// function editReview(reviewId,ratingId) {
+//     window.location.href="/1/editReviewPage?reviewId="+reviewId+"&ratingId="+ratingId;
+// }
+function editReview(reviewId,ratingId,content,rate) {
+    console.log('11111');
+    $('#editReviewScore').val(rate);
+    $('#editReviewContent').html(content);
+    $('#editReviewlModal').modal('show');
+    $('#editReviewModalConfirmButton').click(function () {
+        var score = $('#editReviewScore').val();
+        var newContent = $('#editReviewContent').val();
+        $.post("/1/editRating",
+            {"itemKey":ratingId,"rating":score},
+            function (message) {
+                $.post("/1/editReview",
+                    {"reviewId":reviewId,"content":newContent},
+                    function (message) {
+                        $('#generalModalHeader').html("Success");
+                        $('#generalModalBody').html("You have edited your review successfully!");
+                        $('#generalModal').modal('show');
+                        $('#generalModalCloseButton').click(function () {
+                            location.reload();
+                            }
+                        );
+                    },
+                    "json");
+            },
+            "json");
+
+    });
 }
 
