@@ -31,7 +31,7 @@ public class CriticMvcController {
     private CriticService criticService;
 
     @RequestMapping("/critic/{criticKey}")
-    public String criticPage(@PathVariable("criticKey") String criticKey, Model model,Principal principal) {
+    public String criticPage(@PathVariable("criticKey") String criticKey, Model model, Principal principal) {
         if (principal == null) {
             model.addAttribute("isLogin", false);
         } else {
@@ -76,14 +76,14 @@ public class CriticMvcController {
 //                map.put("content", cv.getReviewContent());
 //            }
         }
-        model.addAttribute("criticKey",criticKey);
+        model.addAttribute("criticKey", criticKey);
         model.addAttribute("recentReviews", reviews);
         return "criticPage.html";
     }
 
 
     @RequestMapping("/critic_t/{page}")
-    public String criticReviewLatest(@PathVariable("page") int page, Model model,Principal principal) {
+    public String criticReviewLatest(@PathVariable("page") int page, Model model, Principal principal) {
         if (principal == null) {
             model.addAttribute("isLogin", false);
         } else {
@@ -99,9 +99,9 @@ public class CriticMvcController {
             TV tv = tVRepository.findByTVKey(itemKey);
             if (movie != null) {
                 map.put("itemName", movie.getName());
-            } else if(tv != null){
+            } else if (tv != null) {
                 map.put("itemName", tv.getTVName());
-            }else {
+            } else {
                 continue;
             }
             map.put("criticKey", criticReview.getCriticKey());
@@ -126,6 +126,12 @@ public class CriticMvcController {
         List<Critic> critics = criticRepository.findTop10ByOrderByCriticNameAsc(PageRequest.of(page, 10));
         model.addAttribute("critics", critics);
         model.addAttribute("page", page);
+        List<CriticReview> criticReviews = criticReviewRepository.findTop10ByReviewCount();
+        List<Critic> topCritics = new ArrayList<>();
+        for (CriticReview criticReview : criticReviews) {
+            topCritics.add(criticRepository.findByCriticKey(criticReview.getCriticKey()));
+        }
+        model.addAttribute("topCritics", topCritics);
         return "critic.html";
     }
 
