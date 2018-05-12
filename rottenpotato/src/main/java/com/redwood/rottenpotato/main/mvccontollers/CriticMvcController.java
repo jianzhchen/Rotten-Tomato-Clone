@@ -130,6 +130,9 @@ public class CriticMvcController {
         List<Critic> topCritics = new ArrayList<>();
         for (CriticReview criticReview : criticReviews) {
             topCritics.add(criticRepository.findByCriticKey(criticReview.getCriticKey()));
+            if (topCritics.size() >= 8) {
+                break;
+            }
         }
         model.addAttribute("topCritics", topCritics);
         return "critic.html";
