@@ -44,11 +44,17 @@ public class HomeMvcController {
         String currentDirectory;
         File file = new File("");
         currentDirectory = file.getAbsolutePath();
-        currentDirectory += "\\src\\main\\resources\\static\\Trailers";
-
-        File folder = new File(currentDirectory.toString());
-
+        currentDirectory += "\\rottenpotato\\src\\main\\resources\\static\\Trailers";
+        File folder = new File(currentDirectory);
         File[] listOfFiles = folder.listFiles();
+
+        if(listOfFiles==null){
+            currentDirectory = file.getAbsolutePath();
+            currentDirectory += "\\src\\main\\resources\\static\\Trailers";
+            folder = new File(currentDirectory);
+            listOfFiles = folder.listFiles();
+        }
+
         List<String> trailerLists = new ArrayList<String>();
         int temp = 0;
 
