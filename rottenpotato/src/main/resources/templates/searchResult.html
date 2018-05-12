@@ -117,10 +117,7 @@
                                          th:onerror="'this.src=\'' + @{~/assets/img/defaultMovie.jpg} + '\';'">
                                 </td>
                                 <td>
-                                    <ul class="list-unstyled">
-                                        <li class="title" th:text="${item.name}" th:onclick="'javascript:getMovie(\''+${item.key}+'\')'">movie Name</li>
-                                        <!--<li th:text="${item.info}">casts</li>-->
-                                    </ul>
+                                    <a class="title" th:href="'/m/'+${item.key}" th:text="${item.name}">Movie Name</a>
                                 </td>
                             </tr>
                             </tbody>
@@ -147,10 +144,7 @@
 
                                 </td>
                                 <td>
-                                    <ul class="list-unstyled">
-                                        <li class="title" th:text="${item.name}" th:onclick="'javascript:getTv(\''+${item.key}+'\')'">tv Name</li>
-                                        <!--<li th:text="${item.info}">casts</li>-->
-                                    </ul>
+                                    <a class="title" th:href="'/t/'+${item.key}" th:text="${item.name}">tv Name</a>
                                 </td>
                             </tr>
                             </tbody>
@@ -178,10 +172,7 @@
 
                                 </td>
                                 <td>
-                                    <ul class="list-unstyled">
-                                        <li class="title" th:text="${item.name}" th:onclick="'javascript:getActor(\''+${item.key}+'\')'">Celebrity Name</li>
-                                        <!--<li th:text="${item.info}">Info</li>-->
-                                    </ul>
+                                    <a class="title" th:href="'/c/'+${item.key}" th:text="${item.name}">actor Name</a>
                                 </td>
                             </tr>
                             </tbody>
