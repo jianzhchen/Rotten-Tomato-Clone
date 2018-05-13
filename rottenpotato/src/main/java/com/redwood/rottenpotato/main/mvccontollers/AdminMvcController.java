@@ -1,7 +1,11 @@
 package com.redwood.rottenpotato.main.mvccontollers;
 
+import com.redwood.rottenpotato.main.models.Movie;
+import com.redwood.rottenpotato.main.models.TV;
 import com.redwood.rottenpotato.main.models.UserReview;
 import com.redwood.rottenpotato.main.models.UserReviewReport;
+import com.redwood.rottenpotato.main.repositories.MovieRepository;
+import com.redwood.rottenpotato.main.repositories.TVRepository;
 import com.redwood.rottenpotato.main.repositories.UserReviewReportRepository;
 import com.redwood.rottenpotato.main.repositories.UserReviewRepository;
 import com.redwood.rottenpotato.security.model.User;
@@ -28,6 +32,10 @@ public class AdminMvcController {
     private UserReviewReportRepository userReviewReportRepository;
     @Autowired
     private UserReviewRepository userReviewRepository;
+    @Autowired
+    private MovieRepository movieRepository;
+    @Autowired
+    private TVRepository tvRepository;
 
     @RequestMapping("reports")
     public String adminReports(Principal principal, Model model) {
@@ -39,9 +47,27 @@ public class AdminMvcController {
         List<HashMap> list = new ArrayList<>();
         for (UserReviewReport userReviewReport : userReviewReports) {
             HashMap<String, String> map = new HashMap<>();
-            UserReview userReview = userReviewRepository.findById(userReviewReport.getId());
+            UserReview userReview = userReviewRepository.findById(userReviewReport.getReviewId());
             map.put("review", userReview.getContent());
-            map.put("report", userReviewReport.getContent());
+            map.put("reviewId",userReview.getId()+"");
+            map.put("reason", userReviewReport.getContent());
+            map.put("reportId",userReviewReport.getId()+"");
+
+            String itemKey = userReview.getItemKey();
+            Movie movie = movieRepository.findByMovieKey(itemKey);
+            TV tv = tvRepository.findByTVKey(itemKey);
+            if (movie != null) {
+                map.put("url", "/m/" + movie.getMovieKey());
+                map.put("key", movie.getMovieKey());
+                map.put("name", movie.getName());
+
+            } else {
+                map.put("url", "/t/" + tv.getTVKey());
+                map.put("key", tv.getTVKey());
+                map.put("name", tv.getTVName());
+            }
+            list.add(map);
+
         }
         model.addAttribute("reports", list);
         return "adminReports.html";

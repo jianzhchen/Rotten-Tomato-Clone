@@ -7,7 +7,10 @@
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     <!-- Favicons -->
+    <link rel="apple-touch-icon" href="./assets/img/kit/free/apple-icon.png">
     <link rel="icon" href="./assets/img/kit/free/favicon.png">
+    <link rel="apple-touch-icon" th:href="@{~/assets/img/kit/free/apple-icon.png}">
+    <link rel="icon" th:href="@{~/assets/img/kit/free/favicon.png}">
     <title>
         Rotten Potato
     </title>
@@ -17,9 +20,11 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css"/>
     <link rel="stylesheet" href="./assets/css/material-kit.css?v=2.0.2">
     <link rel="stylesheet" href="./assets/css/custom.css">
+    <link rel="stylesheet" th:href="@{~/assets/css/material-kit.css?v=2.0.2}">
+    <link rel="stylesheet" th:href="@{~/assets/css/custom.css}">
 </head>
 
-<body class="profile-page ">
+<body class="index-page ">
 <nav class="navbar navbar-expand-lg fixed-top  bg-dark">
     <div class="container">
         <div class="navbar-translate">
@@ -69,63 +74,55 @@
 
     </div>
 </nav>
+<div class="page-header" data-parallax="false"
+     style="height: 18vh !important;">
 
-<div class="page-header header-filter" data-parallax="true"
-     style="background-image: url('./assets/img/kit/city.jpg');"></div>
+</div>
+
 <div class="main main-raised">
-    <div class="profile-content">
+    <div class="section section-basic mx-2">
         <div class="container">
             <div class="row">
-                <div class="col-sm-6">
-                    <div class="row">
-                        <!--personal info-->
-                        <div class="card">
-                            <div class="card-body" >
-                                <div class="row">
-                                    <div class="col-md-6 text-center">
-                                        <div class="avatar">
-                                            <img src="./assets/img/kit/faces/christian.jpg" alt="Circle Image"
-                                                 class="img-raised rounded img-fluid img-thumbnail">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 text-left">
-                                        <h3 class="title">Full Name</h3>
-                                        <div id="info-section">
-                                            <ul class="list-unstyled infolist-height">
-                                                <li>Adminstrator ID:</li>
-                                            </ul>
+                <!--personal info-->
+                <div class="card">
+                    <div class="card-body" >
+                        <div class="row">
+                            <!--User image-->
+                            <div class="col-md-6 text-center">
 
-                                            <div class="float-right">
-                                                <button type="button" class="btn btn-sm btn-primary">Manage Account</button>
-                                            </div>
-                                        </div>
+                                <div class="avatar">
+                                    <img th:src="@{'~/Images/userImages/'+${userId}+'.jpg'}" th:width="200" th:height="200"
+                                         th:onerror="'this.src=\'' + @{~/assets/img/default.jpg} + '\';'">
+                                </div>
+                            </div>
+                            <!--User Info-->
+                            <div class="col-md-6 text-left">
+                                <!--User first name and last name-->
+                                <h3 class="title" th:text="${firstName}+' '+${lastName}">FirstName LastName</h3>
+
+                                <!--User details-->
+                                <div id="info-section">
+                                    <!--email and follower-->
+                                    <ul class="list-unstyled infolist-height">
+                                        <li th:text="${email}">Empty Email</li>
+                                    </ul>
+                                    <div class="float-right">
+                                        <button type="button" class="btn btn-sm btn-primary" onclick="window.location.href='/1/accountInfo'">Manage Account</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
-                <div class="col-md-6 mt-3">
-                    <!--Request-->
-                    <h3 class="title mx-4 float-left">Request</h3>
-                    <div class="float-right mt-3">
-                        <button type="button" class="btn btn-sm btn-primary">View All</button>
-                    </div>
-                    <div class="card mx-4" style="height: 220px;">
-                        <div class="card-body" style="height: 300px;overflow: hidden;">
-                            <ul>
-                                <li>
-                                    <a href="#">Critic Request</a>
-                                </li>
-                                <li>
-                                    <a href="#">Report</a>
-                                </li>
-
-                            </ul>
-
-                        </div>
-                    </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 text-center">
+                    <a href="/1/admin/reports">
+                        <button class="btn btn-primary">Veiw reported reviews</button></a>
+                </div>
+                <div class="col-md-6 text-center">
+                    <a href="/1/admin/reports">
+                        <button class="btn btn-primary">Veiw reported users</button></a>
                 </div>
             </div>
             <div class="row">
@@ -177,9 +174,11 @@
                     </div>
                 </div>
             </div>
-            </div>
         </div>
+    </div>
 </div>
+
+
 <!-- Classic Modal -->
 <div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="signupModalLabel"
      aria-hidden="true">
@@ -229,36 +228,7 @@
     </div>
 </div>
 
-<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel"
-     aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Sign In</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form>
-                    <div class="form-group">
-                        <input type="email" class="form-control" aria-describedby="emailHelp"
-                               placeholder="Enter email">
-                    </div>
-                    <div class="form-group">
-                        <input type="password" class="form-control" placeholder="Password">
-                    </div>
-                    <div class="text-danger" th:text="${errorMessage}">error</div>
-                </form>
-            </div>
 
-            <div class="modal-footer mb-1">
-                <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-sm btn-primary">Sign In</button>
-            </div>
-        </div>
-    </div>
-</div>
 <!--  End Modal -->
 <footer class="footer ">
     <div class="container">
@@ -316,6 +286,14 @@
 <!-- Fixed Sidebar Nav - js With initialisations For Demo Purpose, Don't Include it in your project -->
 <script src="./assets/assets-for-demo/js/material-kit-demo.js"></script>
 
+<script th:src="@{~/assets/js/core/jquery.min.js}"></script>
+<script th:src="@{~/assets/js/core/popper.min.js}"></script>
+<script th:src="@{~/assets/js/bootstrap-material-design.js}"></script>
+<script th:src="@{~/assets/js/plugins/moment.min.js}"></script>
+<script th:src="@{~/assets/js/plugins/bootstrap-datetimepicker.min.js}"></script>
+<script th:src="@{~/assets/js/plugins/nouislider.min.js}"></script>
+<script th:src="@{~/assets/js/material-kit.js?v=2.0.2}"></script>
+<script th:src="@{~/assets/assets-for-demo/js/material-kit-demo.js}"></script>
 </body>
 
 </html>

@@ -89,6 +89,7 @@ function reportReview(reviewId) {
 function deleteMovie(movieKey) {
     $('#confirmModalHeader').html('Delete Page');
     $('#confirmModalBody').html('You really want to delete this page?');
+    $('#confirmModal').modal('show');
     $('#confirmModalConfirmButton').click(function () {
         $.post("/1/admin/delete",
             {"key":movieKey},

@@ -43,12 +43,17 @@ public class ProfileMvcController {
         } else {
             model.addAttribute("isLogin", true);
             model.addAttribute("username", principal.getName());
+
         }
         String userEmail = principal.getName();
         User user = userRepository.findByEmail(userEmail);
+
         model.addAttribute("firstName", user.getFirstName());
         model.addAttribute("lastName", user.getLastName());
         model.addAttribute("email", user.getEmail());
+        if(user.isAdmin()){
+            return "adminPage.html";
+        }
         List<HashMap> reviews = new ArrayList<>();
         List<HashMap> ratings = new ArrayList<>();
         List<HashMap> notinteresteds = new ArrayList<>();
