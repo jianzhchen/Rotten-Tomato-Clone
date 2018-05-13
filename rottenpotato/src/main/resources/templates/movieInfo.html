@@ -85,6 +85,9 @@
     <div class="section section-basic mx-2">
         <div class="container">
             <!--movie title-->
+            <button th:if="${isAdmin}"
+                    class="btn btn-danger btn-sm  pull-right"
+                    th:onclick="'javascript:deleteMovie(\''+${movieKey}+'\')'">Delete page</button>
             <div class="row">
                 <h2 class="title text-center" th:text="${name}">Movie Name</h2>
             </div>
@@ -296,9 +299,9 @@
             </sction>
             <!--cast-->
             <section >
-                <button th:if="${casts.size() > 8} "
+                <button th:if="${casts.size() > 8} " onclick="changeBtn(this)"
                         type="button" class="btn btn-primary btn-sm pull-right"
-                        data-toggle="collapse" data-target="#cast">View All</button>
+                        data-toggle="collapse" data-target="#cast">VIEW ALL</button>
                 <h3 class="title text-left">Cast</h3>
 
                 <div class="card m-1">
@@ -357,9 +360,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="text-right">
-                    <button type="button" class="btn btn-default btn-sm">View All</button>
-                </div>
             </section>
             <!--videos-->
             <section id="videos">
@@ -382,6 +382,7 @@
             </section>
             <!--critic review-->
             <section id="critic_review">
+                <button type="button" class="btn btn-default btn-sm pull-right">View All</button>
                 <h3 class="title text-left">Critic Reviews</h3>
                 <div class="card m-1">
                     <div class="card-body">
@@ -419,12 +420,11 @@
                         </div>
                     </div>
                 </div>
-                <div class="text-right">
-                    <button type="button" class="btn btn-default btn-sm">View All</button>
-                </div>
+
             </section>
             <!--audience review-->
             <section id="audience_review">
+                <button type="button" class="btn btn-default btn-sm pull-right">View All</button>
                 <h3 class="title text-left">Audience Reviews</h3>
                 <div class="card m-1">
                     <div class="card-body">
@@ -461,9 +461,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="text-right">
-                    <button type="button" class="btn btn-default btn-sm">View All</button>
-                </div>
+
             </section>
             <!--news-->
             <section id="news">
@@ -586,6 +584,24 @@
                 <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal" id="reportModalConfirmButton">Confirm</button>
                 <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal" id="reportModalCancelButton">Cancel</button>
 
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="confirmModal" role="dialog">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h4 class="modal-title" id="confirmModalHeader">Success</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body" >
+                <p id="confirmModalBody">message</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-sm pull-left" data-dismiss="modal" id="confirmModalConfirmButton">Confirm</button>
+                <button type="button" class="btn btn-primary btn-sm pull-right" data-dismiss="modal" id="confirmModalCancelButton">Cancel</button>
             </div>
         </div>
     </div>

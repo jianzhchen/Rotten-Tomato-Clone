@@ -1,6 +1,13 @@
 $(document).ready(function(){
     $('[data-toggle="tooltip"]').tooltip();
 });
+function changeBtn(btn) {
+    if (btn.innerText === 'VIEW ALL'){
+        btn.innerText="COLLAPSE"
+    }else{
+        btn.innerText="VIEW ALL"
+    }
+}
 function getActor(actorKey){
     window.location.href="/c/"+actorKey;
 }
@@ -75,8 +82,26 @@ function reportReview(reviewId) {
             {"reviewId":reviewId, "content": reason},
             function (message) {
                 $('#generalModalHeader').html('Success');
-                $('#generalModalBody').html('You have send the report successfully!');
+                $('#generalModalBody').html('You have sent the report successfully!');
                 $('#generalModal').modal('show');
+            },
+            "json");
+    });
+}
+
+function deleteMovie(movieKey) {
+    $('#confirmModalHeader').html('Delete Page');
+    $('#confirmModalBody').html('You really want to delete this page?');
+    $('#confirmModalConfirmButton').click(function () {
+        $.post("/1/admin/delete",
+            {"key":movieKey},
+            function () {
+                $('#generalModalHeader').html('Success');
+                $('#generalModalBody').html('You have delete this page successfully! Go to homepage now...');
+                $('#generalModal').modal('show');
+                $('#generalModalCloseButton').click(function () {
+                    window.location.href="/";
+                })
             },
             "json");
     });

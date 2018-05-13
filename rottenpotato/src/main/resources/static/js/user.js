@@ -1,3 +1,6 @@
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();
+});
 function toggleFollowUnFollow(userId)
 {
 
@@ -47,7 +50,22 @@ function reportReview(reviewId) {
             {"reviewId":reviewId, "content": reason},
             function (message) {
                 $('#generalModalHeader').html('Success');
-                $('#generalModalBody').html('You have send the report successfully!');
+                $('#generalModalBody').html('You have sent the report successfully!');
+                $('#generalModal').modal('show');
+            },
+            "json");
+    });
+}
+
+function reportUser(userId) {
+    $('#reportModal').modal('show');
+    $('#reportModalConfirmButton').click(function () {
+        var reason = $('#reportReason').val();
+        $.post("/1/reportUser",
+            {"userId":userId, "content": reason},
+            function (message) {
+                $('#generalModalHeader').html('Success');
+                $('#generalModalBody').html('You have sent the report successfully!');
                 $('#generalModal').modal('show');
             },
             "json");

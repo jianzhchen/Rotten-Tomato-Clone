@@ -52,7 +52,11 @@ public class MovieMvcController {
         } else {
             model.addAttribute("isLogin", true);
             model.addAttribute("username", principal.getName());
+            User user = userRepository.findByEmail(principal.getName());
+            model.addAttribute("isAdmin",user.isAdmin());
         }
+
+
 
         model.addAttribute("movieKey", movie.getMovieKey());
         model.addAttribute("name", movie.getName());
