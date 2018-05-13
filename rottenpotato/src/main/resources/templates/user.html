@@ -145,7 +145,8 @@
                         <div class="card-body">
                             <ul class="list-unstyled mx-5" >
                                 <li th:each="following:${followings}">
-                                    <a  th:text="${following.name}"
+                                    <a  class="title"
+                                        th:text="${following.name}"
                                         th:href="'javascript:getUser(\''+${following.key}+'\')'">
                                         Empty Name
                                     </a>
@@ -161,8 +162,9 @@
                         <div class="card-body">
                             <ul class="list-unstyled mx-5">
                                 <li th:each="follower:${followers}">
-                                    <a  th:text="${follower.name}"
-                                        th:href="'javascript:getUser(\''+${follower.key}+'\')'">
+                                    <a class="title"
+                                       th:text="${follower.name}"
+                                       th:href="'javascript:getUser(\''+${follower.key}+'\')'">
                                         Empty Name
                                     </a>
                                 </li>
@@ -209,7 +211,7 @@
                 <div class="card">
                     <div class="col-md-12 px-0">
                         <div class="card-body">
-                            <table class="user-review-history table-striped">
+                            <table class="user-review-history table-striped" style="width:100%">
                                 <thead>
                                 <tr>
                                     <th>Movie/TV</th>
@@ -221,7 +223,7 @@
                                 <tbody>
                                 <tr th:each="review:${reviews}">
                                     <td>
-                                        <a th:text="${review.name}" th:href="${review.url}">movie</a>
+                                        <a th:text="${review.name}" th:href="${review.url}" class="title">movie</a>
                                     </td>
                                     <!--<td th:onclick="'javascript:getTv(\''+${item.key}+'\')'">-->
                                     <td th:text="${review.rate}+'/5'">score
@@ -230,8 +232,7 @@
                                     <td th:text="${review.content}">content
                                     </td>
                                     <td>
-                                        <img class="pull-right"
-                                             th:src="@{~/assets/img/kit/free/report.png}"
+                                        <img th:src="@{~/assets/img/kit/free/report.png}"
                                              th:onclick="'javascript:reportReview(\''+${review.reviewId}+'\')'">
                                     </td>
                                 </tr>
