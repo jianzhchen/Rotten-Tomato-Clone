@@ -187,17 +187,32 @@
                         <video width="100%"  controls>
                             <source th:src="@{'~/Trailers/'+${testSamples[0]}}"  type="video/mp4">
                         </video>
+                        <div>
+                            <a
+                               th:href="'javascript:getMovie(\''+'black_panther_2018'+'\')'">Black Panther
+                            </a>
+                        </div>
 
                     </div>
                     <div class="col-md-4" align="center">
                         <video width="100%"  controls>
                             <source th:src="@{'~/Trailers/'+${testSamples[1]}}"  type="video/mp4">
                         </video>
+                        <div>
+                            <a
+                               th:href="'javascript:getMovie(\''+'black_panther_2018'+'\')'">Black Panther
+                            </a>
+                        </div>
                     </div>
                     <div class="col-md-4" align="center">
                         <video width="100%"  controls>
                             <source th:src="@{'~/Trailers/'+${testSamples[2]}}"  type="video/mp4">
                         </video>
+                        <div>
+                            <a
+                               th:href="'javascript:getMovie(\''+'marvels_the_avengers'+'\')'">Marvel's The Avengers
+                            </a>
+                        </div>
                     </div>
                 </div>
                 <a class="pull-right" th:onclick="'javascript:getVideos()'">More Trailers & Videos</a>
