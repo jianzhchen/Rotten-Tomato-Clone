@@ -38,13 +38,13 @@
 }
 .search-result-table-item td:first-child{
     padding: 10px;
-    width: 200px;
+    width: 20%;
     height: 200px;
     text-align: center;
 }
 
 .search-result-table-item td:last-child{
-    width: 800px;
+    width: 80%;
 }
 
 .critic-list td:first-child{

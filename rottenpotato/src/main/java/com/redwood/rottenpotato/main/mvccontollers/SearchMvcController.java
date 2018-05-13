@@ -41,7 +41,9 @@ public class SearchMvcController {
 
     @GetMapping(value = "searchResult")
     public String search(@RequestParam("term") String searchTerm,
-                         @RequestParam("type") String type, @RequestParam(value = "page",defaultValue = "0") int page, Model model, Principal principal) {
+                         @RequestParam("type") String type,
+                         @RequestParam(value = "style", defaultValue = "list") String style,
+                         @RequestParam(value = "page",defaultValue = "0") int page, Model model, Principal principal) {
 
         if (principal == null) {
             model.addAttribute("isLogin", false);
@@ -62,7 +64,7 @@ public class SearchMvcController {
         List<HashMap> result = new ArrayList<>();
         boolean hasNext = true;
         if (type.equals("movie")) {
-            List<Movie> resultList = movieRepository.searchByName(searchTerm, PageRequest.of(page, 10));
+            List<Movie> resultList = movieRepository.searchByName(searchTerm, PageRequest.of(page, 12));
             for (Movie movie : resultList) {
                 if (filter.contains(movie.getMovieKey())) {
                     continue;
@@ -71,16 +73,19 @@ public class SearchMvcController {
                 movieDetail.put("name", movie.getName());
                 movieDetail.put("info", movie.getInfo());
                 movieDetail.put("key", movie.getMovieKey());
+                movieDetail.put("url","/m/"+movie.getMovieKey());
+                movieDetail.put("img","movieImages/"+movie.getMovieKey());
+
 ////            movieDetail.put("casts", movie.getCast());
 //            movieDetail.put("casts", castTransfer(movie.getCast()));
                 result.add(movieDetail);
             }
-            if (movieRepository.searchByName(searchTerm, PageRequest.of(page + 1, 10)).size() <= 0) {
+            if (movieRepository.searchByName(searchTerm, PageRequest.of(page + 1, 12)).size() <= 0) {
                 hasNext = false;
             }
 
         } else if (type.equals("tv")) {
-            List<TV> resultList2 = tVRepository.searchByName(searchTerm, PageRequest.of(page, 10));
+            List<TV> resultList2 = tVRepository.searchByName(searchTerm, PageRequest.of(page, 12));
             for (TV tv : resultList2) {
                 if (filter.contains(tv.getTVKey())) {
                     continue;
@@ -89,21 +94,28 @@ public class SearchMvcController {
                 tvDetail.put("name", tv.getTVName());
                 tvDetail.put("info", tv.getTVInfo());
                 tvDetail.put("key", tv.getTVKey());
+                tvDetail.put("url","/t/"+tv.getTVKey());
+                tvDetail.put("img","tvImages/"+tv.getTVKey());
+
+
                 result.add(tvDetail);
             }
-            if (tVRepository.searchByName(searchTerm, PageRequest.of(page + 1, 10)).size() <= 0) {
+            if (tVRepository.searchByName(searchTerm, PageRequest.of(page + 1, 12)).size() <= 0) {
                 hasNext = false;
             }
         } else {
-            List<Actor> resultList3 = actorRepository.searchByName(searchTerm, PageRequest.of(page, 10));
+            List<Actor> resultList3 = actorRepository.searchByName(searchTerm, PageRequest.of(page, 12));
             for (Actor actor : resultList3) {
                 HashMap<String, String> actorDetail = new HashMap<>();
                 actorDetail.put("name", actor.getActorName());
                 actorDetail.put("info", actor.getActorInfo());
                 actorDetail.put("key", actor.getActorKey());
+                actorDetail.put("url","/c/"+actor.getActorKey());
+                actorDetail.put("img","actorImages/"+actor.getActorKey());
+
                 result.add(actorDetail);
             }
-            if (actorRepository.searchByName(searchTerm, PageRequest.of(page + 1, 10)).size() <= 0) {
+            if (actorRepository.searchByName(searchTerm, PageRequest.of(page + 1, 12)).size() <= 0) {
                 hasNext = false;
             }
         }
@@ -112,6 +124,7 @@ public class SearchMvcController {
         model.addAttribute("type",type);
         model.addAttribute("term",searchTerm);
         model.addAttribute("page",page);
+        model.addAttribute("style",style);
         return "searchResult.html";
     }
 

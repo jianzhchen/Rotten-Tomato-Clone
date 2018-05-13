@@ -104,20 +104,31 @@
                 </div>
             </div>
             <div class="card">
-                <!--movie result-->
-                <div class="card-body" th:if="${type} == 'movie'">
+                <!--movie result list-->
+                <div class="card-body" th:if="${style}=='list'">
+                    <button class="btn btn-primary btn-sm pull-right" th:onclick="'javascript:changeToGrid(\''+${page}+'\')'">Grid</button>
                     <h3 class="title"  th:text="'Search Result for: \''+${term} +'\' in '+${type}" >search result</h3>
                     <!--found-->
                     <div th:if="${result.size()} != 0">
-                        <table class="search-result-table-item table-striped">
+                        <table class="search-result-table-item table-striped" style="width:100%;">
                             <tbody>
                             <tr th:each="item:${result}" >
-                                <td th:onclick="'javascript:getMovie(\''+${item.key}+'\')'">
-                                    <img th:src="@{'~/Images/movieImages/'+${item.key}+'.jpg'}" th:width="100" th:height="150"
-                                         th:onerror="'this.src=\'' + @{~/assets/img/defaultMovie.jpg} + '\';'">
+                                <td>
+                                    <!--movie-->
+                                    <a th:if="${type}=='movie'" th:href="${item.url}">
+                                    <img th:src="@{'~/Images/'+${item.img}+'.jpg'}" th:width="100" th:height="150"
+                                         th:onerror="'this.src=\'' + @{~/assets/img/defaultMovie.jpg} + '\';'"></a>
+                                    <!--tv-->
+                                    <a th:if="${type}=='tv'" th:href="${item.url}">
+                                        <img th:src="@{'~/Images/'+${item.img}+'.jpg'}" th:width="100" th:height="150"
+                                             th:onerror="'this.src=\'' + @{~/assets/img/defaultTV.jpg} + '\';'"></a>
+                                    <!--actor-->
+                                    <a th:if="${type}=='actor'" th:href="${item.url}">
+                                        <img th:src="@{'~/Images/'+${item.img}+'.jpg'}" th:width="150" th:height="150"
+                                             th:onerror="'this.src=\'' + @{~/assets/img/default.jpg} + '\';'"></a>
                                 </td>
                                 <td>
-                                    <a class="title" th:href="'/m/'+${item.key}" th:text="${item.name}">Movie Name</a>
+                                    <a class="title" th:href="${item.url}" th:text="${item.name}">Movie Name</a>
                                 </td>
                             </tr>
                             </tbody>
@@ -130,53 +141,32 @@
 
 
                 </div>
-                <!--tv result-->
-                <div class="card-body" th:if="${type} == 'tv'">
+                <!--movie result grid-->
+                <div class="card-body" th:if="${style}=='grid'">
+                    <button class="btn btn-primary btn-sm pull-right" th:onclick="'javascript:changeToList(\''+${page}+'\')'">List</button>
                     <h3 class="title"  th:text="'Search Result for: \''+${term} +'\' in '+${type}" >search result</h3>
                     <!--found-->
                     <div th:if="${result.size()} != 0">
-                        <table class="search-result-table-item table-striped">
-                            <tbody>
-                            <tr th:each="item:${result}">
-                                <td th:onclick="'javascript:getTv(\''+${item.key}+'\')'">
-                                    <img th:src="@{'~/Images/tvImages/'+${item.key}+'.jpg'}" th:width="100" th:height="150"
-                                         th:onerror="'this.src=\'' + @{~/assets/img/defaultMovie.jpg} + '\';'">
+                        <div th:each="row :${#numbers.sequence(0,result.size(),4)}" class="row">
+                            <div th:each="col :${#numbers.sequence(0,3)}" th:if="${row + col < result.size()}" class="col-md-3 text-center">
+                                <!--movie-->
+                                <a th:if="${type}=='movie'" th:href="${result.get(row+col).url}">
+                                    <img th:src="@{'~/Images/'+${result.get(row+col).img}+'.jpg'}" th:width="100" th:height="150"
+                                         th:onerror="'this.src=\'' + @{~/assets/img/defaultMovie.jpg} + '\';'"></a>
+                                <!--tv-->
+                                <a th:if="${type}=='tv'" th:href="${result.get(row+col).url}">
+                                    <img th:src="@{'~/Images/'+${result.get(row+col).img}+'.jpg'}" th:width="100" th:height="150"
+                                         th:onerror="'this.src=\'' + @{~/assets/img/defaultTV.jpg} + '\';'"></a>
+                                <!--actor-->
+                                <a th:if="${type}=='actor'" th:href="${result.get(row+col).url}">
+                                    <img th:src="@{'~/Images/'+${result.get(row+col).img}+'.jpg'}" th:width="150" th:height="150"
+                                         th:onerror="'this.src=\'' + @{~/assets/img/default.jpg} + '\';'"></a>
 
-                                </td>
-                                <td>
-                                    <a class="title" th:href="'/t/'+${item.key}" th:text="${item.name}">tv Name</a>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <!--no found-->
-                    <div th:if="${result.size()} == 0">
-                        <h3 class="text-center">No result Found</h3>
-                    </div>
+                                <a th:href="${result.get(row+col).url}" >
+                                    <h6 th:text="${result.get(row+col).name}" class="title">Movie Name</h6></a>
+                            </div>
+                        </div>
 
-
-                </div>
-                <!--actor result-->
-                <div class="card-body" th:if="${type} == 'actor'">
-
-                    <h3 class="title"  th:text="'Search Result for: \''+${term} +'\' in '+${type}" >search result</h3>
-                    <!--found-->
-                    <div th:if="${result.size()} != 0">
-                        <table class="search-result-table-item table-striped">
-                            <tbody>
-                            <tr th:each="item:${result}">
-                                <td th:onclick="'javascript:getActor(\''+${item.key}+'\')'">
-                                    <img th:src="@{'~/Images/actorImages/'+${item.key}+'.jpg'}" th:width="150" th:height="150"
-                                         th:onerror="'this.src=\'' + @{~/assets/img/default.jpg} + '\';'">
-
-                                </td>
-                                <td>
-                                    <a class="title" th:href="'/c/'+${item.key}" th:text="${item.name}">actor Name</a>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
                     </div>
                     <!--no found-->
                     <div th:if="${result.size()} == 0">
