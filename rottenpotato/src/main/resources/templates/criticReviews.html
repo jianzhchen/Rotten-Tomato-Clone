@@ -125,20 +125,19 @@
                                 <tr th:each="rev:${reviews}">
                                     <td >
                                         <ul class="list-unstyled">
-                                            <li>
+                                            <li><a th:href="'/critic/'+${rev.criticKey}">
                                                 <img th:src="@{'~/Images/criticImages/'+${rev.criticKey}+'.jpg'}" th:width="100" th:height="100"
-                                                     th:onclick="'javascript:getCritic(\''+${rev.criticKey}+'\')'"
-                                                     th:onerror="'this.src=\'' + @{~/assets/img/default.jpg} + '\';'">
+                                                     th:onerror="'this.src=\'' + @{~/assets/img/default.jpg} + '\';'"></a>
                                             </li>
-                                            <li th:text="${rev.name}" th:onclick="'javascript:getCritic(\''+${rev.criticKey}+'\')'">
-                                                critic name
+                                            <li>
+                                                <a th:text="${rev.name}" th:href="'/critic/'+${rev.criticKey}" class="title">critic name</a>
                                             </li>
                                         </ul>
                                     </td>
                                     <td th:if="${rev.score} != 0" th:text="${rev.score}+'/5'">score</td>
                                     <td th:if="${rev.score} == 0" th:text="'N/A'">score</td>
                                     <td>
-                                        <a th:text="${rev.itemName}" th:href="${rev.url}">itemname</a>
+                                        <a class="title" th:text="${rev.itemName}" th:href="${rev.url}">itemname</a>
                                     </td>
                                     <td th:text="${rev.date}">date</td>
                                     <td th:text="${rev.content}">content</td>
