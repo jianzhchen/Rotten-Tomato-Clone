@@ -22,8 +22,10 @@ public class CriticReviewService {
     public List<Map> getHighestRatingMovies(Model model){
         List<Map> templist = new ArrayList<>();
 
-        List<CriticReview> crList = CriticReviewRepository.findAll();
-        System.out.println(crList);
+        List<Object[]> crList = CriticReviewRepository.findTop10ByitemKeyCount();
+        for(Object[] obj : crList){
+            System.out.println(obj[0] + "                            " + obj[1]);
+        }
 
         return templist;
     }
