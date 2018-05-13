@@ -80,3 +80,22 @@ function criticApplication() {
             "json");
     });
 }
+
+function deleteAccount() {
+    $('#deleteModal').modal('show');
+    $('#deleteModalConfirmButton').click(function () {
+        var ps = $('#deleteModalPassword').val();
+        $.post("/1/deleteAccount",
+            {"password":ps},
+            function (message) {
+            console.log(message);
+                $('#generalModalBody').html('This account is disabled now!');
+                $('#generalModal').modal('show');
+                $('#generalModalCloseButton').click(function () {
+                    window.location.href="/logout";
+                });
+            },
+            "json");
+    });
+
+}

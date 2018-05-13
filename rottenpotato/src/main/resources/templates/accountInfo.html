@@ -111,6 +111,7 @@
                                                 <li th:text="'Last Name : '+ ${lastName}">Last Name</li>
                                             </ul>
                                         </div>
+                                        <button class="btn btn-secondary btn-sm pull-right" onclick="deleteAccount()">Delete This  Account</button>
                                     </div>
                                 </div>
                             </div>
@@ -333,6 +334,25 @@
                 <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal" id="criticApplicationConfirmButton">Confirm</button>
                 <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal" id="criticApplicationCloseButton">Cancel</button>
 
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="deleteModal" role="dialog">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h4 class="modal-title" id="deleteModalHeader">Delete Accout</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body" >
+                <label >Provide your password</label>
+                <input type="password" id="deleteModalPassword" class="form-control" autofocus="autofocus"/>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-sm pull-left" data-dismiss="modal" id="deleteModalConfirmButton">Confirm</button>
+                <button type="button" class="btn btn-primary btn-sm pull-right" data-dismiss="modal" id="deleteModalCancelButton">Cancel</button>
             </div>
         </div>
     </div>
