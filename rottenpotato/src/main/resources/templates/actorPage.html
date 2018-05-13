@@ -115,9 +115,6 @@
                                                 <h2 class="title" th:text="${name}">Full Name</h2>
                                             </div>
                                             <div class="row">
-                                                <h3 class="title text-center">Actor Information</h3>
-                                            </div>
-                                            <div class="row">
                                                 <div class="card" >
                                                     <div class="card-body overflow" >
                                                         <ul class="list-unstyled infolist-height">
@@ -176,12 +173,14 @@
                         <div class="card m-1">
                             <!--new filmography-->
                             <div class="card-body">
-                                <div th:each="row :${#numbers.sequence(0,movies.size(),4)}" class="row">
-                                    <div th:each="col :${#numbers.sequence(0,3)}" th:if="${row + col < movies.size()}" class="col-md-3 text-center">
-                                        <a th:onclick="'javascript:getMovie(\''+${movies.get(row+col).movieKey}+'\')'">
-                                            <img th:src="@{'~/Images/movieImages/'+${movies.get(row+col).movieKey}+'.jpg'}" th:width="150" th:height="200"
+                                <div th:each="row :${#numbers.sequence(0,filmography.size(),4)}" class="row">
+                                    <div th:each="col :${#numbers.sequence(0,3)}" th:if="${row + col < filmography.size()}" class="col-md-3 text-center">
+                                        <a th:href="${filmography.get(row+col).url}">
+                                            <img th:src="@{'~/Images/'+${filmography.get(row+col).img}+'.jpg'}" th:width="150" th:height="200"
                                                  th:onerror="'this.src=\'' + @{~/assets/img/defaultMovie.jpg} + '\';'"></a>
-                                        <h6 th:text="${movies.get(row+col).movieName}" th:onclick="'javascript:getMovie(\''+${movies.get(row+col).movieKey}+'\')'">name</h6>
+                                        <h6 >
+                                            <a th:text="${filmography.get(row+col).name}" th:href="${filmography.get(row+col).url}">name</a>
+                                        </h6>
                                     </div>
                                 </div>
                             </div>
