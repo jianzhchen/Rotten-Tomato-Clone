@@ -269,19 +269,48 @@
             </sction>
 
             <!--cast-->
-            <section id="cast">
+            <section >
+                <button th:if="${casts.size() > 8} " onclick="changeBtn(this)"
+                        type="button" class="btn btn-primary btn-sm pull-right"
+                        data-toggle="collapse" data-target="#cast">VIEW ALL</button>
                 <h3 class="title text-left">Cast</h3>
+
                 <div class="card m-1">
                     <div class="card-body">
-                        <div th:each="row :${#numbers.sequence(0,actors.size(),4)}" class="row">
-                            <div th:each="col :${#numbers.sequence(0,3)}" th:if="${row + col < actors.size()}" class="col-md-3 text-center">
-                                <a th:onclick="'javascript:getActor(\''+${actors.get(row+col).key}+'\')'">
-                                <!--<a th:onclick="window.location.href='c/'+${actors.get(row+col).key}">-->
-
-                                    <img th:src="@{'~/Images/actorImages/'+${actors.get(row+col).key}+'.jpg'}" th:width="150" th:height="150"
+                        <!--<div th:each="row :${#numbers.sequence(0,casts.size(),4)}" class="row">-->
+                        <!--<div th:each="col :${#numbers.sequence(0,3)}" th:if="${row + col < casts.size()}" class="col-md-3 text-center">-->
+                        <!--<a th:onclick="'javascript:getActor(\''+${casts.get(row+col).key}+'\')'">-->
+                        <!--<img th:src="@{'~/Images/actorImages/'+${casts.get(row+col).key}+'.jpg'}" th:width="150" th:height="150"-->
+                        <!--th:onerror="'this.src=\'' + @{~/assets/img/default.jpg} + '\';'"></a>-->
+                        <!--<h6 th:text="${casts.get(row+col).name}" th:onclick="'javascript:getActor(\''+${casts.get(row+col).key}+'\')'">name</h6>-->
+                        <!--</div>-->
+                        <!--</div>-->
+                        <!--less than 8 normal displays-->
+                        <div th:if="${casts.size() <= 8}" th:each="row :${#numbers.sequence(0,casts.size(),4)}" class="row">
+                            <div th:each="col :${#numbers.sequence(0,3)}" th:if="${row + col < casts.size()}" class="col-md-3 text-center">
+                                <a th:onclick="'javascript:getActor(\''+${casts.get(row+col).key}+'\')'">
+                                    <img th:src="@{'~/Images/actorImages/'+${casts.get(row+col).key}+'.jpg'}" th:width="150" th:height="150"
                                          th:onerror="'this.src=\'' + @{~/assets/img/default.jpg} + '\';'"></a>
-                                <h6 th:text="${actors.get(row+col).name}" th:onclick="'javascript:getActor(\''+${actors.get(row+col).key}+'\')'">name</h6>
-
+                                <h6 th:text="${casts.get(row+col).name}" th:onclick="'javascript:getActor(\''+${casts.get(row+col).key}+'\')'">name</h6>
+                            </div>
+                        </div>
+                        <!--greater than 8 collapse-->
+                        <div th:if="${casts.size() > 8}" th:each="row :${#numbers.sequence(0,7,4)}" class="row">
+                            <div th:each="col :${#numbers.sequence(0,3)}" th:if="${row + col < casts.size()}" class="col-md-3 text-center">
+                                <a th:onclick="'javascript:getActor(\''+${casts.get(row+col).key}+'\')'">
+                                    <img th:src="@{'~/Images/actorImages/'+${casts.get(row+col).key}+'.jpg'}" th:width="150" th:height="150"
+                                         th:onerror="'this.src=\'' + @{~/assets/img/default.jpg} + '\';'"></a>
+                                <h6 th:text="${casts.get(row+col).name}" th:onclick="'javascript:getActor(\''+${casts.get(row+col).key}+'\')'">name</h6>
+                            </div>
+                        </div>
+                        <div id="cast" class="collapse">
+                            <div th:if="${casts.size() > 8}" th:each="row :${#numbers.sequence(8,casts.size(),4)}" class="row">
+                                <div th:each="col :${#numbers.sequence(0,3)}" th:if="${row + col < casts.size()}" class="col-md-3 text-center">
+                                    <a th:onclick="'javascript:getActor(\''+${casts.get(row+col).key}+'\')'">
+                                        <img th:src="@{'~/Images/actorImages/'+${casts.get(row+col).key}+'.jpg'}" th:width="150" th:height="150"
+                                             th:onerror="'this.src=\'' + @{~/assets/img/default.jpg} + '\';'"></a>
+                                    <h6 th:text="${casts.get(row+col).name}" th:onclick="'javascript:getActor(\''+${casts.get(row+col).key}+'\')'">name</h6>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -368,9 +397,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="text-right">
-                    <button type="button" class="btn btn-default btn-sm">View All</button>
-                </div>
+                <!--<div class="text-right">-->
+                    <!--<button type="button" class="btn btn-default btn-sm">View All</button>-->
+                <!--</div>-->
             </section>
 
             <!--news-->

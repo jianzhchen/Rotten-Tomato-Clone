@@ -49,3 +49,10 @@ function addNotInterested(itemKey) {
         },
         "json");
 }
+function changeBtn(btn) {
+    if (btn.innerText === 'VIEW ALL'){
+        btn.innerText="COLLAPSE"
+    }else{
+        btn.innerText="VIEW ALL"
+    }
+}
