@@ -243,7 +243,52 @@
     width: auto;
     text-align: center;
 }
+/*critic page review list*/
+.critic-review-list td:first-child{
+    padding: 10px;
+    width: 200px;
+    text-align: center;
+}
 
+.critic-review-list td:nth-child(2){
+    padding: 10px;
+    width: 50px;
+    text-align: center;
+}
+
+.critic-review-list td:nth-child(3){
+    padding: 10px;
+    width: 100px;
+    text-align: center;
+}
+.critic-review-list td:nth-child(4){
+    padding: 10px;
+    width: auto;
+    text-align: left;
+}
+
+.critic-review-list th:first-child{
+    padding: 10px;
+    width: 200px;
+    text-align: center;
+}
+
+.critic-review-list th:nth-child(2){
+    padding: 10px;
+    width: 50px;
+    text-align: center;
+}
+
+.critic-review-list th:nth-child(3){
+    padding: 10px;
+    width: 100px;
+    text-align: center;
+}
+.critic-review-list th:nth-child(4){
+    padding: 10px;
+    width: auto;
+    text-align: center;
+}
 /*review history*/
 .review-history td:first-child{
     padding: 10px;

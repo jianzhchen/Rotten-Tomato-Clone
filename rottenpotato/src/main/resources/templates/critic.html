@@ -106,76 +106,73 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-12">
+                    <div class="row">
+                        <!--personal info-->
+
+                        <div class="col-md-8 px-0">
+                            <h2 class="title ">TOP CRITIC</h2>
+                        </div>
+                        <div class="col-md-4 mt-5">
+                            <button onclick="window.location.href='/critic_t/0'" class="pull-right btn btn-primary">Want to see lastest reviews?</button>
+                        </div>
+                    </div>
                     <div class="card">
                         <div class="card-body">
-
-                            <div class="row">
-                                <!--personal info-->
-
-                                <div class="col-md-8 px-0">
-                                    <h2 class="title ">TOP CRITIC</h2>
-                                </div>
-                                <div class="col-md-4 mt-5">
-                                    <button onclick="window.location.href='/critic_t/0'" class="pull-right btn btn-primary">Want to see lastest reviews?</button>
+                            <div th:each="row :${#numbers.sequence(0,topCritics.size(),4)}" class="row">
+                                <div th:each="col :${#numbers.sequence(0,3)}" th:if="${row + col < topCritics.size()}" class="col-md-3 text-center">
+                                    <a th:href="'/critic/'+${topCritics.get(row+col).criticKey}">
+                                        <img th:src="@{'~/Images/criticImages/'+${topCritics.get(row+col).criticKey}+'.jpg'}" th:width="150" th:height="150"
+                                             th:onerror="'this.src=\'' + @{~/assets/img/default.jpg} + '\';'"></a>
+                                    <h6>
+                                        <a th:text="${topCritics.get(row+col).criticName}" th:href="'/critic/'+${topCritics.get(row+col).criticKey}"></a>
+                                    </h6>
                                 </div>
                             </div>
 
-                                <div th:each="row :${#numbers.sequence(0,topCritics.size(),4)}" class="row">
-                                    <div th:each="col :${#numbers.sequence(0,3)}" th:if="${row + col < topCritics.size()}" class="col-md-3 text-center">
-                                        <a th:href="'/critic/'+${topCritics.get(row+col).criticKey}">
-                                            <img th:src="@{'~/Images/criticImages/'+${topCritics.get(row+col).criticKey}+'.jpg'}" th:width="150" th:height="150"
-                                                 th:onerror="'this.src=\'' + @{~/assets/img/default.jpg} + '\';'"></a>
-                                        <h6>
-                                            <a th:text="${topCritics.get(row+col).criticName}" th:href="'/critic/'+${topCritics.get(row+col).criticKey}"></a>
-                                        </h6>
-                                    </div>
-                                </div>
-
-                            <div class="row">
-                                <h2 class="title">All CRITICS</h2>
-                            </div>
-                                <div class="row">
-                                        <table class="critic-list table-striped">
-                                            <tbody>
-                                            <tr th:each="critic:${critics}">
-                                                <td th:onclick="'javascript:getCritic(\''+${critic.criticKey}+'\')'">
-                                                    <img th:src="@{'~/Images/criticImages/'+${critic.criticKey}+'.jpg'}"
-                                                         th:width="150"
-                                                         th:height="150"
-                                                         th:onerror="'this.src=\'' + @{~/assets/img/default.jpg} + '\';'">
-                                                </td>
-                                                <td>
-                                                    <ul class="list-unstyled">
-                                                        <li class="title" th:text="${critic.criticName}" th:onclick="'javascript:getCritic(\''+${critic.criticKey}+'\')'">Celebrity Name</li>
-                                                        <li th:text="${critic.criticInfo}">Info</li>
-                                                    </ul>
-                                                </td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                <div class="pull-right">
-                                    <button type="button" class="btn btn-primary btn-sm" th:if="${page} != 0" th:onclick="'javascript:getPrevPage(\''+${page}+'\')'" >Prev</button>
-                                    <p style="display: inline" th:text="${page}+1">Page</p>
-                                    <button type="button" class="btn btn-primary btn-sm" th:onclick="'javascript:getNextPage(\''+${page}+'\')'">Next</button>
-                                </div>
-                                </div>
-
-                            </div>
                         </div>
                     </div>
 
+                    <div class="row">
+                        <h2 class="title">All CRITICS</h2>
+                    </div>
+                    <div class="row">
+                        <div class="card">
+                            <div class="card-body">
+                                <table class="critic-list table-striped">
+                                    <tbody>
+                                    <tr th:each="critic:${critics}">
+                                        <td th:onclick="'javascript:getCritic(\''+${critic.criticKey}+'\')'">
+                                            <img th:src="@{'~/Images/criticImages/'+${critic.criticKey}+'.jpg'}"
+                                                 th:width="150"
+                                                 th:height="150"
+                                                 th:onerror="'this.src=\'' + @{~/assets/img/default.jpg} + '\';'">
+                                        </td>
+                                        <td>
+                                            <ul class="list-unstyled">
+                                                <li>
+                                                    <a class="title" th:text="${critic.criticName}"
+                                                       th:href="'/critic/'+${critic.criticKey}">name</a>
+                                                </li>
+                                                <li th:text="${critic.criticInfo}">Info</li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
 
-
+                    </div>
+                    <div class="pull-right">
+                        <button type="button" class="btn btn-primary btn-sm" th:if="${page} != 0" th:onclick="'javascript:getPrevPage(\''+${page}+'\')'" >Prev</button>
+                        <p style="display: inline" th:text="${page}+1">Page</p>
+                        <button type="button" class="btn btn-primary btn-sm" th:onclick="'javascript:getNextPage(\''+${page}+'\')'">Next</button>
+                    </div>
                 </div>
-
             </div>
-
         </div>
     </div>
 </div>
-</div>
-
 
 <footer class="footer ">
     <div class="container">
