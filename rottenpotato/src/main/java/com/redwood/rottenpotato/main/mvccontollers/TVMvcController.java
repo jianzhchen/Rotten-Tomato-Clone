@@ -71,7 +71,7 @@ public class TVMvcController {
             actors.add(actorMap);
         }
 
-        model.addAttribute("actors", actors);
+        model.addAttribute("casts", actors);
 
         List<CriticReview> crs = criticReviewRepository.findByItemKey(tv.getTVKey());
         int criticScore = 0;

@@ -111,10 +111,13 @@ public class ProfileMvcController {
                 map.put("url", "/m/" + movie.getMovieKey());
                 map.put("key", movie.getMovieKey());
                 map.put("name", movie.getName());
+                map.put("img","movieImages/"+movie.getMovieKey());
             } else {
                 map.put("url", "/t/" + tv.getTVKey());
                 map.put("key", tv.getTVKey());
                 map.put("name", tv.getTVName());
+                map.put("img","tvImages/"+tv.getTVKey());
+
             }
             map.put("wantToSeeId",wantToSee.getId()+"");
             wanttosees.add(map);
@@ -130,10 +133,14 @@ public class ProfileMvcController {
                 map.put("url", "/m/" + movie.getMovieKey());
                 map.put("key", movie.getMovieKey());
                 map.put("name", movie.getName());
+                map.put("img","movieImages/"+movie.getMovieKey());
+
             } else {
                 map.put("url", "/t/" + tv.getTVKey());
                 map.put("key", tv.getTVKey());
                 map.put("name", tv.getTVName());
+                map.put("img","tvImages/"+tv.getTVKey());
+
             }
             map.put("notInterestedId",notInterested.getId()+"");
             notinteresteds.add(map);

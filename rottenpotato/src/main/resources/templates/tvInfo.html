@@ -181,19 +181,30 @@
                                     <textarea class="form-control text-muted" rows="5" id="reviewContent" placeholder="Enter your review here"></textarea>
                                 </div>
                             </form>
-                            <div class="float-left">
-                                <button type="button" class="btn btn-primary btn-sm">Want to see</button>
-                                <button type="button" class="btn btn-danger btn-sm">Not interested</button>
-                            </div>
-                            <div class="float-right">
-                                <button type="button" class="btn btn-sm"
-                                        th:if="${isLogin}"
-                                        th:onclick="'javascript:postReview(\''+${movieKey}+'\')'">Post</button>
-                                <button type="button" class="btn btn-sm"
-                                        th:unless="${isLogin}"
-                                        th:onclick="'javascript:loginMessage()'">Post</button>
-                                <button type="button" class="btn btn-success btn-sm" th:onclick="'javascript:postReview(\''+${movieKey}+'\')'">Post</button>
+                            <div th:if="${isLogin}">
+                                <div class="float-left">
+                                    <button type="button" class="btn btn-primary btn-sm"
+                                            th:onclick="'javascript:addWantToSee(\''+${tvKey}+'\')'">Want to see</button>
+                                    <button type="button" class="btn btn-danger btn-sm"
+                                            th:onclick="'javascript:addNotInterested(\''+${tvKey}+'\')'">Not interested</button>
+                                </div>
+                                <div class="float-right">
+                                    <button type="button" class="btn btn-sm btn-success"
+                                            th:onclick="'javascript:postReview(\''+${tvKey}+'\')'">Post</button>
 
+                                </div>
+                            </div>
+                            <div th:unless="${isLogin}">
+                                <div class="float-left">
+                                    <button type="button" class="btn btn-primary btn-sm"
+                                            data-toggle="modal" data-target="#loginError">Want to see</button>
+                                    <button type="button" class="btn btn-danger btn-sm"
+                                            data-toggle="modal" data-target="#loginError" >Not interested</button>
+                                </div>
+                                <div class="float-right">
+                                    <button type="button" class="btn btn-sm"
+                                            data-toggle="modal" data-target="#loginError">Post</button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -424,106 +435,85 @@
 
 
 <!-- Classic Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
+<div class="modal fade" id="loginError" role="dialog">
+    <div class="modal-dialog modal-sm">
         <div class="modal-content">
+
             <div class="modal-header">
-                <h5 class="modal-title">Modal title</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <i class="material-icons">clear</i>
-                </button>
+                <h4 class="modal-title">Error</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
+
+
             <div class="modal-body">
-                <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live
-                    the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large
-                    language ocean. A small river named Duden flows by their place and supplies it with the necessary
-                    regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.
-                    Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic
-                    life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the
-                    far World of Grammar.
-                </p>
+                <p>Plase Login First</p>
+            </div>
+
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="generalModal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h4 class="modal-title" id="generalModalHeader">Success</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+
+            <div class="modal-body">
+                <p id="generalModalBody">message</p>
+            </div>
+
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal" id="generalModalCloseButton">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="reportModal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h4 class="modal-title" id="reportModalHeader">Report Reason</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+
+            <div class="modal-body">
+                <textarea class="form-control text-muted" rows="5" id="reportReason" placeholder="Enter your reason here"></textarea>
+            </div>
+
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal" id="reportModalConfirmButton">Confirm</button>
+                <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal" id="reportModalCancelButton">Cancel</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="confirmModal" role="dialog">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h4 class="modal-title" id="confirmModalHeader">Success</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body" >
+                <p id="confirmModalBody">message</p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-link">Nice Button</button>
-                <button type="button" class="btn btn-danger btn-link" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="signupModalLabel"
-     aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="signupModalLabel">Sign Up</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form>
-                    <div class="form-group">
-                        <input type="email" class="form-control" id="signupInputEmail" aria-describedby="emailHelp"
-                               placeholder="Enter email">
-                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
-                            else.
-                        </small>
-                    </div>
-                    <div class="form-group">
-                        <input type="password" class="form-control" placeholder="Password">
-                    </div>
-                    <div class="form-group">
-                        <input type="password" class="form-control" placeholder="Retype Password">
-                    </div>
-                    <div class="form-group">
-                        <input type="email" class="form-control" aria-describedby="emailHelp"
-                               placeholder="Enter First Name">
-                    </div>
-                    <div class="form-group">
-                        <input type="email" class="form-control" aria-describedby="emailHelp"
-                               placeholder="Enter Last Name">
-                    </div>
-                    <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                        <label class="form-check-label">Check if you are applying as a
-                            critic</label>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer mb-1">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" data-dismiss="modal">Submit</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel"
-     aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Sign In</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form>
-                    <div class="form-group">
-                        <input type="email" class="form-control" aria-describedby="emailHelp"
-                               placeholder="Enter email">
-                    </div>
-                    <div class="form-group">
-                        <input type="password" class="form-control" placeholder="Password">
-                    </div>
-                    <div class="text-danger" th:text="${errorMessage}">error</div>
-                </form>
-            </div>
-
-            <div class="modal-footer mb-1">
-                <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-sm btn-primary">Sign In</button>
+                <button type="button" class="btn btn-secondary btn-sm pull-left" data-dismiss="modal" id="confirmModalConfirmButton">Confirm</button>
+                <button type="button" class="btn btn-primary btn-sm pull-right" data-dismiss="modal" id="confirmModalCancelButton">Cancel</button>
             </div>
         </div>
     </div>
@@ -584,6 +574,20 @@
 <script src="./assets/js/material-kit.js?v=2.0.2"></script>
 <!-- Fixed Sidebar Nav - js With initialisations For Demo Purpose, Don't Include it in your project -->
 <script src="./assets/assets-for-demo/js/material-kit-demo.js"></script>
+
+<script th:src="@{~/assets/js/core/jquery.min.js}"></script>
+<script th:src="@{~/assets/js/core/popper.min.js}"></script>
+<script th:src="@{~/assets/js/bootstrap-material-design.js}"></script>
+<!--  Plugin for Date Time Picker and Full Calendar Plugin  -->
+<script th:src="@{~/assets/js/plugins/moment.min.js}"></script>
+<!--	Plugin for the Datepicker, full documentation here: https://github.com/Eonasdan/bootstrap-datetimepicker -->
+<script th:src="@{~/assets/js/plugins/bootstrap-datetimepicker.min.js}"></script>
+<!--	Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
+<script th:src="@{~/assets/js/plugins/nouislider.min.js}"></script>
+<!-- Material Kit Core initialisations of plugins and Bootstrap Material Design Library -->
+<script th:src="@{~/assets/js/material-kit.js?v=2.0.2}"></script>
+<!-- Fixed Sidebar Nav - js With initialisations For Demo Purpose, Don't Include it in your project -->
+<script th:src="@{~/assets/assets-for-demo/js/material-kit-demo.js}"></script>
 <script type="text/javascript" th:src="@{~/js/tvInfo.js}"></script>
 
 </body>

@@ -45,9 +45,6 @@ function postReview(itemKey) {
     }
 
 }
-function loginMessage() {
-    alert("Please login first");
-}
 
 function addWantToSee(itemKey) {
     $.post("/1/addWantToSee",
