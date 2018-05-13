@@ -85,20 +85,23 @@
 </nav>
 
 
-<div class="page-header header-filter clear-filter purple-filter" data-parallax="true"
-     style="background-image: url('../assets/img/Moonlight.jpg'); background-size: 34% auto;">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8 ml-auto mr-auto">
-                <div class="brand">
-                    <h1>Movie on Promo</h1>
-                    <h3>Here is a 2017 Oscar Best Picture Movie</h3>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+<!--<div class="page-header header-filter clear-filter purple-filter" data-parallax="true"-->
+     <!--style="background-image: url('../assets/img/Moonlight.jpg'); background-size: 34% auto;">-->
+    <!--<div class="container">-->
+        <!--<div class="row">-->
+            <!--<div class="col-md-8 ml-auto mr-auto">-->
+                <!--<div class="brand">-->
+                    <!--<h1>Movie on Promo</h1>-->
+                    <!--<h3>Here is a 2017 Oscar Best Picture Movie</h3>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</div>-->
+<div class="page-header" data-parallax="false"
+     style="height: 18vh !important;">
 
+</div>
 
 
 
@@ -109,8 +112,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-12">
-                    <div class="card">
-                        <div class="card-body">
+
                             <div class="col-md-12 px-0">
                                 <h2 class="title" th:text="${name}">CRITIC</h2>
 
@@ -145,7 +147,7 @@
 
                                         <div class="col-md-12 px-0">
 
-                                            <table class="last-review-list table-striped">
+                                            <table class="critic-review-list table-striped">
                                                 <thead>
                                                 <tr>
                                                     <th>Movie/TV</th>
@@ -181,8 +183,7 @@
                                             th:if="${hasNext}" th:onclick="'javascript:getNextPage(\''+${page}+'\')'">Next</button>
                                 </div>
                             </div>
-                        </div>
-                    </div>
+
                 </div>
             </div>
         </div>

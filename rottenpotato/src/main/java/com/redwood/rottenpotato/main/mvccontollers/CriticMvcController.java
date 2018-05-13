@@ -63,14 +63,14 @@ public class CriticMvcController {
                 map.put("url", "/m/" + itemKey);
                 map.put("itemName", movie.getName());
                 map.put("score", Integer.toString(cv.getReviewRating()));
-                map.put("date", cv.getReviewTime());
+                map.put("date", cv.getReviewTimeDate()+"");
                 map.put("content", cv.getReviewContent());
                 reviews.add(map);
             } else if (tv != null) {
                 map.put("url", "/t/" + itemKey);
                 map.put("itemName", tv.getTVName());
                 map.put("score", Integer.toString(cv.getReviewRating()));
-                map.put("date", cv.getReviewTime());
+                map.put("date", cv.getReviewTimeDate()+"");
                 map.put("content", cv.getReviewContent());
                 reviews.add(map);
             }
