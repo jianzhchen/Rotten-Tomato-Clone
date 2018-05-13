@@ -3,9 +3,11 @@ package com.redwood.rottenpotato.main.mvccontollers;
 import com.redwood.rottenpotato.main.models.Actor;
 import com.redwood.rottenpotato.main.models.CriticReview;
 import com.redwood.rottenpotato.main.models.Movie;
+import com.redwood.rottenpotato.main.models.TV;
 import com.redwood.rottenpotato.main.repositories.ActorRepository;
 import com.redwood.rottenpotato.main.repositories.CriticReviewRepository;
 import com.redwood.rottenpotato.main.repositories.MovieRepository;
+import com.redwood.rottenpotato.main.repositories.TVRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
@@ -25,6 +27,8 @@ public class ActorMvcController {
     private ActorRepository actorRepository;
     @Autowired
     private MovieRepository movieRepository;
+    @Autowired
+    private TVRepository tvRepository;
     @Autowired
     private CriticReviewRepository criticReviewRepository;
 
@@ -48,23 +52,36 @@ public class ActorMvcController {
             String info = actor.getActorInfo();
             model.addAttribute("info", info);
 
-            //filmogrpahy
+            //filmography
             //1. get movies contains actor as a part of cast
             List<Movie> movies = this.movieRepository.searchByActorKey(actor.getActorKey());
+            List<TV> tv = this.tvRepository.searchByActorKey(actor.getActorKey());
 
             //2. create hashmaps of movies, and put all hashmaps into a list
-            List<HashMap> mvs = new ArrayList<>();
+            List<HashMap> filmography = new ArrayList<>();
             for (Movie mv : movies)
             {
                 //one review
-                HashMap<String, String> aMovie = new HashMap<>();
-
-                aMovie.put("movieKey", mv.getMovieKey());
-                aMovie.put("movieName", mv.getName());
-
-                mvs.add(aMovie);
+                HashMap<String, String> temp = new HashMap<>();
+                temp.put("key", mv.getMovieKey());
+                temp.put("name", mv.getName());
+                temp.put("url","/m/"+mv.getMovieKey());
+                temp.put("img","movieImages/"+mv.getMovieKey());
+                filmography.add(temp);
             }
-            model.addAttribute("movies", mvs);
+            for (TV t : tv)
+            {
+                //one review
+                HashMap<String, String> temp = new HashMap<>();
+                temp.put("key", t.getTVKey());
+                temp.put("name", t.getTVName());
+                temp.put("url","/t/"+t.getTVKey());
+                temp.put("img","tvImages/"+t.getTVKey());
+
+                filmography.add(temp);
+            }
+
+            model.addAttribute("filmography", filmography);
         }
 
         return "actorPage.html";
