@@ -83,21 +83,24 @@
 
     </div>
 </nav>
-<div class="page-header header-filter clear-filter purple-filter" data-parallax="true"
-     style="background-image: url('../assets/img/Moonlight.jpg'); background-size: 34% auto;">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8 ml-auto mr-auto">
-                <div class="brand">
-                    <h1>Movie on Promo</h1>
-                    <h3>Here is a 2017 Oscar Best Picture Movie</h3>
-                </div>
-            </div>
-        </div>
-    </div>
+<!--<div class="page-header header-filter clear-filter purple-filter" data-parallax="true"-->
+     <!--style="background-image: url('../assets/img/Moonlight.jpg'); background-size: 34% auto;">-->
+    <!--<div class="container">-->
+        <!--<div class="row">-->
+            <!--<div class="col-md-8 ml-auto mr-auto">-->
+                <!--<div class="brand">-->
+                    <!--<h1>Movie on Promo</h1>-->
+                    <!--<h3>Here is a 2017 Oscar Best Picture Movie</h3>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</div>-->
+
+<div class="page-header" data-parallax="false"
+     style="height: 18vh !important;">
+
 </div>
-
-
 <div class="main main-raised">
     <div class="profile-content">
         <div class="container">
@@ -119,10 +122,12 @@
 
                                 <div th:each="row :${#numbers.sequence(0,topCritics.size(),4)}" class="row">
                                     <div th:each="col :${#numbers.sequence(0,3)}" th:if="${row + col < topCritics.size()}" class="col-md-3 text-center">
-                                        <a th:onclick="'javascript:getCritic(\''+${topCritics.get(row+col).criticKey}+'\')'">
+                                        <a th:href="'/critic/'+${topCritics.get(row+col).criticKey}">
                                             <img th:src="@{'~/Images/criticImages/'+${topCritics.get(row+col).criticKey}+'.jpg'}" th:width="150" th:height="150"
                                                  th:onerror="'this.src=\'' + @{~/assets/img/default.jpg} + '\';'"></a>
-                                        <h6 th:text="${topCritics.get(row+col).criticName}" th:onclick="'javascript:getCritic(\''+${topCritics.get(row+col).criticKey}+'\')'">name</h6>
+                                        <h6>
+                                            <a th:text="${topCritics.get(row+col).criticName}" th:href="'/critic/'+${topCritics.get(row+col).criticKey}"></a>
+                                        </h6>
                                     </div>
                                 </div>
 
