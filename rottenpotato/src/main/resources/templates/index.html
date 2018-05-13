@@ -136,6 +136,26 @@
                         <a class="pull-right" href="/m/b/0">View All</a>
                     </div>
                 </div>
+
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="card-title">HIGHEST RATE MOVIES</h2>
+                        <table class="table table-striped">
+                            <tbody>
+                            <tr th:each="movie:${highestRateMovie}">
+
+                                <td>
+                                    <a th:text="${movie.movieName}"
+                                       th:href="'javascript:getMovie(\''+${movie.movieKey}+'\')'">
+                                    </a>
+                                </td>
+                                <td class="pull-right" th:text="${movie.rate}">MAR 2</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <a class="pull-right" href="/m/b/0">View All</a>
+                    </div>
+                </div>
             </div>
             <!--tv list-->
             <div class="col-md-6">

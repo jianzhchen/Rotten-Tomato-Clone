@@ -76,8 +76,8 @@ public class HomeMvcController {
         model.addAttribute("testSamples", trailerLists);
 
         model.addAttribute("openingThisWeek", movieService.openingThisWeek(model, 0));
-
-        CriticReviewService.getHighestRatingMovies(model);
+        model.addAttribute("highestRateMovie", CriticReviewService.getHighestRatingMovies(model, 0));
+//        CriticReviewService.getHighestRatingMovies(model);
         return "index.html";
     }
 
