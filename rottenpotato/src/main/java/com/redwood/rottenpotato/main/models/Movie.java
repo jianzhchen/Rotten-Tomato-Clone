@@ -22,6 +22,7 @@ public class Movie {
     private String cast;
     private Date inTheatersTime;
     private Date onDiscTime;
+    private boolean isOscarBestPicture;
 
     //Constructor for JPA
     public Movie() {
@@ -145,5 +146,13 @@ public class Movie {
 
     public void setOnDiscTime(Date onDiscTime) {
         this.onDiscTime = onDiscTime;
+    }
+
+    public boolean getIsOscarBestPicture() {
+        return this.isOscarBestPicture;
+    }
+
+    public void setIsOscarBestPicture(boolean isOscarBestPicture) {
+        this.isOscarBestPicture = isOscarBestPicture;
     }
 }
