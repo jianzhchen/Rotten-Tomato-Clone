@@ -25,7 +25,7 @@ public class CriticReviewService {
 
     public List<Map> getHighestRatingMovies(Model model, int page){
         List<Map> templist = new ArrayList<>();
-        List<Object[]> crList = CriticReviewRepository.findTopByAvgScore(8);
+        List<Object[]> crList = CriticReviewRepository.findTopByAvgScore(8, PageRequest.of(0,10));
         Object[] objTemp;
         Movie tempMovie;
         for(int i = 0; i <= 9; i++){
