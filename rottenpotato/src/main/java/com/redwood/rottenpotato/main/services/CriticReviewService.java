@@ -22,7 +22,7 @@ public class CriticReviewService {
     public List<Map> getHighestRatingMovies(Model model){
         List<Map> templist = new ArrayList<>();
 
-        List<Object[]> crList = CriticReviewRepository.findTop10ByitemKeyCount();
+        List<Object[]> crList = CriticReviewRepository.findTopByAvgScore(8);
         for(Object[] obj : crList){
             System.out.println(obj[0] + "                            " + obj[1]);
         }
