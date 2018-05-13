@@ -23,6 +23,7 @@ public class Movie {
     private Date inTheatersTime;
     private Date onDiscTime;
     private boolean isOscarBestPicture;
+    private long oscarBestPictureYear;
 
     //Constructor for JPA
     public Movie() {
@@ -154,5 +155,13 @@ public class Movie {
 
     public void setIsOscarBestPicture(boolean isOscarBestPicture) {
         this.isOscarBestPicture = isOscarBestPicture;
+    }
+
+    public long getOscarBestPictureYear() {
+        return this.oscarBestPictureYear;
+    }
+
+    public void setOscarBestPictureYear(long oscarBestPictureYear) {
+        this.oscarBestPictureYear = oscarBestPictureYear;
     }
 }
