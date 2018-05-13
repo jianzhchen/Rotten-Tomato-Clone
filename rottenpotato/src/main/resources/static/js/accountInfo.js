@@ -44,7 +44,7 @@ function editNames() {
 }
 function changeToOpen() {
     $.post("/1/changePrivacy",
-        {"privacy":"1"},
+        {"openProfile":"true"},
         function () {
             $('#generalModalBody').html('Change privacy setting successfully!');
             $('#generalModal').modal('show');
@@ -56,7 +56,7 @@ function changeToOpen() {
 }
 function changeToHide() {
     $.post("/1/changePrivacy",
-        {"privacy":"0"},
+        {"openProfile":"false"},
         function () {
             $('#generalModalBody').html('Change privacy setting successfully!');
             $('#generalModal').modal('show');
@@ -65,4 +65,18 @@ function changeToHide() {
             });
         },
         "json");
+}
+
+function criticApplication() {
+    $('#criticApplicationModal').modal('show');
+    $('#criticApplicationConfirmButton').click(function () {
+        var reason = $('#criticApplicationReason').val();
+        $.post('/1/criticApplication',
+            {"content":reason},
+            function (message) {
+                $('#generalModalBody').html('We have received your application');
+                $('#generalModal').modal('show');
+            },
+            "json");
+    });
 }

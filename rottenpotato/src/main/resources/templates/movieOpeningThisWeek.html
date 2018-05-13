@@ -33,7 +33,7 @@
 </head>
 
 <body class="index-page">
-    <nav class="navbar navbar-expand-lg fixed-top  bg-dark">
+<nav class="navbar navbar-expand-lg fixed-top  bg-dark">
     <div class="container">
         <div class="navbar-translate">
             <a class="navbar-brand" href="/index.html">Rotten Potato</a>
@@ -83,121 +83,121 @@
     </div>
 </nav>
 
-    <div class="page-header" data-parallax="false"
+<div class="page-header" data-parallax="false"
      style="height: 18vh !important;">
 
-    </div>
+</div>
 
-    <div class="main main-raised">
-        <div class="section section-basic mx-2">
-            <div class="container">
+<div class="main main-raised">
+    <div class="section section-basic mx-2">
+        <div class="container">
 
-                <div class = "row">
-                    <div class = "col-sm-3">
-                        <ul class="list-group">
-                            <a href="/m/d/0" class="list-group-item ">Coming Soon</a>
-                            <a href="/m/b/0" class="list-group-item link-white-color-active">Top Box Office</a>
-                            <a href="/m/o/0" class="list-group-item">Opening this week</a>
-                        </ul>
+            <div class = "row">
+                <div class = "col-sm-3">
+                    <ul class="list-group">
+                        <a href="/m/d/0" class="list-group-item ">Coming Soon</a>
+                        <a href="/m/b/0" class="list-group-item">Top Box Office</a>
+                        <a href="/m/o/0" class="list-group-item link-white-color-active">Opening this week</a>
+                    </ul>
+                </div>
+                <div class="col-sm-9">
+                    <div class="sort bar">
+                        <table>
+                            <td>Genre: </td>
+                            <td width="200">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-sm btn-primary dropdown-toggle" data-toggle="dropdown">
+                                        <span class="caret">All</span>
+                                    </button>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li> <input type="checkbox">Active</li>
+                                        <li> <input type="checkbox">Animation</li>
+                                        <li> <input type="checkbox">Art & Foreign</li>
+                                        <li> <input type="checkbox">Classics</li>
+                                        <li> <input type="checkbox">Comedy</li>
+                                    </ul>
+                                </div>
+                            </td>
+                            <td>Sort By: </td>
+                            <td>
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-sm btn-primary dropdown-toggle" data-toggle="dropdown">
+                                        <span class="caret">Popularity</span>
+                                    </button>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><a href="#">Release Date</a></li>
+                                        <li><a href="#">Popularity</a></li>
+                                    </ul>
+                                </div>
+                            </td>
+                        </table>
+
                     </div>
-                    <div class="col-sm-9">
-                        <div class="sort bar">
-                            <table>
-                                <td>Genre: </td>
-                                <td width="200">
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-sm btn-primary dropdown-toggle" data-toggle="dropdown">
-                                            <span class="caret">All</span>
-                                        </button>
-                                        <ul class="dropdown-menu" role="menu">
-                                            <li> <input type="checkbox">Active</li>
-                                            <li> <input type="checkbox">Animation</li>
-                                            <li> <input type="checkbox">Art & Foreign</li>
-                                            <li> <input type="checkbox">Classics</li>
-                                            <li> <input type="checkbox">Comedy</li>
-                                        </ul>
-                                    </div>
-                                </td>
-                                <td>Sort By: </td>
-                                <td>
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-sm btn-primary dropdown-toggle" data-toggle="dropdown">
-                                            <span class="caret">Popularity</span>
-                                        </button>
-                                        <ul class="dropdown-menu" role="menu">
-                                            <li><a href="#">Release Date</a></li>
-                                            <li><a href="#">Popularity</a></li>
-                                        </ul>
-                                    </div>
-                                </td>
-                            </table>
-
-                        </div>
-                        <div class="card">
-                            <div class="card-body">
-                                <div th:each="row :${#numbers.sequence(0,movies.size(),4)}" class="row">
-                                    <div th:each="col :${#numbers.sequence(0,3)}" th:if="${row + col < movies.size()}" class="col-md-3 text-center">
-                                        <a th:onclick="'javascript:getMovie(\''+${movies.get(row+col).key}+'\')'">
-                                            <img th:src="@{'~/Images/movieImages/'+${movies.get(row+col).key}+'.jpg'}" th:width="150" th:height="200"
-                                                 th:onerror="'this.src=\'' + @{~/assets/img/defaultMovie.jpg} + '\';'"></a>
-                                        <h6 th:text="${movies.get(row+col).name}" th:onclick="'javascript:getMovie(\''+${movies.get(row+col).key}+'\')'">some text</h6>
-                                        <p th:text="${movies.get(row+col).boxOffice}">some text</p>
-                                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <div th:each="row :${#numbers.sequence(0,movies.size(),4)}" class="row">
+                                <div th:each="col :${#numbers.sequence(0,3)}" th:if="${row + col < movies.size()}" class="col-md-3 text-center">
+                                    <a th:onclick="'javascript:getMovie(\''+${movies.get(row+col).key}+'\')'">
+                                        <img th:src="@{'~/Images/movieImages/'+${movies.get(row+col).key}+'.jpg'}" th:width="150" th:height="200"
+                                             th:onerror="'this.src=\'' + @{~/assets/img/defaultMovie.jpg} + '\';'"></a>
+                                    <h6 th:text="${movies.get(row+col).name}" th:onclick="'javascript:getMovie(\''+${movies.get(row+col).key}+'\')'">some text</h6>
+                                    <p th:text="${movies.get(row+col).date}">some text</p>
                                 </div>
                             </div>
                         </div>
-                        <div class="pull-right">
-                            <button type="button" class="btn btn-primary btn-sm" th:if="${page} != 0" th:onclick="'javascript:getPrevPage(\''+${page}+'\')'" >Prev</button>
-                            <p style="display: inline" th:text="${page}+1">Page</p>
-                            <button type="button" class="btn btn-primary btn-sm" th:onclick="'javascript:getNextPage(\''+${page}+'\')'">Next</button>
-                        </div>
                     </div>
+                    <!--<div class="pull-right">-->
+                        <!--<button type="button" class="btn btn-primary btn-sm" th:if="${page} != 0" th:onclick="'javascript:getPrevPage(\''+${page}+'\')'" >Prev</button>-->
+                        <!--<p style="display: inline" th:text="${page}+1">Page</p>-->
+                        <!--<button type="button" class="btn btn-primary btn-sm" th:onclick="'javascript:getNextPage(\''+${page}+'\')'">Next</button>-->
+                    <!--</div>-->
                 </div>
             </div>
         </div>
     </div>
+</div>
 
-    <footer class="footer ">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-3">
-                    <div>
-                        <ul>
-                            <li>
-                                <a href="/about">
-                                    About Us
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-md-6">
+<footer class="footer ">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <div>
                     <ul>
                         <li>
-                            <a >Follow us:</a>
-                        </li>
-                        <li>
-                            <img th:src="@{~/assets/img/kit/free/facebook.png}" width="16" height="16" onclick="window.open('https://www.facebook.com')">
-                        </li>
-                        <li>
-                            <img th:src="@{~/assets/img/kit/free/twitter.png}" width="16" height="16" onclick="window.open('https://twitter.com')">
+                            <a href="/about">
+                                About Us
+                            </a>
                         </li>
                     </ul>
                 </div>
-                <div class="col-md-3">
-                    <div class="copyright pull-right">
-                        &copy;
-                        <script>
+            </div>
+            <div class="col-md-6">
+                <ul>
+                    <li>
+                        <a >Follow us:</a>
+                    </li>
+                    <li>
+                        <img th:src="@{~/assets/img/kit/free/facebook.png}" width="16" height="16" onclick="window.open('https://www.facebook.com')">
+                    </li>
+                    <li>
+                        <img th:src="@{~/assets/img/kit/free/twitter.png}" width="16" height="16" onclick="window.open('https://twitter.com')">
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-3">
+                <div class="copyright pull-right">
+                    &copy;
+                    <script>
                             document.write(new Date().getFullYear())
                         </script>
-                        , The Redwood Team
-                    </div>
+                    , The Redwood Team
                 </div>
             </div>
-
-
         </div>
-    </footer>
+
+
+    </div>
+</footer>
 <!--   Core JS Files   -->
 <script th:src="@{~/assets/js/core/jquery.min.js}"></script>
 <script th:src="@{~/assets/js/core/popper.min.js}"></script>
