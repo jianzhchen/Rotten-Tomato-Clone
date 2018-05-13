@@ -46,7 +46,6 @@ public class ProfileMvcController {
         }
         String userEmail = principal.getName();
         User user = userRepository.findByEmail(userEmail);
-        model.addAttribute("openProfile",user.isOpenProfile());
         model.addAttribute("firstName", user.getFirstName());
         model.addAttribute("lastName", user.getLastName());
         model.addAttribute("email", user.getEmail());
@@ -183,14 +182,13 @@ public class ProfileMvcController {
 
         String userEmail = principal.getName();
         User user = userRepository.findByEmail(userEmail);
-
         model.addAttribute("firstName", user.getFirstName());
         model.addAttribute("lastName", user.getLastName());
         model.addAttribute("email", user.getEmail());
         model.addAttribute("id",user.getId());
         model.addAttribute("isCritic",user.isCritic());
         model.addAttribute("isAdmin",user.isAdmin());
-        model.addAttribute("privacy",user.isOpenProfile());
+        model.addAttribute("openProfile",user.isOpenProfile());
         return "accountInfo.html";
     }
 
