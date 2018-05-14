@@ -97,9 +97,9 @@
                             </tr>
                             </thead>
                             <tbody>
-                                <tr th:each="app:${application}">
+                                <tr th:each="app:${list}">
                                     <td>
-                                        <a th:text="${app.name}" th:href="${app.url}">name</a>
+                                        <a th:text="${app.name}" th:href="'/u/'+${app.userId}">name</a>
                                     </td>
                                     <td th:text="${app.reason}">
                                         reason

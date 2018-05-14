@@ -88,7 +88,7 @@ public class AdminMvcController {
             list.add(map);
         }
         model.addAttribute("list", list);
-        return ".html";
+        return "adminCriticApplication.html";
     }
 
 }
