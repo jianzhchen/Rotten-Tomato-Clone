@@ -26,6 +26,8 @@ public class AdminMvcController {
     @Autowired
     private UserReviewReportRepository userReviewReportRepository;
     @Autowired
+    private UserReportRepository userReportRepository;
+    @Autowired
     private UserReviewRepository userReviewRepository;
     @Autowired
     private MovieRepository movieRepository;
@@ -69,6 +71,27 @@ public class AdminMvcController {
         }
         model.addAttribute("reports", list);
         return "adminReports.html";
+    }
+
+    @RequestMapping("reportUsers")
+    public String adminReportUsers(Principal principal, Model model)
+    {
+        User user = userRepository.findByEmail(principal.getName());
+        if (!user.isAdmin())
+        {
+            return "error.html";
+        }
+        List<UserReport> userReports = userReportRepository.findTop10ByOrderById(PageRequest.of(0, 20));
+        List<HashMap> list = new ArrayList<>();
+        for (UserReport userReport : userReports)
+        {
+            HashMap<String, String> map = new HashMap<>();
+            map.put("reason", userReport.getContent());
+            map.put("reportFromId", userReport.getReportFromId() + "");
+            map.put("reportToId", userReport.getReportToId() + "");
+        }
+        model.addAttribute("userReports", list);
+        return "adminUserReports.html";
     }
 
     @RequestMapping("ListCriticApp")
