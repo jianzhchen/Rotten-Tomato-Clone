@@ -33,24 +33,27 @@ public class AdminRestController {
     private CriticApplicationRepository criticApplicationRepository;
 
     @PostMapping("add")
-    public String add(@RequestParam("isMovie") boolean isMovie, @RequestParam("name") String name, @RequestParam("info") String info, @RequestParam("boxoffice") long boxOffice) {
+    public String add(@RequestParam("isMovie") boolean isMovie, @RequestParam("name") String name, @RequestParam("info") String info, @RequestParam("boxoffice") long boxOffice, @RequestParam("cast") String cast) {
         if (isMovie) {
             Movie movie = new Movie();
             movie.setName(name);
             movie.setInfo(info);
             movie.setBoxOffice(boxOffice);
-            movie.setMovieKey(UUID.randomUUID().toString().replace("-", ""));
+            movie.setMovieKey(name + "_" + UUID.randomUUID().toString().replace("-", ""));
+            movie.setCast(cast);
             movieRepository.save(movie);
             return jsonService.constructStatusMessage(AjaxCallStatus.OK);
         } else {
             TV tv = new TV();
             tv.setTVName(name);
             tv.setTVInfo(info);
-            tv.setTVKey(UUID.randomUUID().toString().replace("-", ""));
+            tv.setTVKey(name + "_" + UUID.randomUUID().toString().replace("-", ""));
+            tv.setTVCast(cast);
             tVRepository.save(tv);
             return jsonService.constructStatusMessage(AjaxCallStatus.OK);
         }
     }
+
     @Transactional
     @PostMapping("delete")
     public String delete(@RequestParam("key") String key) {
@@ -58,6 +61,7 @@ public class AdminRestController {
         tVRepository.removeByTVKey(key);
         return jsonService.constructStatusMessage(AjaxCallStatus.OK);
     }
+
     @Transactional
     @PostMapping("rejectCriticApp")
     public String rejectCriticApp(@RequestParam("userId") long userId) {
