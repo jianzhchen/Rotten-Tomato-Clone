@@ -12,7 +12,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import sun.rmi.runtime.Log;
 
+import java.io.Console;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -25,6 +27,8 @@ public class AdminMvcController {
     private UserRepository userRepository;
     @Autowired
     private UserReviewReportRepository userReviewReportRepository;
+    @Autowired
+    private UserReportRepository userReportRepository;
     @Autowired
     private UserReviewRepository userReviewRepository;
     @Autowired
@@ -69,6 +73,32 @@ public class AdminMvcController {
         }
         model.addAttribute("reports", list);
         return "adminReports.html";
+    }
+
+    @RequestMapping("reportUsers")
+    public String adminReportUsers(Principal principal, Model model)
+    {
+        User user = userRepository.findByEmail(principal.getName());
+        if (!user.isAdmin())
+        {
+            return "error.html";
+        }
+        List<UserReport> userReports = userReportRepository.findTop10ByOrderById(PageRequest.of(0, 20));
+        List<HashMap> list = new ArrayList<>();
+        for (UserReport userReport : userReports)
+        {
+            HashMap<String, String> map = new HashMap<>();
+            map.put("reason", userReport.getContent());
+            map.put("reportFromUser",userRepository.findById(userReport.getReportFromId()).getFirstName());
+            map.put("reportFromId", userReport.getReportFromId() + "");
+            map.put("reportedUser",userRepository.findById(userReport.getReportToId()).getFirstName());
+            map.put("reportToId", userReport.getReportToId() + "");
+            map.put("reportId",userReport.getId()+"");
+            list.add(map);
+        }
+
+        model.addAttribute("userReports", list);
+        return "adminReportedUser.html";
     }
 
     @RequestMapping("ListCriticApp")

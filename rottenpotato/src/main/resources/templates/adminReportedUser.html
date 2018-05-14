@@ -9,6 +9,8 @@
     <!-- Favicons -->
     <link rel="apple-touch-icon" href="./assets/img/kit/free/apple-icon.png">
     <link rel="icon" href="./assets/img/kit/free/favicon.png">
+    <link rel="apple-touch-icon" th:href="@{~/assets/img/kit/free/apple-icon.png}">
+    <link rel="icon" th:href="@{~/assets/img/kit/free/favicon.png}">
     <title>
         Rotten Potato
     </title>
@@ -18,6 +20,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css"/>
     <link rel="stylesheet" href="./assets/css/material-kit.css?v=2.0.2">
     <link rel="stylesheet" href="./assets/css/custom.css">
+    <link rel="stylesheet" th:href="@{~/assets/css/material-kit.css?v=2.0.2}">
+    <link rel="stylesheet" th:href="@{~/assets/css/custom.css}">
 </head>
 
 <body class="index-page ">
@@ -70,7 +74,6 @@
     </div>
 </nav>
 
-
 <div class="page-header" data-parallax="false"
      style="height: 18vh !important;">
 
@@ -79,118 +82,53 @@
 <div class="main main-raised">
     <div class="section section-basic mx-2">
         <div class="container">
-            <div class="card">
-                <div class="card-body">
-                    <form action="searchResult" method="get">
-                        <div class="form-row">
-                            <div class="form-group col-md-8">
-                                <input type="search" class="form-control" name="term" placeholder="Search">
-                            </div>
-                            <div class="form-group col-md-2 mt-4">
-                                <select class="custom-select custom-select" name="type" id="searchSelect">
-                                    <option value="movie">Movies</option>
-                                    <option value="tv">TVs</option>
-                                    <option value="actor">Actors</option>
-                                </select>
-                            </div>
-                            <div class="form-group col-md-1 mt-3">
-                                <button type="submit" class="btn btn-primary contain mt-2">Search</button>
-                            </div>
-
-                        </div>
-                    </form>
-                </div>
-            </div>
-            <div class="card">
-                <!--movie result list-->
-                <div class="card-body" th:if="${style}=='list'">
-                    <button class="btn btn-primary btn-sm pull-right" th:onclick="'javascript:changeToGrid(\''+${page}+'\')'">Grid</button>
-                    <h3 class="title"  th:text="'Search Result for: \''+${term} +'\' in '+${type}" >search result</h3>
-                    <!--found-->
-                    <div th:if="${result.size()} != 0">
-                        <table class="search-result-table-item table-striped" style="width:100%;">
-                            <tbody>
-                            <tr th:each="item:${result}" >
-                                <td>
-                                    <!--movie-->
-                                    <a th:if="${type}=='movie'" th:href="${item.url}">
-                                    <img th:src="@{'~/Images/'+${item.img}+'.jpg'}" th:width="100" th:height="150"
-                                         th:onerror="'this.src=\'' + @{~/assets/img/defaultMovie.jpg} + '\';'"></a>
-                                    <!--tv-->
-                                    <a th:if="${type}=='tv'" th:href="${item.url}">
-                                        <img th:src="@{'~/Images/'+${item.img}+'.jpg'}" th:width="100" th:height="150"
-                                             th:onerror="'this.src=\'' + @{~/assets/img/defaultTV.jpg} + '\';'"></a>
-                                    <!--actor-->
-                                    <a th:if="${type}=='actor'" th:href="${item.url}">
-                                        <img th:src="@{'~/Images/'+${item.img}+'.jpg'}" th:width="150" th:height="150"
-                                             th:onerror="'this.src=\'' + @{~/assets/img/default.jpg} + '\';'"></a>
-                                </td>
-                                <td>
-                                    <a class="title" th:href="${item.url}" th:text="${item.name}">Movie Name</a>
-                                </td>
+            <div class="row">
+                <!--personal info-->
+                <h3 class="title">Reported Users</h3>
+                <div class="card">
+                    <div class="card-body" >
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>Reported User</th>
+                                <th>From</th>
+                                <th>Report Reason</th>
+                                <th>Approve</th>
+                                <th>Delete</th>
                             </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="rep:${userReports}">
+                                    <td>
+                                        <a th:text="${rep.reportedUser}" th:href="'/u/'+${rep.reportToId}">Reported User</a>
+                                    </td>
+                                    <td>
+                                        <a th:text="${rep.reportFromUser}" th:href="'/u/'+${rep.reportFromId}">from User</a>
+                                    </td>
+                                    <td th:text="${rep.reason}">
+                                        reason
+                                    </td>
+                                    <td>
+                                        <img th:src="@{~/assets/img/kit/free/approve.png}">
+                                             <!--th:onclick="'javascript:approveReport(\''+${rep.reportId}+'\',\''+${rep.reviewId}+'\',\''+${rep.key}+'\')'"-->
+                                    </td>
+                                    <td>
+                                        <img th:src="@{~/assets/img/kit/free/delete.png}"
+                                             th:onclick="'javascript:deleteReport(\''+${rep.reportId}+'\')'">
+                                    </td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>
-                    <!--no found-->
-                    <div th:if="${result.size()} == 0">
-                        <h3 class="text-center">No result Found</h3>
-                    </div>
-
-
                 </div>
-                <!--movie result grid-->
-                <div class="card-body" th:if="${style}=='grid'">
-                    <button class="btn btn-primary btn-sm pull-right" th:onclick="'javascript:changeToList(\''+${page}+'\')'">List</button>
-                    <h3 class="title"  th:text="'Search Result for: \''+${term} +'\' in '+${type}" >search result</h3>
-                    <!--found-->
-                    <div th:if="${result.size()} != 0">
-                        <div th:each="row :${#numbers.sequence(0,result.size(),4)}" class="row">
-                            <div th:each="col :${#numbers.sequence(0,3)}" th:if="${row + col < result.size()}" class="col-md-3 text-center">
-                                <!--movie-->
-                                <a th:if="${type}=='movie'" th:href="${result.get(row+col).url}">
-                                    <img th:src="@{'~/Images/'+${result.get(row+col).img}+'.jpg'}" th:width="100" th:height="150"
-                                         th:onerror="'this.src=\'' + @{~/assets/img/defaultMovie.jpg} + '\';'"></a>
-                                <!--tv-->
-                                <a th:if="${type}=='tv'" th:href="${result.get(row+col).url}">
-                                    <img th:src="@{'~/Images/'+${result.get(row+col).img}+'.jpg'}" th:width="100" th:height="150"
-                                         th:onerror="'this.src=\'' + @{~/assets/img/defaultTV.jpg} + '\';'"></a>
-                                <!--actor-->
-                                <a th:if="${type}=='actor'" th:href="${result.get(row+col).url}">
-                                    <img th:src="@{'~/Images/'+${result.get(row+col).img}+'.jpg'}" th:width="150" th:height="150"
-                                         th:onerror="'this.src=\'' + @{~/assets/img/default.jpg} + '\';'"></a>
-
-                                <a th:href="${result.get(row+col).url}" >
-                                    <h6 th:text="${result.get(row+col).name}" class="title">Movie Name</h6></a>
-
-                            </div>
-                        </div>
-
-                    </div>
-                    <!--no found-->
-                    <div th:if="${result.size()} == 0">
-                        <h3 class="text-center">No result Found</h3>
-                    </div>
-
-
-                </div>
-
-            </div>
-            <div>
-                <div class="float-right">
-                    <button type="button" class="btn btn-primary"
-                            th:if="${page} != 0" th:onclick="'javascript:getPrevPage(\''+${page}+'\')'">Prev</button>
-                    <p style="display: inline"
-                        th:text="${page}+1">Page</p>
-                    <button type="button" class="btn btn-primary"
-                            th:if="${hasNext}" th:onclick="'javascript:getNextPage(\''+${page}+'\')'">Next</button>
-                </div>
+                <button class="btn btn-primary " onclick="window.location.href='/1/me'">Back</button>
             </div>
         </div>
     </div>
 </div>
 
 
+<!--  End Modal -->
 <footer class="footer ">
     <div class="container">
         <div class="row">
@@ -240,8 +178,6 @@
 
     </div>
 </footer>
-
-<script type="text/javascript" th:src="@{~/js/searchResult.js}"></script>
 <!--   Core JS Files   -->
 <script src="./assets/js/core/jquery.min.js"></script>
 <script src="./assets/js/core/popper.min.js"></script>
@@ -256,6 +192,16 @@
 <script src="./assets/js/material-kit.js?v=2.0.2"></script>
 <!-- Fixed Sidebar Nav - js With initialisations For Demo Purpose, Don't Include it in your project -->
 <script src="./assets/assets-for-demo/js/material-kit-demo.js"></script>
+
+<script th:src="@{~/assets/js/core/jquery.min.js}"></script>
+<script th:src="@{~/assets/js/core/popper.min.js}"></script>
+<script th:src="@{~/assets/js/bootstrap-material-design.js}"></script>
+<script th:src="@{~/assets/js/plugins/moment.min.js}"></script>
+<script th:src="@{~/assets/js/plugins/bootstrap-datetimepicker.min.js}"></script>
+<script th:src="@{~/assets/js/plugins/nouislider.min.js}"></script>
+<script th:src="@{~/assets/js/material-kit.js?v=2.0.2}"></script>
+<script th:src="@{~/assets/assets-for-demo/js/material-kit-demo.js}"></script>
+<script type="text/javascript" th:src="@{~/js/adminReport.js}"></script>
 
 </body>
 
