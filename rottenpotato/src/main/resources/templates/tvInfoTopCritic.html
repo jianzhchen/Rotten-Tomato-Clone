@@ -225,11 +225,11 @@
                 </div>
             </div>
 
-<!--//////////////////////////////////////////////////////////////////////////////////////-->
+            <!--//////////////////////////////////////////////////////////////////////////////////////-->
 
         </div>
         <div class="container">
-             <!--TV Info-->
+            <!--TV Info-->
             <sction id="moreInfo">
                 <h3 class="title text-left">TV Information</h3>
                 <div class="card">
@@ -319,7 +319,7 @@
                 <div class="row">
                     <div class = "col-sm-3">
                         <a th:onclick="'javascript:getTV(\''+${tvKey}+'\')'" class="list-group-item">
-                            <h3 style="color:purple; font-weight:bold;">
+                            <h3>
                                 Critic Review
                             </h3>
 
@@ -327,19 +327,12 @@
                     </div>
                     <div class = "col-sm-9">
                         <a th:onclick="'javascript:getTVTopCritic(\''+${tvKey}+'\')'" class="list-group-item">
-                            <h3>
+                            <h3 style="color:purple; font-weight:bold;">
                                 Top Critic Review
                             </h3>
                         </a>
                     </div>
                 </div>
-
-
-
-
-
-
-
                 <div class="card m-1">
                     <div class="card-body">
                         <div class="card-columns">
@@ -377,7 +370,7 @@
                     </div>
                 </div>
                 <!--<div class="text-right">-->
-                    <!--<button type="button" class="btn btn-default btn-sm">View All</button>-->
+                <!--<button type="button" class="btn btn-default btn-sm">View All</button>-->
                 <!--</div>-->
             </section>
 
@@ -418,7 +411,7 @@
                     </div>
                 </div>
                 <!--<div class="text-right">-->
-                    <!--<button type="button" class="btn btn-default btn-sm">View All</button>-->
+                <!--<button type="button" class="btn btn-default btn-sm">View All</button>-->
                 <!--</div>-->
             </section>
 
@@ -637,7 +630,7 @@
 <script th:src="@{~/assets/js/material-kit.js?v=2.0.2}"></script>
 <!-- Fixed Sidebar Nav - js With initialisations For Demo Purpose, Don't Include it in your project -->
 <script th:src="@{~/assets/assets-for-demo/js/material-kit-demo.js}"></script>
-<script type="text/javascript" th:src="@{~/js/tvInfo.js}"></script>
+<script type="text/javascript" th:src="@{~/js/tvInfoTopCritic.js}"></script>
 
 </body>
 

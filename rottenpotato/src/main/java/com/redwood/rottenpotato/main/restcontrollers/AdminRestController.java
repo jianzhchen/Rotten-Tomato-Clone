@@ -8,6 +8,7 @@ import com.redwood.rottenpotato.main.repositories.MovieRepository;
 import com.redwood.rottenpotato.main.repositories.TVRepository;
 import com.redwood.rottenpotato.main.services.JsonService;
 import com.redwood.rottenpotato.main.services.MovieService;
+import com.redwood.rottenpotato.main.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.security.Principal;
 import java.util.UUID;
 
 @RestController
@@ -29,6 +31,8 @@ public class AdminRestController {
     private MovieService movieService;
     @Autowired
     private JsonService jsonService;
+    @Autowired
+    private UserService userService;
     @Autowired
     private CriticApplicationRepository criticApplicationRepository;
 
@@ -46,6 +50,12 @@ public class AdminRestController {
     public String rejectCriticApp(@RequestParam("userId") long userId) {
         criticApplicationRepository.removeByUserId(userId);
         return jsonService.constructStatusMessage(AjaxCallStatus.OK);
+    }
+
+    @PostMapping("reportUser")
+    public String reportUser(@RequestParam("userId") long userId, Principal principal, @RequestParam("content") String content) {
+        String userEmail = principal.getName();
+        return userService.reportUser(userId,userEmail,content);
     }
 
 }
