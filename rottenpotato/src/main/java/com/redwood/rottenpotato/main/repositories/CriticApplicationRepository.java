@@ -13,4 +13,7 @@ public interface CriticApplicationRepository extends JpaRepository<CriticApplica
 
     CriticApplication findByUserId(long userId);
 
+    List<CriticApplication> findAllBy();
+
+    long removeByUserId(long userId);
 }

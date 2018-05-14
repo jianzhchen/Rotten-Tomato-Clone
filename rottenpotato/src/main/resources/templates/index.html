@@ -68,7 +68,7 @@
             </form>
             <!--login signup button-->
             <div th:if="${isLogin} == true">
-                <p th:bgcolor="white" th:text="${username}" onclick="window.location.href='/1/me'"></p>
+                <a class="text-white" th:text="${username}" th:href="'/1/me'"></a>
                 <button class="btn btn-sm btn-primary mx-1" onclick="window.location.href='/logout'">Logout</button>
             </div>
             <div th:if="${isLogin} == false">
@@ -104,10 +104,10 @@
                         <h2 class="card-title">COMING SOON TO THEATERS</h2>
                             <table class="table table-striped">
                                 <tbody>
-                                <tr th:each="movie:${movieOpeningThisWeek}">
+                                <tr th:each="movie:${comingSoon}">
                                     <td>
                                         <a th:text="${movie.movieName}"
-                                           th:href="'javascript:getMovie(\''+${movie.key}+'\')'">
+                                           th:href="'/m/'+${movie.key}">
                                         </a>
                                     </td>
                                     <td class="pull-right" th:text="${movie.date}">MAR 2</td>
@@ -126,7 +126,7 @@
 
                                 <td>
                                     <a th:text="${movie.movieName}"
-                                       th:href="'javascript:getMovie(\''+${movie.key}+'\')'">
+                                       th:href="'/m/'+${movie.key}">
                                     </a>
                                 </td>
                                 <td th:text="${movie.boxOffice}">MAR 2</td>
@@ -145,14 +145,13 @@
                             <tr th:each="movie:${highestRateMovie}">
                                 <td>
                                     <a th:text="${movie.movieName}"
-                                       th:href="'javascript:getMovie(\''+${movie.movieKey}+'\')'">
+                                       th:href="'/m/'+${movie.movieKey}">
                                     </a>
                                 </td>
                                 <!--<td class="pull-right" th:text="${movie.rate}">MAR 2</td>-->
                             </tr>
                             </tbody>
                         </table>
-                        <a class="pull-right" href="/m/b/0">View All</a>
                     </div>
                 </div>
             </div>
@@ -166,7 +165,7 @@
                             <tr th:each="tv:${newTVShows}">
                                 <td>
                                     <a th:text="${tv.TVName}"
-                                       th:href="'javascript:getTv(\''+${tv.key}+'\')'">
+                                       th:href="'/t/'+${tv.key}">
                                     </a>
                                 </td>
                             </tr>
@@ -184,7 +183,7 @@
                             <tr th:each="movie:${openingThisWeek}">
                                 <td>
                                     <a th:text="${movie.movieName}"
-                                       th:href="'javascript:getMovie(\''+${movie.key}+'\')'">
+                                       th:href="'/m/'+${movie.key}">
                                     </a>
                                 </td>
                                 <td class="pull-right" th:text="${movie.date}">MAR 2</td>
@@ -203,7 +202,7 @@
                             <tr th:each="movie:${winningMovies}">
                                 <td>
                                     <a th:text="${movie.name}"
-                                       th:href="'javascript:getMovie(\''+${movie.movieKey}+'\')'">
+                                       th:href="'/m/'+${movie.movieKey}">
                                     </a>
                                 </td>
                                 <td class="pull-right" th:text="${movie.oscarBestPictureYear}">MAR 2</td>
@@ -222,7 +221,7 @@
                             <tr th:each="tv:${tvCertified}">
                                 <td>
                                     <a th:text="${tv.TVName}"
-                                       th:href="'javascript:getTv(\''+${tv.TVKey}+'\')'">
+                                       th:href="'/t/'+${tv.TVKey}">
                                     </a>
                                 </td>
                                 <td class="pull-right" th:text="${tv.rate}">MAR 2</td>

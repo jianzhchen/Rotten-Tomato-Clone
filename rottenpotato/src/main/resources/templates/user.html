@@ -87,7 +87,7 @@
 <!--Body-->
 <div class="main main-raised">
     <div class="profile-content">
-        <div class="container">
+        <div th:if="${openProfile}" class="container">
             <!--User Info-->
             <div class="row">
                 <div class="col-sm-12">
@@ -107,6 +107,7 @@
                                     <!--User Info-->
                                     <div class="col-md-6 text-left">
                                         <img class="pull-right" data-toggle="tooltip" title="report this user"
+                                             th:if="${isLogin}"
                                              th:src="@{~/assets/img/kit/free/report.png}"
                                              th:onclick="'javascript:reportUser(\''+${userId}+'\')'">
                                         <!--User first name and last name-->
@@ -242,6 +243,15 @@
                                 </tbody>
                             </table>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div th:unless="${openProfile}" class="container">
+            <div class="row">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <h1>Account is Private</h1>
                     </div>
                 </div>
             </div>

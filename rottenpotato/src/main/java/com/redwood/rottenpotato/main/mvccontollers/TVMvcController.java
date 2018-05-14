@@ -2,6 +2,7 @@ package com.redwood.rottenpotato.main.mvccontollers;
 
 import com.redwood.rottenpotato.main.models.*;
 import com.redwood.rottenpotato.main.repositories.*;
+import com.redwood.rottenpotato.main.services.PrincipleService;
 import com.redwood.rottenpotato.security.model.User;
 import com.redwood.rottenpotato.security.repository.UserRepository;
 import org.slf4j.Logger;
@@ -32,7 +33,8 @@ public class TVMvcController {
     private UserReviewRepository userReviewRepository;
     @Autowired
     private UserRepository userRepository;
-
+    @Autowired
+    private PrincipleService principleService;
     private final Logger log = LoggerFactory.getLogger(this.getClass());
     @GetMapping(value = "t/{TVKey}")
     public String tvDetail(@PathVariable("TVKey") String tVKey, Model model,  Principal principal) {
@@ -41,12 +43,7 @@ public class TVMvcController {
         TV tv = tVRepository.findByTVKey(tVKey);
 
 
-        if (principal == null) {
-            model.addAttribute("isLogin", false);
-        } else {
-            model.addAttribute("isLogin", true);
-            model.addAttribute("username", principal.getName());
-        }
+        principleService.principalModel(model, principal);
         if (tv == null) {
             model.addAttribute("exist", false);
         }
@@ -158,12 +155,7 @@ public class TVMvcController {
 
     @GetMapping(value = "t/l/{page}")
     public String movieByDate(@PathVariable("page") int page, Model model, Principal principal) {
-        if (principal == null) {
-            model.addAttribute("isLogin", false);
-        } else {
-            model.addAttribute("isLogin", true);
-            model.addAttribute("username", principal.getName());
-        }
+        principleService.principalModel(model, principal);
         List<TV> tvs = tVRepository.findTop10ByOrderByTVDateDateDesc(PageRequest.of(page, 8));
         List<HashMap> tvList = new ArrayList<>();
         for (TV tv : tvs) {

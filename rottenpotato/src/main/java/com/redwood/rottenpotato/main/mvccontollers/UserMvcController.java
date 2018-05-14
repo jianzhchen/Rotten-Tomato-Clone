@@ -2,6 +2,7 @@ package com.redwood.rottenpotato.main.mvccontollers;
 
 import com.redwood.rottenpotato.main.models.*;
 import com.redwood.rottenpotato.main.repositories.*;
+import com.redwood.rottenpotato.main.services.PrincipleService;
 import com.redwood.rottenpotato.security.model.User;
 import com.redwood.rottenpotato.security.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,26 +45,34 @@ public class UserMvcController {
     private TVRepository tVRepository;
     @Autowired
     private EntityManager entityManager;
+    @Autowired
+    private PrincipleService principleService;
 
     @RequestMapping("/u/{userId}")
-    public String userPage(@PathVariable("userId") long userId, Model model,Principal principal)
-    {
+    public String userPage(@PathVariable("userId") long userId, Model model, Principal principal) {
         boolean isLogin = false;
-        if (principal == null) {
-            model.addAttribute("isLogin", false);
-        } else {
-            model.addAttribute("isLogin", true);
-            model.addAttribute("username", principal.getName());
-            isLogin=true;
+        if (!(principal == null)) {
+            isLogin = true;
         }
+        principleService.principalModel(model, principal);
 //
-        User user = userRepository.findById(userId);
-        if (user == null)
-        {
-            model.addAttribute("error", "user not found");
+        if (isLogin) {
+            User loginUser = userRepository.findByEmail(principal.getName());
+            if (userId == loginUser.getId()) {
+                return "redirect:/1/me";
+            }
         }
-        else
-        {
+
+        User user = userRepository.findById(userId);
+        if (user == null) {
+            model.addAttribute("error", "user not found");
+        } else {
+            if (!user.isOpenProfile()) {
+                model.addAttribute("openProfile", false);
+                return "user.html";
+            }
+            model.addAttribute("openProfile", true);
+
             List<Follow> followBy = followRepository.findByUserIdTo(user.getId());
             model.addAttribute("followerCount", followBy.size());
             List<WantToSee> wantToSeeList = wantToSeeRepository.findByUserId(user.getId());
@@ -113,15 +122,15 @@ public class UserMvcController {
                     map.put("key", tv.getTVKey());
                     map.put("name", tv.getTVName());
                 }
-                for(UserRating rate: userRatings){
-                    if (review.getUserId() == rate.getUserId() && review.getItemKey().equals(rate.getItemKey())){
-                        map.put("rate",rate.getRating()+"");
-                        map.put("ratingId",rate.getId()+"");
+                for (UserRating rate : userRatings) {
+                    if (review.getUserId() == rate.getUserId() && review.getItemKey().equals(rate.getItemKey())) {
+                        map.put("rate", rate.getRating() + "");
+                        map.put("ratingId", rate.getId() + "");
                         break;
                     }
                 }
                 map.put("content", review.getContent());
-                map.put("reviewId",review.getId()+"");
+                map.put("reviewId", review.getId() + "");
                 reviews.add(map);
             }
 
@@ -183,23 +192,22 @@ public class UserMvcController {
                 HashMap<String, String> map = new HashMap<>();
                 long uid = follow.getUserIdTo();
                 User u = userRepository.findById(uid);
-                map.put("key",uid+"");
-                map.put("name",u.getFirstName()+" "+u.getLastName());
+                map.put("key", uid + "");
+                map.put("name", u.getFirstName() + " " + u.getLastName());
                 following.add(map);
             }
 
             //6. Followers
-            for (Follow follow : followRepository.findByUserIdTo(user.getId()))
-            {
+            for (Follow follow : followRepository.findByUserIdTo(user.getId())) {
                 HashMap<String, String> map = new HashMap<>();
                 long uid = follow.getUserIdFrom();
                 User u = userRepository.findById(uid);
-                map.put("key",uid+"");
-                map.put("name",u.getFirstName()+" "+u.getLastName());
+                map.put("key", uid + "");
+                map.put("name", u.getFirstName() + " " + u.getLastName());
                 followby.add(map);
             }
 
-            if(isLogin) {
+            if (isLogin) {
                 //For follow/unfollow button
                 if (followby.isEmpty()) {
                     model.addAttribute("followStatus", "Follow");

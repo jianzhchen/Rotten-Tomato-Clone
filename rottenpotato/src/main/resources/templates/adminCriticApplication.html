@@ -84,37 +84,33 @@
         <div class="container">
             <div class="row">
                 <!--personal info-->
-                <h3 class="title">Reported Reviews</h3>
+                <h3 class="title">Critic Application</h3>
                 <div class="card">
                     <div class="card-body" >
                         <table class="table table-striped">
                             <thead>
                             <tr>
-                                <th>Movie/TV</th>
-                                <th>Review</th>
-                                <th>Report Reason</th>
+                                <th>User</th>
+                                <th>Reason</th>
                                 <th>Approve</th>
                                 <th>Delete</th>
                             </tr>
                             </thead>
                             <tbody>
-                                <tr th:each="rep:${reports}">
+                                <tr th:each="app:${list}">
                                     <td>
-                                        <a th:text="${rep.name}" th:href="${rep.url}">movie</a>
+                                        <a th:text="${app.name}" th:href="'/u/'+${app.userId}">name</a>
                                     </td>
-                                    <td th:text="${rep.review}">
-                                        review
-                                    </td>
-                                    <td th:text="${rep.reason}">
+                                    <td th:text="${app.reason}">
                                         reason
                                     </td>
                                     <td>
-                                        <img th:src="@{~/assets/img/kit/free/approve.png}"
-                                             th:onclick="'javascript:approveReport(\''+${rep.reportId}+'\',\''+${rep.reviewId}+'\',\''+${rep.key}+'\')'">
+                                        <img th:src="@{~/assets/img/kit/free/approve.png}">
+                                             <!--th:onclick="'javascript:approveReport(\''+${rep.reportId}+'\',\''+${rep.reviewId}+'\',\''+${rep.key}+'\')'">-->
                                     </td>
                                     <td>
                                         <img th:src="@{~/assets/img/kit/free/delete.png}"
-                                             th:onclick="'javascript:deleteReport(\''+${rep.reportId}+'\')'">
+                                             th:onclick="'javascript:deleteApplication(\''+${app.userId}+'\')'">
                                     </td>
                                 </tr>
                             </tbody>
@@ -193,7 +189,7 @@
 <script th:src="@{~/assets/js/plugins/nouislider.min.js}"></script>
 <script th:src="@{~/assets/js/material-kit.js?v=2.0.2}"></script>
 <script th:src="@{~/assets/assets-for-demo/js/material-kit-demo.js}"></script>
-<script type="text/javascript" th:src="@{~/js/adminReport.js}"></script>
+<script type="text/javascript" th:src="@{~/js/adminCriticApplication.js}"></script>
 
 </body>
 

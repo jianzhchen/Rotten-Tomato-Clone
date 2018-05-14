@@ -4,6 +4,7 @@ import com.redwood.rottenpotato.main.DTO.TopCriticDTO;
 import com.redwood.rottenpotato.main.models.*;
 import com.redwood.rottenpotato.main.repositories.*;
 import com.redwood.rottenpotato.main.services.CriticService;
+import com.redwood.rottenpotato.main.services.PrincipleService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,17 +36,13 @@ public class CriticMvcController {
     @Autowired
     private CriticService criticService;
     private final Logger log = LoggerFactory.getLogger(this.getClass());
-
+    @Autowired
+    private PrincipleService principleService;
     @RequestMapping("/critic/{criticKey}")
     public String criticPage(@PathVariable("criticKey") String criticKey, Model model, Principal principal,
                              @RequestParam(value = "page", defaultValue = "0") int page,
                              @RequestParam(value = "order", defaultValue = "0") int order) {
-        if (principal == null) {
-            model.addAttribute("isLogin", false);
-        } else {
-            model.addAttribute("isLogin", true);
-            model.addAttribute("username", principal.getName());
-        }
+        principleService.principalModel(model, principal);
         Critic critic = criticRepository.findByCriticKey(criticKey);
         model.addAttribute("name", critic.getCriticName());
         model.addAttribute("info", critic.getCriticInfo());
@@ -101,12 +98,7 @@ public class CriticMvcController {
 
     @RequestMapping("/critic_t/{page}")
     public String criticReviewLatest(@PathVariable("page") int page, Model model, Principal principal) {
-        if (principal == null) {
-            model.addAttribute("isLogin", false);
-        } else {
-            model.addAttribute("isLogin", true);
-            model.addAttribute("username", principal.getName());
-        }
+        principleService.principalModel(model, principal);
         List<CriticReview> criticReviews = criticReviewRepository.findTop10ByOrderByReviewTimeDateDesc(PageRequest.of(page, 10));
         List<HashMap> reviews = new ArrayList<>();
         for (CriticReview criticReview : criticReviews) {
@@ -137,12 +129,7 @@ public class CriticMvcController {
 
     @RequestMapping("/critic_all/{page}")
     public String criticAll(@PathVariable("page") int page, Model model, Principal principal) {
-        if (principal == null) {
-            model.addAttribute("isLogin", false);
-        } else {
-            model.addAttribute("isLogin", true);
-            model.addAttribute("username", principal.getName());
-        }
+        principleService.principalModel(model, principal);
         List<Critic> critics = criticRepository.findTop10ByOrderByCriticNameAsc(PageRequest.of(page, 10));
         model.addAttribute("critics", critics);
         model.addAttribute("page", page);
@@ -161,12 +148,7 @@ public class CriticMvcController {
 
     @GetMapping(value = "/critics")
     public String getCriticPage(Model model, Principal principal) {
-        if (principal == null) {
-            model.addAttribute("isLogin", false);
-        } else {
-            model.addAttribute("isLogin", true);
-            model.addAttribute("username", principal.getName());
-        }
+        principleService.principalModel(model, principal);
         model.addAttribute("critics", criticService.getAllCriticNamesKeys(model, 0));
         return "critic.html";
     }
