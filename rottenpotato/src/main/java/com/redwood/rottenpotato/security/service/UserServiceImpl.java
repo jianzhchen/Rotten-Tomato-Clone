@@ -1,5 +1,9 @@
 package com.redwood.rottenpotato.security.service;
 
+import com.redwood.rottenpotato.main.enums.AjaxCallStatus;
+import com.redwood.rottenpotato.main.models.UserReport;
+import com.redwood.rottenpotato.main.repositories.UserReportRepository;
+import com.redwood.rottenpotato.main.services.JsonService;
 import com.redwood.rottenpotato.security.model.User;
 import com.redwood.rottenpotato.security.repository.UserRepository;
 import com.redwood.rottenpotato.security.web.dto.UserRegistrationDto;
@@ -26,7 +30,11 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
+    @Autowired
+    private JsonService jsonService;
 
+    @Autowired
+    private UserReportRepository userReportRepository;
 
     public User findByEmail(String email) {
         return userRepository.findByEmail(email);
@@ -58,5 +66,27 @@ public class UserServiceImpl implements UserService {
         Collection<SimpleGrantedAuthority> collection = new ArrayList<>();
         collection.add(new SimpleGrantedAuthority("ROLE_USER"));
         return collection;
+    }
+
+    public String reportUser(long userId, String userEmail, String content)
+    {
+        //From user
+        User fromUser = userRepository.findByEmail(userEmail);
+        if (fromUser == null) {
+            return jsonService.constructStatusMessage(AjaxCallStatus.ERROR, "Can't find user");
+        }
+
+        //To user
+        User toUser = userRepository.findById(userId);
+        if (toUser == null) {
+            return jsonService.constructStatusMessage(AjaxCallStatus.ERROR, "user you want to report doesn't exist");
+        }
+
+        UserReport userReport = new UserReport();
+        userReport.setReportFromId(fromUser.getId());
+        userReport.setReportToId(toUser.getId());
+        userReport.setContent(content);
+        userReportRepository.save(userReport);
+        return jsonService.constructStatusMessage(AjaxCallStatus.OK);
     }
 }

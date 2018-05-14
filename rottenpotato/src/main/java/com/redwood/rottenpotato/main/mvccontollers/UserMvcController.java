@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
-import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.security.Principal;
 import java.util.ArrayList;
@@ -262,4 +261,6 @@ public class UserMvcController {
         }
         return "user.html";
     }
+
+
 }
