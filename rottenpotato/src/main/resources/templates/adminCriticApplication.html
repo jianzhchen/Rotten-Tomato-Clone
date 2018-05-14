@@ -109,8 +109,8 @@
                                              <!--th:onclick="'javascript:approveReport(\''+${rep.reportId}+'\',\''+${rep.reviewId}+'\',\''+${rep.key}+'\')'">-->
                                     </td>
                                     <td>
-                                        <img th:src="@{~/assets/img/kit/free/delete.png}">
-                                             <!--th:onclick="'javascript:deleteReport(\''+${rep.reportId}+'\')'">-->
+                                        <img th:src="@{~/assets/img/kit/free/delete.png}"
+                                             th:onclick="'javascript:deleteApplication(\''+${app.userId}+'\')'">
                                     </td>
                                 </tr>
                             </tbody>
@@ -189,7 +189,7 @@
 <script th:src="@{~/assets/js/plugins/nouislider.min.js}"></script>
 <script th:src="@{~/assets/js/material-kit.js?v=2.0.2}"></script>
 <script th:src="@{~/assets/assets-for-demo/js/material-kit-demo.js}"></script>
-<script type="text/javascript" th:src="@{~/js/adminReport.js}"></script>
+<script type="text/javascript" th:src="@{~/js/adminCriticApplication.js}"></script>
 
 </body>
 
