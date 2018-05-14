@@ -23,6 +23,7 @@ public class TwoListService {
     @Autowired
     private NotInterestedRepository notInterestedRepository;
 
+    @Transactional
     public String addWantToSee(String itemKey, String userEmail) {
         User user = userRepository.findByEmail(userEmail);
         if (user == null) {
@@ -49,6 +50,7 @@ public class TwoListService {
         return jsonService.constructStatusMessage(AjaxCallStatus.OK);
     }
 
+    @Transactional
     public String addNotInterested(String itemKey, String userEmail) {
         User user = userRepository.findByEmail(userEmail);
         if (user == null) {
