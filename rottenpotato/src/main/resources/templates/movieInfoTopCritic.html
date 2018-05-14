@@ -385,7 +385,7 @@
                 <!--<button type="button" class="btn btn-default btn-sm pull-right">View All</button>-->
                 <div class="row">
                     <div class = "col-sm-3">
-                        <a th:onclick="'javascript:getMovie(\''+${movieKey}+'\')'" class="list-group-item">
+                        <a th:href="'/m/'+${movieKey}" class="list-group-item">
                             <h3>
                                 Critic Review
                             </h3>
@@ -393,7 +393,7 @@
                         </a>
                     </div>
                     <div class = "col-sm-9">
-                        <a th:onclick="'javascript:getMovieTopCritic(\''+${movieKey}+'\')'" class="list-group-item">
+                        <a th:href="'/m/t/'+${movieKey}" class="list-group-item">
                             <h3 style="color:purple; font-weight:bold;">
                                 Top Critic Review
                             </h3>

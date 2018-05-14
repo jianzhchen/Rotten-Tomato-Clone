@@ -318,7 +318,7 @@
             <section id="critic_review">
                 <div class="row">
                     <div class = "col-sm-3">
-                        <a th:onclick="'javascript:getTV(\''+${tvKey}+'\')'" class="list-group-item">
+                        <a th:href="'/t/'+${tvKey}" class="list-group-item">
                             <h3 style="color:purple; font-weight:bold;">
                                 Critic Review
                             </h3>
@@ -326,20 +326,13 @@
                         </a>
                     </div>
                     <div class = "col-sm-9">
-                        <a th:onclick="'javascript:getTVTopCritic(\''+${tvKey}+'\')'" class="list-group-item">
+                        <a th:href="'/t/t/'+${tvKey}" class="list-group-item">
                             <h3>
                                 Top Critic Review
                             </h3>
                         </a>
                     </div>
                 </div>
-
-
-
-
-
-
-
                 <div class="card m-1">
                     <div class="card-body">
                         <div class="card-columns">
