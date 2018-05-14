@@ -31,7 +31,10 @@ public class RatingService {
         if (rating > 5 || rating < 1) {
             return jsonService.constructStatusMessage(AjaxCallStatus.ERROR, "UserRating out of range");
         }
-        UserRating userRatingEntity = new UserRating();
+        UserRating userRatingEntity = userRatingRepository.findByItemKeyAndUserId(itemKey, user.getId());
+        if (userRatingEntity == null) {
+            userRatingEntity = new UserRating();
+        }
         userRatingEntity.setItemKey(itemKey);
         userRatingEntity.setRating(rating);
         userRatingEntity.setUserId(user.getId());

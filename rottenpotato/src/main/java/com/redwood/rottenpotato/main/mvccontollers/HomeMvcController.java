@@ -1,10 +1,13 @@
 package com.redwood.rottenpotato.main.mvccontollers;
 
 import com.redwood.rottenpotato.main.models.CriticReview;
+import com.redwood.rottenpotato.main.models.Movie;
+import com.redwood.rottenpotato.main.repositories.MovieRepository;
 import com.redwood.rottenpotato.main.services.CriticReviewService;
 import com.redwood.rottenpotato.main.services.MovieService;
 import com.redwood.rottenpotato.main.services.TVService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,7 +31,8 @@ public class HomeMvcController {
     private TVService TVService;
     @Autowired
     private CriticReviewService CriticReviewService;
-
+    @Autowired
+    private MovieRepository movieRepository;
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
     @GetMapping(value = {"", "/", "index.html"})
@@ -52,7 +56,7 @@ public class HomeMvcController {
         File folder = new File(currentDirectory);
         File[] listOfFiles = folder.listFiles();
 
-        if(listOfFiles==null){
+        if (listOfFiles == null) {
             currentDirectory = file.getAbsolutePath();
             currentDirectory += "/src/main/resources/static/Trailers";
             folder = new File(currentDirectory);
@@ -62,14 +66,14 @@ public class HomeMvcController {
         List<String> trailerLists = new ArrayList<String>();
         int temp = 0;
 
-        if(listOfFiles != null){
-            for(File fileName: listOfFiles){
+        if (listOfFiles != null) {
+            for (File fileName : listOfFiles) {
                 temp = 1;
                 trailerLists.add(fileName.getName());
             }
         }
 
-        if(temp == 1){
+        if (temp == 1) {
             model.addAttribute("hasTrailer", true);
         }
 
@@ -78,31 +82,34 @@ public class HomeMvcController {
         model.addAttribute("openingThisWeek", movieService.openingThisWeek(model, 0));
         model.addAttribute("highestRateMovie", CriticReviewService.getHighestRatingMovies(model, 0));
 
+        List<Movie> winning = movieRepository.findOscarWinningYearDesc(PageRequest.of(0,10));
+        model.addAttribute("winningMovies", winning);
+
         return "index.html";
     }
 
     @GetMapping("/about")
-    public String about(){
+    public String about() {
         return "about.html";
     }
 
     @GetMapping("/loginPage")
-    public String loginPage(){
+    public String loginPage() {
         return "login.html";
     }
 
     @GetMapping("/service")
-    public String servicePage(){
+    public String servicePage() {
         return "termOfUse.html";
     }
 
     @GetMapping("/criticApplication")
-    public String apply(){
+    public String apply() {
         return "criticApplication.html";
     }
 
     @GetMapping("/FAQ")
-    public String FAQ(){
+    public String FAQ() {
         return "FAQ.html";
     }
 

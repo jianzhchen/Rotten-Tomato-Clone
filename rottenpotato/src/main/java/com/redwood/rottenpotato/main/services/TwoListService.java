@@ -28,6 +28,10 @@ public class TwoListService {
         if (user == null) {
             return jsonService.constructStatusMessage(AjaxCallStatus.ERROR, "Can't find user");
         }
+        if(wantToSeeRepository.findByItemKeyAndUserId(itemKey, user.getId())!=null){
+            return jsonService.constructStatusMessage(AjaxCallStatus.OK);
+        }
+        removeNotInterested(itemKey,userEmail);
         WantToSee wantToSee = new WantToSee();
         wantToSee.setItemKey(itemKey);
         wantToSee.setUserId(user.getId());
@@ -50,6 +54,10 @@ public class TwoListService {
         if (user == null) {
             return jsonService.constructStatusMessage(AjaxCallStatus.ERROR, "Can't find user");
         }
+        if(notInterestedRepository.findByItemKeyAndUserId(itemKey, user.getId())!=null){
+            return jsonService.constructStatusMessage(AjaxCallStatus.OK);
+        }
+        removeWantToSee(itemKey,userEmail);
         NotInterested notInterested = new NotInterested();
         notInterested.setItemKey(itemKey);
         notInterested.setUserId(user.getId());

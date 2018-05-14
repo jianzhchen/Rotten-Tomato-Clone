@@ -29,7 +29,10 @@ public class ReviewService {
         if (user == null) {
             return jsonService.constructStatusMessage(AjaxCallStatus.ERROR, "Can't find user");
         }
-        UserReview userReview = new UserReview();
+        UserReview userReview=userReviewRepository.findByUserIdAndItemKey(user.getId(),itemKey);
+        if(userReview==null){
+            userReview=new UserReview();
+        }
         userReview.setUserId(user.getId());
         userReview.setContent(content);
         userReview.setItemKey(itemKey);

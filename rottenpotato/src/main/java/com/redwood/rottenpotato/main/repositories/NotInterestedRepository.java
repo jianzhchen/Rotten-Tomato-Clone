@@ -12,4 +12,5 @@ public interface NotInterestedRepository extends JpaRepository<NotInterested, Lo
     long removeByItemKeyAndUserId(String itemKey, long userId);
     long removeByUserId(long userId);
     List<NotInterested> findByUserId( long userId);
+    NotInterested findByItemKeyAndUserId(String itemKey, long userId);
 }

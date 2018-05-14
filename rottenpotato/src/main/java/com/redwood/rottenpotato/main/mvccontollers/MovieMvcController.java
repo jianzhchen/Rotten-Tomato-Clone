@@ -53,9 +53,8 @@ public class MovieMvcController {
             model.addAttribute("isLogin", true);
             model.addAttribute("username", principal.getName());
             User user = userRepository.findByEmail(principal.getName());
-            model.addAttribute("isAdmin",user.isAdmin());
+            model.addAttribute("isAdmin", user.isAdmin());
         }
-
 
 
         model.addAttribute("movieKey", movie.getMovieKey());
@@ -155,7 +154,7 @@ public class MovieMvcController {
                     uReview.put("key", rev.getUserId() + "");
                     uReview.put("score", rate.getRating() + "");
                     uReview.put("content", rev.getContent());
-                    uReview.put("reviewId",rev.getId()+"");
+                    uReview.put("reviewId", rev.getId() + "");
                     audienceReviews.add(uReview);
                     break;
                 }
@@ -174,7 +173,7 @@ public class MovieMvcController {
         File folder = new File(currentDirectory.toString());
 
         File[] listOfFiles = folder.listFiles();
-        if(listOfFiles==null){
+        if (listOfFiles == null) {
             currentDirectory = file.getAbsolutePath();
             currentDirectory += "/src/main/resources/static/zTrailers";
             folder = new File(currentDirectory);
@@ -184,15 +183,15 @@ public class MovieMvcController {
         List<String> trailerLists = new ArrayList<String>();
         int temp = 0;
 
-        if(listOfFiles != null){
-            for(File fileName: listOfFiles){
-                if(fileName.getName().contains(movieKey)){
+        if (listOfFiles != null) {
+            for (File fileName : listOfFiles) {
+                if (fileName.getName().contains(movieKey)) {
                     temp = 1;
                     trailerLists.add(fileName.getName());
                 }
             }
         }
-        if(temp == 1){
+        if (temp == 1) {
             model.addAttribute("hasTrailer", true);
         }
         model.addAttribute("testSamples", trailerLists);
@@ -221,6 +220,11 @@ public class MovieMvcController {
         }
         model.addAttribute("movies", movieList);
         model.addAttribute("page", page);
+        boolean hasNext = true;
+        if (movieRepository.findTop8ByOrderByInTheatersTimeDesc(PageRequest.of(page + 1, 8)).size() <= 0) {
+            hasNext = false;
+        }
+        model.addAttribute("hasNext", hasNext);
         return "movieToDate.html";
     }
 
@@ -271,6 +275,36 @@ public class MovieMvcController {
 //        model.addAttribute("page", page);
 
         return "movieOpeningThisWeek.html";
+    }
+
+    @GetMapping(value = "m/oscar/{page}")
+    public String oscarWinning(@PathVariable("page") int page, Model model, Principal principal) {
+        if (principal == null) {
+            model.addAttribute("isLogin", false);
+        } else {
+            model.addAttribute("isLogin", true);
+            model.addAttribute("username", principal.getName());
+        }
+        List<Movie> movies = movieRepository.findOscarWinningYearDesc(PageRequest.of(page, 8));
+        List<HashMap> movieList = new ArrayList<>();
+        for (Movie movie : movies) {
+            HashMap<String, String> movieDetail = new HashMap<>();
+            movieDetail.put("name", movie.getName());
+            movieDetail.put("key", movie.getMovieKey());
+            movieDetail.put("date", Long.toString(movie.getOscarBestPictureYear()));
+            //TODO
+            movieList.add(movieDetail);
+        }
+        model.addAttribute("movies", movieList);
+        model.addAttribute("page", page);
+
+        boolean hasNext = true;
+        if (movieRepository.findOscarWinningYearDesc(PageRequest.of(page, 8)).size() <= 0) {
+            hasNext = false;
+        }
+        model.addAttribute("hasNext", hasNext);
+        return "movieToDate.html";
+
     }
 
 

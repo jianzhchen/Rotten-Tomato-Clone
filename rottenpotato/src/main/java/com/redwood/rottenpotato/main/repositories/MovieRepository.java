@@ -31,4 +31,7 @@ public interface MovieRepository extends JpaRepository<Movie, Long> {
 
     public List<Movie> findAll();
 
+    @Query("select m from Movie m Where m.oscarBestPictureYear <>0 order by m.oscarBestPictureYear desc ")
+    public List<Movie> findOscarWinningYearDesc(Pageable pageable);
+
 }

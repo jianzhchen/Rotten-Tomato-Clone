@@ -13,4 +13,6 @@ public interface WantToSeeRepository extends JpaRepository<WantToSee, Long> {
     long removeByUserId(long userId);
 
     List<WantToSee> findByUserId(long userId);
+    WantToSee findByItemKeyAndUserId(String itemKey, long userId);
+
 }
