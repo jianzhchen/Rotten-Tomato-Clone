@@ -87,7 +87,7 @@
 <!--Body-->
 <div class="main main-raised">
     <div class="profile-content">
-        <div class="container">
+        <div th:if="${openProfile}" class="container">
             <!--User Info-->
             <div class="row">
                 <div class="col-sm-12">
@@ -243,6 +243,15 @@
                                 </tbody>
                             </table>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div th:unless="${openProfile}" class="container">
+            <div class="row">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <h2>User Not Found</h2>
                     </div>
                 </div>
             </div>

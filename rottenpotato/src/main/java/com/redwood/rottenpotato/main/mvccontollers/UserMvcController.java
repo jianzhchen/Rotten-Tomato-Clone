@@ -71,6 +71,7 @@ public class UserMvcController {
                 model.addAttribute("openProfile", false);
                 return "user.html";
             }
+            model.addAttribute("openProfile", true);
 
             List<Follow> followBy = followRepository.findByUserIdTo(user.getId());
             model.addAttribute("followerCount", followBy.size());
