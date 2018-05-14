@@ -2,6 +2,7 @@ package com.redwood.rottenpotato.main.mvccontollers;
 
 import com.redwood.rottenpotato.main.models.*;
 import com.redwood.rottenpotato.main.repositories.*;
+import com.redwood.rottenpotato.main.services.PrincipleService;
 import com.redwood.rottenpotato.security.model.User;
 import com.redwood.rottenpotato.security.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,17 +45,15 @@ public class UserMvcController {
     private TVRepository tVRepository;
     @Autowired
     private EntityManager entityManager;
-
+    @Autowired
+    private PrincipleService principleService;
     @RequestMapping("/u/{userId}")
     public String userPage(@PathVariable("userId") long userId, Model model, Principal principal) {
         boolean isLogin = false;
-        if (principal == null) {
-            model.addAttribute("isLogin", false);
-        } else {
-            model.addAttribute("isLogin", true);
-            model.addAttribute("username", principal.getName());
+        if (!(principal == null)) {
             isLogin = true;
         }
+        principleService.principalModel(model, principal);
 //
         if (isLogin) {
             User loginUser = userRepository.findByEmail(principal.getName());
