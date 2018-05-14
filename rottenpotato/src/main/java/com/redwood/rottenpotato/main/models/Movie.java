@@ -40,8 +40,8 @@ public class Movie {
         this.runTime ="Default runTime";
         this.studio="Default studio";
         this.cast="Default studio";
-        this.inTheatersTime= new Date();
-        this.onDiscTime= new Date();
+        this.inTheatersTime= null;
+        this.onDiscTime=null;
         this.isOscarBestPicture = false;
         this.oscarBestPictureYear = 0;
     }
