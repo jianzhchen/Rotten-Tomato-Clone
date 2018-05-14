@@ -2,15 +2,15 @@
 function getMovie(movieId){
      window.location.href="/m/"+movieId;
  }
- function sortByBest(page) {
+ function sortByBest() {
      var url = window.location.pathname;
-     var besttUrl = url+"?order=1&page="+page;
+     var besttUrl = url+"?order=1&page=0";
      window.location.href=besttUrl;
  }
 
-function sortByWorst(page) {
+function sortByWorst() {
     var url = window.location.pathname;
-    var worstUrl = url+"?order=2&page="+page;
+    var worstUrl = url+"?order=2&page=0";
     window.location.href=worstUrl;
 }
 function getPrevPage(page) {
