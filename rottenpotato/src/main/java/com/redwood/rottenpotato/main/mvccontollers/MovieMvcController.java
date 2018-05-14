@@ -303,7 +303,7 @@ public class MovieMvcController {
             hasNext = false;
         }
         model.addAttribute("hasNext", hasNext);
-        return "movieToDate.html";
+        return "movieToOscar.html";
 
     }
 
