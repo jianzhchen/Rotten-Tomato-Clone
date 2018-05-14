@@ -24,7 +24,7 @@ public interface TVRepository extends JpaRepository<TV, Long> {
     @Transactional
     @Modifying
     @Query("delete from TV t where t.TVKey=:TVKey")
-    long removeByTVKey(@Param("TVKey") String TVKey);
+    void removeByTVKey(@Param("TVKey") String TVKey);
 
     @Query("SELECT t FROM TV t order by t.TVDateDate DESC")
     public List<TV> findTop10ByOrderByTVDateDateDesc(Pageable pageable);
