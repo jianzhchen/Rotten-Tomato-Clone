@@ -40,7 +40,7 @@ public class CriticReviewService {
 
             map.put("movieName", tempMovie.getName());
             map.put("movieKey", tempMovie.getMovieKey());
-            map.put("rate",  objTemp[1].toString());
+            map.put("rate",  Math.round((double)objTemp[1] / 5 * 100) +"%");
             templist.add(map);
         }
         return templist;

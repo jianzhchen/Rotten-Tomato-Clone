@@ -56,7 +56,7 @@ public class TVService {
             }
             map.put("TVName", tempTV.getTVName());
             map.put("TVKey", tempTV.getTVKey());
-            map.put("rate",  objTemp[1].toString());
+            map.put("rate",  Math.round((double)objTemp[1] / 5 * 100) +"%");
             tempList.add(map);
         }
         return tempList;
