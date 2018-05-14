@@ -84,6 +84,7 @@ public class HomeMvcController {
 
         List<Movie> winning = movieRepository.findOscarWinningYearDesc(PageRequest.of(0,10));
         model.addAttribute("winningMovies", winning);
+        model.addAttribute("tvCertified",TVService.tvCertifiedPick(model));
 
         return "index.html";
     }
