@@ -85,6 +85,30 @@ function reportReview(reviewId) {
             "json");
     });
 }
+function deleteReview(reviewId,itemKey) {
+    $('#confirmModalHeader').html('Delete Review');
+    $('#confirmModalBody').html('You really want to delete this review?');
+    $('#confirmModal').modal('show');
+    $('#confirmModalConfirmButton').click(function () {
+        $.post("/1/deleteReview",
+            {"reviewId":reviewId},
+            function (message) {
+                $.post("/1/deleteRating",
+                    {"itemKey":itemKey},
+                    function (message) {
+                        $('#generalModalHeader').html("Success");
+                        $('#generalModalBody').html('You have deleted the review successfully!');
+                        $('#generalModalCloseButton').click(function () {
+                            location.reload();
+                        });
+                        $('#generalModal').modal('show');
+                    },
+                    "json");
+            },
+            "json");
+    });
+}
+
 
 function deleteMovie(movieKey) {
     $('#confirmModalHeader').html('Delete Page');

@@ -14,7 +14,7 @@ public class TV {
     private String TVNetwork;
     private String TVDate;
     private String TVCast;
-
+    private Date TVDateDate;
     //Constructor for JPA
     public TV() {
     }
@@ -73,5 +73,13 @@ public class TV {
 
     public void setTVCast(String TVCast) {
         this.TVCast = TVCast;
+    }
+
+    public Date getTVDateDate() {
+        return TVDateDate;
+    }
+
+    public void setTVDateDate(Date TVDateDate) {
+        this.TVDateDate = TVDateDate;
     }
 }
