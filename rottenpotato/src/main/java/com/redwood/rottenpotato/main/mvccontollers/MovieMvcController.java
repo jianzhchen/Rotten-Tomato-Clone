@@ -289,63 +289,27 @@ public class MovieMvcController {
         }
 
         List<Map> reviews =  new ArrayList<>();
-
+        CriticReview crTemp;
         for(Critic criticTemp: topCritics){
+            crTemp = criticReviewRepository.findByItemKeyAndCriticKey( movie.getMovieKey(), criticTemp.getCriticKey());
+            if(crTemp != null){
+                HashMap<String, String> aReview = new HashMap<>();
+                if (crTemp.getReviewRating() == 0) {
+                    aReview.put("score", "N/A");
+                } else {
+                    aReview.put("score", Integer.toString(crTemp.getReviewRating()));
+                }
+                aReview.put("date", crTemp.getReviewTime());
+                aReview.put("content", crTemp.getReviewContent());
+                aReview.put("criticKey", crTemp.getCriticKey());
 
-        }
-        model.addAttribute("topCritics", topCritics);
-        //CriticReviews
-        //1. get criticReview based on movieKey(itemKey)
-        List<CriticReview> criticReviews = criticReviewRepository.findByItemKey(movie.getMovieKey());
 
-        //2. For the criticReview, create a hashmap of reviews, and put all hashmaps into a list
-//        List<HashMap> reviews = new ArrayList<>();
-        for (CriticReview cr : criticReviews) {
-            //one review
-            HashMap<String, String> aReview = new HashMap<>();
-            if (cr.getReviewRating() == 0) {
-                aReview.put("score", "N/A");
-            } else {
-                aReview.put("score", Integer.toString(cr.getReviewRating()));
-            }
-            aReview.put("date", cr.getReviewTime());
-            aReview.put("content", cr.getReviewContent());
-            aReview.put("criticKey", cr.getCriticKey());
+                aReview.put("criticName", criticTemp.getCriticName());
 
-            if (this.criticRepository.findByCriticKey(cr.getCriticKey()) != null) {
-                String criticName = this.criticRepository.findByCriticKey(cr.getCriticKey()).getCriticName();
-                aReview.put("criticName", criticName);
                 reviews.add(aReview);
             }
         }
         model.addAttribute("reviews", reviews);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
         //user review

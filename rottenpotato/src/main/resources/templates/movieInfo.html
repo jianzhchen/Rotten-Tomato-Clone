@@ -383,10 +383,23 @@
             <!--critic review-->
             <section id="critic_review">
                 <!--<button type="button" class="btn btn-default btn-sm pull-right">View All</button>-->
-                <h3 class="title text-left">Critic Reviews</h3>
-                <a th:onclick="'javascript:getMovieTopCritic(\''+${movieKey}+'\')'">topCritic</a>
-                <!--<a th:onclick="'javascript:getMovieTopCritic(\''+${movieKey}+'\')'">topCritic</a>-->
+                <div class="row">
+                    <div class = "col-sm-3">
+                        <a th:onclick="'javascript:getMovie(\''+${movieKey}+'\')'" class="list-group-item">
+                            <h3 style="color:purple; font-weight:bold;">
+                                Critic Review
+                            </h3>
 
+                        </a>
+                    </div>
+                    <div class = "col-sm-9">
+                        <a th:onclick="'javascript:getMovieTopCritic(\''+${movieKey}+'\')'" class="list-group-item">
+                            <h3>
+                                Top Critic Review
+                            </h3>
+                        </a>
+                    </div>
+                </div>
                 <div class="card m-1">
                     <div class="card-body">
                         <div class="card-columns">
