@@ -67,7 +67,7 @@ function deleteReview(reviewId , itemKey){
 // function editReview(reviewId,ratingId) {
 //     window.location.href="/1/editReviewPage?reviewId="+reviewId+"&ratingId="+ratingId;
 // }
-function editReview(reviewId,ratingId,content,rate) {
+function editReview(reviewId,itemKey,content,rate) {
     console.log('11111');
     $('#editReviewScore').val(rate);
     $('#editReviewContent').html(content);
@@ -76,7 +76,7 @@ function editReview(reviewId,ratingId,content,rate) {
         var score = $('#editReviewScore').val();
         var newContent = $('#editReviewContent').val();
         $.post("/1/editRating",
-            {"itemKey":ratingId,"rating":score},
+            {"itemKey":itemKey,"rating":score},
             function (message) {
                 $.post("/1/editReview",
                     {"reviewId":reviewId,"content":newContent},
