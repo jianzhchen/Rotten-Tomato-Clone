@@ -12,7 +12,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import sun.rmi.runtime.Log;
 
+import java.io.Console;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -87,11 +89,16 @@ public class AdminMvcController {
         {
             HashMap<String, String> map = new HashMap<>();
             map.put("reason", userReport.getContent());
+            map.put("reportFromUser",userRepository.findById(userReport.getReportFromId()).getFirstName());
             map.put("reportFromId", userReport.getReportFromId() + "");
+            map.put("reportedUser",userRepository.findById(userReport.getReportToId()).getFirstName());
             map.put("reportToId", userReport.getReportToId() + "");
+            map.put("reportId",userReport.getId()+"");
+            list.add(map);
         }
+
         model.addAttribute("userReports", list);
-        return "adminUserReports.html";
+        return "adminReportedUser.html";
     }
 
     @RequestMapping("ListCriticApp")
