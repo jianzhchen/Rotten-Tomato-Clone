@@ -9,5 +9,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface UserReportRepository extends JpaRepository<UserReport, Long> {
+public interface UserReportRepository extends JpaRepository<UserReport, Long>
+{
+    List<UserReport> findTop10ByOrderById(Pageable pageable);
 }

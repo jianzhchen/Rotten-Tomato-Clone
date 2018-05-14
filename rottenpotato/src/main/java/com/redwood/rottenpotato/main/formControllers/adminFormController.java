@@ -10,6 +10,7 @@ import com.redwood.rottenpotato.main.services.JsonService;
 import com.redwood.rottenpotato.main.services.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -41,7 +42,7 @@ public class adminFormController {
             movie.setMovieKey(name + "_" + UUID.randomUUID().toString().replace("-", ""));
             movie.setCast(cast);
             movieRepository.save(movie);
-            return "redirect:/1/admin/add";
+            return "redirect:/1/admin/addItemPage";
         } else {
             TV tv = new TV();
             tv.setTVName(name);
@@ -49,7 +50,13 @@ public class adminFormController {
             tv.setTVKey(name + "_" + UUID.randomUUID().toString().replace("-", ""));
             tv.setTVCast(cast);
             tVRepository.save(tv);
-            return "redirect:/1/admin/add";
+            return "redirect:/1/admin/addItemPage";
         }
     }
+
+    @GetMapping("addItemPage")
+    public String addItemPage(){
+        return "adminAddItem.html";
+    }
+
 }

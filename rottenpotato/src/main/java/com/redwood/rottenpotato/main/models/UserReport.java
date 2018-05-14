@@ -20,6 +20,7 @@ public class UserReport {
     public UserReport() {
     }
 
+    public long getId(){ return id;}
     public long getReportFromId() {
         return reportFromId;
     }
