@@ -37,7 +37,9 @@ public class CriticMvcController {
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
     @RequestMapping("/critic/{criticKey}")
-    public String criticPage(@PathVariable("criticKey") String criticKey, Model model, Principal principal, @RequestParam(value = "page", defaultValue = "0") int page, @RequestParam(value = "order", defaultValue = "0") int order) {
+    public String criticPage(@PathVariable("criticKey") String criticKey, Model model, Principal principal,
+                             @RequestParam(value = "page", defaultValue = "0") int page,
+                             @RequestParam(value = "order", defaultValue = "0") int order) {
         if (principal == null) {
             model.addAttribute("isLogin", false);
         } else {

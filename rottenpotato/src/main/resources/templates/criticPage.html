@@ -138,8 +138,8 @@
                             <div class="col-md-12 px-0">
                                 <h2 class="title">Reviews</h2>
                                 <div class="row pull-right m-1">
-                                    <button type="button" class="btn btn-secondary btn-sm " onclick="sortByBest()" id="sortBest">Sort by best review</button>
-                                    <button type="button" class="btn btn-secondary btn-sm " onclick="sortByWorst()" id="sortWorst">Sort by worst review</button>
+                                    <button type="button" class="btn btn-secondary btn-sm " th:onclick="'javascript:sortByBest(\''+${page}+'\')'" id="sortBest">Sort by best review</button>
+                                    <button type="button" class="btn btn-secondary btn-sm " th:onclick="'javascript:sortByWorst(\''+${page}+'\')'" id="sortWorst">Sort by worst review</button>
                                 </div>
 
                                 <div class="card">
@@ -183,7 +183,6 @@
                                             th:if="${hasNext}" th:onclick="'javascript:getNextPage(\''+${page}+'\')'">Next</button>
                                 </div>
                             </div>
-
                 </div>
             </div>
         </div>

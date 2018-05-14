@@ -2,32 +2,16 @@
 function getMovie(movieId){
      window.location.href="/m/"+movieId;
  }
- function sortByBest() {
-     var url = window.location.pathname + window.location.search;
-     var besttUrl = "";
-     if (url.indexOf("order") === -1){
-         besttUrl = url+ "?order=1"
-     }else{
-         var index = url.lastIndexOf("=");
-         besttUrl=url.substring(0,index+1);
-         besttUrl = besttUrl+'1';
-
-     }
+ function sortByBest(page) {
+     var url = window.location.pathname;
+     var besttUrl = url+"?order=1&page="+page;
      window.location.href=besttUrl;
 
  }
 
-function sortByWorst() {
-
-    var url = window.location.pathname + window.location.search;
-    var worstUrl = "";
-    if (url.indexOf("order") === -1){
-        worstUrl = url+ "?order=2"
-    }else{
-        var index = url.lastIndexOf("=");
-        worstUrl=url.substring(0,index+1);
-        worstUrl = worstUrl+'2';
-    }
+function sortByWorst(page) {
+    var url = window.location.pathname;
+    var worstUrl = url+"?order=2&page"+page;
     window.location.href=worstUrl;
 }
 function getPrevPage(page) {
