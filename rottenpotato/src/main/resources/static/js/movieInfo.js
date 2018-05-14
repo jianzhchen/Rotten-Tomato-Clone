@@ -12,6 +12,10 @@ function getActor(actorKey){
     window.location.href="/c/"+actorKey;
 }
 
+function getMovieTopCritic(movieKey){
+    window.location.href="/m/t/"+movieKey;
+}
+
 function getTrailers(movieKey){
     window.location.href="/v/"+movieKey;
 }

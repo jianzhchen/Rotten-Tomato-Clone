@@ -11,4 +11,5 @@ import java.util.List;
 @Repository
 public interface FCountRepository extends JpaRepository<FCount, Long> {
     FCount findByUserId(long userId);
+    long removeByUserId(long userId);
 }

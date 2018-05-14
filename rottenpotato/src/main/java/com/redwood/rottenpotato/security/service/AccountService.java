@@ -3,10 +3,7 @@ package com.redwood.rottenpotato.security.service;
 import com.redwood.rottenpotato.email.Mail;
 import com.redwood.rottenpotato.email.service.EmailService;
 import com.redwood.rottenpotato.main.enums.AjaxCallStatus;
-import com.redwood.rottenpotato.main.repositories.NotInterestedRepository;
-import com.redwood.rottenpotato.main.repositories.UserRatingRepository;
-import com.redwood.rottenpotato.main.repositories.UserReviewRepository;
-import com.redwood.rottenpotato.main.repositories.WantToSeeRepository;
+import com.redwood.rottenpotato.main.repositories.*;
 import com.redwood.rottenpotato.main.services.JsonService;
 import com.redwood.rottenpotato.security.model.User;
 import com.redwood.rottenpotato.security.repository.UserRepository;
@@ -39,6 +36,10 @@ public class AccountService {
     private UserRatingRepository userRatingRepository;
     @Autowired
     private UserReviewRepository userReviewRepository;
+    @Autowired
+    private CriticApplicationRepository criticApplicationRepository;
+    @Autowired
+    private FCountRepository fCountRepository;
 
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
@@ -71,7 +72,7 @@ public class AccountService {
         return jsonService.constructStatusMessage(AjaxCallStatus.OK);
     }
 
-    public String editNames(String userEmail, String newFirstName, String newLastName){
+    public String editNames(String userEmail, String newFirstName, String newLastName) {
         User user = userRepository.findByEmail(userEmail);
         if (user == null) {
             return jsonService.constructStatusMessage(AjaxCallStatus.ERROR, "Can't find user");
@@ -81,7 +82,6 @@ public class AccountService {
         userRepository.save(user);
         return jsonService.constructStatusMessage(AjaxCallStatus.OK);
     }
-
 
 
     public String forgotPassword(String email, String appUrl) {
@@ -119,12 +119,19 @@ public class AccountService {
         return jsonService.constructStatusMessage(AjaxCallStatus.OK);
     }
 
-    public String deleteAccount(String email, String newPassword) {
+    public String deleteAccount(String email, String password) {
         User user = userRepository.findByEmail(email);
         if (user == null) {
             return jsonService.constructStatusMessage(AjaxCallStatus.ERROR, "Can't find user");
         }
-        Long userId = user.getId();
+        if (!passwordEncoder.matches(password, user.getPassword())) {
+            return jsonService.constructStatusMessage(AjaxCallStatus.ERROR, "wrong password");
+        }
+        long userId = user.getId();
+        criticApplicationRepository.removeByUserId(userId);
+        fCountRepository.removeByUserId(userId);
+        userRatingRepository.removeByUserId(userId);
+        userReviewRepository.removeByUserId(userId);
         user.setEnable(false);
         userRepository.save(user);
         return jsonService.constructStatusMessage(AjaxCallStatus.OK);
