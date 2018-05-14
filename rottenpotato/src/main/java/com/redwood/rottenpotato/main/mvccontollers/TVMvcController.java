@@ -256,60 +256,6 @@ public class TVMvcController {
         model.addAttribute("reviews", reviews);
 
 
-
-        //CriticReviews from MovieMvcController
-        //1. get criticReview based on movieKey(itemKey)
-//        List<CriticReview> criticReviews1 = criticReviewRepository.findByItemKey(tv.getTVKey());
-//
-//        //2. For the criticReview, create a hashmap of reviews, and put all hashmaps into a list
-//        List<HashMap> reviews = new ArrayList<>();
-//        for (CriticReview cr : criticReviews1)
-//        {
-//            //one review
-//            HashMap<String, String> aReview = new HashMap<>();
-//
-//            if(cr.getReviewRating()==0)
-//            {
-//                aReview.put("score", "No Score");
-//            }
-//            else
-//            {
-//                aReview.put("score", Integer.toString(cr.getReviewRating()));
-//            }
-//            aReview.put("date", cr.getReviewTime());
-//            aReview.put("content", cr.getReviewContent());
-//            aReview.put("criticKey", cr.getCriticKey());
-//
-//            String criticName = this.criticRepository.findByCriticKey(cr.getCriticKey()).getCriticName();
-//            aReview.put("criticName", criticName);
-//            reviews.add(aReview);
-//        }
-//        model.addAttribute("reviews", reviews);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         // Audience Reviews
         List<UserReview> userReviews = userReviewRepository.findByItemKey(tv.getTVKey());
         List<HashMap> audienceReviews = new ArrayList<>();

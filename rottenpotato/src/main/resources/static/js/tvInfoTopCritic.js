@@ -64,3 +64,8 @@ function getTV(tvId){
 function getTVTopCritic(tvId){
     window.location.href="/t/t/"+tvId;
 }
+
+
+function getCritic(key){
+    window.location.href="/critic/" + key;
+}
