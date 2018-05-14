@@ -47,6 +47,7 @@ public class UserMvcController {
     private EntityManager entityManager;
     @Autowired
     private PrincipleService principleService;
+
     @RequestMapping("/u/{userId}")
     public String userPage(@PathVariable("userId") long userId, Model model, Principal principal) {
         boolean isLogin = false;
@@ -66,10 +67,7 @@ public class UserMvcController {
         if (user == null) {
             model.addAttribute("error", "user not found");
         } else {
-            if (!user.isOpenProfile()) {
-                model.addAttribute("openProfile", false);
-                return "user.html";
-            }
+            model.addAttribute("openProfile", user.isOpenProfile());
             model.addAttribute("openProfile", true);
 
             List<Follow> followBy = followRepository.findByUserIdTo(user.getId());
