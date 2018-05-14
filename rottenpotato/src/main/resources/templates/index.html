@@ -201,13 +201,13 @@
                         <h2 class="card-title">OSCAR BEST PICTURE MOVIES</h2>
                         <table class="table table-striped">
                             <tbody>
-                            <tr th:each="movie:${openingThisWeek}">
+                            <tr th:each="movie:${winningMovies}">
                                 <td>
-                                    <a th:text="${movie.movieName}"
-                                       th:href="'javascript:getMovie(\''+${movie.key}+'\')'">
+                                    <a th:text="${movie.name}"
+                                       th:href="'javascript:getMovie(\''+${movie.movieKey}+'\')'">
                                     </a>
                                 </td>
-                                <td class="pull-right" th:text="${movie.date}">MAR 2</td>
+                                <td class="pull-right" th:text="${movie.oscarBestPictureYear}">MAR 2</td>
                             </tr>
                             </tbody>
                         </table>
