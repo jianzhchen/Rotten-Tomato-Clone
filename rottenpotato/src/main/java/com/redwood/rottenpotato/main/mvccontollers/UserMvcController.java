@@ -67,7 +67,11 @@ public class UserMvcController {
         if (user == null) {
             model.addAttribute("error", "user not found");
         } else {
-            model.addAttribute("openProfile", user.isOpenProfile());
+            if (!user.isOpenProfile()) {
+                model.addAttribute("openProfile", false);
+                return "user.html";
+            }
+            model.addAttribute("openProfile", true);
 
             List<Follow> followBy = followRepository.findByUserIdTo(user.getId());
             model.addAttribute("followerCount", followBy.size());
