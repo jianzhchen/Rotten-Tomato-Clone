@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.sql.Date;
 import java.util.List;
 
 @Repository
@@ -17,10 +18,8 @@ public interface MovieRepository extends JpaRepository<Movie, Long> {
     public List<Movie> findTop10ByOrderByBoxOfficeDesc(Pageable pageable);
     public List<Movie> findTop8ByOrderByBoxOfficeDesc(Pageable pageable);
 
-    @Query("SELECT m FROM Movie m order by m.inTheatersTime DESC")
-    public List<Movie> findTop10ByOrderByInTheatersTimeDesc(Pageable pageable);
-    public List<Movie> findTop8ByOrderByInTheatersTimeDesc(Pageable pageable);
-    public List<Movie> findTop100ByOrderByInTheatersTimeDesc(Pageable pageable);
+    @Query("select m from Movie m where m.inTheatersTime>=CURRENT_DATE order by m.inTheatersTime ASC ")
+    public List<Movie> findComingSoon( Pageable pageable);
 
     public Movie findByMovieKey(String movieKey);
 

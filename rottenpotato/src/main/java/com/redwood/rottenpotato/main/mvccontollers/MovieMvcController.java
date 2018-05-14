@@ -198,7 +198,7 @@ public class MovieMvcController {
     @GetMapping(value = "m/d/{page}")
     public String movieByDate(@PathVariable("page") int page, Model model, Principal principal) {
         principleService.principalModel(model, principal);
-        List<Movie> movies = movieRepository.findTop8ByOrderByInTheatersTimeDesc(PageRequest.of(page, 8));
+        List<Movie> movies = movieRepository.findComingSoon(PageRequest.of(page, 8));
         List<HashMap> movieList = new ArrayList<>();
         for (Movie movie : movies) {
             HashMap<String, String> movieDetail = new HashMap<>();
@@ -211,7 +211,7 @@ public class MovieMvcController {
         model.addAttribute("movies", movieList);
         model.addAttribute("page", page);
         boolean hasNext = true;
-        if (movieRepository.findTop8ByOrderByInTheatersTimeDesc(PageRequest.of(page + 1, 8)).size() <= 0) {
+        if (movieRepository.findComingSoon(PageRequest.of(page + 1, 8)).size() <= 0) {
             hasNext = false;
         }
         model.addAttribute("hasNext", hasNext);

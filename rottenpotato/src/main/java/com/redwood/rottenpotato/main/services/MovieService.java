@@ -34,7 +34,7 @@ public class MovieService {
 
     public List<Map> top10InTheatersDatePage(Model model, int page) {
         List<Map> templist = new ArrayList<>();
-        for (Movie temp : MovieRepository.findTop10ByOrderByInTheatersTimeDesc(PageRequest.of(page, 10))) {
+        for (Movie temp : MovieRepository.findComingSoon(PageRequest.of(page, 10))) {
             Map<String, String> map = new HashMap<>();
 
             map.put("movieName", temp.getName());
@@ -83,7 +83,7 @@ public class MovieService {
 
         Date dateLast = cal.getTime();
 
-        for (Movie movie : MovieRepository.findTop100ByOrderByInTheatersTimeDesc(PageRequest.of(page, 1))) {
+        for (Movie movie : MovieRepository.findComingSoon(PageRequest.of(page, 100))) {
             if(movie.getInTheatersTime() != null){
                 if(movie.getInTheatersTime().after(dateFirst) & movie.getInTheatersTime().before(dateLast)){
                     Map<String, String> map = new HashMap<>();
@@ -117,7 +117,7 @@ public class MovieService {
 
         Date dateLast = cal.getTime();
 
-        for (Movie movie : MovieRepository.findTop100ByOrderByInTheatersTimeDesc(PageRequest.of(page, 1))) {
+        for (Movie movie : MovieRepository.findComingSoon(PageRequest.of(page, 100))) {
             if(movie.getInTheatersTime() != null){
                 if(movie.getInTheatersTime().after(dateFirst) & movie.getInTheatersTime().before(dateLast)){
 //                    Map<String, String> map = new HashMap<>();
