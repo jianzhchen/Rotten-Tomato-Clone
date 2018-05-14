@@ -107,6 +107,7 @@
                                     <!--User Info-->
                                     <div class="col-md-6 text-left">
                                         <img class="pull-right" data-toggle="tooltip" title="report this user"
+                                             th:if="${isLogin}"
                                              th:src="@{~/assets/img/kit/free/report.png}"
                                              th:onclick="'javascript:reportUser(\''+${userId}+'\')'">
                                         <!--User first name and last name-->
