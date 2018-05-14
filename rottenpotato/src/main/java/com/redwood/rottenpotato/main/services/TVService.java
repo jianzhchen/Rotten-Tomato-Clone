@@ -16,8 +16,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static com.sun.org.apache.xalan.internal.xsltc.compiler.sym.error;
-
 @Service
 public class TVService {
     @Autowired
@@ -28,7 +26,7 @@ public class TVService {
 
     public List<Map> top10TVDatePage(Model model, int page) {
         List<Map> templist = new ArrayList<>();
-        for (TV temp : TVRepository.findTop10ByOrderByTVDateDesc(PageRequest.of(page, 10))) {
+        for (TV temp : TVRepository.findTop10ByOrderByTVDateDateDesc(PageRequest.of(page, 10))) {
             Map<String, String> map = new HashMap<>();
 
             map.put("TVName", temp.getTVName());

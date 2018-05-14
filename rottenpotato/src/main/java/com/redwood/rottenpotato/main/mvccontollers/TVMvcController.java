@@ -13,7 +13,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import javax.jws.WebParam;
 import java.security.Principal;
 import java.util.*;
 
@@ -165,7 +164,7 @@ public class TVMvcController {
             model.addAttribute("isLogin", true);
             model.addAttribute("username", principal.getName());
         }
-        List<TV> tvs = tVRepository.findTop10ByOrderByTVDateDesc(PageRequest.of(page, 8));
+        List<TV> tvs = tVRepository.findTop10ByOrderByTVDateDateDesc(PageRequest.of(page, 8));
         List<HashMap> tvList = new ArrayList<>();
         for (TV tv : tvs) {
             HashMap<String, String> movieDetail = new HashMap<>();
