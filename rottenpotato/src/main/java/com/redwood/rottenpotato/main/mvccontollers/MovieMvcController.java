@@ -43,6 +43,7 @@ public class MovieMvcController {
 
     @Autowired
     private PrincipleService principleService;
+
     @GetMapping(value = "m/{movieKey}")
     public String movieDetail(@PathVariable("movieKey") String movieKey, Model model, Principal principal) {
         Movie movie = movieRepository.findByMovieKey(movieKey);
@@ -191,6 +192,15 @@ public class MovieMvcController {
         }
         model.addAttribute("testSamples", trailerLists);
 
+        //related movies
+        List<Movie> related = new ArrayList<>();
+        if (!movie.getDirector().equals("")) {
+            List<String> directornames = Arrays.asList(movie.getDirector().split("\\s*,\\s*"));
+            String directorname = directornames.get(0);
+            List<Movie> movies = movieRepository.searchByDirector(directorname, movieKey, PageRequest.of(0, 4));
+            related = movies;
+        }
+        model.addAttribute("related", related);
         return "movieInfo.html";
 
     }
@@ -272,13 +282,6 @@ public class MovieMvcController {
         }
 
 
-
-
-
-
-
-
-
         List<Object[]> topCriticReviews = criticReviewRepository.findTop10ByReviewCount();
         List<Critic> topCritics = new ArrayList<>();
         for (Object[] criticReview : topCriticReviews) {
@@ -288,64 +291,28 @@ public class MovieMvcController {
             }
         }
 
-        List<Map> reviews =  new ArrayList<>();
+        List<Map> reviews = new ArrayList<>();
+        CriticReview crTemp;
+        for (Critic criticTemp : topCritics) {
+            crTemp = criticReviewRepository.findByItemKeyAndCriticKey(movie.getMovieKey(), criticTemp.getCriticKey());
+            if (crTemp != null) {
+                HashMap<String, String> aReview = new HashMap<>();
+                if (crTemp.getReviewRating() == 0) {
+                    aReview.put("score", "N/A");
+                } else {
+                    aReview.put("score", Integer.toString(crTemp.getReviewRating()));
+                }
+                aReview.put("date", crTemp.getReviewTime());
+                aReview.put("content", crTemp.getReviewContent());
+                aReview.put("criticKey", crTemp.getCriticKey());
 
-        for(Critic criticTemp: topCritics){
 
-        }
-        model.addAttribute("topCritics", topCritics);
-        //CriticReviews
-        //1. get criticReview based on movieKey(itemKey)
-        List<CriticReview> criticReviews = criticReviewRepository.findByItemKey(movie.getMovieKey());
+                aReview.put("criticName", criticTemp.getCriticName());
 
-        //2. For the criticReview, create a hashmap of reviews, and put all hashmaps into a list
-//        List<HashMap> reviews = new ArrayList<>();
-        for (CriticReview cr : criticReviews) {
-            //one review
-            HashMap<String, String> aReview = new HashMap<>();
-            if (cr.getReviewRating() == 0) {
-                aReview.put("score", "N/A");
-            } else {
-                aReview.put("score", Integer.toString(cr.getReviewRating()));
-            }
-            aReview.put("date", cr.getReviewTime());
-            aReview.put("content", cr.getReviewContent());
-            aReview.put("criticKey", cr.getCriticKey());
-
-            if (this.criticRepository.findByCriticKey(cr.getCriticKey()) != null) {
-                String criticName = this.criticRepository.findByCriticKey(cr.getCriticKey()).getCriticName();
-                aReview.put("criticName", criticName);
                 reviews.add(aReview);
             }
         }
         model.addAttribute("reviews", reviews);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
         //user review

@@ -20,6 +20,10 @@ function getTrailers(movieKey){
     window.location.href="/v/"+movieKey;
 }
 
+function getMovie(movieKey){
+    window.location.href="/m/"+movieKey;
+}
+
 function getCritic(key){
     window.location.href="/critic/" + key;
 }
