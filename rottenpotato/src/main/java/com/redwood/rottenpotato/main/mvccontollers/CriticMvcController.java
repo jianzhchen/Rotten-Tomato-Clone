@@ -94,6 +94,7 @@ public class CriticMvcController {
         model.addAttribute("criticKey", criticKey);
         model.addAttribute("recentReviews", reviews);
         model.addAttribute("page", page);
+        model.addAttribute("order",order);
         return "criticPage.html";
     }
 

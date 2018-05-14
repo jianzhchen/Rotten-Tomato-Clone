@@ -28,8 +28,8 @@ public interface CriticReviewRepository extends JpaRepository<CriticReview, Long
     @Query("select c.itemKey, avg(c.reviewRating) as r, count(c.itemKey) as keycount from CriticReview c where c.reviewRating <>0  group by c.itemKey having  count(c.itemKey)>=:limit order by r desc")
     List<Object[]> findTopByAvgScore(@Param("limit") long limit, Pageable pageable);
 
-    @Query("select c.itemKey , avg(c.reviewRating) as r, count(c.itemKey) as keycount from CriticReview c, TV tv where c.reviewRating <>0 and c.itemKey=tv.TVKey group by c.itemKey having  count(c.itemKey)>=:limit order by r desc")
-    List<Object[]> findTopByAvgScore2(@Param("limit") long limit, Pageable pageable);
+    @Query("select c.itemKey , avg(c.reviewRating) as r, count(c.itemKey) as keycount from CriticReview c, TV tv where c.reviewRating <>0 and c.itemKey=tv.TVKey group by c.itemKey having  count(c.itemKey)>=:limit")
+    List<Object[]> findTopByAvgScoreTV(@Param("limit") long limit);
 
     List<CriticReview> findTop10ByCriticKeyAndReviewRatingNotOrderByReviewRatingDesc(String criticKey, int rating, Pageable pageable);
 
