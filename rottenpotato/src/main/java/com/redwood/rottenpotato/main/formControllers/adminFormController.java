@@ -41,7 +41,7 @@ public class adminFormController {
             movie.setMovieKey(name + "_" + UUID.randomUUID().toString().replace("-", ""));
             movie.setCast(cast);
             movieRepository.save(movie);
-            return jsonService.constructStatusMessage(AjaxCallStatus.OK);
+            return "redirect:/1/admin/add";
         } else {
             TV tv = new TV();
             tv.setTVName(name);
@@ -49,7 +49,7 @@ public class adminFormController {
             tv.setTVKey(name + "_" + UUID.randomUUID().toString().replace("-", ""));
             tv.setTVCast(cast);
             tVRepository.save(tv);
-            return jsonService.constructStatusMessage(AjaxCallStatus.OK);
+            return "redirect:/1/admin/add";
         }
     }
 }
