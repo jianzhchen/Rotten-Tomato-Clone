@@ -1,13 +1,7 @@
 package com.redwood.rottenpotato.main.mvccontollers;
 
-import com.redwood.rottenpotato.main.models.Movie;
-import com.redwood.rottenpotato.main.models.TV;
-import com.redwood.rottenpotato.main.models.UserReview;
-import com.redwood.rottenpotato.main.models.UserReviewReport;
-import com.redwood.rottenpotato.main.repositories.MovieRepository;
-import com.redwood.rottenpotato.main.repositories.TVRepository;
-import com.redwood.rottenpotato.main.repositories.UserReviewReportRepository;
-import com.redwood.rottenpotato.main.repositories.UserReviewRepository;
+import com.redwood.rottenpotato.main.models.*;
+import com.redwood.rottenpotato.main.repositories.*;
 import com.redwood.rottenpotato.security.model.User;
 import com.redwood.rottenpotato.security.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +30,8 @@ public class AdminMvcController {
     private MovieRepository movieRepository;
     @Autowired
     private TVRepository tvRepository;
+    @Autowired
+    private CriticApplicationRepository criticApplicationRepository;
 
     @RequestMapping("reports")
     public String adminReports(Principal principal, Model model) {
@@ -49,9 +45,9 @@ public class AdminMvcController {
             HashMap<String, String> map = new HashMap<>();
             UserReview userReview = userReviewRepository.findById(userReviewReport.getReviewId());
             map.put("review", userReview.getContent());
-            map.put("reviewId",userReview.getId()+"");
+            map.put("reviewId", userReview.getId() + "");
             map.put("reason", userReviewReport.getContent());
-            map.put("reportId",userReviewReport.getId()+"");
+            map.put("reportId", userReviewReport.getId() + "");
 
             String itemKey = userReview.getItemKey();
             Movie movie = movieRepository.findByMovieKey(itemKey);
@@ -71,6 +67,28 @@ public class AdminMvcController {
         }
         model.addAttribute("reports", list);
         return "adminReports.html";
+    }
+
+    @RequestMapping("ListCriticApp")
+    public String listCriticApp(Principal principal, Model model) {
+        User user = userRepository.findByEmail(principal.getName());
+        if (!user.isAdmin()) {
+            return "error.html";
+        }
+        List<CriticApplication> criticApplications = criticApplicationRepository.findAllBy();
+
+        List<HashMap> list = new ArrayList<>();
+        for (CriticApplication criticApplication : criticApplications) {
+            HashMap<String, String> map = new HashMap<>();
+            long userId = criticApplication.getUserId();
+            User userEntity = userRepository.findById(userId);
+            map.put("name", userEntity.getFirstName() + " " + userEntity.getLastName());
+            map.put("userId", Long.toString(userEntity.getId()));
+            map.put("reason", criticApplication.getContent());
+            list.add(map);
+        }
+        model.addAttribute("list", list);
+        return ".html";
     }
 
 }
