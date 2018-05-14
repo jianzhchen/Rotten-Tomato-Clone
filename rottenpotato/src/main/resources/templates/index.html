@@ -104,7 +104,7 @@
                         <h2 class="card-title">COMING SOON TO THEATERS</h2>
                             <table class="table table-striped">
                                 <tbody>
-                                <tr th:each="movie:${movieOpeningThisWeek}">
+                                <tr th:each="movie:${comingSoon}">
                                     <td>
                                         <a th:text="${movie.movieName}"
                                            th:href="'javascript:getMovie(\''+${movie.key}+'\')'">
@@ -153,7 +153,6 @@
                             </tr>
                             </tbody>
                         </table>
-                        <a class="pull-right" href="/m/b/0">View All</a>
                     </div>
                 </div>
             </div>

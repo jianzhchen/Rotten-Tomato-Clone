@@ -45,7 +45,7 @@ public class HomeMvcController {
         }
 
         model.addAttribute("topBoxOffice", movieService.top10BoxWithPage(model, 0));
-        model.addAttribute("movieOpeningThisWeek", movieService.top10InTheatersDatePage(model, 0));
+        model.addAttribute("comingSoon", movieService.top10InTheatersDatePage(model, 0));
         model.addAttribute("newTVShows", TVService.top10TVDatePage(model, 0));
 
 
