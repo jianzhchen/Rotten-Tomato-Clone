@@ -171,7 +171,7 @@ public class MovieMvcController {
         File[] listOfFiles = folder.listFiles();
         if (listOfFiles == null) {
             currentDirectory = file.getAbsolutePath();
-            currentDirectory += "/src/main/resources/static/zTrailers";
+            currentDirectory += "/src/main/resources/static/Trailers";
             folder = new File(currentDirectory);
             listOfFiles = folder.listFiles();
         }
@@ -348,7 +348,7 @@ public class MovieMvcController {
         File[] listOfFiles = folder.listFiles();
         if (listOfFiles == null) {
             currentDirectory = file.getAbsolutePath();
-            currentDirectory += "/src/main/resources/static/zTrailers";
+            currentDirectory += "/src/main/resources/static/Trailers";
             folder = new File(currentDirectory);
             listOfFiles = folder.listFiles();
         }
