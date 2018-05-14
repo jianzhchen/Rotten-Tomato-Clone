@@ -404,7 +404,7 @@
                                     <!--critic name-->
                                     <div class="text-center">
                                         <a  th:text="${review.criticName}"
-                                            th:href="'javascript:getCritic(\''+${review.criticKey}+'\')'">
+                                            th:href="'/critic/'+${review.criticKey}">
                                             Empty Key
                                         </a>
                                     </div>
@@ -435,6 +435,7 @@
                                     <div >
                                         <p style="display: inline;" class="title" th:text="'Score : '+ ${review.score}">100%</p>
                                         <img class="pull-right" data-toggle="tooltip" title="report this review"
+                                             th:if="${isLogin}"
                                              th:src="@{~/assets/img/kit/free/report.png}"
                                             th:onclick="'javascript:reportReview(\''+${review.reviewId}+'\')'">
                                     </div>
@@ -445,7 +446,7 @@
                                     <!--user name-->
                                     <div class="text-center">
                                         <a  th:text="${review.name}"
-                                            th:href="'javascript:getUser(\''+${review.key}+'\')'">
+                                            th:href="'/u/'+${review.key}">
                                             Empty Key
                                         </a>
                                     </div>
