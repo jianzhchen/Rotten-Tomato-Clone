@@ -24,7 +24,7 @@ public class TV {
         this.TVNetwork= "Default TVNetwork";
         this.TVDate= "Default TVDate";
         this.TVCast= "Default TVCast";
-        this.TVDateDate= new Date();
+        this.TVDateDate= null;
     }
 
     public String getTVKey() {
