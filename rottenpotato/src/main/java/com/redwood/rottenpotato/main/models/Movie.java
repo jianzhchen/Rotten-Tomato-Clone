@@ -28,22 +28,22 @@ public class Movie {
     //Constructor for JPA
     public Movie()
     {
-        String name = "Default Name";
-        String info = "Default Info";
-        String rating = "Default Rating";
-        String genre = "Default Genre";
-        String director = "Default Director";
-        String writer = "Default Writer";
-        String inTheaters = "Default inTheaters";    //In theater time
-        String onDisc = "Default onDisc";
-        long boxOffice = 0;
-        String runTime ="Default runTime";
-        String studio="Default studio";
-        String cast="Default studio";
-        Date inTheatersTime= new Date();
-        Date onDiscTime= new Date();
-        boolean isOscarBestPicture = false;
-        long oscarBestPictureYear = 0;
+        this.name = "Default Name";
+        this.info = "Default Info";
+        this.rating = "Default Rating";
+        this.genre = "Default Genre";
+        this.director = "Default Director";
+        this.writer = "Default Writer";
+        this.inTheaters = "Default inTheaters";    //In theater time
+        this.onDisc = "Default onDisc";
+        this.boxOffice = 0;
+        this.runTime ="Default runTime";
+        this.studio="Default studio";
+        this.cast="Default studio";
+        this.inTheatersTime= new Date();
+        this.onDiscTime= new Date();
+        this.isOscarBestPicture = false;
+        this.oscarBestPictureYear = 0;
     }
 
     public String getMovieKey() {
