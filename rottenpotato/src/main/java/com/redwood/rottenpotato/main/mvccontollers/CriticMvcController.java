@@ -37,7 +37,7 @@ public class CriticMvcController {
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
     @RequestMapping("/critic/{criticKey}")
-    public String criticPage(@PathVariable("criticKey") String criticKey, Model model, Principal principal, @RequestParam(value = "page",defaultValue = "0") int page) {
+    public String criticPage(@PathVariable("criticKey") String criticKey, Model model, Principal principal, @RequestParam(value = "page", defaultValue = "0") int page, @RequestParam(value = "order", defaultValue = "0") int order) {
         if (principal == null) {
             model.addAttribute("isLogin", false);
         } else {
@@ -47,10 +47,23 @@ public class CriticMvcController {
         Critic critic = criticRepository.findByCriticKey(criticKey);
         model.addAttribute("name", critic.getCriticName());
         model.addAttribute("info", critic.getCriticInfo());
-        List<CriticReview> criticReviews = criticReviewRepository.findTop10ByCriticKeyOrderByReviewTimeDateDesc(criticKey, PageRequest.of(page, 10));
         boolean hasNext = true;
-        if (criticReviewRepository.findTop10ByCriticKeyOrderByReviewTimeDateDesc(criticKey, PageRequest.of(page + 1, 10)).size() <= 0) {
-            hasNext = false;
+        List<CriticReview> criticReviews;
+        if (order == 1) {
+            criticReviews = criticReviewRepository.findTop10ByCriticKeyAndReviewRatingNotOrderByReviewRatingDesc(criticKey, 0, PageRequest.of(page, 10));
+            if (criticReviewRepository.findTop10ByCriticKeyAndReviewRatingNotOrderByReviewRatingDesc(criticKey, 0, PageRequest.of(page + 1, 10)).size() <= 0) {
+                hasNext = false;
+            }
+        } else if (order == 2) {
+            criticReviews = criticReviewRepository.findTop10ByCriticKeyAndReviewRatingNotOrderByReviewRatingAsc(criticKey, 0, PageRequest.of(page, 10));
+            if (criticReviewRepository.findTop10ByCriticKeyAndReviewRatingNotOrderByReviewRatingAsc(criticKey, 0, PageRequest.of(page + 1, 10)).size() <= 0) {
+                hasNext = false;
+            }
+        } else {
+            criticReviews = criticReviewRepository.findTop10ByCriticKeyOrderByReviewTimeDateDesc(criticKey, PageRequest.of(page, 10));
+            if (criticReviewRepository.findTop10ByCriticKeyOrderByReviewTimeDateDesc(criticKey, PageRequest.of(page + 1, 10)).size() <= 0) {
+                hasNext = false;
+            }
         }
 
         List<HashMap> reviews = new ArrayList<>();
@@ -63,14 +76,14 @@ public class CriticMvcController {
                 map.put("url", "/m/" + itemKey);
                 map.put("itemName", movie.getName());
                 map.put("score", Integer.toString(cv.getReviewRating()));
-                map.put("date", cv.getReviewTimeDate()+"");
+                map.put("date", cv.getReviewTimeDate() + "");
                 map.put("content", cv.getReviewContent());
                 reviews.add(map);
             } else if (tv != null) {
                 map.put("url", "/t/" + itemKey);
                 map.put("itemName", tv.getTVName());
                 map.put("score", Integer.toString(cv.getReviewRating()));
-                map.put("date", cv.getReviewTimeDate()+"");
+                map.put("date", cv.getReviewTimeDate() + "");
                 map.put("content", cv.getReviewContent());
                 reviews.add(map);
             }
@@ -78,7 +91,7 @@ public class CriticMvcController {
         model.addAttribute("hasNext", hasNext);
         model.addAttribute("criticKey", criticKey);
         model.addAttribute("recentReviews", reviews);
-        model.addAttribute("page",page);
+        model.addAttribute("page", page);
         return "criticPage.html";
     }
 
@@ -100,10 +113,10 @@ public class CriticMvcController {
             TV tv = tVRepository.findByTVKey(itemKey);
             if (movie != null) {
                 map.put("itemName", movie.getName());
-                map.put("url","/m/"+movie.getMovieKey());
+                map.put("url", "/m/" + movie.getMovieKey());
             } else if (tv != null) {
                 map.put("itemName", tv.getTVName());
-                map.put("url","/t/"+tv.getTVKey());
+                map.put("url", "/t/" + tv.getTVKey());
             } else {
                 continue;
             }
@@ -111,7 +124,7 @@ public class CriticMvcController {
             Critic critic = criticRepository.findByCriticKey(criticReview.getCriticKey());
             map.put("name", critic.getCriticName());
             map.put("score", Integer.toString(criticReview.getReviewRating()));
-            map.put("date", criticReview.getReviewTimeDate()+"");
+            map.put("date", criticReview.getReviewTimeDate() + "");
             map.put("content", criticReview.getReviewContent());
             reviews.add(map);
         }
