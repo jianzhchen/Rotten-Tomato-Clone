@@ -205,6 +205,181 @@ public class MovieMvcController {
 
     }
 
+
+    @GetMapping(value = "m/t/{movieKey}")
+    public String movieDetailTopCritic(@PathVariable("movieKey") String movieKey, Model model, Principal principal) {
+        Movie movie = movieRepository.findByMovieKey(movieKey);
+        if (movie == null) {
+            model.addAttribute("exist", false);
+        }
+        if (principal == null) {
+            model.addAttribute("isLogin", false);
+        } else {
+            model.addAttribute("isLogin", true);
+            model.addAttribute("username", principal.getName());
+            User user = userRepository.findByEmail(principal.getName());
+            model.addAttribute("isAdmin", user.isAdmin());
+        }
+
+
+        model.addAttribute("movieKey", movie.getMovieKey());
+        model.addAttribute("name", movie.getName());
+        model.addAttribute("info", movie.getInfo());
+        model.addAttribute("movieRating", movie.getRating());
+        model.addAttribute("genre", movie.getGenre());
+        model.addAttribute("director", movie.getDirector());
+        model.addAttribute("writer", movie.getWriter());
+        model.addAttribute("inTheater", movie.getInTheaters());
+        model.addAttribute("onDisc", movie.getOnDisc());
+        model.addAttribute("boxOffice", boxOfficeTransfer(movie.getBoxOffice()));
+        model.addAttribute("runTime", movie.getRunTime());
+        model.addAttribute("studio", movie.getStudio());
+        String cast = movie.getCast();
+        List<String> actorKeys = Arrays.asList(cast.split("\\s*,\\s*"));
+        List<HashMap> actors = new ArrayList<>();
+        for (String actorKey : actorKeys) {
+            HashMap<String, String> actorMap = new HashMap<>();
+            Actor actor = actorRepository.findByActorKey(actorKey);
+            if (actor == null) {
+                continue;
+            }
+            actorMap.put("name", actor.getActorName());
+            actorMap.put("key", actor.getActorKey());
+            actors.add(actorMap);
+        }
+        model.addAttribute("casts", actors);
+
+        List<CriticReview> crs = criticReviewRepository.findByItemKey(movieKey);
+        int criticScore = 0;
+        int criticScoreCount = 0;
+        for (CriticReview criticReview : crs) {
+            if (criticReview.getReviewRating() != 0) {
+                criticScore = criticScore + criticReview.getReviewRating();
+                criticScoreCount++;
+            }
+        }
+        model.addAttribute("criticScoreCount", criticScoreCount);
+        if (criticScoreCount == 0) {
+            model.addAttribute("criticRating", "N/A");
+        } else {
+            model.addAttribute("criticRating", String.format("%.2f", (double) criticScore / criticScoreCount));
+        }
+
+        List<UserRating> userRatings = userRatingRepository.findByItemKey(movieKey);
+        int userScore = 0;
+        int userScoreCount = 0;
+        for (UserRating userRating : userRatings) {
+            if (userRating.getRating() != 0) {
+                userScore = userScore + userRating.getRating();
+                userScoreCount++;
+            }
+        }
+        model.addAttribute("userScoreCount", userScoreCount);
+        if (userScoreCount == 0) {
+            model.addAttribute("userRating", "N/A");
+        } else {
+            model.addAttribute("userRating", String.format("%.2f", (double) userScore / userScoreCount));
+        }
+
+
+
+
+
+
+
+
+
+        List<Object[]> topCriticReviews = criticReviewRepository.findTop10ByReviewCount();
+        List<Critic> topCritics = new ArrayList<>();
+        for (Object[] criticReview : topCriticReviews) {
+            topCritics.add(criticRepository.findByCriticKey((String) criticReview[0]));
+            if (topCritics.size() >= 8) {
+                break;
+            }
+        }
+
+        List<Map> reviews =  new ArrayList<>();
+        CriticReview crTemp;
+        for(Critic criticTemp: topCritics){
+            crTemp = criticReviewRepository.findByItemKeyAndCriticKey( movie.getMovieKey(), criticTemp.getCriticKey());
+            if(crTemp != null){
+                HashMap<String, String> aReview = new HashMap<>();
+                if (crTemp.getReviewRating() == 0) {
+                    aReview.put("score", "N/A");
+                } else {
+                    aReview.put("score", Integer.toString(crTemp.getReviewRating()));
+                }
+                aReview.put("date", crTemp.getReviewTime());
+                aReview.put("content", crTemp.getReviewContent());
+                aReview.put("criticKey", crTemp.getCriticKey());
+
+
+                aReview.put("criticName", criticTemp.getCriticName());
+
+                reviews.add(aReview);
+            }
+        }
+        model.addAttribute("reviews", reviews);
+
+
+        //user review
+        List<UserReview> userReviews = userReviewRepository.findByItemKey(movie.getMovieKey());
+        List<HashMap> audienceReviews = new ArrayList<>();
+        for (UserReview rev : userReviews) {
+            for (UserRating rate : userRatings) {
+                if (rev.getUserId() == rate.getUserId()) {
+                    HashMap<String, String> uReview = new HashMap<>();
+                    User user = userRepository.findById(rev.getUserId());
+                    uReview.put("name", user.getFirstName());
+                    uReview.put("key", rev.getUserId() + "");
+                    uReview.put("score", rate.getRating() + "");
+                    uReview.put("content", rev.getContent());
+                    uReview.put("reviewId", rev.getId() + "");
+                    audienceReviews.add(uReview);
+                    break;
+                }
+            }
+        }
+        model.addAttribute("audienceReviews", audienceReviews);
+
+        model.addAttribute("movieKey", movieKey);
+
+        String currentDirectory;
+        File file = new File("");
+        currentDirectory = file.getAbsolutePath();
+
+        currentDirectory += "/rottenpotato/src/main/resources/static/Trailers";
+
+        File folder = new File(currentDirectory.toString());
+
+        File[] listOfFiles = folder.listFiles();
+        if (listOfFiles == null) {
+            currentDirectory = file.getAbsolutePath();
+            currentDirectory += "/src/main/resources/static/zTrailers";
+            folder = new File(currentDirectory);
+            listOfFiles = folder.listFiles();
+        }
+
+        List<String> trailerLists = new ArrayList<String>();
+        int temp = 0;
+
+        if (listOfFiles != null) {
+            for (File fileName : listOfFiles) {
+                if (fileName.getName().contains(movieKey)) {
+                    temp = 1;
+                    trailerLists.add(fileName.getName());
+                }
+            }
+        }
+        if (temp == 1) {
+            model.addAttribute("hasTrailer", true);
+        }
+        model.addAttribute("testSamples", trailerLists);
+
+        return "movieInfoTopCritic.html";
+
+    }
+
     @GetMapping(value = "m/d/{page}")
     public String movieByDate(@PathVariable("page") int page, Model model, Principal principal) {
         principleService.principalModel(model, principal);

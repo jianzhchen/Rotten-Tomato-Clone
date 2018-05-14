@@ -383,7 +383,23 @@
             <!--critic review-->
             <section id="critic_review">
                 <!--<button type="button" class="btn btn-default btn-sm pull-right">View All</button>-->
-                <h3 class="title text-left">Critic Reviews</h3>
+                <div class="row">
+                    <div class = "col-sm-3">
+                        <a th:onclick="'javascript:getMovie(\''+${movieKey}+'\')'" class="list-group-item">
+                            <h3 style="color:purple; font-weight:bold;">
+                                Critic Review
+                            </h3>
+
+                        </a>
+                    </div>
+                    <div class = "col-sm-9">
+                        <a th:onclick="'javascript:getMovieTopCritic(\''+${movieKey}+'\')'" class="list-group-item">
+                            <h3>
+                                Top Critic Review
+                            </h3>
+                        </a>
+                    </div>
+                </div>
                 <div class="card m-1">
                     <div class="card-body">
                         <div class="card-columns">
@@ -464,55 +480,21 @@
                 </div>
 
             </section>
-            <!--news-->
-            <section id="news">
-                <h3 class="title text-left">News & Feature</h3>
+            <!--related movie-->
+            <section id="related movie">
+                <h3 class="title text-left">Related Movie</h3>
                 <div class="card m-1">
                     <div class="card-body">
                         <div class="row">
-                            <!--news with picture-->
-                            <div class="col-md-7">
-                                <div class="row">
-                                    <div class="col-md-4 mx-5">
-                                        <div class="text-center">
-                                            <a href="https://screenrant.com/movie-news/">
-                                                <img class="" src="http://via.placeholder.com/200x150"></a>
-                                            <p class="font-weight-bold text-md-center my-0" >title</p>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4 mx-5">
-                                        <div class="text-center">
-                                            <a href="https://placeholder.com">
-                                                <img class="" src="http://via.placeholder.com/200x150"></a>
-                                            <p class="font-weight-bold text-md-center my-0" >title</p>
-                                        </div>
-                                    </div>
+                                <div th:each="rel:${related}" class="col-md-3 text-center">
+                                    <a th:href="${rel.url}">
+                                        <img th:src="@{'~/Images/movieImages'+${rel.key}+'.jpg'}"
+                                             th:width="150" th:height="200"
+                                             th:onerror="'this.src=\'' + @{~/assets/img/defaultMovie.jpg} + '\';'">
+                                    </a>
+                                    <h6 th:text="${rel.name}"
+                                        th:onclick="'window.location.href='+${rel.url}">name</h6>
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-4 mx-5">
-                                        <div class="text-center">
-                                            <a href="https://placeholder.com">
-                                                <img class="" src="http://via.placeholder.com/200x150"></a>
-                                            <p class="font-weight-bold text-md-center my-0" >title</p>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4 mx-5">
-                                        <div class="text-center">
-                                            <a href="https://placeholder.com">
-                                                <img class="" src="http://via.placeholder.com/200x150"></a>
-                                            <p class="font-weight-bold text-md-center my-0">title</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--headline-->
-                            <div class="col-md-4">
-                                <ul>
-                                    <li>
-                                        <a href="#">headline</a>
-                                    </li>
-                                </ul>
-                            </div>
                         </div>
                     </div>
                 </div>

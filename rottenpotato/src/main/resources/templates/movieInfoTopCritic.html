@@ -7,8 +7,10 @@
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     <!-- Favicons -->
-    <link rel="apple-touch-icon" href="./assets/img/kit/free/apple-icon.png">
-    <link rel="icon" href="./assets/img/kit/free/favicon.png">
+    <link rel="apple-touch-icon" th:href="@{~/assets/img/kit/free/apple-icon.png}">
+    <link rel="icon" th:href="@{~/assets/img/kit/free/favicon.png}">
+    <!--<link rel="apple-touch-icon" href="./assets/img/kit/free/apple-icon.png">-->
+    <!--<link rel="icon" href="./assets/img/kit/free/favicon.png">-->
     <title>
         Rotten Potato
     </title>
@@ -16,10 +18,9 @@
     <link rel="stylesheet" type="text/css"
           href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css"/>
-    <!--<link rel="stylesheet" href="./assets/css/material-kit.css?v=2.0.2">-->
-
     <link rel="stylesheet" th:href="@{~/assets/css/material-kit.css?v=2.0.2}">
     <link rel="stylesheet" th:href="@{~/assets/css/custom.css}">
+    <link rel="stylesheet" href="./assets/css/material-kit.css?v=2.0.2">
     <link rel="stylesheet" href="./assets/css/custom.css">
 </head>
 
@@ -70,6 +71,7 @@
                 </div>
             </div>
         </div>
+
     </div>
 </nav>
 
@@ -78,27 +80,26 @@
      style="height: 18vh !important;">
 
 </div>
-<!--///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+
 <div class="main main-raised">
     <div class="section section-basic mx-2">
         <div class="container">
+            <!--movie title-->
+            <button th:if="${isAdmin}"
+                    class="btn btn-danger btn-sm  pull-right"
+                    th:onclick="'javascript:deleteMovie(\''+${movieKey}+'\')'">Delete page</button>
             <div class="row">
                 <h2 class="title text-center" th:text="${name}">Movie Name</h2>
             </div>
-
-            <div class = "row">
+            <div class="row">
                 <div class="col-md-7">
                     <div class="row">
-
                         <!--poster-->
                         <div class="col-md-4 mx-5">
-                            <img th:src="@{'~/Images/tvImages/'+${tvKey}+'.jpg'}" th:width="200" th:height="300"
-                                 th:onerror="'this.src=\'' + @{~/assets/img/defaultTV.jpg} + '\';'">
+                            <img th:src="@{'~/Images/movieImages/'+${movieKey}+'.jpg'}" th:width="200" th:height="300"
+                                 th:onerror="'this.src=\'' + @{~/assets/img/defaultMovie.jpg} + '\';'">
                         </div>
-
-
                         <!--rate-->
-
                         <div class="col-md-6">
                             <div class="card" >
                                 <div class="card-body">
@@ -106,10 +107,8 @@
                                     <ul class="list-unstyled">
                                         <li>
                                             <h3 class="text-center" th:if="${criticScoreCount}!=0 " th:text="${criticRating}/5*100+'%'">100%</h3>
-                                            <!--<h3 class="text-center" >100%</h3>-->
+                                            <!--no rating-->
                                             <h3 class="text-center" th:if="${criticScoreCount}==0 " th:text="'N/A'">0%</h3>
-                                            <!--<h3 class="text-center">0%</h3>-->
-
                                         </li>
                                         <li>
                                             <div class="progress" th:if="${criticScoreCount}!=0">
@@ -131,9 +130,7 @@
                                     <ul class="list-unstyled">
                                         <li>
                                             <h3 class="text-center" th:if="${userScoreCount}!=0" th:text="${userRating}/5*100+'%'">100%</h3>
-                                            <!--<h3 class="text-center">100%</h3>-->
                                             <h3 class="text-center" th:if="${userScoreCount}==0" th:text="'N/A'">100%</h3>
-                                            <!--<h3 class="text-center" >100%</h3>-->
                                         </li>
                                         <li>
                                             <div class="progress" th:if="${userScoreCount}!=0">
@@ -156,9 +153,7 @@
                         </div>
                     </div>
 
-
-                    <!--user rate and review-->
-
+                    <!--give your rate and review-->
                     <div class="card" style="height: 16rem">
                         <div class="card-body">
                             <div>
@@ -184,13 +179,13 @@
                             <div th:if="${isLogin}">
                                 <div class="float-left">
                                     <button type="button" class="btn btn-primary btn-sm"
-                                            th:onclick="'javascript:addWantToSee(\''+${tvKey}+'\')'">Want to see</button>
+                                            th:onclick="'javascript:addWantToSee(\''+${movieKey}+'\')'">Want to see</button>
                                     <button type="button" class="btn btn-danger btn-sm"
-                                            th:onclick="'javascript:addNotInterested(\''+${tvKey}+'\')'">Not interested</button>
+                                            th:onclick="'javascript:addNotInterested(\''+${movieKey}+'\')'">Not interested</button>
                                 </div>
                                 <div class="float-right">
                                     <button type="button" class="btn btn-sm btn-success"
-                                            th:onclick="'javascript:postReview(\''+${tvKey}+'\')'">Post</button>
+                                            th:onclick="'javascript:postReview(\''+${movieKey}+'\')'">Post</button>
 
                                 </div>
                             </div>
@@ -209,11 +204,10 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="col-md-5">
-                    <!--TV info -->
+                    <!--movieIntroduction-->
                     <div class="row">
-                        <h3 class="title text-center">Summary</h3>
+                        <h3 class="title text-center">Movie Information</h3>
                     </div>
                     <div class="row">
                         <div class="card" >
@@ -224,18 +218,25 @@
                     </div>
                 </div>
             </div>
-
-<!--//////////////////////////////////////////////////////////////////////////////////////-->
-
         </div>
+
+
+
         <div class="container">
-             <!--TV Info-->
+            <!--moreInfo-->
             <sction id="moreInfo">
-                <h3 class="title text-left">TV Information</h3>
+                <h3 class="title text-left">More Information</h3>
                 <div class="card">
                     <div class="card-body">
                         <table>
-
+                            <tr>
+                                <td class="text-right" width="150px">
+                                    Rating:
+                                </td>
+                                <td class="text-left px-3"width="800px" th:text="${movieRating}">
+                                    R (for crude sexual content and language throughout, drug material and some graphic nudity)
+                                </td>
+                            </tr>
                             <tr>
                                 <td class="text-right" width="150px">
                                     Genre:
@@ -246,25 +247,56 @@
                             </tr>
                             <tr>
                                 <td class="text-right" width="150px">
-                                    Genre:
+                                    Directed By:
                                 </td>
-                                <td class="text-left px-3"width="800px" th:text="${network}">
-                                    Comedy
+                                <td class="text-left px-3"width="800px" th:text="${director}">
+                                    director name
                                 </td>
                             </tr>
                             <tr>
                                 <td class="text-right" width="150px">
-                                    Genre:
+                                    Written By:
                                 </td>
-                                <td class="text-left px-3"width="800px" th:text="${date}">
-                                    Comedy
+                                <td class="text-left px-3"width="800px" th:text="${writer}">
+                                    writer name
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-right" width="150px">
+                                    In Theaters :
+                                </td>
+                                <td class="text-left px-3"width="800px" th:text="${inTheater}">
+                                    date
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-right" width="150px">
+                                    Runtime
+                                </td>
+                                <td class="text-left px-3"width="800px" th:text="${runTime}">
+                                    time
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-right" width="150px">
+                                    Studio:
+                                </td>
+                                <td class="text-left px-3"width="800px" th:text="${studio}">
+                                    Studio name
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-right" width="150px">
+                                    Box Office:
+                                </td>
+                                <td class="text-left px-3"width="800px" th:text="${boxOffice}">
+                                    box office
                                 </td>
                             </tr>
                         </table>
                     </div>
                 </div>
             </sction>
-
             <!--cast-->
             <section >
                 <button th:if="${casts.size() > 8} " onclick="changeBtn(this)"
@@ -313,33 +345,61 @@
                     </div>
                 </div>
             </section>
+            <!--photos-->
+            <section id="photos">
+                <h3 class="title text-left">Photos</h3>
+                <div class="card m-1">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-2 ">
+                                <div class="text-center">
+                                    <img th:src="@{'~/Images/movieImages/'+${movieKey}+'.jpg'}" th:width="200" th:height="300"
+                                         th:onerror="'this.src=\'' + @{~/assets/img/defaultMovie.jpg} + '\';'">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!--videos-->
+            <section id="videos">
+                <h3 class="title text-left">Videos</h3>
+                <div class="card m-1">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6" th:each="trailer:${testSamples}">
+                                <video width="100%"  controls>
+                                    <source th:src="@{'~/Trailers/'+${trailer}}"  type="video/mp4">
+                                </video>
 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--<div class="text-right">-->
+                <!--<button type="button" class="btn btn-default btn-sm"  th:onclick="'javascript:getTrailers(\''+${movieKey}+'\')'">View All</button>-->
+                <!--</div>-->
+            </section>
             <!--critic review-->
             <section id="critic_review">
+                <!--<button type="button" class="btn btn-default btn-sm pull-right">View All</button>-->
                 <div class="row">
                     <div class = "col-sm-3">
-                        <a th:onclick="'javascript:getTV(\''+${tvKey}+'\')'" class="list-group-item">
-                            <h3 style="color:purple; font-weight:bold;">
+                        <a th:onclick="'javascript:getMovie(\''+${movieKey}+'\')'" class="list-group-item">
+                            <h3>
                                 Critic Review
                             </h3>
 
                         </a>
                     </div>
                     <div class = "col-sm-9">
-                        <a th:onclick="'javascript:getTVTopCritic(\''+${tvKey}+'\')'" class="list-group-item">
-                            <h3>
+                        <a th:onclick="'javascript:getMovieTopCritic(\''+${movieKey}+'\')'" class="list-group-item">
+                            <h3 style="color:purple; font-weight:bold;">
                                 Top Critic Review
                             </h3>
                         </a>
                     </div>
                 </div>
-
-
-
-
-
-
-
                 <div class="card m-1">
                     <div class="card-body">
                         <div class="card-columns">
@@ -360,7 +420,7 @@
                                     <!--critic name-->
                                     <div class="text-center">
                                         <a  th:text="${review.criticName}"
-                                            th:href="'javascript:getCritic(\''+${review.criticKey}+'\')'">
+                                            th:href="'/critic/'+${review.criticKey}">
                                             Empty Key
                                         </a>
                                     </div>
@@ -376,14 +436,11 @@
                         </div>
                     </div>
                 </div>
-                <!--<div class="text-right">-->
-                    <!--<button type="button" class="btn btn-default btn-sm">View All</button>-->
-                <!--</div>-->
+
             </section>
-
-
-
+            <!--audience review-->
             <section id="audience_review">
+                <!--<button type="button" class="btn btn-default btn-sm pull-right">View All</button>-->
                 <h3 class="title text-left">Audience Reviews</h3>
                 <div class="card m-1">
                     <div class="card-body">
@@ -391,8 +448,12 @@
                             <div class = "card" th:each="review:${audienceReviews}">
                                 <div class="card-body">
                                     <!--user review score-->
-                                    <div class="title" th:text="'Score : '+ ${review.score}">
-                                        100.00%
+                                    <div >
+                                        <p style="display: inline;" class="title" th:text="'Score : '+ ${review.score}">100%</p>
+                                        <img class="pull-right" data-toggle="tooltip" title="report this review"
+                                             th:if="${isLogin}"
+                                             th:src="@{~/assets/img/kit/free/report.png}"
+                                             th:onclick="'javascript:reportReview(\''+${review.reviewId}+'\')'">
                                     </div>
                                     <!--user review content-->
                                     <div class="text-left" th:text="${review.content}">
@@ -401,7 +462,7 @@
                                     <!--user name-->
                                     <div class="text-center">
                                         <a  th:text="${review.name}"
-                                            th:href="'javascript:getUser(\''+${review.key}+'\')'">
+                                            th:href="'/u/'+${review.key}">
                                             Empty Key
                                         </a>
                                     </div>
@@ -417,11 +478,8 @@
                         </div>
                     </div>
                 </div>
-                <!--<div class="text-right">-->
-                    <!--<button type="button" class="btn btn-default btn-sm">View All</button>-->
-                <!--</div>-->
-            </section>
 
+            </section>
             <!--news-->
             <section id="news">
                 <h3 class="title text-left">News & Feature</h3>
@@ -481,9 +539,7 @@
         </div>
     </div>
 </div>
-
-
-<!-- Classic Modal -->
+<!--modal-->
 <div class="modal fade" id="loginError" role="dialog">
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
@@ -567,7 +623,10 @@
         </div>
     </div>
 </div>
-<!--  End Modal -->
+
+
+
+<!--modal end-->
 <footer class="footer ">
     <div class="container">
         <div class="row">
@@ -623,6 +682,10 @@
 <script src="./assets/js/material-kit.js?v=2.0.2"></script>
 <!-- Fixed Sidebar Nav - js With initialisations For Demo Purpose, Don't Include it in your project -->
 <script src="./assets/assets-for-demo/js/material-kit-demo.js"></script>
+<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+<script type="text/javascript" src="../static/js/movieInfoTopCritic.js"></script>
+
+
 
 <script th:src="@{~/assets/js/core/jquery.min.js}"></script>
 <script th:src="@{~/assets/js/core/popper.min.js}"></script>
@@ -637,7 +700,10 @@
 <script th:src="@{~/assets/js/material-kit.js?v=2.0.2}"></script>
 <!-- Fixed Sidebar Nav - js With initialisations For Demo Purpose, Don't Include it in your project -->
 <script th:src="@{~/assets/assets-for-demo/js/material-kit-demo.js}"></script>
-<script type="text/javascript" th:src="@{~/js/tvInfo.js}"></script>
+<script type="text/javascript" th:src="@{~/js/movieInfo.js}"></script>
+
+
+
 
 </body>
 
