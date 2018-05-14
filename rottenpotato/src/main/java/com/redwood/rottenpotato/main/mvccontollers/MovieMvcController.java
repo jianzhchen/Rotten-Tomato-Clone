@@ -43,6 +43,7 @@ public class MovieMvcController {
 
     @Autowired
     private PrincipleService principleService;
+
     @GetMapping(value = "m/{movieKey}")
     public String movieDetail(@PathVariable("movieKey") String movieKey, Model model, Principal principal) {
         Movie movie = movieRepository.findByMovieKey(movieKey);
@@ -191,6 +192,15 @@ public class MovieMvcController {
         }
         model.addAttribute("testSamples", trailerLists);
 
+        //related movies
+        List<Movie> related = new ArrayList<>();
+        if (!movie.getDirector().equals("")) {
+            List<String> directornames = Arrays.asList(movie.getDirector().split("\\s*,\\s*"));
+            String directorname = directornames.get(0);
+            List<Movie> movies = movieRepository.searchByDirector(directorname, movieKey, PageRequest.of(0, 4));
+            related = movies;
+        }
+        model.addAttribute("related", related);
         return "movieInfo.html";
 
     }
@@ -272,13 +282,6 @@ public class MovieMvcController {
         }
 
 
-
-
-
-
-
-
-
         List<Object[]> topCriticReviews = criticReviewRepository.findTop10ByReviewCount();
         List<Critic> topCritics = new ArrayList<>();
         for (Object[] criticReview : topCriticReviews) {
@@ -288,11 +291,11 @@ public class MovieMvcController {
             }
         }
 
-        List<Map> reviews =  new ArrayList<>();
+        List<Map> reviews = new ArrayList<>();
         CriticReview crTemp;
-        for(Critic criticTemp: topCritics){
-            crTemp = criticReviewRepository.findByItemKeyAndCriticKey( movie.getMovieKey(), criticTemp.getCriticKey());
-            if(crTemp != null){
+        for (Critic criticTemp : topCritics) {
+            crTemp = criticReviewRepository.findByItemKeyAndCriticKey(movie.getMovieKey(), criticTemp.getCriticKey());
+            if (crTemp != null) {
                 HashMap<String, String> aReview = new HashMap<>();
                 if (crTemp.getReviewRating() == 0) {
                     aReview.put("score", "N/A");

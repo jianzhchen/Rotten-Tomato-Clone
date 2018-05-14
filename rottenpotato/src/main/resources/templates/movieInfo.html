@@ -488,13 +488,13 @@
                     <div class="card-body">
                         <div class="row">
                                 <div th:each="rel:${related}" class="col-md-3 text-center">
-                                    <a th:href="${rel.url}">
-                                        <img th:src="@{'~/Images/movieImages'+${rel.key}+'.jpg'}"
+                                    <a th:href="'/m/'+${rel.movieKey}">
+                                        <img th:src="@{'~/Images/movieImages/'+${rel.movieKey}+'.jpg'}"
                                              th:width="150" th:height="200"
                                              th:onerror="'this.src=\'' + @{~/assets/img/defaultMovie.jpg} + '\';'">
                                     </a>
                                     <h6 th:text="${rel.name}"
-                                        th:onclick="'window.location.href='+${rel.url}">name</h6>
+                                        th:onclick="'window.location.href=/m/'+${rel.movieKey}">name</h6>
                                 </div>
                         </div>
                     </div>
