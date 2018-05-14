@@ -58,4 +58,10 @@ public class AdminRestController {
         return userService.reportUser(userId,userEmail,content);
     }
 
+    @PostMapping("deleteUser")
+    public String deleteUser(@RequestParam("userId") long userId, Principal principal){
+
+
+    }
+
 }
