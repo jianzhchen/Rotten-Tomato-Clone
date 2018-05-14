@@ -9,6 +9,7 @@ import com.redwood.rottenpotato.main.repositories.MovieRepository;
 import com.redwood.rottenpotato.main.repositories.NotInterestedRepository;
 import com.redwood.rottenpotato.main.repositories.TVRepository;
 import com.redwood.rottenpotato.main.services.MovieService;
+import com.redwood.rottenpotato.main.services.PrincipleService;
 import com.redwood.rottenpotato.security.model.User;
 import com.redwood.rottenpotato.security.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,19 +39,15 @@ public class SearchMvcController {
     private UserRepository userRepository;
     @Autowired
     private NotInterestedRepository notInterestedRepository;
-
+    @Autowired
+    private PrincipleService principleService;
     @GetMapping(value = "searchResult")
     public String search(@RequestParam("term") String searchTerm,
                          @RequestParam("type") String type,
                          @RequestParam(value = "style", defaultValue = "list") String style,
                          @RequestParam(value = "page",defaultValue = "0") int page, Model model, Principal principal) {
 
-        if (principal == null) {
-            model.addAttribute("isLogin", false);
-        } else {
-            model.addAttribute("isLogin", true);
-            model.addAttribute("username", principal.getName());
-        }
+        principleService.principalModel(model, principal);
 
         List<String> filter = new ArrayList<>();
         if (principal != null) {

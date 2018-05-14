@@ -2,6 +2,7 @@ package com.redwood.rottenpotato.main.mvccontollers;
 
 import com.redwood.rottenpotato.main.models.*;
 import com.redwood.rottenpotato.main.repositories.*;
+import com.redwood.rottenpotato.main.services.PrincipleService;
 import com.redwood.rottenpotato.security.model.User;
 import com.redwood.rottenpotato.security.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +33,8 @@ public class AdminMvcController {
     private TVRepository tvRepository;
     @Autowired
     private CriticApplicationRepository criticApplicationRepository;
-
+    @Autowired
+    private PrincipleService principleService;
     @RequestMapping("reports")
     public String adminReports(Principal principal, Model model) {
         User user = userRepository.findByEmail(principal.getName());

@@ -5,6 +5,7 @@ import com.redwood.rottenpotato.main.models.Movie;
 import com.redwood.rottenpotato.main.repositories.MovieRepository;
 import com.redwood.rottenpotato.main.services.CriticReviewService;
 import com.redwood.rottenpotato.main.services.MovieService;
+import com.redwood.rottenpotato.main.services.PrincipleService;
 import com.redwood.rottenpotato.main.services.TVService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -34,16 +35,12 @@ public class HomeMvcController {
     @Autowired
     private MovieRepository movieRepository;
     private final Logger log = LoggerFactory.getLogger(this.getClass());
+    @Autowired
+    private PrincipleService principleService;
 
     @GetMapping(value = {"", "/", "index.html"})
     public String greeting(Model model, Principal principal) {
-        if (principal == null) {
-            model.addAttribute("isLogin", false);
-        } else {
-            model.addAttribute("isLogin", true);
-            model.addAttribute("username", principal.getName());
-        }
-
+        principleService.principalModel(model, principal);
         model.addAttribute("topBoxOffice", movieService.top10BoxWithPage(model, 0));
         model.addAttribute("comingSoon", movieService.top10InTheatersDatePage(model, 0));
         model.addAttribute("newTVShows", TVService.top10TVDatePage(model, 0));
@@ -82,9 +79,9 @@ public class HomeMvcController {
         model.addAttribute("openingThisWeek", movieService.openingThisWeek(model, 0));
         model.addAttribute("highestRateMovie", CriticReviewService.getHighestRatingMovies(model, 0));
 
-        List<Movie> winning = movieRepository.findOscarWinningYearDesc(PageRequest.of(0,10));
+        List<Movie> winning = movieRepository.findOscarWinningYearDesc(PageRequest.of(0, 10));
         model.addAttribute("winningMovies", winning);
-        model.addAttribute("tvCertified",TVService.tvCertifiedPick(model));
+        model.addAttribute("tvCertified", TVService.tvCertifiedPick(model));
 
         return "index.html";
     }

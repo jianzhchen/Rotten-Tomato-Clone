@@ -2,6 +2,7 @@ package com.redwood.rottenpotato.main.mvccontollers;
 
 import com.redwood.rottenpotato.main.models.*;
 import com.redwood.rottenpotato.main.repositories.*;
+import com.redwood.rottenpotato.main.services.PrincipleService;
 import com.redwood.rottenpotato.security.model.User;
 import com.redwood.rottenpotato.security.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,16 +36,11 @@ public class ProfileMvcController {
     private NotInterestedRepository notInterestedRepository;
     @Autowired
     private FollowRepository followRepository;
-
+    @Autowired
+    private PrincipleService principleService;
     @RequestMapping("/me")
     public String profile(Model model, Principal principal) {
-        if (principal == null) {
-            model.addAttribute("isLogin", false);
-        } else {
-            model.addAttribute("isLogin", true);
-            model.addAttribute("username", principal.getName());
-
-        }
+        principleService.principalModel(model, principal);
         String userEmail = principal.getName();
         User user = userRepository.findByEmail(userEmail);
 
@@ -184,13 +180,7 @@ public class ProfileMvcController {
     }
     @RequestMapping("/accountInfo")
     public String accountInfo(Model model, Principal principal) {
-
-        if (principal == null) {
-            model.addAttribute("isLogin", false);
-        } else {
-            model.addAttribute("isLogin", true);
-            model.addAttribute("username", principal.getName());
-        }
+        principleService.principalModel(model, principal);
 
         String userEmail = principal.getName();
         User user = userRepository.findByEmail(userEmail);

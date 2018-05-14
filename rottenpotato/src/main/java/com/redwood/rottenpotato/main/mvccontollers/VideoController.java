@@ -1,24 +1,28 @@
 package com.redwood.rottenpotato.main.mvccontollers;
-        import org.springframework.stereotype.Controller;
-        import org.springframework.ui.Model;
-        import org.springframework.web.bind.annotation.GetMapping;
-        import org.springframework.web.bind.annotation.PathVariable;
-        import java.io.File;
-        import java.security.Principal;
-        import java.util.ArrayList;
-        import java.util.List;
+
+import com.redwood.rottenpotato.main.services.PrincipleService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+
+import java.io.File;
+import java.security.Principal;
+import java.util.ArrayList;
+import java.util.List;
+
 
 @Controller
 public class VideoController {
-    @GetMapping(value = "/v/all")
-    public String videlDetail(Model model, Principal principal){
 
-        if (principal == null) {
-            model.addAttribute("isLogin", false);
-        } else {
-            model.addAttribute("isLogin", true);
-            model.addAttribute("username", principal.getName());
-        }
+    @Autowired
+    private PrincipleService principleService;
+    
+    @GetMapping(value = "/v/all")
+    public String videlDetail(Model model, Principal principal) {
+
+        principleService.principalModel(model, principal);
 
 
         String currentDirectory;
@@ -30,7 +34,7 @@ public class VideoController {
 
         File[] listOfFiles = folder.listFiles();
 
-        if(listOfFiles==null){
+        if (listOfFiles == null) {
             currentDirectory = file.getAbsolutePath();
             currentDirectory += "/src/main/resources/static/Trailers";
             folder = new File(currentDirectory);
@@ -39,8 +43,8 @@ public class VideoController {
 
         List<String> trailerLists = new ArrayList<String>();
 
-        if(listOfFiles != null){
-            for(File fileName: listOfFiles){
+        if (listOfFiles != null) {
+            for (File fileName : listOfFiles) {
                 trailerLists.add(fileName.getName());
             }
         }

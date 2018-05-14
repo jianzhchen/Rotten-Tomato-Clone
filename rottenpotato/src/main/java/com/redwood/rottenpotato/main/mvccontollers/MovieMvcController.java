@@ -3,6 +3,7 @@ package com.redwood.rottenpotato.main.mvccontollers;
 import com.redwood.rottenpotato.main.models.*;
 import com.redwood.rottenpotato.main.repositories.*;
 import com.redwood.rottenpotato.main.services.MovieService;
+import com.redwood.rottenpotato.main.services.PrincipleService;
 import com.redwood.rottenpotato.security.model.User;
 import com.redwood.rottenpotato.security.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,21 +41,15 @@ public class MovieMvcController {
     @Autowired
     private MovieService movieService;
 
-
+    @Autowired
+    private PrincipleService principleService;
     @GetMapping(value = "m/{movieKey}")
     public String movieDetail(@PathVariable("movieKey") String movieKey, Model model, Principal principal) {
         Movie movie = movieRepository.findByMovieKey(movieKey);
         if (movie == null) {
             model.addAttribute("exist", false);
         }
-        if (principal == null) {
-            model.addAttribute("isLogin", false);
-        } else {
-            model.addAttribute("isLogin", true);
-            model.addAttribute("username", principal.getName());
-            User user = userRepository.findByEmail(principal.getName());
-            model.addAttribute("isAdmin", user.isAdmin());
-        }
+        principleService.principalModel(model, principal);
 
 
         model.addAttribute("movieKey", movie.getMovieKey());
@@ -202,12 +197,7 @@ public class MovieMvcController {
 
     @GetMapping(value = "m/d/{page}")
     public String movieByDate(@PathVariable("page") int page, Model model, Principal principal) {
-        if (principal == null) {
-            model.addAttribute("isLogin", false);
-        } else {
-            model.addAttribute("isLogin", true);
-            model.addAttribute("username", principal.getName());
-        }
+        principleService.principalModel(model, principal);
         List<Movie> movies = movieRepository.findTop8ByOrderByInTheatersTimeDesc(PageRequest.of(page, 8));
         List<HashMap> movieList = new ArrayList<>();
         for (Movie movie : movies) {
@@ -230,12 +220,7 @@ public class MovieMvcController {
 
     @GetMapping(value = "m/b/{page}")
     public String movieByBox(@PathVariable("page") int page, Model model, Principal principal) {
-        if (principal == null) {
-            model.addAttribute("isLogin", false);
-        } else {
-            model.addAttribute("isLogin", true);
-            model.addAttribute("username", principal.getName());
-        }
+        principleService.principalModel(model, principal);
         List<Movie> movies = movieRepository.findTop8ByOrderByBoxOfficeDesc(PageRequest.of(page, 8));
         List<HashMap> movieList = new ArrayList<>();
         for (Movie movie : movies) {
@@ -255,12 +240,7 @@ public class MovieMvcController {
 
     @GetMapping(value = "m/o/{page}")
     public String openingThisWeek(@PathVariable("page") int page, Model model, Principal principal) {
-        if (principal == null) {
-            model.addAttribute("isLogin", false);
-        } else {
-            model.addAttribute("isLogin", true);
-            model.addAttribute("username", principal.getName());
-        }
+        principleService.principalModel(model, principal);
         List<Movie> movies = movieService.openingThisWeekMovie(model, 0);
         List<HashMap> movieList = new ArrayList<>();
         for (Movie movie : movies) {
@@ -279,12 +259,7 @@ public class MovieMvcController {
 
     @GetMapping(value = "m/oscar/{page}")
     public String oscarWinning(@PathVariable("page") int page, Model model, Principal principal) {
-        if (principal == null) {
-            model.addAttribute("isLogin", false);
-        } else {
-            model.addAttribute("isLogin", true);
-            model.addAttribute("username", principal.getName());
-        }
+        principleService.principalModel(model, principal);
         List<Movie> movies = movieRepository.findOscarWinningYearDesc(PageRequest.of(page, 8));
         List<HashMap> movieList = new ArrayList<>();
         for (Movie movie : movies) {

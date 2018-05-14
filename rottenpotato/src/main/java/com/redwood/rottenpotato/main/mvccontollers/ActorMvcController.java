@@ -8,6 +8,7 @@ import com.redwood.rottenpotato.main.repositories.ActorRepository;
 import com.redwood.rottenpotato.main.repositories.CriticReviewRepository;
 import com.redwood.rottenpotato.main.repositories.MovieRepository;
 import com.redwood.rottenpotato.main.repositories.TVRepository;
+import com.redwood.rottenpotato.main.services.PrincipleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
@@ -31,7 +32,8 @@ public class ActorMvcController {
     private TVRepository tvRepository;
     @Autowired
     private CriticReviewRepository criticReviewRepository;
-
+    @Autowired
+    private PrincipleService principleService;
 
     @RequestMapping("/c/{actorKey}")
     public String actorPage(@PathVariable("actorKey") String actorKey, Model model)
