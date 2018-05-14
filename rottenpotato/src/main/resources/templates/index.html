@@ -214,6 +214,25 @@
                         <a class="pull-right" href="/m/o/0">View All</a>
                     </div>
                 </div>
+
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="card-title">TV Certified Fresh Pick</h2>
+                        <table class="table table-striped">
+                            <tbody>
+                            <tr th:each="tv:${tvCertified}">
+                                <td>
+                                    <a th:text="${tv.TVName}"
+                                       th:href="'javascript:getTv(\''+${tv.TVKey}+'\')'">
+                                    </a>
+                                </td>
+                                <td class="pull-right" th:text="${tv.rate}">MAR 2</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <!--<a class="pull-right" href="/m/o/0">View All</a>-->
+                    </div>
+                </div>
             </div>
         </div>
         <!--video-->
