@@ -99,6 +99,9 @@
                             <a href="/m/d/0" class="list-group-item link-white-color-active">Coming Soon</a>
                             <a href="/m/b/0" class="list-group-item ">Top Box Office</a>
                             <a href="/m/o/0" class="list-group-item">Opening this week</a>
+                            <a href="/m/oscar/0" class="list-group-item">Oscar Best Picture Movie</a>
+
+
                         </ul>
                     </div>
                     <div class="col-sm-9">
@@ -150,7 +153,9 @@
                         <div class="pull-right">
                             <button type="button" class="btn btn-primary btn-sm" th:if="${page} != 0" th:onclick="'javascript:getPrevPage(\''+${page}+'\')'" >Prev</button>
                             <p style="display: inline" th:text="${page}+1">Page</p>
-                            <button type="button" class="btn btn-primary btn-sm" th:onclick="'javascript:getNextPage(\''+${page}+'\')'">Next</button>
+                            <button type="button" class="btn btn-primary btn-sm"
+                                    th:if="${hasNext}"
+                                    th:onclick="'javascript:getNextPage(\''+${page}+'\')'">Next</button>
                         </div>
                     </div>
                 </div>
