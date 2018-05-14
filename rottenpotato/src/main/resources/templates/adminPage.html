@@ -137,8 +137,8 @@
             </div>
             <div class="row">
                 <!--Not Upload Movies-->
-                <div class="col-md-6">
-                    <h3 class="card-title">Not Upload Movies</h3>
+                <div class="col-md-12">
+                    <h3 class="card-title">Not Upload</h3>
 
                     <div class="card">
                         <div class="card-body">
@@ -161,28 +161,7 @@
                     </div>
                 </div>
                 <!--Not Upload TVs-->
-                <div class="col-md-6">
-                    <h3 class="card-title">Not Upload TVs</h3>
-                    <div class="card">
-                        <div class="card-body">
-                            <table class="table table-striped">
-                                <tbody>
-                                <tr th:each="tv:${unfinishedTvs}">
-                                    <td  style="width: 500px">
-                                        <a href="#" th:text="${tv.name}">Name</a>
-                                    </td>
-                                    <td>Edit</td>
-                                    <td>Delete</td>
-                                    <td>Upload</td>
-                                </tr>
-                                </tbody>
-                            </table>
-                            <div class="text-right">
-                                <button type="button" class="btn btn-primary btn-sm">ADD</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
             </div>
         </div>
     </div>

@@ -32,25 +32,7 @@ public class AdminRestController {
     @Autowired
     private CriticApplicationRepository criticApplicationRepository;
 
-    @PostMapping("add")
-    public String add(@RequestParam("isMovie") boolean isMovie, @RequestParam("name") String name, @RequestParam("info") String info, @RequestParam("boxoffice") long boxOffice) {
-        if (isMovie) {
-            Movie movie = new Movie();
-            movie.setName(name);
-            movie.setInfo(info);
-            movie.setBoxOffice(boxOffice);
-            movie.setMovieKey(UUID.randomUUID().toString().replace("-", ""));
-            movieRepository.save(movie);
-            return jsonService.constructStatusMessage(AjaxCallStatus.OK);
-        } else {
-            TV tv = new TV();
-            tv.setTVName(name);
-            tv.setTVInfo(info);
-            tv.setTVKey(UUID.randomUUID().toString().replace("-", ""));
-            tVRepository.save(tv);
-            return jsonService.constructStatusMessage(AjaxCallStatus.OK);
-        }
-    }
+
     @Transactional
     @PostMapping("delete")
     public String delete(@RequestParam("key") String key) {
@@ -58,6 +40,7 @@ public class AdminRestController {
         tVRepository.removeByTVKey(key);
         return jsonService.constructStatusMessage(AjaxCallStatus.OK);
     }
+
     @Transactional
     @PostMapping("rejectCriticApp")
     public String rejectCriticApp(@RequestParam("userId") long userId) {

@@ -87,50 +87,52 @@
 <!--Body-->
 <div class="main main-raised">
     <div class="profile-content">
-        <div th:if="${openProfile}" class="container">
-            <!--User Info-->
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="row">
-                        <!--personal info-->
-                        <div class="card">
-                            <div class="card-body" >
-                                <div class="row">
-                                    <!--User image-->
-                                    <div class="col-md-6 text-center">
+        <div th:unless="${error}"}>
+            <div th:if="${openProfile}" class="container">
+                <!--User Info-->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <!--personal info-->
+                            <div class="card">
+                                <div class="card-body" >
+                                    <div class="row">
+                                        <!--User image-->
+                                        <div class="col-md-6 text-center">
 
-                                        <div class="avatar">
-                                            <img th:src="@{'~/Images/userImages/'+${userId}+'.jpg'}" th:width="200" th:height="200"
-                                                 th:onerror="'this.src=\'' + @{~/assets/img/default.jpg} + '\';'">
+                                            <div class="avatar">
+                                                <img th:src="@{'~/Images/userImages/'+${userId}+'.jpg'}" th:width="200" th:height="200"
+                                                     th:onerror="'this.src=\'' + @{~/assets/img/default.jpg} + '\';'">
+                                            </div>
                                         </div>
-                                    </div>
-                                    <!--User Info-->
-                                    <div class="col-md-6 text-left">
-                                        <img class="pull-right" data-toggle="tooltip" title="report this user"
-                                             th:if="${isLogin}"
-                                             th:src="@{~/assets/img/kit/free/report.png}"
-                                             th:onclick="'javascript:reportUser(\''+${userId}+'\')'">
-                                        <!--User first name and last name-->
-                                        <h3 class="title" th:text="${firstName}+' '+${lastName}">FirstName LastName</h3>
+                                        <!--User Info-->
+                                        <div class="col-md-6 text-left">
+                                            <img class="pull-right" data-toggle="tooltip" title="report this user"
+                                                 th:if="${isLogin}"
+                                                 th:src="@{~/assets/img/kit/free/report.png}"
+                                                 th:onclick="'javascript:reportUser(\''+${userId}+'\')'">
+                                            <!--User first name and last name-->
+                                            <h3 class="title" th:text="${firstName}+' '+${lastName}">FirstName LastName</h3>
 
-                                        <!--User details-->
-                                        <div id="info-section">
-                                            <!--email and follower and rank-->
-                                            <ul class="list-unstyled infolist-height">
-                                                <li th:text="${email}">Empty Email</li>
-                                                <li th:text="${numberOfFollowers}+' Followers Now'">No Follower</li>
-                                                <li th:text="'Rank: '+${followerRank}">No Rank</li>
-                                            </ul>
-                                            <!-- only login user can see it-->
-                                            <div class="float-right" th:if="${isLogin} == true">
-                                                <button id = "toggleFollowUnFollow"
-                                                        type="button"
-                                                        th:class="${followButtonClass}"
-                                                        th:text="${followStatus}"
-                                                        th:onclick="'javascript:toggleFollowUnFollow(\''+${userId}+'\')'"
-                                                >
-                                                    Follow
-                                                </button>
+                                            <!--User details-->
+                                            <div id="info-section">
+                                                <!--email and follower and rank-->
+                                                <ul class="list-unstyled infolist-height">
+                                                    <li th:text="${email}">Empty Email</li>
+                                                    <li th:text="${numberOfFollowers}+' Followers Now'">No Follower</li>
+                                                    <li th:text="'Rank: '+${followerRank}">No Rank</li>
+                                                </ul>
+                                                <!-- only login user can see it-->
+                                                <div class="float-right" th:if="${isLogin} == true">
+                                                    <button id = "toggleFollowUnFollow"
+                                                            type="button"
+                                                            th:class="${followButtonClass}"
+                                                            th:text="${followStatus}"
+                                                            th:onclick="'javascript:toggleFollowUnFollow(\''+${userId}+'\')'"
+                                                    >
+                                                        Follow
+                                                    </button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -139,119 +141,130 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <!--Follow Area-->
-            <div class="row">
-                <!--following list-->
-                <div class="col-md-6 mt-3">
-                    <h3 class="title mx-4 float-left">Following</h3>
-                    <div class="card m-1">
-                        <div class="card-body">
-                            <ul class="list-unstyled mx-5" >
-                                <li th:each="following:${followings}">
-                                    <a  class="title"
-                                        th:text="${following.name}"
-                                        th:href="'javascript:getUser(\''+${following.key}+'\')'">
-                                        Empty Name
-                                    </a>
-                                </li>
-                            </ul>
+                <!--Follow Area-->
+                <div class="row">
+                    <!--following list-->
+                    <div class="col-md-6 mt-3">
+                        <h3 class="title mx-4 float-left">Following</h3>
+                        <div class="card m-1">
+                            <div class="card-body">
+                                <ul class="list-unstyled mx-5" >
+                                    <li th:each="following:${followings}">
+                                        <a  class="title"
+                                            th:text="${following.name}"
+                                            th:href="'javascript:getUser(\''+${following.key}+'\')'">
+                                            Empty Name
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <!--follower list-->
-                <div class="col-md-6 mt-3">
-                    <h3 class="title mx-4 float-left">Followers</h3>
-                    <div class="card m-1">
-                        <div class="card-body">
-                            <ul class="list-unstyled mx-5">
-                                <li th:each="follower:${followers}">
-                                    <a class="title"
-                                       th:text="${follower.name}"
-                                       th:href="'javascript:getUser(\''+${follower.key}+'\')'">
-                                        Empty Name
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!--want to see -->
-            <div class="row" id="want-to-see">
-                <h3 class="title float-left">Want To See</h3>
-                <div class="card m-1">
-                    <div class="card-body">
-                        <div th:each="row :${#numbers.sequence(0,wantToSees.size(),4)}" class="row">
-                            <div th:each="col :${#numbers.sequence(0,3)}" th:if="${row + col < wantToSees.size()}" class="col-md-3 text-center">
-                                <a th:onclick="'javascript:getItem(\''+${wantToSees.get(row+col).url}+'\')'">
-                                    <img src="../static/Images/movieImages/early_man.jpg" th:src="@{'~/Images/movieImages/'+${wantToSees.get(row+col).key}+'.jpg'}" th:width="150" th:height="200"
-                                         th:onerror="'this.src=\'' + @{~/assets/img/defaultMovie.jpg} + '\';'"></a>
-                                <h6 th:text="${wantToSees.get(row+col).name}" th:onclick="'javascript:getItem(\''+${wantToSees.get(row+col).url}+'\')'">name</h6>
+                    <!--follower list-->
+                    <div class="col-md-6 mt-3">
+                        <h3 class="title mx-4 float-left">Followers</h3>
+                        <div class="card m-1">
+                            <div class="card-body">
+                                <ul class="list-unstyled mx-5">
+                                    <li th:each="follower:${followers}">
+                                        <a class="title"
+                                           th:text="${follower.name}"
+                                           th:href="'javascript:getUser(\''+${follower.key}+'\')'">
+                                            Empty Name
+                                        </a>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <!--not interested-->
-            <div class="row" id="not-interested">
-                <h3 class="title float-left">Not Interested</h3>
-                <div class="card m-1">
-                    <div class="card-body">
-                        <div th:each="row :${#numbers.sequence(0,notInteresteds.size(),4)}" class="row">
-                            <div th:each="col :${#numbers.sequence(0,3)}" th:if="${row + col < notInteresteds.size()}" class="col-md-3 text-center">
-                                <a th:onclick="'javascript:getItem(\''+${notInteresteds.get(row+col).url}+'\')'">
-                                    <img src="../static/Images/movieImages/early_man.jpg" th:src="@{'~/Images/movieImages/'+${notInteresteds.get(row+col).key}+'.jpg'}" th:width="150" th:height="200"
-                                         th:onerror="'this.src=\'' + @{~/assets/img/defaultMovie.jpg} + '\';'"></a>
-                                <h6 th:text="${notInteresteds.get(row+col).name}" th:onclick="'javascript:getItem(\''+${notInteresteds.get(row+col).url}+'\')'">name</h6>
+                <!--want to see -->
+                <div class="row" id="want-to-see">
+                    <h3 class="title float-left">Want To See</h3>
+                    <div class="card m-1">
+                        <div class="card-body">
+                            <div th:each="row :${#numbers.sequence(0,wantToSees.size(),4)}" class="row">
+                                <div th:each="col :${#numbers.sequence(0,3)}" th:if="${row + col < wantToSees.size()}" class="col-md-3 text-center">
+                                    <a th:onclick="'javascript:getItem(\''+${wantToSees.get(row+col).url}+'\')'">
+                                        <img src="../static/Images/movieImages/early_man.jpg" th:src="@{'~/Images/movieImages/'+${wantToSees.get(row+col).key}+'.jpg'}" th:width="150" th:height="200"
+                                             th:onerror="'this.src=\'' + @{~/assets/img/defaultMovie.jpg} + '\';'"></a>
+                                    <h6 th:text="${wantToSees.get(row+col).name}" th:onclick="'javascript:getItem(\''+${wantToSees.get(row+col).url}+'\')'">name</h6>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <!--review + rating-->
-            <div class="row" id="review-and-rating">
-                <h3 class="title">Review History</h3>
-                <div class="card">
-                    <div class="col-md-12 px-0">
+                <!--not interested-->
+                <div class="row" id="not-interested">
+                    <h3 class="title float-left">Not Interested</h3>
+                    <div class="card m-1">
                         <div class="card-body">
-                            <table class="user-review-history table-striped" style="width:100%">
-                                <thead>
-                                <tr>
-                                    <th>Movie/TV</th>
-                                    <th>Score</th>
-                                    <th>Review</th>
-                                    <th>Report</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr th:each="review:${reviews}">
-                                    <td>
-                                        <a th:text="${review.name}" th:href="${review.url}" class="title">movie</a>
-                                    </td>
-                                    <!--<td th:onclick="'javascript:getTv(\''+${item.key}+'\')'">-->
-                                    <td th:text="${review.rate}+'/5'">score
+                            <div th:each="row :${#numbers.sequence(0,notInteresteds.size(),4)}" class="row">
+                                <div th:each="col :${#numbers.sequence(0,3)}" th:if="${row + col < notInteresteds.size()}" class="col-md-3 text-center">
+                                    <a th:onclick="'javascript:getItem(\''+${notInteresteds.get(row+col).url}+'\')'">
+                                        <img src="../static/Images/movieImages/early_man.jpg" th:src="@{'~/Images/movieImages/'+${notInteresteds.get(row+col).key}+'.jpg'}" th:width="150" th:height="200"
+                                             th:onerror="'this.src=\'' + @{~/assets/img/defaultMovie.jpg} + '\';'"></a>
+                                    <h6 th:text="${notInteresteds.get(row+col).name}" th:onclick="'javascript:getItem(\''+${notInteresteds.get(row+col).url}+'\')'">name</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--review + rating-->
+                <div class="row" id="review-and-rating">
+                    <h3 class="title">Review History</h3>
+                    <div class="card">
+                        <div class="col-md-12 px-0">
+                            <div class="card-body">
+                                <table class="user-review-history table-striped" style="width:100%">
+                                    <thead>
+                                    <tr>
+                                        <th>Movie/TV</th>
+                                        <th>Score</th>
+                                        <th>Review</th>
+                                        <th>Report</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr th:each="review:${reviews}">
+                                        <td>
+                                            <a th:text="${review.name}" th:href="${review.url}" class="title">movie</a>
+                                        </td>
+                                        <!--<td th:onclick="'javascript:getTv(\''+${item.key}+'\')'">-->
+                                        <td th:text="${review.rate}+'/5'">score
 
-                                    </td>
-                                    <td th:text="${review.content}">content
-                                    </td>
-                                    <td>
-                                        <img th:src="@{~/assets/img/kit/free/report.png}"
-                                             th:onclick="'javascript:reportReview(\''+${review.reviewId}+'\')'">
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
+                                        </td>
+                                        <td th:text="${review.content}">content
+                                        </td>
+                                        <td>
+                                            <img th:src="@{~/assets/img/kit/free/report.png}"
+                                                 th:onclick="'javascript:reportReview(\''+${review.reviewId}+'\')'">
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div th:unless="${openProfile}" class="container">
+                <div class="row">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <h1>Account is Private</h1>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div th:unless="${openProfile}" class="container">
-            <div class="row">
-                <div class="card">
-                    <div class="card-body text-center">
-                        <h1>Account is Private</h1>
+        <div th:if="${error}">
+            <div class="container">
+                <div class="row">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <h1>User Not Found</h1>
+                        </div>
                     </div>
                 </div>
             </div>

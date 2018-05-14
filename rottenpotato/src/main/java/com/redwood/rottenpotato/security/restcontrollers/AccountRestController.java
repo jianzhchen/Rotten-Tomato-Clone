@@ -1,6 +1,8 @@
 package com.redwood.rottenpotato.security.restcontrollers;
 
 import com.redwood.rottenpotato.main.enums.AjaxCallStatus;
+import com.redwood.rottenpotato.main.repositories.CriticApplicationRepository;
+import com.redwood.rottenpotato.main.repositories.FCountRepository;
 import com.redwood.rottenpotato.main.services.JsonService;
 import com.redwood.rottenpotato.security.model.User;
 import com.redwood.rottenpotato.security.repository.UserRepository;
@@ -24,6 +26,7 @@ public class AccountRestController {
     private UserRepository userRepository;
     @Autowired
     private JsonService jsonService;
+
     @PostMapping("changeEmail")
     public String changeEmail(@RequestParam("newEmail") String newEmail, Principal principal,
                               @RequestParam("password") String currPassword) {

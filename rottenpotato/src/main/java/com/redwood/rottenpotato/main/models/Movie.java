@@ -26,7 +26,24 @@ public class Movie {
     private long oscarBestPictureYear;
 
     //Constructor for JPA
-    public Movie() {
+    public Movie()
+    {
+        this.name = "Default Name";
+        this.info = "Default Info";
+        this.rating = "Default Rating";
+        this.genre = "Default Genre";
+        this.director = "Default Director";
+        this.writer = "Default Writer";
+        this.inTheaters = "Default inTheaters";    //In theater time
+        this.onDisc = "Default onDisc";
+        this.boxOffice = 0;
+        this.runTime ="Default runTime";
+        this.studio="Default studio";
+        this.cast="Default studio";
+        this.inTheatersTime= new Date();
+        this.onDiscTime= new Date();
+        this.isOscarBestPicture = false;
+        this.oscarBestPictureYear = 0;
     }
 
     public String getMovieKey() {
