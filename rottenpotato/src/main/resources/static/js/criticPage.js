@@ -6,12 +6,11 @@ function getMovie(movieId){
      var url = window.location.pathname;
      var besttUrl = url+"?order=1&page="+page;
      window.location.href=besttUrl;
-
  }
 
 function sortByWorst(page) {
     var url = window.location.pathname;
-    var worstUrl = url+"?order=2&page"+page;
+    var worstUrl = url+"?order=2&page="+page;
     window.location.href=worstUrl;
 }
 function getPrevPage(page) {
