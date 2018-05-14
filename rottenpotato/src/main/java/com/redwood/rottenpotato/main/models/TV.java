@@ -16,7 +16,15 @@ public class TV {
     private String TVCast;
     private Date TVDateDate;
     //Constructor for JPA
-    public TV() {
+    public TV()
+    {
+        this.TVName = "Default TVName";
+        this.TVInfo= "Default TVInfo";
+        this.TVGenre= "Default TVGenre";
+        this.TVNetwork= "Default TVNetwork";
+        this.TVDate= "Default TVDate";
+        this.TVCast= "Default TVCast";
+        this.TVDateDate= new Date();
     }
 
     public String getTVKey() {
