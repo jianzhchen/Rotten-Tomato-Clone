@@ -65,8 +65,9 @@ public class UserMvcController {
 
         User user = userRepository.findById(userId);
         if (user == null) {
-            model.addAttribute("error", "user not found");
+            model.addAttribute("error", true);
         } else {
+            model.addAttribute("error", false);
             if (!user.isOpenProfile()) {
                 model.addAttribute("openProfile", false);
                 return "user.html";
