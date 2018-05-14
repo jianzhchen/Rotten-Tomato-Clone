@@ -4,6 +4,7 @@ import com.redwood.rottenpotato.main.models.Movie;
 import com.redwood.rottenpotato.main.models.TV;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -18,6 +19,7 @@ public interface TVRepository extends JpaRepository<TV, Long> {
     @Query("select t from TV t where t.TVKey=:TVKey")
     public TV findByTVKey(@Param("TVKey") String TVKey);
 
+    @Modifying
     @Query("delete from TV t where t.TVKey=:TVKey")
     long removeByTVKey(@Param("TVKey") String TVKey);
 
