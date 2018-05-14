@@ -44,7 +44,7 @@ function editNames() {
 }
 function changeToOpen() {
     $.post("/1/changePrivacy",
-        {"openProfile":"true"},
+        {"openProfile":"1"},
         function () {
             $('#generalModalBody').html('Change privacy setting successfully!');
             $('#generalModal').modal('show');
@@ -56,7 +56,7 @@ function changeToOpen() {
 }
 function changeToHide() {
     $.post("/1/changePrivacy",
-        {"openProfile":"false"},
+        {"openProfile":"0"},
         function () {
             $('#generalModalBody').html('Change privacy setting successfully!');
             $('#generalModal').modal('show');
