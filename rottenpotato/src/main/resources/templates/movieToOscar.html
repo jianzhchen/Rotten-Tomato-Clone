@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" th:href="@{~/assets/img/kit/free/apple-icon.png}">
+    <link rel="icon" th:href="@{~/assets/img/kit/free/favicon.png}">
+    <title>
+        Rotten Potato
+    </title>
+    <!--     Fonts and icons     -->
+
+    <link rel="stylesheet" type="text/css"
+          th:href="@{https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons}"/>
+    <link rel="stylesheet" type="text/css"
+          href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons"/>
+    <link rel="stylesheet" th:href="@{https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css}"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css"/>
+
+    <link rel="stylesheet" th:href="@{~/assets/css/material-kit.css?v=2.0.2}">
+    <link rel="stylesheet" href="./assets/css/material-kit.css?v=2.0.2">
+    <link rel="stylesheet" th:href="@{~/assets/css/custom.css}">
+    <link rel="stylesheet" href="./assets/css/custom.css">
+    <!-- Documentation extras -->
+    <!-- CSS Just for demo purpose, don't include it in your project -->
+    <link th:href="@{~/assets/assets-for-demo/demo.css}" rel="stylesheet"/>
+    <link href="./assets/assets-for-demo/demo.css" rel="stylesheet"/>
+    <!-- iframe removal -->
+</head>
+
+<body class="index-page">
+<nav class="navbar navbar-expand-lg fixed-top  bg-dark">
+    <div class="container">
+        <div class="navbar-translate">
+            <a class="navbar-brand" href="/index.html">Rotten Potato</a>
+        </div>
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="/m/d/0">Movie</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/tv">TV</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/critic_all/0">Critic</a>
+            </li>
+        </ul>
+        <div class="collapse navbar-collapse">
+            <!--search form-->
+            <form class="form-inline ml-auto mr-5" action="/searchResult" method="get">
+                <div class="form-group has-white">
+                    <input name="term" type="text" class="form-control" style="width:300px" placeholder="Search">
+                </div>
+                <div class="col-auto my-0">
+                    <select class="custom-select custom-select-sm" name="type" style="height: 30px;">
+                        <option value="movie">Movies</option>
+                        <option value="tv">Tvs</option>
+                        <option value="actor">Actors</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-white btn-raised btn-fab btn-sm">
+                    <i class="material-icons">search</i>
+                </button>
+            </form>
+            <!--login signup button-->
+            <div th:if="${isLogin} == true">
+                <p th:bgcolor="white" th:text="${username}" onclick="window.location.href='/1/me'"></p>
+                <button class="btn btn-sm btn-primary mx-1" onclick="window.location.href='/logout'">Logout</button>
+
+            </div>
+            <div th:if="${isLogin} == false">
+                <div>
+                    <button class="btn btn-sm btn-primary mx-1" onclick="window.location.href='/loginPage'">Login</button>
+                    <button class="btn btn-sm btn-primary mx-1" onclick="window.location.href='/registration'">Register</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</nav>
+
+
+    <div class="page-header" data-parallax="false"
+     style="height: 18vh !important;">
+
+    </div>
+
+    <div class="main main-raised">
+        <div class="section section-basic mx-2">
+            <div class="container">
+
+                <div class = "row">
+                    <div class = "col-sm-3">
+                        <ul class="list-group">
+                            <a href="/m/d/0" class="list-group-item ">Coming Soon</a>
+                            <a href="/m/b/0" class="list-group-item ">Top Box Office</a>
+                            <a href="/m/o/0" class="list-group-item">Opening this week</a>
+                            <a href="/m/oscar/0" class="list-group-item link-white-color-active">Oscar Best Picture Movie</a>
+                        </ul>
+                    </div>
+                    <div class="col-sm-9">
+                        <div class="sort bar">
+                            <table>
+                                <td>Genre: </td>
+                                <td width="200">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-sm btn-primary dropdown-toggle" data-toggle="dropdown">
+                                            <span class="caret">All</span>
+                                        </button>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li> <input type="checkbox">Active</li>
+                                            <li> <input type="checkbox">Animation</li>
+                                            <li> <input type="checkbox">Art & Foreign</li>
+                                            <li> <input type="checkbox">Classics</li>
+                                            <li> <input type="checkbox">Comedy</li>
+                                        </ul>
+                                    </div>
+                                </td>
+                                <td>Sort By: </td>
+                                <td>
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-sm btn-primary dropdown-toggle" data-toggle="dropdown">
+                                            <span class="caret">Popularity</span>
+                                        </button>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li><a href="#">Release Date</a></li>
+                                            <li><a href="#">Popularity</a></li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </table>
+
+                        </div>
+                        <div class="card">
+                            <div class="card-body">
+                                <div th:each="row :${#numbers.sequence(0,movies.size(),4)}" class="row">
+                                    <div th:each="col :${#numbers.sequence(0,3)}" th:if="${row + col < movies.size()}" class="col-md-3 text-center">
+                                        <a th:onclick="'javascript:getMovie(\''+${movies.get(row+col).key}+'\')'">
+                                            <img th:src="@{'~/Images/movieImages/'+${movies.get(row+col).key}+'.jpg'}" th:width="150" th:height="200"
+                                                 th:onerror="'this.src=\'' + @{~/assets/img/defaultMovie.jpg} + '\';'"></a>
+                                        <h6 th:text="${movies.get(row+col).name}" th:onclick="'javascript:getMovie(\''+${movies.get(row+col).key}+'\')'">some text</h6>
+                                        <p th:text="${movies.get(row+col).date}">some text</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pull-right">
+                            <button type="button" class="btn btn-primary btn-sm" th:if="${page} != 0" th:onclick="'javascript:getPrevPage(\''+${page}+'\')'" >Prev</button>
+                            <p style="display: inline" th:text="${page}+1">Page</p>
+                            <button type="button" class="btn btn-primary btn-sm"
+                                    th:if="${hasNext}"
+                                    th:onclick="'javascript:getNextPage(\''+${page}+'\')'">Next</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<!-- Classic Modal -->
+    <div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="signupModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="signupModalLabel">Sign Up</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <input type="email" class="form-control" id="signupInputEmail" aria-describedby="emailHelp"
+                                   placeholder="Enter email">
+                            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
+                                else.
+                            </small>
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" placeholder="Password">
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" placeholder="Retype Password">
+                        </div>
+                        <div class="form-group">
+                            <input type="email" class="form-control" aria-describedby="emailHelp"
+                                   placeholder="Enter First Name">
+                        </div>
+                        <div class="form-group">
+                            <input type="email" class="form-control" aria-describedby="emailHelp"
+                                   placeholder="Enter Last Name">
+                        </div>
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                            <label class="form-check-label">Check if you are applying as a
+                                critic</label>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer mb-1">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Sign In</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <input type="email" class="form-control" aria-describedby="emailHelp"
+                                   placeholder="Enter email">
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" placeholder="Password">
+                        </div>
+                        <div class="text-danger" th:text="${errorMessage}">error</div>
+                    </form>
+                </div>
+
+                <div class="modal-footer mb-1">
+                    <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-sm btn-primary">Sign In</button>
+                </div>
+            </div>
+        </div>
+    </div>
+<!--  End Modal -->
+<footer class="footer ">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <div>
+                    <ul>
+                        <li>
+                            <a href="/about">
+                                About Us
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <ul>
+                    <li>
+                        <a >Follow us:</a>
+                    </li>
+                    <li>
+                        <img th:src="@{~/assets/img/kit/free/facebook.png}" width="16" height="16" onclick="window.open('https://www.facebook.com')">
+                    </li>
+                    <li>
+                        <img th:src="@{~/assets/img/kit/free/twitter.png}" width="16" height="16" onclick="window.open('https://twitter.com')">
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-3">
+                <div class="copyright pull-right">
+                    &copy;
+                    <script>
+                        document.write(new Date().getFullYear())
+                    </script>
+                    , The Redwood Team
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</footer>
+<!--   Core JS Files   -->
+<script th:src="@{~/assets/js/core/jquery.min.js}"></script>
+<script th:src="@{~/assets/js/core/popper.min.js}"></script>
+<script th:src="@{~/assets/js/bootstrap-material-design.js}"></script>
+<!--  Plugin for Date Time Picker and Full Calendar Plugin  -->
+<script th:src="@{~/assets/js/plugins/moment.min.js}"></script>
+<!--	Plugin for the Datepicker, full documentation here: https://github.com/Eonasdan/bootstrap-datetimepicker -->
+<script th:src="@{~/assets/js/plugins/bootstrap-datetimepicker.min.js}"></script>
+<!--	Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
+<script th:src="@{~/assets/js/plugins/nouislider.min.js}"></script>
+<!-- Material Kit Core initialisations of plugins and Bootstrap Material Design Library -->
+<script th:src="@{~/assets/js/material-kit.js?v=2.0.2}"></script>
+<!-- Fixed Sidebar Nav - js With initialisations For Demo Purpose, Don't Include it in your project -->
+<script th:src="@{~/assets/assets-for-demo/js/material-kit-demo.js}"></script>
+<script type="text/javascript" th:src="@{~/js/movieToDate.js}"></script>
+<!--for test-->
+<script src="./assets/js/core/jquery.min.js"></script>
+<script src="./assets/js/core/popper.min.js"></script>
+<script src="./assets/js/bootstrap-material-design.js"></script>
+<!--  Plugin for Date Time Picker and Full Calendar Plugin  -->
+<script src="./assets/js/plugins/moment.min.js"></script>
+<!--	Plugin for the Datepicker, full documentation here: https://github.com/Eonasdan/bootstrap-datetimepicker -->
+<script src="./assets/js/plugins/bootstrap-datetimepicker.min.js"></script>
+<!--	Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
+<script src="./assets/js/plugins/nouislider.min.js"></script>
+<!-- Material Kit Core initialisations of plugins and Bootstrap Material Design Library -->
+<script src="./assets/js/material-kit.js?v=2.0.2}"></script>
+<!-- Fixed Sidebar Nav - js With initialisations For Demo Purpose, Don't Include it in your project -->
+<script src="./assets/assets-for-demo/js/material-kit-demo.js"></script>
+
+
+
+</body>
+
+</html>
