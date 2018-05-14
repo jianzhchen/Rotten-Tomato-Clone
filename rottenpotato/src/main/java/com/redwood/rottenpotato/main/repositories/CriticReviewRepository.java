@@ -17,6 +17,8 @@ import java.util.Map;
 public interface CriticReviewRepository extends JpaRepository<CriticReview, Long> {
     List<CriticReview> findByItemKey(String itemKey);
 
+
+
     List<CriticReview> findTop10ByOrderByReviewTimeDateDesc(Pageable pageable);
 
     List<CriticReview> findTop10ByCriticKeyOrderByReviewTimeDateDesc(String criticKey, Pageable pageable);

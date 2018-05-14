@@ -225,77 +225,77 @@
         <div class="container">
             <!--moreInfo-->
             <sction id="moreInfo">
-            <h3 class="title text-left">More Information</h3>
-            <div class="card">
-                <div class="card-body">
-                    <table>
-                        <tr>
-                            <td class="text-right" width="150px">
-                                Rating:
-                            </td>
-                            <td class="text-left px-3"width="800px" th:text="${movieRating}">
-                                R (for crude sexual content and language throughout, drug material and some graphic nudity)
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-right" width="150px">
-                                Genre:
-                            </td>
-                            <td class="text-left px-3"width="800px" th:text="${genre}">
-                                Comedy
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-right" width="150px">
-                                Directed By:
-                            </td>
-                            <td class="text-left px-3"width="800px" th:text="${director}">
-                                director name
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-right" width="150px">
-                                Written By:
-                            </td>
-                            <td class="text-left px-3"width="800px" th:text="${writer}">
-                                writer name
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-right" width="150px">
-                                 In Theaters :
-                            </td>
-                            <td class="text-left px-3"width="800px" th:text="${inTheater}">
-                                date
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-right" width="150px">
-                                Runtime
-                            </td>
-                            <td class="text-left px-3"width="800px" th:text="${runTime}">
-                                time
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-right" width="150px">
-                                Studio:
-                            </td>
-                            <td class="text-left px-3"width="800px" th:text="${studio}">
-                                Studio name
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-right" width="150px">
-                                Box Office:
-                            </td>
-                            <td class="text-left px-3"width="800px" th:text="${boxOffice}">
-                                box office
-                            </td>
-                        </tr>
-                    </table>
+                <h3 class="title text-left">More Information</h3>
+                <div class="card">
+                    <div class="card-body">
+                        <table>
+                            <tr>
+                                <td class="text-right" width="150px">
+                                    Rating:
+                                </td>
+                                <td class="text-left px-3"width="800px" th:text="${movieRating}">
+                                    R (for crude sexual content and language throughout, drug material and some graphic nudity)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-right" width="150px">
+                                    Genre:
+                                </td>
+                                <td class="text-left px-3"width="800px" th:text="${genre}">
+                                    Comedy
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-right" width="150px">
+                                    Directed By:
+                                </td>
+                                <td class="text-left px-3"width="800px" th:text="${director}">
+                                    director name
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-right" width="150px">
+                                    Written By:
+                                </td>
+                                <td class="text-left px-3"width="800px" th:text="${writer}">
+                                    writer name
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-right" width="150px">
+                                    In Theaters :
+                                </td>
+                                <td class="text-left px-3"width="800px" th:text="${inTheater}">
+                                    date
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-right" width="150px">
+                                    Runtime
+                                </td>
+                                <td class="text-left px-3"width="800px" th:text="${runTime}">
+                                    time
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-right" width="150px">
+                                    Studio:
+                                </td>
+                                <td class="text-left px-3"width="800px" th:text="${studio}">
+                                    Studio name
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-right" width="150px">
+                                    Box Office:
+                                </td>
+                                <td class="text-left px-3"width="800px" th:text="${boxOffice}">
+                                    box office
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
                 </div>
-            </div>
             </sction>
             <!--cast-->
             <section >
@@ -307,12 +307,12 @@
                 <div class="card m-1">
                     <div class="card-body">
                         <!--<div th:each="row :${#numbers.sequence(0,casts.size(),4)}" class="row">-->
-                            <!--<div th:each="col :${#numbers.sequence(0,3)}" th:if="${row + col < casts.size()}" class="col-md-3 text-center">-->
-                                <!--<a th:onclick="'javascript:getActor(\''+${casts.get(row+col).key}+'\')'">-->
-                                    <!--<img th:src="@{'~/Images/actorImages/'+${casts.get(row+col).key}+'.jpg'}" th:width="150" th:height="150"-->
-                                         <!--th:onerror="'this.src=\'' + @{~/assets/img/default.jpg} + '\';'"></a>-->
-                                <!--<h6 th:text="${casts.get(row+col).name}" th:onclick="'javascript:getActor(\''+${casts.get(row+col).key}+'\')'">name</h6>-->
-                            <!--</div>-->
+                        <!--<div th:each="col :${#numbers.sequence(0,3)}" th:if="${row + col < casts.size()}" class="col-md-3 text-center">-->
+                        <!--<a th:onclick="'javascript:getActor(\''+${casts.get(row+col).key}+'\')'">-->
+                        <!--<img th:src="@{'~/Images/actorImages/'+${casts.get(row+col).key}+'.jpg'}" th:width="150" th:height="150"-->
+                        <!--th:onerror="'this.src=\'' + @{~/assets/img/default.jpg} + '\';'"></a>-->
+                        <!--<h6 th:text="${casts.get(row+col).name}" th:onclick="'javascript:getActor(\''+${casts.get(row+col).key}+'\')'">name</h6>-->
+                        <!--</div>-->
                         <!--</div>-->
                         <!--less than 8 normal displays-->
                         <div th:if="${casts.size() <= 8}" th:each="row :${#numbers.sequence(0,casts.size(),4)}" class="row">
@@ -333,14 +333,14 @@
                             </div>
                         </div>
                         <div id="cast" class="collapse">
-                        <div th:if="${casts.size() > 8}" th:each="row :${#numbers.sequence(8,casts.size(),4)}" class="row">
-                            <div th:each="col :${#numbers.sequence(0,3)}" th:if="${row + col < casts.size()}" class="col-md-3 text-center">
-                                <a th:onclick="'javascript:getActor(\''+${casts.get(row+col).key}+'\')'">
-                                    <img th:src="@{'~/Images/actorImages/'+${casts.get(row+col).key}+'.jpg'}" th:width="150" th:height="150"
-                                         th:onerror="'this.src=\'' + @{~/assets/img/default.jpg} + '\';'"></a>
-                                <h6 th:text="${casts.get(row+col).name}" th:onclick="'javascript:getActor(\''+${casts.get(row+col).key}+'\')'">name</h6>
+                            <div th:if="${casts.size() > 8}" th:each="row :${#numbers.sequence(8,casts.size(),4)}" class="row">
+                                <div th:each="col :${#numbers.sequence(0,3)}" th:if="${row + col < casts.size()}" class="col-md-3 text-center">
+                                    <a th:onclick="'javascript:getActor(\''+${casts.get(row+col).key}+'\')'">
+                                        <img th:src="@{'~/Images/actorImages/'+${casts.get(row+col).key}+'.jpg'}" th:width="150" th:height="150"
+                                             th:onerror="'this.src=\'' + @{~/assets/img/default.jpg} + '\';'"></a>
+                                    <h6 th:text="${casts.get(row+col).name}" th:onclick="'javascript:getActor(\''+${casts.get(row+col).key}+'\')'">name</h6>
+                                </div>
                             </div>
-                        </div>
                         </div>
                     </div>
                 </div>
@@ -377,16 +377,13 @@
                     </div>
                 </div>
                 <!--<div class="text-right">-->
-                    <!--<button type="button" class="btn btn-default btn-sm"  th:onclick="'javascript:getTrailers(\''+${movieKey}+'\')'">View All</button>-->
+                <!--<button type="button" class="btn btn-default btn-sm"  th:onclick="'javascript:getTrailers(\''+${movieKey}+'\')'">View All</button>-->
                 <!--</div>-->
             </section>
             <!--critic review-->
             <section id="critic_review">
                 <!--<button type="button" class="btn btn-default btn-sm pull-right">View All</button>-->
                 <h3 class="title text-left">Critic Reviews</h3>
-                <a th:onclick="'javascript:getMovieTopCritic(\''+${movieKey}+'\')'">topCritic</a>
-                <!--<a th:onclick="'javascript:getMovieTopCritic(\''+${movieKey}+'\')'">topCritic</a>-->
-
                 <div class="card m-1">
                     <div class="card-body">
                         <div class="card-columns">
@@ -440,7 +437,7 @@
                                         <img class="pull-right" data-toggle="tooltip" title="report this review"
                                              th:if="${isLogin}"
                                              th:src="@{~/assets/img/kit/free/report.png}"
-                                            th:onclick="'javascript:reportReview(\''+${review.reviewId}+'\')'">
+                                             th:onclick="'javascript:reportReview(\''+${review.reviewId}+'\')'">
                                     </div>
                                     <!--user review content-->
                                     <div class="text-left" th:text="${review.content}">

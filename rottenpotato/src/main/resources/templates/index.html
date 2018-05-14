@@ -143,13 +143,12 @@
                         <table class="table table-striped">
                             <tbody>
                             <tr th:each="movie:${highestRateMovie}">
-
                                 <td>
                                     <a th:text="${movie.movieName}"
                                        th:href="'javascript:getMovie(\''+${movie.movieKey}+'\')'">
                                     </a>
                                 </td>
-                                <td class="pull-right" th:text="${movie.rate}">MAR 2</td>
+                                <!--<td class="pull-right" th:text="${movie.rate}">MAR 2</td>-->
                             </tr>
                             </tbody>
                         </table>
