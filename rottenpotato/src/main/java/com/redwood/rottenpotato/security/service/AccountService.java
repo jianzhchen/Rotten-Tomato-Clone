@@ -129,11 +129,9 @@ public class AccountService {
         }
         long userId = user.getId();
         criticApplicationRepository.removeByUserId(userId);
-        fCountRepository.removeByUserId(userId);
         userRatingRepository.removeByUserId(userId);
         userReviewRepository.removeByUserId(userId);
-        user.setEnable(false);
-        userRepository.save(user);
+        userRepository.removeById(userId);
         return jsonService.constructStatusMessage(AjaxCallStatus.OK);
     }
 
