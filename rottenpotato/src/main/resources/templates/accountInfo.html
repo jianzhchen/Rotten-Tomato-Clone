@@ -175,7 +175,7 @@
                                         </div>
 
                                         <div class="col-sm-4">
-                                            <button type="button" class="btn btn-primary btn-sm" style="width: 200px;">Apply Now</button>
+                                            <button type="button" class="btn btn-primary btn-sm" style="width: 200px;" onclick="criticApplication()">Apply Now</button>
                                         </div>
 
                                     </div>
@@ -184,14 +184,14 @@
                         <div class="card">
                                 <div class="card-body">
                                     <h5 class="card-title">Privacy Setting</h5>
-                                    <div class="row" th:if="{privacy}">
-                                    <div class="col-md-6">Hide</div>
-                                    <div class="col-md-4">
-                                        <button  type="button" class="btn btn-primary btn-sm" style="width: 200px;"
-                                                 th:onclick="'javascript:changeToOpen()'">Change to open</button>
+                                    <div class="row" th:unless="${openProfile}">
+                                        <div class="col-md-6">Hide</div>
+                                        <div class="col-md-4">
+                                            <button  type="button" class="btn btn-primary btn-sm" style="width: 200px;"
+                                                     th:onclick="'javascript:changeToOpen()'">Change to open</button>
+                                        </div>
                                     </div>
-                                    </div>
-                                    <div class="row" th:unless="{privacy}">
+                                    <div class="row" th:if="${openProfile}">
                                         <div class="col-md-6">Open</div>
                                         <div class="col-md-4">
                                             <button  type="button" class="btn btn-primary btn-sm" style="width: 200px;"
@@ -239,8 +239,6 @@
         </div>
     </div>
 </div>
-
-
 <div class="modal fade" id="changePassword">
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
@@ -268,9 +266,6 @@
         </div>
     </div>
 </div>
-
-
-
 <div class="modal fade" id="editNames">
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
@@ -319,6 +314,30 @@
         </div>
     </div>
 </div>
+<div class="modal fade" id="criticApplicationModal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h4 class="modal-title">Critic Application Reason</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+
+            <div class="modal-body">
+                <textarea class="form-control text-muted" rows="5" id="criticApplicationReason" placeholder="Enter your reason here"></textarea>
+            </div>
+
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal" id="criticApplicationConfirmButton">Confirm</button>
+                <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal" id="criticApplicationCloseButton">Cancel</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <!--  End Modal -->
 <footer class="footer ">
