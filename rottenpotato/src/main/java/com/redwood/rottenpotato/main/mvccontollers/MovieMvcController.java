@@ -264,7 +264,7 @@ public class MovieMvcController {
             movieList.add(movieDetail);
         }
         model.addAttribute("movies", movieList);
-        model.addAttribute("page", page);
+//        model.addAttribute("page", page);
 
         return "movieOpeningThisWeek.html";
     }
