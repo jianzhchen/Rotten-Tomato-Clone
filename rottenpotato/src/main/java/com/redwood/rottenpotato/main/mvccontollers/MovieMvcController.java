@@ -37,6 +37,8 @@ public class MovieMvcController {
     private UserReviewRepository userReviewRepository;
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private MovieService movieService;
 
 
     @GetMapping(value = "m/{movieKey}")
@@ -240,6 +242,31 @@ public class MovieMvcController {
         model.addAttribute("page", page);
 
         return "movieToBox.html";
+    }
+
+
+    @GetMapping(value = "m/o/{page}")
+    public String openingThisWeek(@PathVariable("page") int page, Model model, Principal principal) {
+        if (principal == null) {
+            model.addAttribute("isLogin", false);
+        } else {
+            model.addAttribute("isLogin", true);
+            model.addAttribute("username", principal.getName());
+        }
+        List<Movie> movies = movieService.openingThisWeekMovie(model, 0);
+        List<HashMap> movieList = new ArrayList<>();
+        for (Movie movie : movies) {
+            HashMap<String, String> movieDetail = new HashMap<>();
+            movieDetail.put("name", movie.getName());
+            movieDetail.put("key", movie.getMovieKey());
+            movieDetail.put("date", movie.getInTheatersTime().toString());
+            //TODO
+            movieList.add(movieDetail);
+        }
+        model.addAttribute("movies", movieList);
+        model.addAttribute("page", page);
+
+        return "movieOpeningThisWeek.html";
     }
 
 

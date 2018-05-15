@@ -85,7 +85,6 @@ public class MovieService {
 
         for (Movie movie : MovieRepository.findTop100ByOrderByInTheatersTimeDesc(PageRequest.of(page, 1))) {
             if(movie.getInTheatersTime() != null){
-//                if(movie.getInTheatersTime().getYear() == date.getYear()  & movie.getInTheatersTime().getMonth() == date.getMonth() & movie.getInTheatersTime().getDate() / 7 == date.getDate() / 7){
                 if(movie.getInTheatersTime().after(dateFirst) & movie.getInTheatersTime().before(dateLast)){
                     Map<String, String> map = new HashMap<>();
                     map.put("movieName", movie.getName());
@@ -95,7 +94,40 @@ public class MovieService {
                 }
             }
         }
+        return templist;
+    }
 
+    public List<Movie> openingThisWeekMovie(Model model, int page){
+        List<Movie> templist = new ArrayList<>();
+
+        Date date = new Date();
+        Date firstDate1 = new Date(118, 4, 15);
+        Calendar cal = Calendar.getInstance();
+        cal.set(Calendar.HOUR_OF_DAY, 0); // ! clear would not reset the hour of day !
+        cal.clear(Calendar.MINUTE);
+        cal.clear(Calendar.SECOND);
+        cal.clear(Calendar.MILLISECOND);
+
+        cal.set(Calendar.DAY_OF_WEEK, cal.getFirstDayOfWeek());
+        Date dateFirst = cal.getTime();
+
+        for (int i = 0; i < 7; i++) {
+            cal.add(Calendar.DATE, 1);
+        }
+
+        Date dateLast = cal.getTime();
+
+        for (Movie movie : MovieRepository.findTop100ByOrderByInTheatersTimeDesc(PageRequest.of(page, 1))) {
+            if(movie.getInTheatersTime() != null){
+                if(movie.getInTheatersTime().after(dateFirst) & movie.getInTheatersTime().before(dateLast)){
+//                    Map<String, String> map = new HashMap<>();
+//                    map.put("movieName", movie.getName());
+//                    map.put("key",movie.getMovieKey());
+//                    map.put("date",movie.getInTheaters());
+                    templist.add(movie);
+                }
+            }
+        }
         return templist;
     }
 
