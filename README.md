@@ -1,1 +1,3 @@
-init
+# rottentomatoes.com clone
+## Technologies
+* Spring Framework
